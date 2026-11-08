@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
+import com.lzk.nihiloutspread.blocks.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -29,7 +30,8 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         gerarModelosDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, true, "hive");
         gerarModelosDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, true, "nihil");
         gerarModelosDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true, true, "nihil");
-        blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil");
+        blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", NilightBlock.SNOWY, NilightBlock.MOSSY,
+                NilightBlock.DIRTY);
         gerarModelosDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, false, true, "nihil");
 
     }
@@ -234,7 +236,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modelos.put(camada, models().cube(
                     material + "_" + nomeCamada,
                     textura(material, categoria),
-                    textura(nomeCamada, "extra"),
+                    textura(nomeCamada, "extras"),
                     textura(material + "_side_" + nomeCamada, categoria),
                     textura(material + "_side_" + nomeCamada, categoria),
                     textura(material + "_side_" + nomeCamada, categoria),

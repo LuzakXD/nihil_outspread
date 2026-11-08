@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "nihil_outspread:block/nihil/nilight",
+    "east": "nihil_outspread:block/nihil/nilight_side_mossy",
+    "north": "nihil_outspread:block/nihil/nilight_side_mossy",
+    "south": "nihil_outspread:block/nihil/nilight_side_mossy",
+    "up": "nihil_outspread:block/extras/mossy",
+    "west": "nihil_outspread:block/nihil/nilight_side_mossy"
+  }
+}

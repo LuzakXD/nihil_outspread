@@ -4,25 +4,25 @@
       "model": "nihil_outspread:block/nilight"
     },
     "dirty=false,mossy=false,snowy=true": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_snowy"
     },
     "dirty=false,mossy=true,snowy=false": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_mossy"
     },
     "dirty=false,mossy=true,snowy=true": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_snowy"
     },
     "dirty=true,mossy=false,snowy=false": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_dirty"
     },
     "dirty=true,mossy=false,snowy=true": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_snowy"
     },
     "dirty=true,mossy=true,snowy=false": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_mossy"
     },
     "dirty=true,mossy=true,snowy=true": {
-      "model": "nihil_outspread:block/nilight"
+      "model": "nihil_outspread:block/nilight_snowy"
     }
   }
 }
