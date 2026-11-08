@@ -97,8 +97,8 @@ public class NihilOutspread {
                                 ProvedorTabelaItens::new,
                                 LootContextParamSets.BLOCK)),
                         event.getLookupProvider()));
-
-        generator.addProvider(event.includeClient(), new ProvedorLinguaENUS(output, "en_us"));
         generator.addProvider(event.includeClient(), new ProvedorLinguaPTBR(output, "pt_br"));
+        generator.addProvider(event.includeClient(), new ProvedorLinguaENUS(output, "en_us"));
+
     }
 }
