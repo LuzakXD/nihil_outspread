@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nihil_outspread:polished_graphite_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "nihil_outspread:polished_graphite_brick_stairs"
+  }
+}

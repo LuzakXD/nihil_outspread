@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "nihil_outspread:polished_nilight"
+  },
+  "result": {
+    "count": 1,
+    "id": "nihil_outspread:polished_nilight_brick_wall"
+  }
+}

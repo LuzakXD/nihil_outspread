@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/polished_cottonite_brick_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/polished_cottonite_bricks"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/polished_cottonite_brick_slab_top"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+package com.lzk.nihiloutspread.init;
+
+import java.util.Map;
+import java.util.Set;
+
+import com.lzk.nihiloutspread.NihilOutspread;
+import com.lzk.nihiloutspread.blockGens.*;
+import com.lzk.nihiloutspread.blocks.NilightBlock;
+
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import java.util.function.Supplier;
+
+public class ModBlocks {
+
+        public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(NihilOutspread.MODID);
+
+        private static DeferredBlock<Block> registrarBlocoItem(String nome, Supplier<Block> fabrica) {
+                DeferredBlock<Block> bloco = BLOCKS.register(nome, fabrica);
+                ModItems.ITEMS.registerSimpleBlockItem(nome, bloco);
+                return bloco;
+        }
+
+        private static final ResourceKey<Block> honeycombKey = ResourceKey.create(
+                        Registries.BLOCK,
+                        ResourceLocation.withDefaultNamespace("honeycomb_block"));
+
+        public static final DeferredBlock<Block> NILIGHT = registrarBlocoItem("nilight",
+                        () -> new NilightBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.COLOR_BLACK).strength(3, 10)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+
+        public static final FamiliaPedra NILIGHT_BLOCK_FAMILY = new FamiliaPedra(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        NILIGHT,
+                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 6),
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.TALHADO,
+                                                        TipoVariante.PLACAPRESSAO,
+                                                        TipoVariante.BOTAO),
+                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.RACHADO)));
+
+        public static final DeferredBlock<Block> GRAPHITE = registrarBlocoItem("graphite",
+                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(2, 6)));
+
+        public static final FamiliaPedra GRAPHITE_BLOCK_FAMILY = new FamiliaPedra(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        GRAPHITE,
+                        BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(2, 6),
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.RACHADO)));
+
+        public static final DeferredBlock<Block> COTTONITE = registrarBlocoItem("cottonite",
+                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1,
+                                        6)));
+
+        public static final FamiliaPedra COTTONITE_BLOCK_FAMILY = new FamiliaPedra(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        COTTONITE,
+                        BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.PILAR),
+                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO)));
+
+        public static final DeferredBlock<Block> HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);
+
+        public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                        ModItems.ITEMS,
+                        HONEYCOMB_BASE,
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
+                        Map.of(
+                                        TipoMaterial.POLIDO, Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.TIJOLOS_POLIDO, Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO)));
+
+}

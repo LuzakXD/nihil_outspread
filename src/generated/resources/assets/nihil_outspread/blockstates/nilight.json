@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "dirty=false,mossy=false,snowy=false": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=false,mossy=false,snowy=true": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=false,mossy=true,snowy=false": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=false,mossy=true,snowy=true": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=true,mossy=false,snowy=false": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=true,mossy=false,snowy=true": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=true,mossy=true,snowy=false": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "dirty=true,mossy=true,snowy=true": {
+      "model": "nihil_outspread:block/nilight"
+    }
+  }
+}

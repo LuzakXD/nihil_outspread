@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/graphite_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/graphite"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/graphite_slab_top"
+    }
+  }
+}

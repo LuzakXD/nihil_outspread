@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "nihil_outspread:block/hive/polished_honeycomb_bricks"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nihil_outspread:block/nihil/polished_cottonite_pillar_top",
+    "side": "nihil_outspread:block/nihil/polished_cottonite_pillar_side"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_graphite_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nihil_outspread:polished_graphite_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:polished_graphite_brick_wall_from_polished_graphite_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_graphite_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_graphite_brick_wall_from_polished_graphite_bricks_stonecutting"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "nihil_outspread:block/polished_cottonite_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "nihil_outspread:block/polished_cottonite_pillar"
+    },
+    "axis=z": {
+      "model": "nihil_outspread:block/polished_cottonite_pillar_horizontal",
+      "x": 90
+    }
+  }
+}

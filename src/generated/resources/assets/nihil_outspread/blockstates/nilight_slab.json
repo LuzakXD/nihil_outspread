@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/nilight_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/nilight"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/nilight_slab_top"
+    }
+  }
+}

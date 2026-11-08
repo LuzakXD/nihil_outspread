@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/cottonite_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/cottonite"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/cottonite_slab_top"
+    }
+  }
+}

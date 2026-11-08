@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "nihil_outspread:block/nihil/polished_cottonite_bricks",
+    "side": "nihil_outspread:block/nihil/polished_cottonite_bricks",
+    "top": "nihil_outspread:block/nihil/polished_cottonite_bricks"
+  }
+}
