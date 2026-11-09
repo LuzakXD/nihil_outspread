@@ -13,11 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 
-import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.init.ModTags;
 
 import net.minecraft.core.BlockPos;

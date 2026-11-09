@@ -15,16 +15,20 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ColoredFallingBlock;
+import net.minecraft.world.level.block.SoundType;
+
 import java.util.function.Supplier;
 
 public class ModBlocks {
 
         public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(NihilOutspread.MODID);
 
-        private static DeferredBlock<Block> registrarBlocoItem(String nome, Supplier<Block> fabrica) {
-                DeferredBlock<Block> bloco = BLOCKS.register(nome, fabrica);
+        private static <T extends Block> DeferredBlock<T> registrarBlocoItem(String nome, Supplier<T> fabrica) {
+                DeferredBlock<T> bloco = BLOCKS.register(nome, fabrica);
                 ModItems.ITEMS.registerSimpleBlockItem(nome, bloco);
                 return bloco;
         }
@@ -99,6 +103,43 @@ public class ModBlocks {
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO,
                                                         TipoVariante.RACHADO)));
+
+        public static final DeferredBlock<ColoredFallingBlock> VELVET_SAND = registrarBlocoItem("velvet_sand",
+                        () -> new ColoredFallingBlock(new ColorRGBA(148046076),
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.COLOR_ORANGE)
+                                                        .instrument(NoteBlockInstrument.SNARE)
+                                                        .strength(0.5F)
+                                                        .sound(SoundType.SAND)));
+
+        public static final DeferredBlock<Block> VELVESTONE = registrarBlocoItem("velvestone",
+                        () -> new Block(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.COLOR_ORANGE)
+                                        .instrument(NoteBlockInstrument.SNARE)
+                                        .strength(1.5F)
+                                        .sound(SoundType.STONE)));
+
+        public static final FamiliaAreia VELVESTONE_BLOCK_FAMILY = new FamiliaAreia(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        VELVESTONE,
+                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1.5F),
+                        Map.of(
+                                        TipoMaterialAreia.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterialAreia.CORTADO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterialAreia.LISO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO)));
 
         public static final DeferredBlock<Block> COTTONITE = registrarBlocoItem("cottonite",
                         () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1,

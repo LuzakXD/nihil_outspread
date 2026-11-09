@@ -1,9 +1,7 @@
 package com.lzk.nihiloutspread.dataGens;
 
 import com.lzk.nihiloutspread.NihilOutspread;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.TipoMaterialPedra;
-import com.lzk.nihiloutspread.blockGens.Variantes;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -17,10 +15,16 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.nihiloutspread", "Nihil Outspread");
+
+        add("block.nihiloutspread.nihil_dirt", "Terra Nihil");
+        add("block.nihiloutspread.nihil_grass_block", "Bloco de Grama Nihil");
+        add("block.nihiloutspread.velvet_sand", "Areia de Veludo");
+
         traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
         traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
+        traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
     }
 
     private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
@@ -69,6 +73,38 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             addBlock(entry.getValue(), "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero));
     }
 
+    private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
+
+        if (temBase)
+            addBlock(familia.base, nomeMaterial);
+        traduzVariantes(familia.variantesBase, nomeMaterial);
+
+        if (familia.liso != null) {
+            String nome = nomeDoMaterial(TipoMaterialPedra.LISO, nomeMaterial, genero);
+            addBlock(familia.liso, nome);
+            traduzVariantes(familia.variantesLiso, nome);
+        }
+
+        if (familia.cortado != null) {
+            String nome = nomeDoMaterialAreia(TipoMaterialAreia.CORTADO, nomeMaterial, genero);
+            addBlock(familia.cortado, nome);
+            traduzVariantes(familia.variantesCortado, nome);
+        }
+
+        for (var entry : familia.talhados.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialAreiaTalhado(entry.getKey(), nomeMaterial, genero));
+
+        for (var entry : familia.pilares.entrySet())
+            addBlock(entry.getValue(), "Pilar de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+
+        for (var entry : familia.pressoes.entrySet())
+            addBlock(entry.getValue(),
+                    "Placa de Pressão de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+
+        for (var entry : familia.bototes.entrySet())
+            addBlock(entry.getValue(), "Botão de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+    }
+
     private void traduzVariantes(Variantes variantes, String nomeBase) {
         if (variantes == null)
             return;
@@ -101,6 +137,16 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         };
     }
 
+    private String nomeDoMaterialAreia(TipoMaterialAreia tipo, String nomeMaterial, Genero genero) {
+        String s = sufixo(genero);
+        return switch (tipo) {
+            case BASE -> nomeMaterial;
+            case LISO -> nomeMaterial + " Lis" + s;
+            case CORTADO -> nomeMaterial + " Cortad" + s;
+
+        };
+    }
+
     private String nomeDoMaterialTalhado(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
@@ -111,6 +157,16 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s + " Talhados";
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Talhados";
             case PLACAS -> "Placas de " + nomeMaterial + " Talhadas";
+        };
+    }
+
+    private String nomeDoMaterialAreiaTalhado(TipoMaterialAreia tipo, String nomeMaterial, Genero genero) {
+        String s = sufixo(genero);
+        return switch (tipo) {
+            case BASE -> nomeMaterial + " Talhad" + s;
+            case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
+            case CORTADO -> nomeMaterial + " Cortad" + s + " Talhad" + s;
+
         };
     }
 

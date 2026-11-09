@@ -2,6 +2,7 @@ package com.lzk.nihiloutspread.dataGens;
 
 import java.util.Collections;
 
+import com.lzk.nihiloutspread.blockGens.FamiliaAreia;
 import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
@@ -26,15 +27,17 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        lootDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false);
-        lootDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
-        lootDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
-        lootDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        lootDaFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false);
+        lootDaFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
+        lootDaFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
+        lootDaFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
         dropSelf(ModBlocks.NIHIL_DIRT.get());
         dropOther(ModBlocks.NIHIL_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
+        dropSelf(ModBlocks.VELVET_SAND.get());
+        lootDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
     }
 
-    private void lootDaFamilia(FamiliaPedra familia, boolean temBase) {
+    private void lootDaFamiliaPedra(FamiliaPedra familia, boolean temBase) {
         if (temBase) {
             dropSelf(familia.base.get());
         }
@@ -85,6 +88,52 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
                             createSlabItemTable(familia.variantesLiso.laje().get()));
                 if (familia.variantesLiso.muro() != null)
                     dropSelf(familia.variantesLiso.muro().get());
+            }
+        }
+
+        for (var bloco : familia.bototes.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var bloco : familia.pressoes.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var bloco : familia.talhados.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var pilar : familia.pilares.values()) {
+            dropSelf(pilar.get());
+        }
+    }
+
+    private void lootDaFamiliaAreia(FamiliaAreia familia, boolean temBase) {
+        if (temBase) {
+            dropSelf(familia.base.get());
+        }
+
+        if (familia.variantesBase != null) {
+            dropSelf(familia.variantesBase.escada().get());
+            add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
+            dropSelf(familia.variantesBase.muro().get());
+        }
+
+        if (familia.cortado != null) {
+            dropSelf(familia.cortado.get());
+            if (familia.variantesCortado != null) {
+                dropSelf(familia.variantesCortado.escada().get());
+                add(familia.variantesCortado.laje().get(), createSlabItemTable(familia.variantesCortado.laje().get()));
+                dropSelf(familia.variantesCortado.muro().get());
+            }
+        }
+
+        if (familia.liso != null) {
+            dropSelf(familia.liso.get());
+            if (familia.variantesLiso != null) {
+                dropSelf(familia.variantesLiso.escada().get());
+                add(familia.variantesLiso.laje().get(), createSlabItemTable(familia.variantesLiso.laje().get()));
+                dropSelf(familia.variantesLiso.muro().get());
             }
         }
 

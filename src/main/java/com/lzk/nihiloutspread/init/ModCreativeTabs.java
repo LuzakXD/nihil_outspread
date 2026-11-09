@@ -31,6 +31,13 @@ public class ModCreativeTabs {
                                                         output.accept(item);
                                                 }
 
+                                                output.accept(ModBlocks.VELVET_SAND.get());
+
+                                                for (Item item : ModBlocks.VELVESTONE_BLOCK_FAMILY
+                                                                .devolverItens(true)) {
+                                                        output.accept(item);
+                                                }
+
                                                 for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }

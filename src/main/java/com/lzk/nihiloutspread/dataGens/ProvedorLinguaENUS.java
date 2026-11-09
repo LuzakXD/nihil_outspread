@@ -1,9 +1,7 @@
 package com.lzk.nihiloutspread.dataGens;
 
 import com.lzk.nihiloutspread.NihilOutspread;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.TipoMaterialPedra;
-import com.lzk.nihiloutspread.blockGens.Variantes;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -16,14 +14,20 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihiloutspread", "Nihil Outspread"); // título da aba
-        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
-        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
-        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
-        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
+        add("itemGroup.nihiloutspread", "Nihil Outspread");
+
+        add("block.nihiloutspread.nihil_dirt", "Nihil Dirt");
+        add("block.nihiloutspread.nihil_grass_block", "Nihil Grass Block");
+        add("block.nihiloutspread.velvet_sand", "Velvet Sand");
+
+        traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
+        traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
+        traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
+        traduzirFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
+        traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
     }
 
-    private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
+    private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -66,6 +70,36 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Button");
     }
 
+    private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, boolean temBase) {
+
+        if (temBase)
+            addBlock(familia.base, nomeMaterial);
+        traduzVariantes(familia.variantesBase, nomeMaterial);
+
+        if (familia.liso != null) {
+            addBlock(familia.liso, "Smooth " + nomeMaterial);
+            traduzVariantes(familia.variantesLiso, "Smooth " + nomeMaterial);
+        }
+
+        if (familia.cortado != null) {
+            addBlock(familia.cortado, "Cut " + nomeMaterial);
+            traduzVariantes(familia.variantesCortado, "Cut " + nomeMaterial);
+        }
+
+        // Maps:
+        for (var entry : familia.talhados.entrySet())
+            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial));
+
+        for (var entry : familia.pilares.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Pillar");
+
+        for (var entry : familia.pressoes.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Pressure Plate");
+
+        for (var entry : familia.bototes.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Button");
+    }
+
     private void traduzVariantes(Variantes variantes, String nomeBase) {
         if (variantes == null)
             return;
@@ -86,6 +120,14 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Bricks";
             case LADRILHOS -> nomeMaterial + " Tiles";
             case PLACAS -> nomeMaterial + " Plates";
+        };
+    }
+
+    private String nomeDoMaterialAreia(TipoMaterialAreia tipo, String nomeMaterial) {
+        return switch (tipo) {
+            case BASE -> nomeMaterial;
+            case LISO -> "Smooth " + nomeMaterial;
+            case CORTADO -> "Cut " + nomeMaterial;
         };
     }
 
