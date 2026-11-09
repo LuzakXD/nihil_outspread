@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/cut_velvestone_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/cut_velvestone"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/cut_velvestone_slab_top"
+    }
+  }
+}

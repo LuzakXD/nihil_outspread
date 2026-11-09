@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "nihil_outspread:block/nihil/velvestone",
+    "side": "nihil_outspread:block/nihil/velvestone",
+    "top": "nihil_outspread:block/nihil/velvestone"
+  }
+}
