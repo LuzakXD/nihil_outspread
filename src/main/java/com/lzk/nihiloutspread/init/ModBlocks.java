@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.*;
-import com.lzk.nihiloutspread.blocks.NilightBlock;
+import com.lzk.nihiloutspread.blocks.*;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -33,6 +33,16 @@ public class ModBlocks {
                         Registries.BLOCK,
                         ResourceLocation.withDefaultNamespace("honeycomb_block"));
 
+        public static final DeferredBlock<Block> NIHIL_GRASS_BLOCK = registrarBlocoItem("nihil_grass_block",
+                        () -> new NihilGrassBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+
+        public static final DeferredBlock<Block> NIHIL_DIRT = registrarBlocoItem("nihil_dirt",
+                        () -> new Block(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
+                                        .instrument(NoteBlockInstrument.GUITAR)));
+
         public static final DeferredBlock<Block> NILIGHT = registrarBlocoItem("nilight",
                         () -> new NilightBlock(BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.COLOR_BLACK).strength(3, 10)
@@ -42,7 +52,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         NILIGHT,
-                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 6),
+                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(
@@ -65,13 +75,13 @@ public class ModBlocks {
                                                         TipoVariante.RACHADO)));
 
         public static final DeferredBlock<Block> GRAPHITE = registrarBlocoItem("graphite",
-                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(2, 6)));
+                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6)));
 
         public static final FamiliaPedra GRAPHITE_BLOCK_FAMILY = new FamiliaPedra(
                         BLOCKS,
                         ModItems.ITEMS,
                         GRAPHITE,
-                        BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(2, 6),
+                        BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(

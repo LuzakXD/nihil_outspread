@@ -16,6 +16,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+
+import com.lzk.nihiloutspread.NihilOutspread;
+import com.lzk.nihiloutspread.init.ModTags;
+
 import net.minecraft.core.BlockPos;
 
 public class NilightBlock extends Block {
@@ -23,10 +27,6 @@ public class NilightBlock extends Block {
     public static final BooleanProperty SNOWY = BlockStateProperties.SNOWY;
     public static final BooleanProperty MOSSY = BooleanProperty.create("mossy");
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
-
-    private static final TagKey<Block> DIRTY_BLOCKS = TagKey.create(
-            Registries.BLOCK,
-            ResourceLocation.fromNamespaceAndPath("nihil_outspread", "void_dirty"));
 
     public NilightBlock(BlockBehaviour.Properties props) {
         super(props.instrument(NoteBlockInstrument.BASEDRUM));
@@ -61,7 +61,7 @@ public class NilightBlock extends Block {
 
             boolean mossy = neighborState.is(Blocks.MOSS_BLOCK) || neighborState.is(Blocks.MOSS_CARPET);
 
-            boolean dirty = neighborState.is(DIRTY_BLOCKS);
+            boolean dirty = neighborState.is(ModTags.Blocks.DIRTY_BLOCKS);
 
             return state.setValue(SNOWY, snowy).setValue(MOSSY, mossy).setValue(DIRTY, dirty);
         }
@@ -84,7 +84,7 @@ public class NilightBlock extends Block {
 
         boolean snowy = above.is(Blocks.SNOW) || above.is(Blocks.SNOW_BLOCK);
         boolean mossy = above.is(Blocks.MOSS_BLOCK) || above.is(Blocks.MOSS_CARPET);
-        boolean dirty = above.is(DIRTY_BLOCKS);
+        boolean dirty = above.is(ModTags.Blocks.DIRTY_BLOCKS);
 
         return defaultBlockState()
                 .setValue(SNOWY, snowy)

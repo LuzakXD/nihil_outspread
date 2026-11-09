@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "nihil_outspread:block/nihil_grass_block"
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block",
+        "y": 270
+      }
+    ],
+    "snowy=true": [
+      {
+        "model": "nihil_outspread:block/nihil_grass_block_snowy"
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block_snowy",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block_snowy",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/nihil_grass_block_snowy",
+        "y": 270
+      }
+    ]
+  }
+}

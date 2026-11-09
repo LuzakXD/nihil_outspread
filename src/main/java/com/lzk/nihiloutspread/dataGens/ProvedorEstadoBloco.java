@@ -30,9 +30,25 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         gerarModelosDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, true, "hive");
         gerarModelosDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, true, "nihil");
         gerarModelosDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true, true, "nihil");
-        blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", NilightBlock.SNOWY, NilightBlock.MOSSY,
+        blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", false, NilightBlock.SNOWY, NilightBlock.MOSSY,
                 NilightBlock.DIRTY);
         gerarModelosDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, false, true, "nihil");
+        blocoComCamadasTopBottom(ModBlocks.NIHIL_GRASS_BLOCK, "nihil_grass_block", "nihil", true,
+                NihilGrassBlock.SNOWY);
+        blocoSimples(ModBlocks.NIHIL_DIRT, "dirty", "extras");
+
+    }
+
+    private void blocoSimples(DeferredBlock<Block> bloco, String Textura, String categoria) {
+        if (Textura != null) {
+            simpleBlock(bloco.get(),
+                    models().cubeAll(bloco.getId().getPath(), textura(Textura, categoria)));
+            modeloItemPadrao(bloco);
+        } else {
+            simpleBlock(bloco.get(),
+                    models().cubeAll(bloco.getId().getPath(), textura(bloco.getId().getPath(), categoria)));
+            modeloItemPadrao(bloco);
+        }
 
     }
 
@@ -222,7 +238,12 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
     }
 
     private void blocoComCamadas(DeferredBlock<Block> bloco, String material, String categoria,
-            BooleanProperty... camadas) {
+            boolean temVariacao, BooleanProperty... camadas) {
+
+        if (camadas.length == 0) {
+            throw new IllegalArgumentException(
+                    "Block Need at least one layer: " + bloco.getId());
+        }
 
         String nomeBloco = bloco.getId().getPath();
 
@@ -233,14 +254,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         for (BooleanProperty camada : camadas) {
             String nomeCamada = camada.getName();
 
-            modelos.put(camada, models().cube(
+            modelos.put(camada, models().cubeBottomTop(
                     material + "_" + nomeCamada,
+                    textura(material + "_side_" + nomeCamada, categoria),
                     textura(material, categoria),
-                    textura(nomeCamada, "extras"),
-                    textura(material + "_side_" + nomeCamada, categoria),
-                    textura(material + "_side_" + nomeCamada, categoria),
-                    textura(material + "_side_" + nomeCamada, categoria),
-                    textura(material + "_side_" + nomeCamada, categoria)));
+                    textura(nomeCamada, "extras")));
         }
 
         getVariantBuilder(bloco.get()).forAllStates(state -> {
@@ -250,6 +268,53 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     escolhido = entry.getValue();
                     break;
                 }
+            }
+
+            if (temVariacao) {
+                return ConfiguredModel.allYRotations(escolhido, 0, false);
+            }
+            return ConfiguredModel.builder().modelFile(escolhido).build();
+        });
+    }
+
+    private void blocoComCamadasTopBottom(DeferredBlock<Block> bloco, String material, String categoria,
+            boolean temVariacao, BooleanProperty... camadas) {
+
+        if (camadas.length == 0) {
+            throw new IllegalArgumentException("Block Need at least one layer: " + bloco.getId());
+        }
+
+        String nomeBloco = bloco.getId().getPath();
+
+        ModelFile base = models().cubeBottomTop(nomeBloco,
+                textura(material + "_side", categoria),
+                textura(material + "_bottom", categoria),
+                textura(material + "_top", categoria));
+
+        modeloItemPadrao(bloco);
+
+        Map<BooleanProperty, ModelFile> modelos = new LinkedHashMap<>();
+        for (BooleanProperty camada : camadas) {
+            String nomeCamada = camada.getName();
+
+            modelos.put(camada, models().cubeBottomTop(
+                    material + "_" + nomeCamada,
+                    textura(material + "_side_" + nomeCamada, categoria),
+                    textura(material + "_bottom", categoria),
+                    textura(nomeCamada, "extras")));
+        }
+
+        getVariantBuilder(bloco.get()).forAllStates(state -> {
+            ModelFile escolhido = base;
+            for (var entry : modelos.entrySet()) {
+                if (state.getValue(entry.getKey())) {
+                    escolhido = entry.getValue();
+                    break;
+                }
+            }
+
+            if (temVariacao) {
+                return ConfiguredModel.allYRotations(escolhido, 0, false);
             }
             return ConfiguredModel.builder().modelFile(escolhido).build();
         });

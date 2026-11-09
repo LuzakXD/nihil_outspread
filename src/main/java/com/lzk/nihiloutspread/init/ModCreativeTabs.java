@@ -20,7 +20,8 @@ public class ModCreativeTabs {
                                         .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
 
-                                                output.accept(ModItems.EXAMPLE_ITEM.get());
+                                                output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
+                                                output.accept(ModBlocks.NIHIL_DIRT.get());
 
                                                 for (Item item : ModBlocks.NILIGHT_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);

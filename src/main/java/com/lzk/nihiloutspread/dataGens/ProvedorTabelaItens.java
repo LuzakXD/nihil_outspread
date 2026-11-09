@@ -30,6 +30,8 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         lootDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
         lootDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
         lootDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        dropSelf(ModBlocks.NIHIL_DIRT.get());
+        dropOther(ModBlocks.NIHIL_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
     }
 
     private void lootDaFamilia(FamiliaPedra familia, boolean temBase) {

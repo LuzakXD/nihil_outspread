@@ -1,11 +1,8 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "down": "nihil_outspread:block/nihil/nilight",
-    "east": "nihil_outspread:block/nihil/nilight_side_dirty",
-    "north": "nihil_outspread:block/nihil/nilight_side_dirty",
-    "south": "nihil_outspread:block/nihil/nilight_side_dirty",
-    "up": "nihil_outspread:block/extras/dirty",
-    "west": "nihil_outspread:block/nihil/nilight_side_dirty"
+    "bottom": "nihil_outspread:block/nihil/nilight",
+    "side": "nihil_outspread:block/nihil/nilight_side_dirty",
+    "top": "nihil_outspread:block/extras/dirty"
   }
 }

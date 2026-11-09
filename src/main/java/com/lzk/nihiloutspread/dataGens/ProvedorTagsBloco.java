@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
 import com.lzk.nihiloutspread.init.ModBlocks;
+import com.lzk.nihiloutspread.init.ModTags;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
@@ -27,7 +28,11 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.GRAPHITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.COTTONITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
-        tagBotaoPressaoPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        tag(ModTags.Blocks.DIRTY_BLOCKS).add(
+                ModBlocks.NIHIL_DIRT.get(),
+                ModBlocks.NIHIL_GRASS_BLOCK.get());
+
     }
 
     private void tagMuros(FamiliaPedra familia) {
@@ -49,7 +54,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         }
     }
 
-    private void tagBotaoPressaoPedra(FamiliaPedra familia, boolean tipoPedra) {
+    private void tagBotaoPressao(FamiliaPedra familia, boolean tipoPedra) {
 
         if (tipoPedra) {
             for (var bloco : familia.pressoes.values()) {
