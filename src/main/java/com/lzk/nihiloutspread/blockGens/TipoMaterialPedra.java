@@ -1,5 +1,5 @@
 package com.lzk.nihiloutspread.blockGens;
 
-public enum TipoMaterial {
+public enum TipoMaterialPedra {
     BASE, LISO, POLIDO, TIJOLOS, TIJOLOS_POLIDO, LADRILHOS, PLACAS
 }

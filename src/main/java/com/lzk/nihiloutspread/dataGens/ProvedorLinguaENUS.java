@@ -2,7 +2,7 @@ package com.lzk.nihiloutspread.dataGens;
 
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.TipoMaterial;
+import com.lzk.nihiloutspread.blockGens.TipoMaterialPedra;
 import com.lzk.nihiloutspread.blockGens.Variantes;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
@@ -77,7 +77,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(variantes.muro(), nomeBase + " Wall");
     }
 
-    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial) {
+    private String nomeDoMaterial(TipoMaterialPedra tipo, String nomeMaterial) {
         return switch (tipo) {
             case BASE -> nomeMaterial;
             case LISO -> "Smooth " + nomeMaterial;
@@ -89,7 +89,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         };
     }
 
-    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial) {
+    private String nomeDoMaterialSingular(TipoMaterialPedra tipo, String nomeMaterial) {
         return switch (tipo) {
             case BASE -> nomeMaterial;
             case LISO -> "Smooth " + nomeMaterial;

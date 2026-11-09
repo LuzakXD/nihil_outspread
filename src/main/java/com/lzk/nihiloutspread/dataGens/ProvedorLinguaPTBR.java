@@ -2,7 +2,7 @@ package com.lzk.nihiloutspread.dataGens;
 
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.TipoMaterial;
+import com.lzk.nihiloutspread.blockGens.TipoMaterialPedra;
 import com.lzk.nihiloutspread.blockGens.Variantes;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
@@ -30,25 +30,25 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         traduzVariantes(familia.variantesBase, nomeMaterial);
 
         if (familia.liso != null) {
-            String nome = nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterialPedra.LISO, nomeMaterial, genero);
             addBlock(familia.liso, nome);
             traduzVariantes(familia.variantesLiso, nome);
         }
 
         if (familia.polido != null) {
-            String nome = nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterialPedra.POLIDO, nomeMaterial, genero);
             addBlock(familia.polido, nome);
             traduzVariantes(familia.variantesPolido, nome);
         }
 
         if (familia.tijolos != null) {
-            String nome = nomeDoMaterial(TipoMaterial.TIJOLOS, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterialPedra.TIJOLOS, nomeMaterial, genero);
             addBlock(familia.tijolos, nome);
             traduzVariantes(familia.variantesTijolos, nome);
         }
 
         if (familia.tijolosPolido != null) {
-            String nome = nomeDoMaterial(TipoMaterial.TIJOLOS_POLIDO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterialPedra.TIJOLOS_POLIDO, nomeMaterial, genero);
             addBlock(familia.tijolosPolido, nome);
             traduzVariantes(familia.variantesTijolosPolido, nome);
         }
@@ -88,7 +88,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         };
     }
 
-    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterial(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial;
@@ -101,7 +101,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         };
     }
 
-    private String nomeDoMaterialTalhado(TipoMaterial tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterialTalhado(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial + " Talhad" + s;
@@ -114,7 +114,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         };
     }
 
-    private String nomeDoMaterialRachado(TipoMaterial tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterialRachado(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial + " Rachad" + s;
