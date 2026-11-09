@@ -16,7 +16,7 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
                         .register("example_tab", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.nihiloutspread"))
+                                        .title(Component.translatable("itemGroup.nihil_outspread"))
                                         .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
 

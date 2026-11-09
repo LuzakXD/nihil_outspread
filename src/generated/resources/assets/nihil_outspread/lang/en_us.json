@@ -14,6 +14,8 @@
   "block.nihil_outspread.graphite_slab": "Graphite Slab",
   "block.nihil_outspread.graphite_stairs": "Graphite Stairs",
   "block.nihil_outspread.graphite_wall": "Graphite Wall",
+  "block.nihil_outspread.nihil_dirt": "Nihil Dirt",
+  "block.nihil_outspread.nihil_grass_block": "Nihil Grass Block",
   "block.nihil_outspread.nilight": "Nilight",
   "block.nihil_outspread.nilight_slab": "Nilight Slab",
   "block.nihil_outspread.nilight_stairs": "Nilight Stairs",
@@ -61,8 +63,6 @@
   "block.nihil_outspread.velvestone_slab": "Velvestone Slab",
   "block.nihil_outspread.velvestone_stairs": "Velvestone Stairs",
   "block.nihil_outspread.velvestone_wall": "Velvestone Wall",
-  "block.nihiloutspread.nihil_dirt": "Nihil Dirt",
-  "block.nihiloutspread.nihil_grass_block": "Nihil Grass Block",
-  "block.nihiloutspread.velvet_sand": "Velvet Sand",
-  "itemGroup.nihiloutspread": "Nihil Outspread"
+  "block.nihil_outspread.velvet_sand": "Velvet Sand",
+  "itemGroup.nihil_outspread": "Nihil Outspread"
 }

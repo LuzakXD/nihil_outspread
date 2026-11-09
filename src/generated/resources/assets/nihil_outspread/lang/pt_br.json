@@ -14,6 +14,8 @@
   "block.nihil_outspread.graphite_slab": "Laje de Grafite",
   "block.nihil_outspread.graphite_stairs": "Escadas de Grafite",
   "block.nihil_outspread.graphite_wall": "Muro de Grafite",
+  "block.nihil_outspread.nihil_dirt": "Terra Nihil",
+  "block.nihil_outspread.nihil_grass_block": "Bloco de Grama Nihil",
   "block.nihil_outspread.nilight": "Niluzita",
   "block.nihil_outspread.nilight_slab": "Laje de Niluzita",
   "block.nihil_outspread.nilight_stairs": "Escadas de Niluzita",
@@ -61,8 +63,6 @@
   "block.nihil_outspread.velvestone_slab": "Laje de Velveta",
   "block.nihil_outspread.velvestone_stairs": "Escadas de Velveta",
   "block.nihil_outspread.velvestone_wall": "Muro de Velveta",
-  "block.nihiloutspread.nihil_dirt": "Terra Nihil",
-  "block.nihiloutspread.nihil_grass_block": "Bloco de Grama Nihil",
-  "block.nihiloutspread.velvet_sand": "Areia de Veludo",
-  "itemGroup.nihiloutspread": "Nihil Outspread"
+  "block.nihil_outspread.velvet_sand": "Areia de Veludo",
+  "itemGroup.nihil_outspread": "Nihil Outspread"
 }

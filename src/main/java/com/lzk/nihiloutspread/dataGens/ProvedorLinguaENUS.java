@@ -14,11 +14,11 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihiloutspread", "Nihil Outspread");
+        add("itemGroup.nihil_outspread", "Nihil Outspread");
 
-        add("block.nihiloutspread.nihil_dirt", "Nihil Dirt");
-        add("block.nihiloutspread.nihil_grass_block", "Nihil Grass Block");
-        add("block.nihiloutspread.velvet_sand", "Velvet Sand");
+        add("block.nihil_outspread.nihil_dirt", "Nihil Dirt");
+        add("block.nihil_outspread.nihil_grass_block", "Nihil Grass Block");
+        add("block.nihil_outspread.velvet_sand", "Velvet Sand");
 
         traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
         traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);

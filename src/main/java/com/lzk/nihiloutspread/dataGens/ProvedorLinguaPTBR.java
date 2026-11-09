@@ -14,11 +14,11 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihiloutspread", "Nihil Outspread");
+        add("itemGroup.nihil_outspread", "Nihil Outspread");
 
-        add("block.nihiloutspread.nihil_dirt", "Terra Nihil");
-        add("block.nihiloutspread.nihil_grass_block", "Bloco de Grama Nihil");
-        add("block.nihiloutspread.velvet_sand", "Areia de Veludo");
+        add("block.nihil_outspread.nihil_dirt", "Terra Nihil");
+        add("block.nihil_outspread.nihil_grass_block", "Bloco de Grama Nihil");
+        add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
 
         traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
