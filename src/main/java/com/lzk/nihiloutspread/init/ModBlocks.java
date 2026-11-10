@@ -155,7 +155,7 @@ public class ModBlocks {
                         ModItems.ITEMS,
                         COTTONITE,
                         BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
-                        true
+                        true,
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(

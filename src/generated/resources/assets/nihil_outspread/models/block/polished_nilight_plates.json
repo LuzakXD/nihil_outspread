@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "nihil_outspread:block/nihil/polished_nilight_plates"
-  }
-}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nilight_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nihil_outspread:nilight_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "nihil_outspread:nilight_plates"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nilight_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nihil_outspread:nilight_plates"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "nihil_outspread:block/nihil/nilight_plates",
+    "side": "nihil_outspread:block/nihil/nilight_plates",
+    "top": "nihil_outspread:block/nihil/nilight_plates"
+  }
+}

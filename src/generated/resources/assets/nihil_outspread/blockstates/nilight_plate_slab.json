@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/nilight_plate_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/nilight_plates"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/nilight_plate_slab_top"
+    }
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "nihil_outspread:block/nihil/polished_nilight_bricks",
-    "side": "nihil_outspread:block/nihil/polished_nilight_bricks",
-    "top": "nihil_outspread:block/nihil/polished_nilight_bricks"
-  }
-}

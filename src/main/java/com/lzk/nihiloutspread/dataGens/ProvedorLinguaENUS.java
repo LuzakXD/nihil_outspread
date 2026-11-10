@@ -113,21 +113,21 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         for (var entry : familia.talhados.entrySet())
             addBlock(entry.getValue(),
-                    "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
+                    "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, false));
 
         for (var entry : familia.pilares.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
-                    familia.sufixoPolido) + " Pillar");
+                    false) + " Pillar");
 
         for (var entry : familia.rachados.entrySet())
-            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
+            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, false));
 
         for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pressure Plate");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial, false) + " Pressure Plate");
 
         for (var entry : familia.bototes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
-                    familia.sufixoPolido) + " Button");
+                    false) + " Button");
     }
 
     private void traduzVariantes(Variantes variantes, String nomeBase) {

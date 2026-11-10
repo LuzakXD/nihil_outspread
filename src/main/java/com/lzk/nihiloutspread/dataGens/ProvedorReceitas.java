@@ -237,17 +237,6 @@ public class ProvedorReceitas extends RecipeProvider {
                                                 familia.base.get());
                         }
                 }
-                if (familia.tijolos != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.tijolos.get(),
-                                        familia.base.get());
-                }
-
-                if (familia.ladrilhos != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.ladrilhos.get(),
-                                        familia.tijolos.get());
-                }
 
                 if (familia.placas != null) {
                         polished(output, RecipeCategory.BUILDING_BLOCKS,
