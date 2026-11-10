@@ -26,6 +26,18 @@ public class FamiliaPedra extends FamiliaAbstrata {
     public final DeferredBlock<Block> tijolosPolido;
     public final Variantes variantesTijolosPolido;
 
+    public final DeferredBlock<Block> ladrilhos;
+    public final Variantes variantesLadrilhos;
+
+    public final DeferredBlock<Block> ladrilhosPolido;
+    public final Variantes variantesLadrilhosPolido;
+
+    public final DeferredBlock<Block> placas;
+    public final Variantes variantesPlacas;
+
+    public final DeferredBlock<Block> placasPolidas;
+    public final Variantes variantesPlacasPolidas;
+
     public FamiliaPedra(
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
@@ -39,9 +51,35 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 && !composicao.containsKey(TipoMaterial.POLIDO)) {
             throw new IllegalArgumentException("TIJOLOS_POLIDO requires POLIDO");
         }
+
+        if (composicao.containsKey(TipoMaterial.LADRILHOS_POLIDO)
+                && !composicao.containsKey(TipoMaterial.POLIDO)) {
+            throw new IllegalArgumentException("LADRILHOS_POLIDO requires POLIDO");
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS_POLIDA)
+                && !composicao.containsKey(TipoMaterial.POLIDO)) {
+            throw new IllegalArgumentException("PLACAS_POLIDA requires POLIDO");
+        }
+
         if (composicao.containsKey(TipoMaterial.TIJOLOS)
                 && composicao.containsKey(TipoMaterial.TIJOLOS_POLIDO)) {
             throw new IllegalArgumentException("TIJOLOS and TIJOLOS_POLIDO are mutually exclusive");
+        }
+
+        if (composicao.containsKey(TipoMaterial.LADRILHOS)
+                && composicao.containsKey(TipoMaterial.LADRILHOS_POLIDO)) {
+            throw new IllegalArgumentException("LADRILHOS and LADRILHOS_POLIDO are mutually exclusive");
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS)
+                && composicao.containsKey(TipoMaterial.PLACAS_POLIDA)) {
+            throw new IllegalArgumentException("PLACAS and PLACAS_POLIDA are mutually exclusive");
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS)
+                && composicao.containsKey(TipoMaterial.LADRILHOS)) {
+            throw new IllegalArgumentException("PLACAS and LADRILHOS are mutually exclusive");
         }
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
@@ -147,6 +185,98 @@ public class FamiliaPedra extends FamiliaAbstrata {
         } else {
             this.tijolosPolido = null;
             this.variantesTijolosPolido = null;
+        }
+
+        if (composicao.containsKey(TipoMaterial.LADRILHOS)) {
+            Set<TipoVariante> vLadrilhos = composicao.get(TipoMaterial.LADRILHOS);
+            this.ladrilhos = registrarMaterial(TipoMaterial.LADRILHOS, nomeBase + "_tiles", props);
+
+            if (vLadrilhos.contains(TipoVariante.RACHADO)) {
+                rachados.put(TipoMaterial.LADRILHOS, registrar("cracked_" + nomeBase + "_tiles", props));
+            }
+
+            if (vLadrilhos.contains(TipoVariante.PILAR)) {
+                pilares.put(TipoMaterial.LADRILHOS, registrarPilar(nomeBase + "_tile_pillar", props));
+            }
+            this.variantesLadrilhos = registrarVariantes(nomeBase + "_tile", ladrilhos, props, vLadrilhos);
+            if (vLadrilhos.contains(TipoVariante.TALHADO)) {
+                talhados.put(TipoMaterial.LADRILHOS, registrar("chiseled_" + nomeBase + "_tiles", props));
+            }
+        } else {
+            this.ladrilhos = null;
+            this.variantesLadrilhos = null;
+        }
+
+        if (composicao.containsKey(TipoMaterial.LADRILHOS_POLIDO)) {
+            Set<TipoVariante> vLadrilhosPolido = composicao.get(TipoMaterial.LADRILHOS_POLIDO);
+            this.ladrilhosPolido = registrarMaterial(TipoMaterial.LADRILHOS_POLIDO, "polished_" + nomeBase + "_tiles",
+                    props);
+
+            if (vLadrilhosPolido.contains(TipoVariante.RACHADO)) {
+                rachados.put(TipoMaterial.LADRILHOS_POLIDO,
+                        registrar("cracked_polished_" + nomeBase + "_tiles", props));
+            }
+
+            if (vLadrilhosPolido.contains(TipoVariante.TALHADO)) {
+                talhados.put(TipoMaterial.LADRILHOS_POLIDO,
+                        registrar("chiseled_polished_" + nomeBase + "_tiles", props));
+            }
+            if (vLadrilhosPolido.contains(TipoVariante.PILAR)) {
+                pilares.put(TipoMaterial.LADRILHOS_POLIDO,
+                        registrarPilar("polished_" + nomeBase + "_tile_pillar", props));
+            }
+            this.variantesLadrilhosPolido = registrarVariantes("polished_" + nomeBase + "_tile", ladrilhosPolido,
+                    props,
+                    vLadrilhosPolido);
+        } else {
+            this.ladrilhosPolido = null;
+            this.variantesLadrilhosPolido = null;
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS)) {
+            Set<TipoVariante> vPlacas = composicao.get(TipoMaterial.PLACAS);
+            this.placas = registrarMaterial(TipoMaterial.PLACAS, nomeBase + "_plates", props);
+
+            if (vPlacas.contains(TipoVariante.RACHADO)) {
+                rachados.put(TipoMaterial.PLACAS, registrar("cracked_" + nomeBase + "_plates", props));
+            }
+
+            if (vPlacas.contains(TipoVariante.PILAR)) {
+                pilares.put(TipoMaterial.PLACAS, registrarPilar(nomeBase + "_plate_pillar", props));
+            }
+            this.variantesPlacas = registrarVariantes(nomeBase + "_plate", placas, props, vPlacas);
+            if (vPlacas.contains(TipoVariante.TALHADO)) {
+                talhados.put(TipoMaterial.PLACAS, registrar("chiseled_" + nomeBase + "_plate", props));
+            }
+        } else {
+            this.placas = null;
+            this.variantesPlacas = null;
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS_POLIDA)) {
+            Set<TipoVariante> vPlacasPolidas = composicao.get(TipoMaterial.PLACAS_POLIDA);
+            this.placasPolidas = registrarMaterial(TipoMaterial.PLACAS_POLIDA, "polished_" + nomeBase + "_plates",
+                    props);
+
+            if (vPlacasPolidas.contains(TipoVariante.RACHADO)) {
+                rachados.put(TipoMaterial.PLACAS_POLIDA,
+                        registrar("cracked_polished_" + nomeBase + "_plates", props));
+            }
+
+            if (vPlacasPolidas.contains(TipoVariante.TALHADO)) {
+                talhados.put(TipoMaterial.PLACAS_POLIDA,
+                        registrar("chiseled_polished_" + nomeBase + "_plates", props));
+            }
+            if (vPlacasPolidas.contains(TipoVariante.PILAR)) {
+                pilares.put(TipoMaterial.PLACAS_POLIDA,
+                        registrarPilar("polished_" + nomeBase + "_plate_pillar", props));
+            }
+            this.variantesPlacasPolidas = registrarVariantes("polished_" + nomeBase + "_plate", placasPolidas,
+                    props,
+                    vPlacasPolidas);
+        } else {
+            this.placasPolidas = null;
+            this.variantesPlacasPolidas = null;
         }
     }
 }

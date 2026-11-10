@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_polished_honeycomb": {
+    "has_polished_nilight": {
       "conditions": {
         "items": [
           {
-            "items": "nihil_outspread:polished_honeycomb"
+            "items": "nihil_outspread:polished_nilight"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:polished_honeycomb_slab_from_polished_honeycomb_stonecutting"
+        "recipe": "nihil_outspread:polished_nilight_button"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_polished_honeycomb"
+      "has_polished_nilight"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:polished_honeycomb_slab_from_polished_honeycomb_stonecutting"
+      "nihil_outspread:polished_nilight_button"
     ]
   }
 }

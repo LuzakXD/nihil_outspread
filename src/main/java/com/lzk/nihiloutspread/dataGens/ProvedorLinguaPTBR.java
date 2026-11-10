@@ -39,22 +39,46 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             traduzVariantes(familia.variantesLiso, nome);
         }
 
-        if (familia.polido != null) {
-            String nome = nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero);
-            addBlock(familia.polido, nome);
-            traduzVariantes(familia.variantesPolido, nome);
-        }
-
         if (familia.tijolos != null) {
             String nome = nomeDoMaterial(TipoMaterial.TIJOLOS, nomeMaterial, genero);
             addBlock(familia.tijolos, nome);
             traduzVariantes(familia.variantesTijolos, nome);
         }
 
+        if (familia.ladrilhos != null) {
+            String nome = nomeDoMaterial(TipoMaterial.LADRILHOS, nomeMaterial, genero);
+            addBlock(familia.ladrilhos, nome);
+            traduzVariantes(familia.variantesLadrilhos, nome);
+        }
+
+        if (familia.placas != null) {
+            String nome = nomeDoMaterial(TipoMaterial.PLACAS, nomeMaterial, genero);
+            addBlock(familia.placas, nome);
+            traduzVariantes(familia.variantesPlacas, nome);
+        }
+
+        if (familia.polido != null) {
+            String nome = nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero);
+            addBlock(familia.polido, nome);
+            traduzVariantes(familia.variantesPolido, nome);
+        }
+
         if (familia.tijolosPolido != null) {
             String nome = nomeDoMaterial(TipoMaterial.TIJOLOS_POLIDO, nomeMaterial, genero);
             addBlock(familia.tijolosPolido, nome);
             traduzVariantes(familia.variantesTijolosPolido, nome);
+        }
+
+        if (familia.ladrilhosPolido != null) {
+            String nome = nomeDoMaterial(TipoMaterial.LADRILHOS_POLIDO, nomeMaterial, genero);
+            addBlock(familia.ladrilhosPolido, nome);
+            traduzVariantes(familia.variantesLadrilhosPolido, nome);
+        }
+
+        if (familia.placasPolidas != null) {
+            String nome = nomeDoMaterial(TipoMaterial.PLACAS_POLIDA, nomeMaterial, genero);
+            addBlock(familia.placasPolidas, nome);
+            traduzVariantes(familia.variantesPlacasPolidas, nome);
         }
 
         for (var entry : familia.talhados.entrySet())

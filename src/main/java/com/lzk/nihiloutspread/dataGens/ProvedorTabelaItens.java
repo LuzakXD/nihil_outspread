@@ -48,6 +48,34 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             dropSelf(familia.variantesBase.muro().get());
         }
 
+        if (familia.tijolos != null) {
+            dropSelf(familia.tijolos.get());
+            if (familia.variantesTijolos != null) {
+                dropSelf(familia.variantesTijolos.escada().get());
+                add(familia.variantesTijolos.laje().get(), createSlabItemTable(familia.variantesTijolos.laje().get()));
+                dropSelf(familia.variantesTijolos.muro().get());
+            }
+        }
+
+        if (familia.ladrilhos != null) {
+            dropSelf(familia.ladrilhos.get());
+            if (familia.variantesLadrilhos != null) {
+                dropSelf(familia.variantesLadrilhos.escada().get());
+                add(familia.variantesLadrilhos.laje().get(),
+                        createSlabItemTable(familia.variantesLadrilhos.laje().get()));
+                dropSelf(familia.variantesLadrilhos.muro().get());
+            }
+        }
+
+        if (familia.placas != null) {
+            dropSelf(familia.placas.get());
+            if (familia.variantesPlacas != null) {
+                dropSelf(familia.variantesPlacas.escada().get());
+                add(familia.variantesPlacas.laje().get(), createSlabItemTable(familia.variantesPlacas.laje().get()));
+                dropSelf(familia.variantesPlacas.muro().get());
+            }
+        }
+
         if (familia.polido != null) {
             dropSelf(familia.polido.get());
             if (familia.variantesPolido != null) {
@@ -57,21 +85,23 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             }
         }
 
-        if (familia.tijolos != null) {
-            dropSelf(familia.tijolos.get());
-            if (familia.variantesTijolos != null) {
-                dropSelf(familia.variantesTijolos.escada().get());
-                add(familia.variantesTijolos.laje().get(), createSlabItemTable(familia.variantesTijolos.laje().get()));
-                dropSelf(familia.variantesTijolos.muro().get());
+        if (familia.ladrilhosPolido != null) {
+            dropSelf(familia.ladrilhosPolido.get());
+            if (familia.variantesLadrilhosPolido != null) {
+                dropSelf(familia.variantesLadrilhosPolido.escada().get());
+                add(familia.variantesLadrilhosPolido.laje().get(),
+                        createSlabItemTable(familia.variantesLadrilhosPolido.laje().get()));
+                dropSelf(familia.variantesLadrilhosPolido.muro().get());
             }
         }
-        if (familia.tijolosPolido != null) {
-            dropSelf(familia.tijolosPolido.get());
-            if (familia.variantesTijolosPolido != null) {
-                dropSelf(familia.variantesTijolosPolido.escada().get());
-                add(familia.variantesTijolosPolido.laje().get(),
-                        createSlabItemTable(familia.variantesTijolosPolido.laje().get()));
-                dropSelf(familia.variantesTijolosPolido.muro().get());
+
+        if (familia.placasPolidas != null) {
+            dropSelf(familia.placasPolidas.get());
+            if (familia.variantesPlacasPolidas != null) {
+                dropSelf(familia.variantesPlacasPolidas.escada().get());
+                add(familia.variantesPlacasPolidas.laje().get(),
+                        createSlabItemTable(familia.variantesPlacasPolidas.laje().get()));
+                dropSelf(familia.variantesPlacasPolidas.muro().get());
             }
         }
 

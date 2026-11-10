@@ -38,19 +38,39 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesLiso, "Smooth " + nomeMaterial);
         }
 
-        if (familia.polido != null) {
-            addBlock(familia.polido, "Polished " + nomeMaterial);
-            traduzVariantes(familia.variantesPolido, "Polished " + nomeMaterial);
-        }
-
         if (familia.tijolos != null) {
             addBlock(familia.tijolos, nomeMaterial + " Bricks");
             traduzVariantes(familia.variantesTijolos, nomeMaterial + " Brick");
         }
 
+        if (familia.ladrilhos != null) {
+            addBlock(familia.ladrilhos, nomeMaterial + " Tiles");
+            traduzVariantes(familia.variantesLadrilhos, nomeMaterial + " Tile");
+        }
+
+        if (familia.placas != null) {
+            addBlock(familia.placas, nomeMaterial + " Plates");
+            traduzVariantes(familia.variantesPlacas, nomeMaterial + " Plate");
+        }
+
+        if (familia.polido != null) {
+            addBlock(familia.polido, "Polished " + nomeMaterial);
+            traduzVariantes(familia.variantesPolido, "Polished " + nomeMaterial);
+        }
+
         if (familia.tijolosPolido != null) {
             addBlock(familia.tijolosPolido, "Polished " + nomeMaterial + " Bricks");
             traduzVariantes(familia.variantesTijolosPolido, "Polished " + nomeMaterial + " Brick");
+        }
+
+        if (familia.ladrilhosPolido != null) {
+            addBlock(familia.ladrilhosPolido, "Polished " + nomeMaterial + " Tiles");
+            traduzVariantes(familia.variantesLadrilhosPolido, "Polished " + nomeMaterial + " Tile");
+        }
+
+        if (familia.placasPolidas != null) {
+            addBlock(familia.placasPolidas, "Polished " + nomeMaterial + " Plates");
+            traduzVariantes(familia.variantesPlacasPolidas, "Polished " + nomeMaterial + " Plate");
         }
 
         for (var entry : familia.talhados.entrySet())

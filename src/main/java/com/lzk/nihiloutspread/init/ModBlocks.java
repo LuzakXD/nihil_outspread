@@ -76,6 +76,12 @@ public class ModBlocks {
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO,
+                                                        TipoVariante.RACHADO),
+                                        TipoMaterial.PLACAS_POLIDA,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
                                                         TipoVariante.RACHADO)));
 
         public static final DeferredBlock<Block> GRAPHITE = registrarBlocoItem("graphite",
@@ -132,14 +138,11 @@ public class ModBlocks {
                                                         TipoVariante.MURO),
                                         TipoMaterial.CORTADO,
                                         Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
+                                                        TipoVariante.ESCADA),
                                         TipoMaterial.LISO,
                                         Set.of(
                                                         TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO)));
+                                                        TipoVariante.LAJE)));
 
         public static final DeferredBlock<Block> COTTONITE = registrarBlocoItem("cottonite",
                         () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1,
