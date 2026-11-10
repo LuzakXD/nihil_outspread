@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "nihil_outspread:block/nihil/cut_velvestone",
-    "side": "nihil_outspread:block/nihil/cut_velvestone",
-    "top": "nihil_outspread:block/nihil/cut_velvestone"
-  }
-}

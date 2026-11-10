@@ -43,65 +43,126 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         }
 
         if (familia.variantesBase != null) {
-            dropSelf(familia.variantesBase.escada().get());
-            add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
-            dropSelf(familia.variantesBase.muro().get());
+            if (familia.variantesBase.escada() != null) {
+                dropSelf(familia.variantesBase.escada().get());
+            }
+            if (familia.variantesBase.laje() != null) {
+                add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
+            }
+            if (familia.variantesBase.muro() != null) {
+                dropSelf(familia.variantesBase.muro().get());
+            }
         }
 
         if (familia.tijolos != null) {
             dropSelf(familia.tijolos.get());
             if (familia.variantesTijolos != null) {
-                dropSelf(familia.variantesTijolos.escada().get());
-                add(familia.variantesTijolos.laje().get(), createSlabItemTable(familia.variantesTijolos.laje().get()));
-                dropSelf(familia.variantesTijolos.muro().get());
+                if (familia.variantesTijolos.escada() != null) {
+                    dropSelf(familia.variantesTijolos.escada().get());
+                }
+                if (familia.variantesTijolos.laje() != null) {
+                    add(familia.variantesTijolos.laje().get(),
+                            createSlabItemTable(familia.variantesTijolos.laje().get()));
+                }
+                if (familia.variantesTijolos.muro() != null) {
+                    dropSelf(familia.variantesTijolos.muro().get());
+                }
             }
         }
 
         if (familia.ladrilhos != null) {
             dropSelf(familia.ladrilhos.get());
             if (familia.variantesLadrilhos != null) {
-                dropSelf(familia.variantesLadrilhos.escada().get());
-                add(familia.variantesLadrilhos.laje().get(),
-                        createSlabItemTable(familia.variantesLadrilhos.laje().get()));
-                dropSelf(familia.variantesLadrilhos.muro().get());
+                if (familia.variantesLadrilhos.escada() != null) {
+                    dropSelf(familia.variantesLadrilhos.escada().get());
+                }
+                if (familia.variantesLadrilhos.laje() != null) {
+                    add(familia.variantesLadrilhos.laje().get(),
+                            createSlabItemTable(familia.variantesLadrilhos.laje().get()));
+                }
+                if (familia.variantesLadrilhos.muro() != null) {
+                    dropSelf(familia.variantesLadrilhos.muro().get());
+                }
             }
         }
 
         if (familia.placas != null) {
             dropSelf(familia.placas.get());
             if (familia.variantesPlacas != null) {
-                dropSelf(familia.variantesPlacas.escada().get());
-                add(familia.variantesPlacas.laje().get(), createSlabItemTable(familia.variantesPlacas.laje().get()));
-                dropSelf(familia.variantesPlacas.muro().get());
+                if (familia.variantesPlacas.escada() != null) {
+                    dropSelf(familia.variantesPlacas.escada().get());
+                }
+                if (familia.variantesPlacas.laje() != null) {
+                    add(familia.variantesPlacas.laje().get(),
+                            createSlabItemTable(familia.variantesPlacas.laje().get()));
+                }
+                if (familia.variantesPlacas.muro() != null) {
+                    dropSelf(familia.variantesPlacas.muro().get());
+                }
             }
         }
 
         if (familia.polido != null) {
             dropSelf(familia.polido.get());
             if (familia.variantesPolido != null) {
-                dropSelf(familia.variantesPolido.escada().get());
-                add(familia.variantesPolido.laje().get(), createSlabItemTable(familia.variantesPolido.laje().get()));
-                dropSelf(familia.variantesPolido.muro().get());
+                if (familia.variantesPolido.escada() != null) {
+                    dropSelf(familia.variantesPolido.escada().get());
+                }
+                if (familia.variantesPolido.laje() != null) {
+                    add(familia.variantesPolido.laje().get(),
+                            createSlabItemTable(familia.variantesPolido.laje().get()));
+                }
+                if (familia.variantesPolido.muro() != null) {
+                    dropSelf(familia.variantesPolido.muro().get());
+                }
+            }
+        }
+
+        if (familia.tijolosPolido != null) {
+            dropSelf(familia.tijolosPolido.get());
+            if (familia.variantesTijolosPolido != null) {
+                if (familia.variantesTijolosPolido.escada() != null) {
+                    dropSelf(familia.variantesTijolosPolido.escada().get());
+                }
+                if (familia.variantesTijolosPolido.laje() != null) {
+                    add(familia.variantesTijolosPolido.laje().get(),
+                            createSlabItemTable(familia.variantesTijolosPolido.laje().get()));
+                }
+                if (familia.variantesTijolosPolido.muro() != null) {
+                    dropSelf(familia.variantesTijolosPolido.muro().get());
+                }
             }
         }
 
         if (familia.ladrilhosPolido != null) {
             dropSelf(familia.ladrilhosPolido.get());
             if (familia.variantesLadrilhosPolido != null) {
-                dropSelf(familia.variantesLadrilhosPolido.escada().get());
-                add(familia.variantesLadrilhosPolido.laje().get(),
-                        createSlabItemTable(familia.variantesLadrilhosPolido.laje().get()));
-                dropSelf(familia.variantesLadrilhosPolido.muro().get());
+                if (familia.variantesLadrilhosPolido.escada() != null) {
+                    dropSelf(familia.variantesLadrilhosPolido.escada().get());
+                }
+                if (familia.variantesLadrilhosPolido.laje() != null) {
+                    add(familia.variantesLadrilhosPolido.laje().get(),
+                            createSlabItemTable(familia.variantesLadrilhosPolido.laje().get()));
+                }
+                if (familia.variantesLadrilhosPolido.muro() != null) {
+                    dropSelf(familia.variantesLadrilhosPolido.muro().get());
+                }
             }
         }
 
         if (familia.placasPolidas != null) {
             dropSelf(familia.placasPolidas.get());
             if (familia.variantesPlacasPolidas != null) {
-                dropSelf(familia.variantesPlacasPolidas.escada().get());
-                add(familia.variantesPlacasPolidas.laje().get(),
-                        createSlabItemTable(familia.variantesPlacasPolidas.laje().get()));
-                dropSelf(familia.variantesPlacasPolidas.muro().get());
+                if (familia.variantesPlacasPolidas.escada() != null) {
+                    dropSelf(familia.variantesPlacasPolidas.escada().get());
+                }
+                if (familia.variantesPlacasPolidas.laje() != null) {
+                    add(familia.variantesPlacasPolidas.laje().get(),
+                            createSlabItemTable(familia.variantesPlacasPolidas.laje().get()));
+                }
+                if (familia.variantesPlacasPolidas.muro() != null) {
+                    dropSelf(familia.variantesPlacasPolidas.muro().get());
+                }
             }
         }
 
@@ -144,26 +205,45 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         }
 
         if (familia.variantesBase != null) {
-            dropSelf(familia.variantesBase.escada().get());
-            add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
-            dropSelf(familia.variantesBase.muro().get());
+            if (familia.variantesBase.escada() != null) {
+                dropSelf(familia.variantesBase.escada().get());
+            }
+            if (familia.variantesBase.laje() != null) {
+                add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
+            }
+            if (familia.variantesBase.muro() != null) {
+                dropSelf(familia.variantesBase.muro().get());
+            }
         }
 
         if (familia.cortado != null) {
             dropSelf(familia.cortado.get());
             if (familia.variantesCortado != null) {
-                dropSelf(familia.variantesCortado.escada().get());
-                add(familia.variantesCortado.laje().get(), createSlabItemTable(familia.variantesCortado.laje().get()));
-                dropSelf(familia.variantesCortado.muro().get());
+                if (familia.variantesCortado.escada() != null) {
+                    dropSelf(familia.variantesCortado.escada().get());
+                }
+                if (familia.variantesCortado.laje() != null) {
+                    add(familia.variantesCortado.laje().get(),
+                            createSlabItemTable(familia.variantesCortado.laje().get()));
+                }
+                if (familia.variantesCortado.muro() != null) {
+                    dropSelf(familia.variantesCortado.muro().get());
+                }
             }
         }
 
         if (familia.liso != null) {
             dropSelf(familia.liso.get());
             if (familia.variantesLiso != null) {
-                dropSelf(familia.variantesLiso.escada().get());
-                add(familia.variantesLiso.laje().get(), createSlabItemTable(familia.variantesLiso.laje().get()));
-                dropSelf(familia.variantesLiso.muro().get());
+                if (familia.variantesLiso.escada() != null) {
+                    dropSelf(familia.variantesLiso.escada().get());
+                }
+                if (familia.variantesLiso.laje() != null) {
+                    add(familia.variantesLiso.laje().get(), createSlabItemTable(familia.variantesLiso.laje().get()));
+                }
+                if (familia.variantesLiso.muro() != null) {
+                    dropSelf(familia.variantesLiso.muro().get());
+                }
             }
         }
 

@@ -47,19 +47,29 @@ public class FamiliaPedra extends FamiliaAbstrata {
 
         super(reg, regItem, blocoBase);
 
+        if (composicao.containsKey(TipoMaterial.LADRILHOS)
+                && !composicao.containsKey(TipoMaterial.TIJOLOS)) {
+            throw new IllegalArgumentException("LADRILHOS requires TIJOLOS");
+        }
+
+        if (composicao.containsKey(TipoMaterial.PLACAS)
+                && !composicao.containsKey(TipoMaterial.TIJOLOS)) {
+            throw new IllegalArgumentException("PLACAS requires TIJOLOS");
+        }
+
         if (composicao.containsKey(TipoMaterial.TIJOLOS_POLIDO)
                 && !composicao.containsKey(TipoMaterial.POLIDO)) {
             throw new IllegalArgumentException("TIJOLOS_POLIDO requires POLIDO");
         }
 
         if (composicao.containsKey(TipoMaterial.LADRILHOS_POLIDO)
-                && !composicao.containsKey(TipoMaterial.POLIDO)) {
-            throw new IllegalArgumentException("LADRILHOS_POLIDO requires POLIDO");
+                && !composicao.containsKey(TipoMaterial.TIJOLOS_POLIDO)) {
+            throw new IllegalArgumentException("LADRILHOS_POLIDO requires TIJOLOS_POLIDO");
         }
 
         if (composicao.containsKey(TipoMaterial.PLACAS_POLIDA)
-                && !composicao.containsKey(TipoMaterial.POLIDO)) {
-            throw new IllegalArgumentException("PLACAS_POLIDA requires POLIDO");
+                && !composicao.containsKey(TipoMaterial.TIJOLOS_POLIDO)) {
+            throw new IllegalArgumentException("PLACAS_POLIDA requires TIJOLOS_POLIDO");
         }
 
         if (composicao.containsKey(TipoMaterial.TIJOLOS)

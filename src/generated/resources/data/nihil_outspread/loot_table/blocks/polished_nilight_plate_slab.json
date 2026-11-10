@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "nihil_outspread:cut_velvestone_slab",
+                  "block": "nihil_outspread:polished_nilight_plate_slab",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "type": "double"
@@ -25,11 +25,11 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "nihil_outspread:cut_velvestone_slab"
+          "name": "nihil_outspread:polished_nilight_plate_slab"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "nihil_outspread:blocks/cut_velvestone_slab"
+  "random_sequence": "nihil_outspread:blocks/polished_nilight_plate_slab"
 }

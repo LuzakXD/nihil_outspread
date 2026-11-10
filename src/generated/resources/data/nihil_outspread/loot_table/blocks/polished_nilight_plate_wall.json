@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nihil_outspread:cut_velvestone_wall"
+          "name": "nihil_outspread:polished_nilight_plate_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "nihil_outspread:blocks/cut_velvestone_wall"
+  "random_sequence": "nihil_outspread:blocks/polished_nilight_plate_wall"
 }

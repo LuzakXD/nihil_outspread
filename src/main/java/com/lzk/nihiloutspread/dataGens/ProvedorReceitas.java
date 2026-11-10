@@ -15,7 +15,6 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -48,7 +47,7 @@ public class ProvedorReceitas extends RecipeProvider {
                                         .unlockedBy("has_material", has(ingrediente)).save(output);
         }
 
-        private void cortadorVariantesDe(FamiliaAbstrata familia, RecipeOutput output,
+        private void receitaVariantesCortador(FamiliaAbstrata familia, RecipeOutput output,
                         DeferredBlock<Block> ingrediente, Set<TipoMaterial> tipos) {
                 for (var entry : familia.talhados.entrySet()) {
                         if (tipos.contains(entry.getKey())) {
@@ -185,6 +184,7 @@ public class ProvedorReceitas extends RecipeProvider {
                                                 familia.placas.get(), familia.tijolos.get(), 1);
                         }
                 }
+
                 if (familia.tijolosPolido != null) {
                         stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
                                         familia.tijolosPolido.get(), familia.base.get(), 1);
@@ -216,59 +216,102 @@ public class ProvedorReceitas extends RecipeProvider {
                 }
 
                 // Talhados/Pilares
-                cortadorVariantesDe(familia, output, familia.base,
-                                Set.of(TipoMaterial.BASE, TipoMaterial.POLIDO,
-                                                TipoMaterial.TIJOLOS, TipoMaterial.TIJOLOS_POLIDO));
+                receitaVariantesCortador(familia, output, familia.base,
+                                Set.of(
+                                                TipoMaterial.BASE,
+                                                TipoMaterial.POLIDO,
+                                                TipoMaterial.TIJOLOS,
+                                                TipoMaterial.TIJOLOS_POLIDO,
+                                                TipoMaterial.LADRILHOS,
+                                                TipoMaterial.LADRILHOS_POLIDO,
+                                                TipoMaterial.PLACAS,
+                                                TipoMaterial.PLACAS_POLIDA));
 
                 if (familia.polido != null)
-                        cortadorVariantesDe(familia, output, familia.polido,
-                                        Set.of(TipoMaterial.POLIDO, TipoMaterial.TIJOLOS, TipoMaterial.TIJOLOS_POLIDO));
+                        receitaVariantesCortador(familia, output, familia.polido,
+                                        Set.of(
+                                                        TipoMaterial.POLIDO,
+                                                        TipoMaterial.TIJOLOS_POLIDO,
+                                                        TipoMaterial.LADRILHOS_POLIDO,
+                                                        TipoMaterial.PLACAS_POLIDA));
 
                 if (familia.tijolos != null)
-                        cortadorVariantesDe(familia, output, familia.tijolos,
-                                        Set.of(TipoMaterial.TIJOLOS, TipoMaterial.TIJOLOS_POLIDO));
+                        receitaVariantesCortador(familia, output, familia.tijolos,
+                                        Set.of(
+                                                        TipoMaterial.TIJOLOS,
+                                                        TipoMaterial.LADRILHOS,
+                                                        TipoMaterial.PLACAS));
+
+                if (familia.ladrilhos != null)
+                        receitaVariantesCortador(familia, output, familia.ladrilhos,
+                                        Set.of(TipoMaterial.LADRILHOS));
+
+                if (familia.placas != null)
+                        receitaVariantesCortador(familia, output, familia.placas,
+                                        Set.of(TipoMaterial.PLACAS));
 
                 if (familia.tijolosPolido != null)
-                        cortadorVariantesDe(familia, output, familia.tijolosPolido,
-                                        Set.of(TipoMaterial.TIJOLOS_POLIDO));
+                        receitaVariantesCortador(familia, output, familia.tijolosPolido,
+                                        Set.of(
+                                                        TipoMaterial.TIJOLOS_POLIDO,
+                                                        TipoMaterial.LADRILHOS_POLIDO,
+                                                        TipoMaterial.PLACAS_POLIDA));
+
+                if (familia.ladrilhosPolido != null)
+                        receitaVariantesCortador(familia, output, familia.ladrilhosPolido,
+                                        Set.of(TipoMaterial.LADRILHOS_POLIDO));
+
+                if (familia.placasPolidas != null)
+                        receitaVariantesCortador(familia, output, familia.placasPolidas,
+                                        Set.of(TipoMaterial.PLACAS_POLIDA));
 
                 if (familia.liso != null)
-                        cortadorVariantesDe(familia, output, familia.liso,
+                        receitaVariantesCortador(familia, output, familia.liso,
                                         Set.of(TipoMaterial.LISO));
         }
 
         private void receitaPedra(FamiliaPedra familia, RecipeOutput output, boolean cortadorDePedra) {
 
                 if (familia.tijolos != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.tijolos.get(), familia.base.get());
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.tijolos.get(),
+                                        familia.base.get());
                 }
 
                 if (familia.ladrilhos != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.ladrilhos.get(),
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.ladrilhos.get(),
                                         familia.tijolos.get());
                 }
 
                 if (familia.placas != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.placas.get(), familia.tijolos.get());
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.placas.get(),
+                                        familia.tijolos.get());
                 }
 
                 if (familia.polido != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.polido.get(), familia.base.get());
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.polido.get(),
+                                        familia.base.get());
                 }
 
                 if (familia.tijolosPolido != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.tijolosPolido.get(),
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.tijolosPolido.get(),
                                         familia.polido.get());
                 }
 
                 if (familia.ladrilhosPolido != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.ladrilhosPolido.get(),
-                                        familia.ladrilhosPolido.get());
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.ladrilhosPolido.get(),
+                                        familia.tijolosPolido.get());
                 }
 
                 if (familia.placasPolidas != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS, familia.placasPolidas.get(),
-                                        familia.placasPolidas.get());
+                        polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                        familia.placasPolidas.get(),
+                                        familia.tijolosPolido.get());
                 }
 
                 // Variantes
@@ -296,18 +339,20 @@ public class ProvedorReceitas extends RecipeProvider {
                         receitaVariantes(familia.variantesTijolosPolido.escada(), familia.variantesTijolosPolido.laje(),
                                         familia.variantesTijolosPolido.muro(), familia.tijolosPolido.get(), output);
                 }
-                if (familia.variantesLiso != null) {
-                        receitaVariantes(familia.variantesLiso.escada(), familia.variantesLiso.laje(),
-                                        familia.variantesLiso.muro(), familia.liso.get(), output);
-                }
-                if (familia.variantesLadrilhos != null) {
-                        receitaVariantes(familia.variantesLadrilhos.escada(), familia.variantesLadrilhos.laje(),
-                                        familia.variantesLadrilhos.muro(), familia.ladrilhos.get(), output);
-                }
                 if (familia.variantesLadrilhosPolido != null) {
                         receitaVariantes(familia.variantesLadrilhosPolido.escada(),
                                         familia.variantesLadrilhosPolido.laje(),
                                         familia.variantesLadrilhosPolido.muro(), familia.ladrilhosPolido.get(), output);
+                }
+
+                if (familia.variantesPlacasPolidas != null) {
+                        receitaVariantes(familia.variantesPlacasPolidas.escada(),
+                                        familia.variantesPlacasPolidas.laje(),
+                                        familia.variantesPlacasPolidas.muro(), familia.placasPolidas.get(), output);
+                }
+                if (familia.variantesLiso != null) {
+                        receitaVariantes(familia.variantesLiso.escada(), familia.variantesLiso.laje(),
+                                        familia.variantesLiso.muro(), familia.liso.get(), output);
                 }
 
                 if (cortadorDePedra) {

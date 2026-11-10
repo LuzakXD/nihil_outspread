@@ -3,18 +3,12 @@ package com.lzk.nihiloutspread.dataGens;
 import java.util.LinkedHashMap;
 
 import com.lzk.nihiloutspread.NihilOutspread;
-import com.lzk.nihiloutspread.blockGens.FamiliaAbstrata;
-import com.lzk.nihiloutspread.blockGens.FamiliaAreia;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.Variantes;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.blocks.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -43,7 +37,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 NihilGrassBlock.SNOWY);
         blocoSimples(ModBlocks.NIHIL_DIRT, "dirty", "extras");
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
-        gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, false, "nihil");
+        gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
 
     }
 
@@ -270,8 +264,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
     }
 
-    private void gerarModelosDaFamiliaAreia(FamiliaAreia familia, boolean temBase, boolean lajeCortadoTexturaUnica,
-            String categoria) {
+    private void gerarModelosDaFamiliaAreia(FamiliaAreia familia, boolean temBase, String categoria) {
 
         // BASE
         if (temBase) {
@@ -307,7 +300,8 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomeLiso, textura(nomeTextura, categoria)));
             modeloItemPadrao(familia.liso);
 
-            gerarModelosVariantes(familia.liso, familia.liso.getId().getPath(), familia.variantesLiso,
+            gerarModelosVariantes(familia.liso,
+                    nomeTextura, familia.variantesLiso,
                     false, categoria);
         }
 

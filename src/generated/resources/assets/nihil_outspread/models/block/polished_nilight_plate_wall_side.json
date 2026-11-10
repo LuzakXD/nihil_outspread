@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "nihil_outspread:block/nihil/velvestone_top"
+    "wall": "nihil_outspread:block/nihil/polished_nilight_plates"
   }
 }

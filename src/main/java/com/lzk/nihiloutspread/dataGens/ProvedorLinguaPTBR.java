@@ -158,9 +158,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case TIJOLOS -> "Tijolos de " + nomeMaterial;
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s;
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial;
-            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial;
+            case LADRILHOS_POLIDO -> "Ladrilhos de " + nomeMaterial + " Polid" + s;
             case PLACAS -> "Placas de " + nomeMaterial;
-            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial;
+            case PLACAS_POLIDA -> "Placas de " + nomeMaterial + " Polid" + s;
         };
     }
 
@@ -174,9 +174,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case TIJOLOS -> "Tijolos de " + nomeMaterial + " Talhados";
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s + " Talhados";
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Talhados";
-            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial + " Talhados";
+            case LADRILHOS_POLIDO -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Talhados";
             case PLACAS -> "Placas de " + nomeMaterial + " Talhadas";
-            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial + " Talhadas";
+            case PLACAS_POLIDA -> "Placas de " + nomeMaterial + " Polid" + s + " Talhadas";
         };
     }
 
@@ -190,9 +190,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case TIJOLOS -> "Tijolos de " + nomeMaterial + " Rachados";
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s + " Rachados";
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Rachados";
-            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial + " Rachados";
+            case LADRILHOS_POLIDO -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Rachados";
             case PLACAS -> "Placas de " + nomeMaterial + " Rachadas";
-            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial + " Rachadas";
+            case PLACAS_POLIDA -> "Placas de " + nomeMaterial + " Polid" + s + " Rachadas";
         };
     }
 }
