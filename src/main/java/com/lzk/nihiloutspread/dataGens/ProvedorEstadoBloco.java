@@ -146,18 +146,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     false, categoria);
         }
 
-        // TIJOLOS POLIDOS
-        if (familia.tijolosPolido != null) {
-            String nomeTijolosPolido = familia.tijolosPolido.getId().getPath();
-            simpleBlock(familia.tijolosPolido.get(),
-                    models().cubeAll(nomeTijolosPolido, textura(nomeTijolosPolido, categoria)));
-            modeloItemPadrao(familia.tijolosPolido);
-
-            gerarModelosVariantes(familia.tijolosPolido, familia.tijolosPolido.getId().getPath(),
-                    familia.variantesTijolosPolido, false, categoria);
-
-        }
-
         // LADRILHOS
         if (familia.ladrilhos != null) {
             String nomeLadrilhos = familia.ladrilhos.getId().getPath();
@@ -169,18 +157,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     false, categoria);
         }
 
-        // LADRILHOS POLIDOS
-        if (familia.ladrilhosPolido != null) {
-            String nomeLadrilhosPolido = familia.ladrilhosPolido.getId().getPath();
-            simpleBlock(familia.ladrilhosPolido.get(),
-                    models().cubeAll(nomeLadrilhosPolido, textura(nomeLadrilhosPolido, categoria)));
-            modeloItemPadrao(familia.ladrilhosPolido);
-
-            gerarModelosVariantes(familia.ladrilhosPolido, familia.ladrilhosPolido.getId().getPath(),
-                    familia.variantesLadrilhosPolido, false, categoria);
-
-        }
-
         // PLACAS
         if (familia.placas != null) {
             String nomePlacas = familia.placas.getId().getPath();
@@ -190,18 +166,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
             gerarModelosVariantes(familia.placas, familia.placas.getId().getPath(), familia.variantesPlacas,
                     false, categoria);
-        }
-
-        // PLACAS POLIDAS
-        if (familia.placasPolidas != null) {
-            String nomePlacasPolidas = familia.placasPolidas.getId().getPath();
-            simpleBlock(familia.placasPolidas.get(),
-                    models().cubeAll(nomePlacasPolidas, textura(nomePlacasPolidas, categoria)));
-            modeloItemPadrao(familia.placasPolidas);
-
-            gerarModelosVariantes(familia.placasPolidas, familia.placasPolidas.getId().getPath(),
-                    familia.variantesPlacasPolidas, false, categoria);
-
         }
 
         // LISO

@@ -115,36 +115,6 @@ public class ProvedorReceitas extends RecipeProvider {
                                         familia.variantesPolido.muro().get(), familia.base.get(), 1);
                 }
 
-                // Variantes tijolos polidos
-                if (familia.variantesTijolosPolido != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesTijolosPolido.escada().get(), familia.base.get(), 1);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesTijolosPolido.laje().get(), familia.base.get(), 2);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesTijolosPolido.muro().get(), familia.base.get(), 1);
-                }
-
-                // Variantes ladrilhos polidos
-                if (familia.variantesLadrilhosPolido != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesLadrilhosPolido.escada().get(), familia.base.get(), 1);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesLadrilhosPolido.laje().get(), familia.base.get(), 2);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesLadrilhosPolido.muro().get(), familia.base.get(), 1);
-                }
-
-                // Variantes placas polidas
-                if (familia.variantesPlacasPolidas != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesPlacasPolidas.escada().get(), familia.base.get(), 1);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesPlacasPolidas.laje().get(), familia.base.get(), 2);
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.variantesPlacasPolidas.muro().get(), familia.base.get(), 1);
-                }
-
                 // Variantes liso
                 if (familia.variantesLiso != null && familia.liso != null) {
                         if (familia.variantesLiso.escada() != null)
@@ -163,56 +133,58 @@ public class ProvedorReceitas extends RecipeProvider {
                         stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
                                         familia.polido.get(), familia.base.get(), 1);
 
-                if (familia.tijolos != null)
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.tijolos.get(), familia.base.get(), 1);
-
-                if (familia.ladrilhos != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.ladrilhos.get(), familia.base.get(), 1);
+                if (familia.temPolido) {
                         if (familia.tijolos != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.ladrilhos.get(), familia.tijolos.get(), 1);
+                                                familia.tijolos.get(), familia.base.get(), 1);
+                                if (familia.polido != null)
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.tijolos.get(), familia.polido.get(), 1);
                         }
-                }
 
-                if (familia.placas != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.placas.get(), familia.base.get(), 1);
-                        if (familia.tijolos != null) {
+                        if (familia.ladrilhos != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.placas.get(), familia.tijolos.get(), 1);
+                                                familia.ladrilhos.get(), familia.base.get(), 1);
+                                if (familia.polido != null)
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.ladrilhos.get(), familia.polido.get(), 1);
+                                if (familia.tijolos != null)
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.ladrilhos.get(), familia.tijolos.get(), 1);
                         }
-                }
 
-                if (familia.tijolosPolido != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.tijolosPolido.get(), familia.base.get(), 1);
-                        if (familia.polido != null)
+                        if (familia.placas != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.tijolosPolido.get(), familia.polido.get(), 1);
-                }
+                                                familia.placas.get(), familia.base.get(), 1);
+                                if (familia.polido != null)
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.placas.get(), familia.polido.get(), 1);
+                                if (familia.tijolos != null)
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.placas.get(), familia.tijolos.get(), 1);
+                        }
+                } else {
+                        if (familia.tijolos != null)
+                                stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                familia.tijolos.get(), familia.base.get(), 1);
 
-                if (familia.ladrilhosPolido != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.ladrilhosPolido.get(), familia.base.get(), 1);
-                        if (familia.polido != null)
+                        if (familia.ladrilhos != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.ladrilhosPolido.get(), familia.polido.get(), 1);
-                        if (familia.tijolosPolido != null)
-                                stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.ladrilhosPolido.get(), familia.tijolosPolido.get(), 1);
-                }
+                                                familia.ladrilhos.get(), familia.base.get(), 1);
+                                if (familia.tijolos != null) {
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.ladrilhos.get(), familia.tijolos.get(), 1);
+                                }
+                        }
 
-                if (familia.placasPolidas != null) {
-                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.placasPolidas.get(), familia.base.get(), 1);
-                        if (familia.polido != null)
+                        if (familia.placas != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.placasPolidas.get(), familia.polido.get(), 1);
-                        if (familia.tijolosPolido != null)
-                                stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
-                                                familia.placasPolidas.get(), familia.tijolosPolido.get(), 1);
+                                                familia.placas.get(), familia.base.get(), 1);
+                                if (familia.tijolos != null) {
+                                        stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
+                                                        familia.placas.get(), familia.tijolos.get(), 1);
+                                }
+                        }
                 }
 
                 // Talhados/Pilares
@@ -221,19 +193,13 @@ public class ProvedorReceitas extends RecipeProvider {
                                                 TipoMaterial.BASE,
                                                 TipoMaterial.POLIDO,
                                                 TipoMaterial.TIJOLOS,
-                                                TipoMaterial.TIJOLOS_POLIDO,
                                                 TipoMaterial.LADRILHOS,
-                                                TipoMaterial.LADRILHOS_POLIDO,
-                                                TipoMaterial.PLACAS,
-                                                TipoMaterial.PLACAS_POLIDA));
+                                                TipoMaterial.PLACAS));
 
                 if (familia.polido != null)
                         receitaVariantesCortador(familia, output, familia.polido,
                                         Set.of(
-                                                        TipoMaterial.POLIDO,
-                                                        TipoMaterial.TIJOLOS_POLIDO,
-                                                        TipoMaterial.LADRILHOS_POLIDO,
-                                                        TipoMaterial.PLACAS_POLIDA));
+                                                        TipoMaterial.POLIDO));
 
                 if (familia.tijolos != null)
                         receitaVariantesCortador(familia, output, familia.tijolos,
@@ -250,21 +216,6 @@ public class ProvedorReceitas extends RecipeProvider {
                         receitaVariantesCortador(familia, output, familia.placas,
                                         Set.of(TipoMaterial.PLACAS));
 
-                if (familia.tijolosPolido != null)
-                        receitaVariantesCortador(familia, output, familia.tijolosPolido,
-                                        Set.of(
-                                                        TipoMaterial.TIJOLOS_POLIDO,
-                                                        TipoMaterial.LADRILHOS_POLIDO,
-                                                        TipoMaterial.PLACAS_POLIDA));
-
-                if (familia.ladrilhosPolido != null)
-                        receitaVariantesCortador(familia, output, familia.ladrilhosPolido,
-                                        Set.of(TipoMaterial.LADRILHOS_POLIDO));
-
-                if (familia.placasPolidas != null)
-                        receitaVariantesCortador(familia, output, familia.placasPolidas,
-                                        Set.of(TipoMaterial.PLACAS_POLIDA));
-
                 if (familia.liso != null)
                         receitaVariantesCortador(familia, output, familia.liso,
                                         Set.of(TipoMaterial.LISO));
@@ -272,6 +223,20 @@ public class ProvedorReceitas extends RecipeProvider {
 
         private void receitaPedra(FamiliaPedra familia, RecipeOutput output, boolean cortadorDePedra) {
 
+                if (familia.temPolido) {
+                        if (familia.tijolos != null) {
+                                polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                                familia.tijolos.get(),
+                                                familia.polido.get());
+                        }
+
+                } else {
+                        if (familia.tijolos != null) {
+                                polished(output, RecipeCategory.BUILDING_BLOCKS,
+                                                familia.tijolos.get(),
+                                                familia.base.get());
+                        }
+                }
                 if (familia.tijolos != null) {
                         polished(output, RecipeCategory.BUILDING_BLOCKS,
                                         familia.tijolos.get(),
@@ -296,24 +261,6 @@ public class ProvedorReceitas extends RecipeProvider {
                                         familia.base.get());
                 }
 
-                if (familia.tijolosPolido != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.tijolosPolido.get(),
-                                        familia.polido.get());
-                }
-
-                if (familia.ladrilhosPolido != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.ladrilhosPolido.get(),
-                                        familia.tijolosPolido.get());
-                }
-
-                if (familia.placasPolidas != null) {
-                        polished(output, RecipeCategory.BUILDING_BLOCKS,
-                                        familia.placasPolidas.get(),
-                                        familia.tijolosPolido.get());
-                }
-
                 // Variantes
                 if (familia.variantesBase != null) {
                         receitaVariantes(familia.variantesBase.escada(), familia.variantesBase.laje(),
@@ -334,21 +281,6 @@ public class ProvedorReceitas extends RecipeProvider {
                 if (familia.variantesPolido != null) {
                         receitaVariantes(familia.variantesPolido.escada(), familia.variantesPolido.laje(),
                                         familia.variantesPolido.muro(), familia.polido.get(), output);
-                }
-                if (familia.variantesTijolosPolido != null) {
-                        receitaVariantes(familia.variantesTijolosPolido.escada(), familia.variantesTijolosPolido.laje(),
-                                        familia.variantesTijolosPolido.muro(), familia.tijolosPolido.get(), output);
-                }
-                if (familia.variantesLadrilhosPolido != null) {
-                        receitaVariantes(familia.variantesLadrilhosPolido.escada(),
-                                        familia.variantesLadrilhosPolido.laje(),
-                                        familia.variantesLadrilhosPolido.muro(), familia.ladrilhosPolido.get(), output);
-                }
-
-                if (familia.variantesPlacasPolidas != null) {
-                        receitaVariantes(familia.variantesPlacasPolidas.escada(),
-                                        familia.variantesPlacasPolidas.laje(),
-                                        familia.variantesPlacasPolidas.muro(), familia.placasPolidas.get(), output);
                 }
                 if (familia.variantesLiso != null) {
                         receitaVariantes(familia.variantesLiso.escada(), familia.variantesLiso.laje(),

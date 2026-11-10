@@ -45,10 +45,12 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         if (familia.variantesTijolos != null && familia.variantesTijolos.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesTijolos.muro().get());
         }
-        if (familia.variantesTijolosPolido != null && familia.variantesTijolosPolido.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesTijolosPolido.muro().get());
+        if (familia.variantesLadrilhos != null && familia.variantesLadrilhos.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesLadrilhos.muro().get());
         }
-
+        if (familia.variantesPlacas != null && familia.variantesPlacas.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesPlacas.muro().get());
+        }
         if (familia.variantesLiso != null && familia.variantesLiso.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesLiso.muro().get());
         }

@@ -118,54 +118,6 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             }
         }
 
-        if (familia.tijolosPolido != null) {
-            dropSelf(familia.tijolosPolido.get());
-            if (familia.variantesTijolosPolido != null) {
-                if (familia.variantesTijolosPolido.escada() != null) {
-                    dropSelf(familia.variantesTijolosPolido.escada().get());
-                }
-                if (familia.variantesTijolosPolido.laje() != null) {
-                    add(familia.variantesTijolosPolido.laje().get(),
-                            createSlabItemTable(familia.variantesTijolosPolido.laje().get()));
-                }
-                if (familia.variantesTijolosPolido.muro() != null) {
-                    dropSelf(familia.variantesTijolosPolido.muro().get());
-                }
-            }
-        }
-
-        if (familia.ladrilhosPolido != null) {
-            dropSelf(familia.ladrilhosPolido.get());
-            if (familia.variantesLadrilhosPolido != null) {
-                if (familia.variantesLadrilhosPolido.escada() != null) {
-                    dropSelf(familia.variantesLadrilhosPolido.escada().get());
-                }
-                if (familia.variantesLadrilhosPolido.laje() != null) {
-                    add(familia.variantesLadrilhosPolido.laje().get(),
-                            createSlabItemTable(familia.variantesLadrilhosPolido.laje().get()));
-                }
-                if (familia.variantesLadrilhosPolido.muro() != null) {
-                    dropSelf(familia.variantesLadrilhosPolido.muro().get());
-                }
-            }
-        }
-
-        if (familia.placasPolidas != null) {
-            dropSelf(familia.placasPolidas.get());
-            if (familia.variantesPlacasPolidas != null) {
-                if (familia.variantesPlacasPolidas.escada() != null) {
-                    dropSelf(familia.variantesPlacasPolidas.escada().get());
-                }
-                if (familia.variantesPlacasPolidas.laje() != null) {
-                    add(familia.variantesPlacasPolidas.laje().get(),
-                            createSlabItemTable(familia.variantesPlacasPolidas.laje().get()));
-                }
-                if (familia.variantesPlacasPolidas.muro() != null) {
-                    dropSelf(familia.variantesPlacasPolidas.muro().get());
-                }
-            }
-        }
-
         for (var bloco : familia.rachados.values()) {
             dropSelf(bloco.get());
         }

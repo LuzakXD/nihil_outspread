@@ -38,55 +38,60 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesLiso, "Smooth " + nomeMaterial);
         }
 
-        if (familia.tijolos != null) {
-            addBlock(familia.tijolos, nomeMaterial + " Bricks");
-            traduzVariantes(familia.variantesTijolos, nomeMaterial + " Brick");
-        }
-
-        if (familia.ladrilhos != null) {
-            addBlock(familia.ladrilhos, nomeMaterial + " Tiles");
-            traduzVariantes(familia.variantesLadrilhos, nomeMaterial + " Tile");
-        }
-
-        if (familia.placas != null) {
-            addBlock(familia.placas, nomeMaterial + " Plates");
-            traduzVariantes(familia.variantesPlacas, nomeMaterial + " Plate");
-        }
-
         if (familia.polido != null) {
             addBlock(familia.polido, "Polished " + nomeMaterial);
             traduzVariantes(familia.variantesPolido, "Polished " + nomeMaterial);
         }
 
-        if (familia.tijolosPolido != null) {
-            addBlock(familia.tijolosPolido, "Polished " + nomeMaterial + " Bricks");
-            traduzVariantes(familia.variantesTijolosPolido, "Polished " + nomeMaterial + " Brick");
-        }
+        if (familia.temPolido) {
+            if (familia.tijolos != null) {
+                addBlock(familia.tijolos, "Polished " + nomeMaterial + " Bricks");
+                traduzVariantes(familia.variantesTijolos, "Polished " + nomeMaterial + " Brick");
+            }
 
-        if (familia.ladrilhosPolido != null) {
-            addBlock(familia.ladrilhosPolido, "Polished " + nomeMaterial + " Tiles");
-            traduzVariantes(familia.variantesLadrilhosPolido, "Polished " + nomeMaterial + " Tile");
-        }
+            if (familia.ladrilhos != null) {
+                addBlock(familia.ladrilhos, "Polished " + nomeMaterial + " Tiles");
+                traduzVariantes(familia.variantesLadrilhos, "Polished " + nomeMaterial + " Tile");
+            }
 
-        if (familia.placasPolidas != null) {
-            addBlock(familia.placasPolidas, "Polished " + nomeMaterial + " Plates");
-            traduzVariantes(familia.variantesPlacasPolidas, "Polished " + nomeMaterial + " Plate");
+            if (familia.placas != null) {
+                addBlock(familia.placas, "Polished " + nomeMaterial + " Plates");
+                traduzVariantes(familia.variantesPlacas, "Polished " + nomeMaterial + " Plate");
+            }
+        } else {
+            if (familia.tijolos != null) {
+                addBlock(familia.tijolos, nomeMaterial + " Bricks");
+                traduzVariantes(familia.variantesTijolos, nomeMaterial + " Brick");
+            }
+
+            if (familia.ladrilhos != null) {
+                addBlock(familia.ladrilhos, nomeMaterial + " Tiles");
+                traduzVariantes(familia.variantesLadrilhos, nomeMaterial + " Tile");
+            }
+
+            if (familia.placas != null) {
+                addBlock(familia.placas, nomeMaterial + " Plates");
+                traduzVariantes(familia.variantesPlacas, nomeMaterial + " Plate");
+            }
         }
 
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial));
+            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
 
         for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pillar");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    familia.temPolido) + " Pillar");
 
         for (var entry : familia.rachados.entrySet())
-            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial));
+            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
 
         for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pressure Plate");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    familia.temPolido) + " Pressure Plate");
 
         for (var entry : familia.bototes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Button");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    familia.temPolido) + " Button");
     }
 
     private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, boolean temBase) {
@@ -106,7 +111,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         }
 
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial));
+            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
 
         for (var entry : familia.pilares.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pillar");
@@ -132,33 +137,53 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(variantes.muro(), nomeBase + " Wall");
     }
 
-    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial) {
-        return switch (tipo) {
-            case BASE -> nomeMaterial;
-            case LISO -> "Smooth " + nomeMaterial;
-            case CORTADO -> "Cut " + nomeMaterial;
-            case POLIDO -> "Polished " + nomeMaterial;
-            case TIJOLOS -> nomeMaterial + " Bricks";
-            case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Bricks";
-            case LADRILHOS -> nomeMaterial + " Tiles";
-            case LADRILHOS_POLIDO -> "Polished " + nomeMaterial + " Tiles";
-            case PLACAS -> nomeMaterial + " Plates";
-            case PLACAS_POLIDA -> "Polished " + nomeMaterial + " Plates";
-        };
+    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Boolean temPolido) {
+        if (temPolido) {
+            return switch (tipo) {
+                case BASE -> nomeMaterial;
+                case LISO -> "Smooth " + nomeMaterial;
+                case CORTADO -> "Cut " + nomeMaterial;
+                case POLIDO -> "Polished " + nomeMaterial;
+                case TIJOLOS -> "Polished " + nomeMaterial + " Bricks";
+                case LADRILHOS -> "Polished " + nomeMaterial + " Tiles";
+                case PLACAS -> "Polished " + nomeMaterial + " Plates";
+            };
+        } else {
+            return switch (tipo) {
+                case BASE -> nomeMaterial;
+                case LISO -> "Smooth " + nomeMaterial;
+                case CORTADO -> "Cut " + nomeMaterial;
+                case POLIDO -> "Polished " + nomeMaterial;
+                case TIJOLOS -> nomeMaterial + " Bricks";
+                case LADRILHOS -> nomeMaterial + " Tiles";
+                case PLACAS -> nomeMaterial + " Plates";
+            };
+        }
+
     }
 
-    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial) {
-        return switch (tipo) {
-            case BASE -> nomeMaterial;
-            case LISO -> "Smooth " + nomeMaterial;
-            case CORTADO -> "Cut " + nomeMaterial;
-            case POLIDO -> "Polished " + nomeMaterial;
-            case TIJOLOS -> nomeMaterial + " Brick";
-            case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Brick";
-            case LADRILHOS -> nomeMaterial + " Tile";
-            case LADRILHOS_POLIDO -> "Polished " + nomeMaterial + " Tile";
-            case PLACAS -> nomeMaterial + " Plate";
-            case PLACAS_POLIDA -> "Polished " + nomeMaterial + " Plate";
-        };
+    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial, Boolean temPolido) {
+        if (temPolido) {
+            return switch (tipo) {
+                case BASE -> nomeMaterial;
+                case LISO -> "Smooth " + nomeMaterial;
+                case CORTADO -> "Cut " + nomeMaterial;
+                case POLIDO -> "Polished " + nomeMaterial;
+                case TIJOLOS -> "Polished " + nomeMaterial + " Brick";
+                case LADRILHOS -> "Polished " + nomeMaterial + " Tile";
+                case PLACAS -> "Polished " + nomeMaterial + " Plate";
+            };
+        } else {
+            return switch (tipo) {
+                case BASE -> nomeMaterial;
+                case LISO -> "Smooth " + nomeMaterial;
+                case CORTADO -> "Cut " + nomeMaterial;
+                case POLIDO -> "Polished " + nomeMaterial;
+                case TIJOLOS -> nomeMaterial + " Brick";
+                case LADRILHOS -> nomeMaterial + " Tile";
+                case PLACAS -> nomeMaterial + " Plate";
+            };
+        }
+
     }
 }
