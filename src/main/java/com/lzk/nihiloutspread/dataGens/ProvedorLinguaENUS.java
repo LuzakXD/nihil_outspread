@@ -53,7 +53,6 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesTijolosPolido, "Polished " + nomeMaterial + " Brick");
         }
 
-        // Maps:
         for (var entry : familia.talhados.entrySet())
             addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial));
 
@@ -86,18 +85,20 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesCortado, "Cut " + nomeMaterial);
         }
 
-        // Maps:
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial));
+            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial));
 
         for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Pillar");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pillar");
+
+        for (var entry : familia.rachados.entrySet())
+            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial));
 
         for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Pressure Plate");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pressure Plate");
 
         for (var entry : familia.bototes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialAreia(entry.getKey(), nomeMaterial) + " Button");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Button");
     }
 
     private void traduzVariantes(Variantes variantes, String nomeBase) {
@@ -111,35 +112,33 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(variantes.muro(), nomeBase + " Wall");
     }
 
-    private String nomeDoMaterial(TipoMaterialPedra tipo, String nomeMaterial) {
-        return switch (tipo) {
-            case BASE -> nomeMaterial;
-            case LISO -> "Smooth " + nomeMaterial;
-            case POLIDO -> "Polished " + nomeMaterial;
-            case TIJOLOS -> nomeMaterial + " Bricks";
-            case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Bricks";
-            case LADRILHOS -> nomeMaterial + " Tiles";
-            case PLACAS -> nomeMaterial + " Plates";
-        };
-    }
-
-    private String nomeDoMaterialAreia(TipoMaterialAreia tipo, String nomeMaterial) {
+    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial) {
         return switch (tipo) {
             case BASE -> nomeMaterial;
             case LISO -> "Smooth " + nomeMaterial;
             case CORTADO -> "Cut " + nomeMaterial;
+            case POLIDO -> "Polished " + nomeMaterial;
+            case TIJOLOS -> nomeMaterial + " Bricks";
+            case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Bricks";
+            case LADRILHOS -> nomeMaterial + " Tiles";
+            case LADRILHOS_POLIDO -> "Polished " + nomeMaterial + " Tiles";
+            case PLACAS -> nomeMaterial + " Plates";
+            case PLACAS_POLIDA -> "Polished " + nomeMaterial + " Plates";
         };
     }
 
-    private String nomeDoMaterialSingular(TipoMaterialPedra tipo, String nomeMaterial) {
+    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial) {
         return switch (tipo) {
             case BASE -> nomeMaterial;
             case LISO -> "Smooth " + nomeMaterial;
+            case CORTADO -> "Cut " + nomeMaterial;
             case POLIDO -> "Polished " + nomeMaterial;
             case TIJOLOS -> nomeMaterial + " Brick";
             case TIJOLOS_POLIDO -> "Polished " + nomeMaterial + " Brick";
             case LADRILHOS -> nomeMaterial + " Tile";
+            case LADRILHOS_POLIDO -> "Polished " + nomeMaterial + " Tile";
             case PLACAS -> nomeMaterial + " Plate";
+            case PLACAS_POLIDA -> "Polished " + nomeMaterial + " Plate";
         };
     }
 }

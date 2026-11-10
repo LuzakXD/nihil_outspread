@@ -34,25 +34,25 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         traduzVariantes(familia.variantesBase, nomeMaterial);
 
         if (familia.liso != null) {
-            String nome = nomeDoMaterial(TipoMaterialPedra.LISO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero);
             addBlock(familia.liso, nome);
             traduzVariantes(familia.variantesLiso, nome);
         }
 
         if (familia.polido != null) {
-            String nome = nomeDoMaterial(TipoMaterialPedra.POLIDO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero);
             addBlock(familia.polido, nome);
             traduzVariantes(familia.variantesPolido, nome);
         }
 
         if (familia.tijolos != null) {
-            String nome = nomeDoMaterial(TipoMaterialPedra.TIJOLOS, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.TIJOLOS, nomeMaterial, genero);
             addBlock(familia.tijolos, nome);
             traduzVariantes(familia.variantesTijolos, nome);
         }
 
         if (familia.tijolosPolido != null) {
-            String nome = nomeDoMaterial(TipoMaterialPedra.TIJOLOS_POLIDO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.TIJOLOS_POLIDO, nomeMaterial, genero);
             addBlock(familia.tijolosPolido, nome);
             traduzVariantes(familia.variantesTijolosPolido, nome);
         }
@@ -80,29 +80,29 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         traduzVariantes(familia.variantesBase, nomeMaterial);
 
         if (familia.liso != null) {
-            String nome = nomeDoMaterial(TipoMaterialPedra.LISO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero);
             addBlock(familia.liso, nome);
             traduzVariantes(familia.variantesLiso, nome);
         }
 
         if (familia.cortado != null) {
-            String nome = nomeDoMaterialAreia(TipoMaterialAreia.CORTADO, nomeMaterial, genero);
+            String nome = nomeDoMaterial(TipoMaterial.CORTADO, nomeMaterial, genero);
             addBlock(familia.cortado, nome);
             traduzVariantes(familia.variantesCortado, nome);
         }
 
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialAreiaTalhado(entry.getKey(), nomeMaterial, genero));
+            addBlock(entry.getValue(), nomeDoMaterialTalhado(entry.getKey(), nomeMaterial, genero));
 
         for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(), "Pilar de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+            addBlock(entry.getValue(), "Pilar de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero));
 
         for (var entry : familia.pressoes.entrySet())
             addBlock(entry.getValue(),
-                    "Placa de Pressão de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+                    "Placa de Pressão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero));
 
         for (var entry : familia.bototes.entrySet())
-            addBlock(entry.getValue(), "Botão de " + nomeDoMaterialAreia(entry.getKey(), nomeMaterial, genero));
+            addBlock(entry.getValue(), "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero));
     }
 
     private void traduzVariantes(Variantes variantes, String nomeBase) {
@@ -124,62 +124,51 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         };
     }
 
-    private String nomeDoMaterial(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial;
             case LISO -> nomeMaterial + " Lis" + s;
+            case CORTADO -> nomeMaterial + " Lapidad" + s;
             case POLIDO -> nomeMaterial + " Polid" + s;
             case TIJOLOS -> "Tijolos de " + nomeMaterial;
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s;
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial;
+            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial;
             case PLACAS -> "Placas de " + nomeMaterial;
+            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial;
         };
     }
 
-    private String nomeDoMaterialAreia(TipoMaterialAreia tipo, String nomeMaterial, Genero genero) {
-        String s = sufixo(genero);
-        return switch (tipo) {
-            case BASE -> nomeMaterial;
-            case LISO -> nomeMaterial + " Lis" + s;
-            case CORTADO -> nomeMaterial + " Cortad" + s;
-
-        };
-    }
-
-    private String nomeDoMaterialTalhado(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterialTalhado(TipoMaterial tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial + " Talhad" + s;
             case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
+            case CORTADO -> nomeMaterial + " Lapidad" + s + " Talhad" + s;
             case POLIDO -> nomeMaterial + " Polid" + s + " Talhad" + s;
             case TIJOLOS -> "Tijolos de " + nomeMaterial + " Talhados";
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s + " Talhados";
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Talhados";
+            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial + " Talhados";
             case PLACAS -> "Placas de " + nomeMaterial + " Talhadas";
+            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial + " Talhadas";
         };
     }
 
-    private String nomeDoMaterialAreiaTalhado(TipoMaterialAreia tipo, String nomeMaterial, Genero genero) {
-        String s = sufixo(genero);
-        return switch (tipo) {
-            case BASE -> nomeMaterial + " Talhad" + s;
-            case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
-            case CORTADO -> nomeMaterial + " Cortad" + s + " Talhad" + s;
-
-        };
-    }
-
-    private String nomeDoMaterialRachado(TipoMaterialPedra tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterialRachado(TipoMaterial tipo, String nomeMaterial, Genero genero) {
         String s = sufixo(genero);
         return switch (tipo) {
             case BASE -> nomeMaterial + " Rachad" + s;
             case LISO -> nomeMaterial + " Lis" + s + " Rachad" + s;
+            case CORTADO -> nomeMaterial + " Lapidad" + s + " Rachad" + s;
             case POLIDO -> nomeMaterial + " Polid" + s + " Rachad" + s;
             case TIJOLOS -> "Tijolos de " + nomeMaterial + " Rachados";
             case TIJOLOS_POLIDO -> "Tijolos de " + nomeMaterial + " Polid" + s + " Rachados";
             case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Rachados";
+            case LADRILHOS_POLIDO -> "Ladrilhos Polidos de " + nomeMaterial + " Rachados";
             case PLACAS -> "Placas de " + nomeMaterial + " Rachadas";
+            case PLACAS_POLIDA -> "Placas Polidas de " + nomeMaterial + " Rachadas";
         };
     }
 }

@@ -1,7 +1,9 @@
 package com.lzk.nihiloutspread.blockGens;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.world.item.Item;
@@ -27,6 +29,13 @@ public abstract class FamiliaAbstrata {
     protected final DeferredRegister.Items registroItem;
 
     protected final List<DeferredBlock<? extends Block>> todosOsBlocos = new ArrayList<>();
+    protected final Map<TipoMaterial, DeferredBlock<Block>> materiais = new EnumMap<>(TipoMaterial.class);
+
+    public final Map<TipoMaterial, DeferredBlock<Block>> talhados = new EnumMap<>(TipoMaterial.class);
+    public final Map<TipoMaterial, DeferredBlock<Block>> rachados = new EnumMap<>(TipoMaterial.class);
+    public final Map<TipoMaterial, DeferredBlock<RotatedPillarBlock>> pilares = new EnumMap<>(TipoMaterial.class);
+    public final Map<TipoMaterial, DeferredBlock<PressurePlateBlock>> pressoes = new EnumMap<>(TipoMaterial.class);
+    public final Map<TipoMaterial, DeferredBlock<ButtonBlock>> bototes = new EnumMap<>(TipoMaterial.class);
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase) {
@@ -34,12 +43,20 @@ public abstract class FamiliaAbstrata {
         this.registro = reg;
         this.registroItem = regItem;
         this.base = blocoBase;
+        materiais.put(TipoMaterial.BASE, base);
         this.nomeCompleto = blocoBase.getId().getPath();
 
         String limpo = nomeCompleto;
         if (limpo.endsWith("_block"))
             limpo = limpo.substring(0, limpo.length() - "_block".length());
         this.nomeBase = limpo;
+    }
+
+    protected DeferredBlock<Block> registrarMaterial(TipoMaterial tipo, String nome,
+            BlockBehaviour.Properties props) {
+        DeferredBlock<Block> bloco = registrar(nome, props);
+        materiais.put(tipo, bloco);
+        return bloco;
     }
 
     protected DeferredBlock<Block> registrar(String nome, BlockBehaviour.Properties props) {
@@ -111,5 +128,9 @@ public abstract class FamiliaAbstrata {
             itens.add(bloco.get().asItem());
         }
         return itens;
+    }
+
+    public DeferredBlock<Block> materialDe(TipoMaterial tipo) {
+        return materiais.get(tipo);
     }
 }
