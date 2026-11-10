@@ -29,14 +29,14 @@ public class FamiliaPedra extends FamiliaAbstrata {
     public final DeferredBlock<Block> placas;
     public final Variantes variantesPlacas;
 
-    public final boolean temPolido;
+    public final boolean sufixoPolido;
 
     public FamiliaPedra(
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase,
             BlockBehaviour.Properties props,
-            Boolean temPolido,
+            Boolean sufixoPolido,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
         super(reg, regItem, blocoBase);
@@ -56,11 +56,11 @@ public class FamiliaPedra extends FamiliaAbstrata {
             throw new IllegalArgumentException("PLACAS and LADRILHOS are mutually exclusive");
         }
 
-        if (temPolido && !composicao.containsKey(TipoMaterial.POLIDO)) {
-            throw new IllegalArgumentException("temPolido is true but POLIDO is not in composicao");
+        if (sufixoPolido && !composicao.containsKey(TipoMaterial.POLIDO)) {
+            throw new IllegalArgumentException("sufixoPolido is true but POLIDO is not in composicao");
         }
 
-        this.temPolido = temPolido;
+        this.sufixoPolido = sufixoPolido;
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
         if (vBase.contains(TipoVariante.PILAR)) {
@@ -121,7 +121,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             this.polido = null;
             this.variantesPolido = null;
         }
-        if (temPolido) {
+        if (sufixoPolido) {
             if (composicao.containsKey(TipoMaterial.TIJOLOS)) {
                 Set<TipoVariante> vTijolos = composicao.get(TipoMaterial.TIJOLOS);
                 this.tijolos = registrarMaterial(TipoMaterial.TIJOLOS, "polished_" + nomeBase + "_bricks",
@@ -171,7 +171,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             }
         }
 
-        if (temPolido) {
+        if (sufixoPolido) {
             if (composicao.containsKey(TipoMaterial.LADRILHOS)) {
                 Set<TipoVariante> vladrilhos = composicao.get(TipoMaterial.LADRILHOS);
                 this.ladrilhos = registrarMaterial(TipoMaterial.LADRILHOS,
@@ -220,7 +220,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             }
         }
 
-        if (temPolido) {
+        if (sufixoPolido) {
             if (composicao.containsKey(TipoMaterial.PLACAS)) {
                 Set<TipoVariante> vplacas = composicao.get(TipoMaterial.PLACAS);
                 this.placas = registrarMaterial(TipoMaterial.PLACAS, "polished_" + nomeBase + "_plates",

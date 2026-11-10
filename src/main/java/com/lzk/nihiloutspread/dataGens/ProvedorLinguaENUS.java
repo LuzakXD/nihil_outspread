@@ -43,7 +43,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesPolido, "Polished " + nomeMaterial);
         }
 
-        if (familia.temPolido) {
+        if (familia.sufixoPolido) {
             if (familia.tijolos != null) {
                 addBlock(familia.tijolos, "Polished " + nomeMaterial + " Bricks");
                 traduzVariantes(familia.variantesTijolos, "Polished " + nomeMaterial + " Brick");
@@ -76,22 +76,23 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         }
 
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
+            addBlock(entry.getValue(),
+                    "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
 
         for (var entry : familia.pilares.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
-                    familia.temPolido) + " Pillar");
+                    familia.sufixoPolido) + " Pillar");
 
         for (var entry : familia.rachados.entrySet())
-            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
+            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
 
         for (var entry : familia.pressoes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
-                    familia.temPolido) + " Pressure Plate");
+                    familia.sufixoPolido) + " Pressure Plate");
 
         for (var entry : familia.bototes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
-                    familia.temPolido) + " Button");
+                    familia.sufixoPolido) + " Button");
     }
 
     private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, boolean temBase) {
@@ -111,19 +112,22 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         }
 
         for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.temPolido));
+            addBlock(entry.getValue(),
+                    "Chiseled " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
 
         for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pillar");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    familia.sufixoPolido) + " Pillar");
 
         for (var entry : familia.rachados.entrySet())
-            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial));
+            addBlock(entry.getValue(), "Cracked " + nomeDoMaterial(entry.getKey(), nomeMaterial, familia.sufixoPolido));
 
         for (var entry : familia.pressoes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Pressure Plate");
 
         for (var entry : familia.bototes.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial) + " Button");
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    familia.sufixoPolido) + " Button");
     }
 
     private void traduzVariantes(Variantes variantes, String nomeBase) {
@@ -137,8 +141,8 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(variantes.muro(), nomeBase + " Wall");
     }
 
-    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Boolean temPolido) {
-        if (temPolido) {
+    private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Boolean sufixoPolido) {
+        if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;
@@ -162,8 +166,8 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     }
 
-    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial, Boolean temPolido) {
-        if (temPolido) {
+    private String nomeDoMaterialSingular(TipoMaterial tipo, String nomeMaterial, Boolean sufixoPolido) {
+        if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;

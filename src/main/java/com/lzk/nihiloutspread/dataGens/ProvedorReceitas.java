@@ -133,7 +133,7 @@ public class ProvedorReceitas extends RecipeProvider {
                         stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
                                         familia.polido.get(), familia.base.get(), 1);
 
-                if (familia.temPolido) {
+                if (familia.sufixoPolido) {
                         if (familia.tijolos != null) {
                                 stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS,
                                                 familia.tijolos.get(), familia.base.get(), 1);
@@ -223,7 +223,7 @@ public class ProvedorReceitas extends RecipeProvider {
 
         private void receitaPedra(FamiliaPedra familia, RecipeOutput output, boolean cortadorDePedra) {
 
-                if (familia.temPolido) {
+                if (familia.sufixoPolido) {
                         if (familia.tijolos != null) {
                                 polished(output, RecipeCategory.BUILDING_BLOCKS,
                                                 familia.tijolos.get(),

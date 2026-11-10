@@ -57,6 +57,7 @@ public class ModBlocks {
                         ModItems.ITEMS,
                         NILIGHT,
                         BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
+                        false,
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(
@@ -71,13 +72,13 @@ public class ModBlocks {
                                                         TipoVariante.TALHADO,
                                                         TipoVariante.PLACAPRESSAO,
                                                         TipoVariante.BOTAO),
-                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        TipoMaterial.TIJOLOS,
                                         Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO,
                                                         TipoVariante.RACHADO),
-                                        TipoMaterial.PLACAS_POLIDA,
+                                        TipoMaterial.PLACAS,
                                         Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
@@ -92,6 +93,7 @@ public class ModBlocks {
                         ModItems.ITEMS,
                         GRAPHITE,
                         BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
+                        true,
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(
@@ -103,7 +105,7 @@ public class ModBlocks {
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO),
-                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        TipoMaterial.TIJOLOS,
                                         Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
@@ -153,6 +155,7 @@ public class ModBlocks {
                         ModItems.ITEMS,
                         COTTONITE,
                         BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
+                        true
                         Map.of(
                                         TipoMaterial.BASE,
                                         Set.of(
@@ -165,7 +168,7 @@ public class ModBlocks {
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO,
                                                         TipoVariante.PILAR),
-                                        TipoMaterial.TIJOLOS_POLIDO,
+                                        TipoMaterial.TIJOLOS,
                                         Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
@@ -177,12 +180,13 @@ public class ModBlocks {
                         ModItems.ITEMS,
                         HONEYCOMB_BASE,
                         BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
+                        true,
                         Map.of(
                                         TipoMaterial.POLIDO, Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO),
-                                        TipoMaterial.TIJOLOS_POLIDO, Set.of(
+                                        TipoMaterial.TIJOLOS, Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO)));
