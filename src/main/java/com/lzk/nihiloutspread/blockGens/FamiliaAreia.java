@@ -19,6 +19,9 @@ public class FamiliaAreia extends FamiliaAbstrata {
     public final DeferredBlock<Block> liso;
     public final Variantes variantesLiso;
 
+    public final DeferredBlock<Block> pedregoso;
+    public final Variantes variantesPedregoso;
+
     public FamiliaAreia(
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
@@ -36,6 +39,21 @@ public class FamiliaAreia extends FamiliaAbstrata {
 
         if (vBase.contains(TipoVariante.TALHADO)) {
             talhados.put(TipoMaterial.BASE, registrar("chiseled_" + nomeBase, props));
+        }
+
+        if (composicao.containsKey(TipoMaterial.PEDREGOSO)) {
+            Set<TipoVariante> vPedregoso = composicao.get(TipoMaterial.PEDREGOSO);
+            this.pedregoso = registrarMaterial(TipoMaterial.PEDREGOSO, "cobbled_" + nomeBase, props);
+            if (vPedregoso.contains(TipoVariante.PILAR)) {
+                pilares.put(TipoMaterial.PEDREGOSO, registrarPilar("cobbled_" + nomeBase + "_pillar", props));
+            }
+            this.variantesPedregoso = registrarVariantes("cobbled_" + nomeBase, pedregoso, props, vPedregoso);
+            if (vPedregoso.contains(TipoVariante.TALHADO)) {
+                talhados.put(TipoMaterial.PEDREGOSO, registrar("chiseled_cobbled_" + nomeBase, props));
+            }
+        } else {
+            this.pedregoso = null;
+            this.variantesPedregoso = null;
         }
 
         if (composicao.containsKey(TipoMaterial.LISO)) {

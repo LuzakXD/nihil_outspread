@@ -14,9 +14,9 @@ public class ModCreativeTabs {
         public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
                         .create(Registries.CREATIVE_MODE_TAB, NihilOutspread.MODID);
 
-        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
-                        .register("example_tab", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.nihil_outspread"))
+        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NIHIL = CREATIVE_MODE_TABS
+                        .register("nihil", () -> CreativeModeTab.builder()
+                                        .title(Component.translatable("itemGroup.nihil"))
                                         .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
                                         .displayItems((parameters, output) -> {
 
@@ -41,6 +41,29 @@ public class ModCreativeTabs {
                                                 for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }
+
+                                        }).build());
+
+        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ABYSS = CREATIVE_MODE_TABS
+                        .register("abyss", () -> CreativeModeTab.builder()
+                                        .title(Component.translatable("itemGroup.abyss"))
+                                        .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
+                                        .displayItems((parameters, output) -> {
+
+                                                output.accept(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
+                                                output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
+
+                                                for (Item item : ModBlocks.ABYSSAL_STONE_FAMILY.devolverItens(true)) {
+                                                        output.accept(item);
+                                                }
+
+                                        }).build());
+
+        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> HIVE = CREATIVE_MODE_TABS
+                        .register("hive", () -> CreativeModeTab.builder()
+                                        .title(Component.translatable("itemGroup.hive"))
+                                        .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
+                                        .displayItems((parameters, output) -> {
 
                                                 for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);

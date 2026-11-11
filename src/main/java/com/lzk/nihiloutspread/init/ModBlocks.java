@@ -138,6 +138,11 @@ public class ModBlocks {
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO),
+                                        TipoMaterial.PEDREGOSO,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
                                         TipoMaterial.CORTADO,
                                         Set.of(
                                                         TipoVariante.ESCADA),
@@ -196,5 +201,47 @@ public class ModBlocks {
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO)));
+
+        public static final DeferredBlock<Block> ABYSSAL_MOSS_BLOCK = registrarBlocoItem("abyssal_moss_block",
+                        () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .strength(0.1f)
+                                        .instrument(NoteBlockInstrument.FLUTE)
+                                        .sound(SoundType.MOSS)));
+
+        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_BLOCK = registrarBlocoItem(
+                        "abyssal_floral_moss_block",
+                        () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .strength(0.1f)
+                                        .instrument(NoteBlockInstrument.FLUTE)
+                                        .sound(SoundType.MOSS)));
+
+        public static final DeferredBlock<Block> ABYSSAL_STONE = registrarBlocoItem(
+                        "abyssal_stone",
+                        () -> new AbyssalStoneBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.METAL)
+                                        .sound(SoundType.DEEPSLATE)
+                                        .strength(2.5f, 6f)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+
+        public static final FamiliaPedra ABYSSAL_STONE_FAMILY = new FamiliaPedra(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        ABYSSAL_STONE,
+                        BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.METAL)
+                                        .sound(SoundType.DEEPSLATE)
+                                        .strength(2.5f, 6f)
+                                        .instrument(NoteBlockInstrument.BASEDRUM),
+                        false,
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.PLACAPRESSAO,
+                                                        TipoVariante.BOTAO)));
 
 }

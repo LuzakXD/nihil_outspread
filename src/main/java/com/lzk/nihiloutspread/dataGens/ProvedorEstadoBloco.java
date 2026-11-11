@@ -39,6 +39,12 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
         gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
 
+        blocoSimples(ModBlocks.ABYSSAL_MOSS_BLOCK, "abyssal_moss", "abyss");
+        blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss", "abyss");
+
+        blocoComCamadas(ModBlocks.ABYSSAL_STONE, "abyssal_stone", "abyss", false, AbyssalStoneBlock.SNOWY);
+        gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
+
     }
 
     private void blocoSimples(DeferredBlock<? extends Block> bloco, String Textura, String categoria) {
@@ -277,6 +283,25 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 familia.nomeCompleto + "_top",
                 familia.variantesBase, false, categoria);
 
+        // PEDREGOSO
+        if (familia.pedregoso != null) {
+            String nomePedregoso = familia.pedregoso.getId().getPath();
+            simpleBlock(familia.pedregoso.get(),
+                    models().cubeBottomTop(
+                            nomePedregoso,
+                            textura(familia.nomeCompleto + "_bottom", categoria),
+                            textura(familia.nomeCompleto + "_bottom", categoria),
+                            textura(familia.nomeCompleto + "_bottom", categoria)));
+            modeloItemPadrao(familia.pedregoso);
+
+            gerarModelosVariantes(familia.pedregoso,
+                    familia.nomeCompleto + "_bottom",
+                    familia.nomeCompleto + "_bottom",
+                    familia.nomeCompleto + "_bottom",
+                    familia.variantesPedregoso,
+                    false, categoria);
+        }
+
         // CORTADO
         if (familia.cortado != null) {
             String nomeCortado = familia.cortado.getId().getPath();
@@ -292,7 +317,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.nomeCompleto + "_top",
                     familia.nomeCompleto + "_top",
                     familia.variantesCortado,
-                    true, categoria);
+                    false, categoria);
         }
 
         // LISO

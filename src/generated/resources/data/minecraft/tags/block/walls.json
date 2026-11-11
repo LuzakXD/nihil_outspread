@@ -13,6 +13,8 @@
     "nihil_outspread:polished_nilight_wall",
     "nihil_outspread:nilight_brick_wall",
     "nihil_outspread:nilight_plate_wall",
-    "nihil_outspread:velvestone_wall"
+    "nihil_outspread:velvestone_wall",
+    "nihil_outspread:cobbled_velvestone_wall",
+    "nihil_outspread:abyssal_stone_wall"
   ]
 }

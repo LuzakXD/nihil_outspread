@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "nihil_outspread:block/abyss/abyssal_stone"
+  }
+}

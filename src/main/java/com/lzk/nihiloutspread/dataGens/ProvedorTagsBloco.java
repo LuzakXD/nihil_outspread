@@ -34,6 +34,9 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 ModBlocks.NIHIL_DIRT.get(),
                 ModBlocks.NIHIL_GRASS_BLOCK.get());
 
+        tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
+        tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY, true);
+
     }
 
     private void tagMuros(FamiliaPedra familia) {
@@ -60,6 +63,9 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
     private void tagMurosAreia(FamiliaAreia familia) {
         if (familia.variantesBase != null && familia.variantesBase.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesBase.muro().get());
+        }
+        if (familia.variantesPedregoso != null && familia.variantesPedregoso.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesPedregoso.muro().get());
         }
         if (familia.variantesCortado != null && familia.variantesCortado.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesCortado.muro().get());

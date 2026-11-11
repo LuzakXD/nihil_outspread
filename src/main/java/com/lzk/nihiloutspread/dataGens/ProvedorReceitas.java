@@ -30,6 +30,8 @@ public class ProvedorReceitas extends RecipeProvider {
                 receitaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, output, true);
                 receitaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, output, true);
                 receitaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, output, true);
+
+                receitaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, output, true);
         }
 
         private void receitaVariantes(DeferredBlock<? extends Block> escada,

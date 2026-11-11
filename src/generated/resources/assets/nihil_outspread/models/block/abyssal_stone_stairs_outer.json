@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "nihil_outspread:block/abyss/abyssal_stone",
+    "side": "nihil_outspread:block/abyss/abyssal_stone",
+    "top": "nihil_outspread:block/abyss/abyssal_stone"
+  }
+}

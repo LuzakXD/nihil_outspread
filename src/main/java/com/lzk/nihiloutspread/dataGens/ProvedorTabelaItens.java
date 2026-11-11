@@ -35,6 +35,11 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropOther(ModBlocks.NIHIL_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
         dropSelf(ModBlocks.VELVET_SAND.get());
         lootDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
+
+        dropSelf(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
+        dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
+
+        lootDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, true);
     }
 
     private void lootDaFamiliaPedra(FamiliaPedra familia, boolean temBase) {
@@ -152,8 +157,14 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
     }
 
     private void lootDaFamiliaAreia(FamiliaAreia familia, boolean temBase) {
+
         if (temBase) {
-            dropSelf(familia.base.get());
+            if (familia.pedregoso != null) {
+                dropOther(familia.base.get(), familia.pedregoso.get());
+                dropSelf(familia.pedregoso.get());
+            } else {
+                dropSelf(familia.base.get());
+            }
         }
 
         if (familia.variantesBase != null) {
@@ -165,6 +176,21 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             }
             if (familia.variantesBase.muro() != null) {
                 dropSelf(familia.variantesBase.muro().get());
+            }
+        }
+
+        if (familia.pedregoso != null) {
+            if (familia.variantesPedregoso != null) {
+                if (familia.variantesPedregoso.escada() != null) {
+                    dropSelf(familia.variantesPedregoso.escada().get());
+                }
+                if (familia.variantesPedregoso.laje() != null) {
+                    add(familia.variantesPedregoso.laje().get(),
+                            createSlabItemTable(familia.variantesPedregoso.laje().get()));
+                }
+                if (familia.variantesPedregoso.muro() != null) {
+                    dropSelf(familia.variantesPedregoso.muro().get());
+                }
             }
         }
 

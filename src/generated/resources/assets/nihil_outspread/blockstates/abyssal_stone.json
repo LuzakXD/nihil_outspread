@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "nihil_outspread:block/abyssal_stone"
+    },
+    "snowy=true": {
+      "model": "nihil_outspread:block/abyssal_stone_snowy"
+    }
+  }
+}

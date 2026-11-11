@@ -14,17 +14,24 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil_outspread", "Nihil Outspread");
+        add("itemGroup.nihil", "Nihil");
+        add("itemGroup.abyss", "Abyss");
+        add("itemGroup.hive", "Hive");
 
         add("block.nihil_outspread.nihil_dirt", "Nihil Dirt");
         add("block.nihil_outspread.nihil_grass_block", "Nihil Grass Block");
         add("block.nihil_outspread.velvet_sand", "Velvet Sand");
+
+        add("block.nihil_outsprea.abyssal_moss_block", "Abyssal Moss Block");
+        add("block.nihil_outsprea.abyssal_floral_moss_block", "Abyssal Floral Moss Block");
 
         traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
         traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
         traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
         traduzirFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
         traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
+
+        traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
@@ -106,6 +113,11 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             traduzVariantes(familia.variantesLiso, "Smooth " + nomeMaterial);
         }
 
+        if (familia.pedregoso != null) {
+            addBlock(familia.pedregoso, "Cobbled " + nomeMaterial);
+            traduzVariantes(familia.variantesPedregoso, "Cobbled " + nomeMaterial);
+        }
+
         if (familia.cortado != null) {
             addBlock(familia.cortado, "Cut " + nomeMaterial);
             traduzVariantes(familia.variantesCortado, "Cut " + nomeMaterial);
@@ -145,6 +157,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Cobbled " + nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;
                 case CORTADO -> "Cut " + nomeMaterial;
                 case POLIDO -> "Polished " + nomeMaterial;
@@ -155,6 +168,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         } else {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Cobbled " + nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;
                 case CORTADO -> "Cut " + nomeMaterial;
                 case POLIDO -> "Polished " + nomeMaterial;
@@ -170,6 +184,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Cobbled " + nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;
                 case CORTADO -> "Cut " + nomeMaterial;
                 case POLIDO -> "Polished " + nomeMaterial;
@@ -180,6 +195,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         } else {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Cobbled " + nomeMaterial;
                 case LISO -> "Smooth " + nomeMaterial;
                 case CORTADO -> "Cut " + nomeMaterial;
                 case POLIDO -> "Polished " + nomeMaterial;

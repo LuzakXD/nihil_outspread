@@ -14,17 +14,24 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil_outspread", "Nihil Outspread");
+        add("itemGroup.nihil", "Nihil");
+        add("itemGroup.abyss", "Abismo");
+        add("itemGroup.hive", "Colmeia");
 
         add("block.nihil_outspread.nihil_dirt", "Terra Nihil");
         add("block.nihil_outspread.nihil_grass_block", "Bloco de Grama Nihil");
         add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
+
+        add("block.nihil_outspread.abyssal_moss_block", "Bloco de Musgo Abissal");
+        add("block.nihil_outspread.abyssal_floral_moss_block", "Bloco de Musgo Abissal Florido");
 
         traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
         traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
         traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
+
+        traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
     }
 
     private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
@@ -96,6 +103,12 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             traduzVariantes(familia.variantesLiso, nome);
         }
 
+        if (familia.pedregoso != null) {
+            String nome = nomeDoMaterial(TipoMaterial.PEDREGOSO, nomeMaterial, genero, false);
+            addBlock(familia.pedregoso, nome);
+            traduzVariantes(familia.variantesPedregoso, nome);
+        }
+
         if (familia.cortado != null) {
             String nome = nomeDoMaterial(TipoMaterial.CORTADO, nomeMaterial, genero, false);
             addBlock(familia.cortado, nome);
@@ -144,6 +157,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial;
                 case LISO -> nomeMaterial + " Lis" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s;
@@ -154,6 +168,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         } else {
             return switch (tipo) {
                 case BASE -> nomeMaterial;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial;
                 case LISO -> nomeMaterial + " Lis" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s;
@@ -170,6 +185,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial + " Talhad" + s;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Talhad" + s;
                 case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s + " Talhad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s + " Talhad" + s;
@@ -180,6 +196,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         } else {
             return switch (tipo) {
                 case BASE -> nomeMaterial + " Talhad" + s;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Talhad" + s;
                 case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s + " Talhad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s + " Talhad" + s;
@@ -196,6 +213,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         if (sufixoPolido) {
             return switch (tipo) {
                 case BASE -> nomeMaterial + " Rachad" + s;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Rachad" + s;
                 case LISO -> nomeMaterial + " Lis" + s + " Rachad" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s + " Rachad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s + " Rachad" + s;
@@ -206,6 +224,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         } else {
             return switch (tipo) {
                 case BASE -> nomeMaterial + " Rachad" + s;
+                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Rachad" + s;
                 case LISO -> nomeMaterial + " Lis" + s + " Rachad" + s;
                 case CORTADO -> nomeMaterial + " Lapidad" + s + " Rachad" + s;
                 case POLIDO -> nomeMaterial + " Polid" + s + " Rachad" + s;

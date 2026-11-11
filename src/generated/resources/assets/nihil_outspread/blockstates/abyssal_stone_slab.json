@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/abyssal_stone_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/abyssal_stone"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/abyssal_stone_slab_top"
+    }
+  }
+}

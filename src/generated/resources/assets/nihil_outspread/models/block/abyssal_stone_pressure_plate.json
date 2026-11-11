@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "nihil_outspread:block/abyss/abyssal_stone"
+  }
+}

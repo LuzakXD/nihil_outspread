@@ -1,5 +1,17 @@
 {
+  "block.nihil_outsprea.abyssal_floral_moss_block": "Abyssal Floral Moss Block",
+  "block.nihil_outsprea.abyssal_moss_block": "Abyssal Moss Block",
+  "block.nihil_outspread.abyssal_stone": "Abyssal Stone",
+  "block.nihil_outspread.abyssal_stone_button": "Abyssal Stone Button",
+  "block.nihil_outspread.abyssal_stone_pressure_plate": "Abyssal Stone Pressure Plate",
+  "block.nihil_outspread.abyssal_stone_slab": "Abyssal Stone Slab",
+  "block.nihil_outspread.abyssal_stone_stairs": "Abyssal Stone Stairs",
+  "block.nihil_outspread.abyssal_stone_wall": "Abyssal Stone Wall",
   "block.nihil_outspread.chiseled_polished_nilight": "Chiseled Polished Nilight",
+  "block.nihil_outspread.cobbled_velvestone": "Cobbled Velvestone",
+  "block.nihil_outspread.cobbled_velvestone_slab": "Cobbled Velvestone Slab",
+  "block.nihil_outspread.cobbled_velvestone_stairs": "Cobbled Velvestone Stairs",
+  "block.nihil_outspread.cobbled_velvestone_wall": "Cobbled Velvestone Wall",
   "block.nihil_outspread.cottonite": "Cottonite",
   "block.nihil_outspread.cottonite_slab": "Cottonite Slab",
   "block.nihil_outspread.cottonite_stairs": "Cottonite Stairs",
@@ -71,5 +83,7 @@
   "block.nihil_outspread.velvestone_stairs": "Velvestone Stairs",
   "block.nihil_outspread.velvestone_wall": "Velvestone Wall",
   "block.nihil_outspread.velvet_sand": "Velvet Sand",
-  "itemGroup.nihil_outspread": "Nihil Outspread"
+  "itemGroup.abyss": "Abyss",
+  "itemGroup.hive": "Hive",
+  "itemGroup.nihil": "Nihil"
 }

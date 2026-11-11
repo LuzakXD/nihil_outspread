@@ -1,5 +1,17 @@
 {
+  "block.nihil_outspread.abyssal_floral_moss_block": "Bloco de Musgo Abissal Florido",
+  "block.nihil_outspread.abyssal_moss_block": "Bloco de Musgo Abissal",
+  "block.nihil_outspread.abyssal_stone": "Pedra Abissal",
+  "block.nihil_outspread.abyssal_stone_button": "Botão de Pedra Abissal",
+  "block.nihil_outspread.abyssal_stone_pressure_plate": "Placa de Pressão de Pedra Abissal",
+  "block.nihil_outspread.abyssal_stone_slab": "Laje de Pedra Abissal",
+  "block.nihil_outspread.abyssal_stone_stairs": "Escadas de Pedra Abissal",
+  "block.nihil_outspread.abyssal_stone_wall": "Muro de Pedra Abissal",
   "block.nihil_outspread.chiseled_polished_nilight": "Niluzita Polida Talhada",
+  "block.nihil_outspread.cobbled_velvestone": "Pedregulho de Velveta",
+  "block.nihil_outspread.cobbled_velvestone_slab": "Laje de Pedregulho de Velveta",
+  "block.nihil_outspread.cobbled_velvestone_stairs": "Escadas de Pedregulho de Velveta",
+  "block.nihil_outspread.cobbled_velvestone_wall": "Muro de Pedregulho de Velveta",
   "block.nihil_outspread.cottonite": "Algonita",
   "block.nihil_outspread.cottonite_slab": "Laje de Algonita",
   "block.nihil_outspread.cottonite_stairs": "Escadas de Algonita",
@@ -71,5 +83,7 @@
   "block.nihil_outspread.velvestone_stairs": "Escadas de Velveta",
   "block.nihil_outspread.velvestone_wall": "Muro de Velveta",
   "block.nihil_outspread.velvet_sand": "Areia de Veludo",
-  "itemGroup.nihil_outspread": "Nihil Outspread"
+  "itemGroup.abyss": "Abismo",
+  "itemGroup.hive": "Colmeia",
+  "itemGroup.nihil": "Nihil"
 }
