@@ -185,7 +185,8 @@ public class ModBlocks {
                                         TipoMaterial.POLIDO, Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
+                                                        TipoVariante.MURO,
+                                                        TipoVariante.PILAR),
                                         TipoMaterial.TIJOLOS, Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
