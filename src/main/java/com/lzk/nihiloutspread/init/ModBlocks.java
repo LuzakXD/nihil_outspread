@@ -172,6 +172,11 @@ public class ModBlocks {
                                         Set.of(
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
+                                                        TipoVariante.MURO),
+                                        TipoMaterial.LADRILHOS,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
                                                         TipoVariante.MURO)));
 
         public static final DeferredBlock<Block> HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);

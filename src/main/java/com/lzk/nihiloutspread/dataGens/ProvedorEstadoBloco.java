@@ -74,7 +74,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
     private void gerarModelosVariantes(
             DeferredBlock<? extends Block> raiz,
-            String nomeTextura,
+            String nomeTexturaMeio,
+            String nomeTexturaBaixo,
+            String nomeTexturaCima,
             Variantes variantes,
             boolean lajeTexturaUnica,
             String categoria) {
@@ -83,7 +85,10 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             return;
 
         if (variantes.escada() != null) {
-            stairsBlock(variantes.escada().get(), textura(nomeTextura, categoria));
+            stairsBlock(variantes.escada().get(),
+                    textura(nomeTexturaMeio, categoria),
+                    textura(nomeTexturaBaixo, categoria),
+                    textura(nomeTexturaCima, categoria));
             modeloItemPadrao(variantes.escada());
         }
 
@@ -91,24 +96,26 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             if (lajeTexturaUnica) {
                 ModelFile doubleslabCustom = models().cubeBottomTop(
                         variantes.laje().getId().getPath() + "_double",
-                        textura(nomeTextura + "_slab_side", categoria),
-                        textura(nomeTextura, categoria),
-                        textura(nomeTextura, categoria));
+                        textura(nomeTexturaMeio + "_slab_side", categoria),
+                        textura(nomeTexturaBaixo, categoria),
+                        textura(nomeTexturaCima, categoria));
                 slabBlock(variantes.laje().get(),
                         doubleslabCustom.getLocation(),
-                        textura(nomeTextura + "_slab_side", categoria),
-                        textura(nomeTextura, categoria),
-                        textura(nomeTextura, categoria));
+                        textura(nomeTexturaMeio + "_slab_side", categoria),
+                        textura(nomeTexturaBaixo, categoria),
+                        textura(nomeTexturaCima, categoria));
             } else {
                 slabBlock(variantes.laje().get(), modLoc("block/" + raiz.getId().getPath()),
-                        textura(nomeTextura, categoria));
+                        textura(nomeTexturaMeio, categoria),
+                        textura(nomeTexturaBaixo, categoria),
+                        textura(nomeTexturaCima, categoria));
             }
             modeloItemPadrao(variantes.laje());
         }
 
         if (variantes.muro() != null) {
-            wallBlock(variantes.muro().get(), textura(nomeTextura, categoria));
-            modeloItemMuro(variantes.muro(), nomeTextura, categoria);
+            wallBlock(variantes.muro().get(), textura(nomeTexturaMeio, categoria));
+            modeloItemMuro(variantes.muro(), nomeTexturaMeio, categoria);
         }
     }
 
@@ -122,7 +129,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.base);
         }
 
-        gerarModelosVariantes(familia.base, familia.nomeCompleto, familia.variantesBase, false, categoria);
+        gerarModelosVariantes(familia.base,
+                familia.nomeCompleto,
+                familia.nomeCompleto,
+                familia.nomeCompleto,
+                familia.variantesBase, false, categoria);
 
         // POLIDO
         if (familia.polido != null) {
@@ -131,7 +142,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomePolido, textura(nomePolido, categoria)));
             modeloItemPadrao(familia.polido);
 
-            gerarModelosVariantes(familia.polido, familia.polido.getId().getPath(), familia.variantesPolido,
+            gerarModelosVariantes(familia.polido,
+                    familia.polido.getId().getPath(),
+                    familia.polido.getId().getPath(),
+                    familia.polido.getId().getPath(),
+                    familia.variantesPolido,
                     true, categoria);
         }
 
@@ -142,7 +157,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomeTijolos, textura(nomeTijolos, categoria)));
             modeloItemPadrao(familia.tijolos);
 
-            gerarModelosVariantes(familia.tijolos, familia.tijolos.getId().getPath(), familia.variantesTijolos,
+            gerarModelosVariantes(familia.tijolos,
+                    familia.tijolos.getId().getPath(),
+                    familia.tijolos.getId().getPath(),
+                    familia.tijolos.getId().getPath(),
+                    familia.variantesTijolos,
                     false, categoria);
         }
 
@@ -153,7 +172,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomeLadrilhos, textura(nomeLadrilhos, categoria)));
             modeloItemPadrao(familia.ladrilhos);
 
-            gerarModelosVariantes(familia.ladrilhos, familia.ladrilhos.getId().getPath(), familia.variantesLadrilhos,
+            gerarModelosVariantes(familia.ladrilhos,
+                    familia.ladrilhos.getId().getPath(),
+                    familia.ladrilhos.getId().getPath(),
+                    familia.ladrilhos.getId().getPath(),
+                    familia.variantesLadrilhos,
                     false, categoria);
         }
 
@@ -164,7 +187,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomePlacas, textura(nomePlacas, categoria)));
             modeloItemPadrao(familia.placas);
 
-            gerarModelosVariantes(familia.placas, familia.placas.getId().getPath(), familia.variantesPlacas,
+            gerarModelosVariantes(familia.placas,
+                    familia.placas.getId().getPath(),
+                    familia.placas.getId().getPath(),
+                    familia.placas.getId().getPath(),
+                    familia.variantesPlacas,
                     false, categoria);
         }
 
@@ -175,7 +202,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     models().cubeAll(nomeLiso, textura(nomeLiso, categoria)));
             modeloItemPadrao(familia.liso);
 
-            gerarModelosVariantes(familia.liso, familia.liso.getId().getPath(), familia.variantesLiso,
+            gerarModelosVariantes(familia.liso,
+                    familia.liso.getId().getPath(),
+                    familia.liso.getId().getPath(),
+                    familia.liso.getId().getPath(),
+                    familia.variantesLiso,
                     false, categoria);
 
         }
@@ -240,7 +271,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.base);
         }
 
-        gerarModelosVariantes(familia.base, familia.nomeCompleto, familia.variantesBase, false, categoria);
+        gerarModelosVariantes(familia.base,
+                familia.nomeCompleto,
+                familia.nomeCompleto + "_bottom",
+                familia.nomeCompleto + "_top",
+                familia.variantesBase, false, categoria);
 
         // CORTADO
         if (familia.cortado != null) {
@@ -252,7 +287,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                             textura(familia.nomeCompleto + "_top", categoria)));
             modeloItemPadrao(familia.cortado);
 
-            gerarModelosVariantes(familia.cortado, familia.cortado.getId().getPath(), familia.variantesCortado,
+            gerarModelosVariantes(familia.cortado,
+                    familia.cortado.getId().getPath(),
+                    familia.nomeCompleto + "_top",
+                    familia.nomeCompleto + "_top",
+                    familia.variantesCortado,
                     true, categoria);
         }
 
@@ -265,7 +304,10 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.liso);
 
             gerarModelosVariantes(familia.liso,
-                    nomeTextura, familia.variantesLiso,
+                    nomeTextura,
+                    nomeTextura,
+                    nomeTextura,
+                    familia.variantesLiso,
                     false, categoria);
         }
 
