@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.Nullable;
 
 import com.lzk.nihiloutspread.NihilOutspread;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 import com.lzk.nihiloutspread.init.ModTags;
 
@@ -28,6 +28,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.GRAPHITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.COTTONITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
+        tagMurosAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY);
         tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -50,6 +51,18 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         }
         if (familia.variantesPlacas != null && familia.variantesPlacas.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesPlacas.muro().get());
+        }
+        if (familia.variantesLiso != null && familia.variantesLiso.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesLiso.muro().get());
+        }
+    }
+
+    private void tagMurosAreia(FamiliaAreia familia) {
+        if (familia.variantesBase != null && familia.variantesBase.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesBase.muro().get());
+        }
+        if (familia.variantesCortado != null && familia.variantesCortado.muro() != null) {
+            tag(BlockTags.WALLS).add(familia.variantesCortado.muro().get());
         }
         if (familia.variantesLiso != null && familia.variantesLiso.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesLiso.muro().get());
