@@ -51,7 +51,10 @@ public class ModCreativeTabs {
                                         .icon(() -> new ItemStack(ModBlocks.ABYSSAL_MOSS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
-                                                output.accept(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
+                                                for (Item item : ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY
+                                                                .devolverItens(true)) {
+                                                        output.accept(item);
+                                                }
                                                 output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
 
                                                 output.accept(ModBlocks.ABYSSAL_MOSS_CARPET.get());

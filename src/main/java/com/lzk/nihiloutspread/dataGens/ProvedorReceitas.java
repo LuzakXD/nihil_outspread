@@ -33,6 +33,8 @@ public class ProvedorReceitas extends RecipeProvider {
 
                 receitaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, output, true);
 
+                receitaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, output, false);
+
                 carpet(output, ModBlocks.ABYSSAL_MOSS_CARPET, ModBlocks.ABYSSAL_MOSS_BLOCK);
                 carpet(output, ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK);
         }

@@ -250,6 +250,22 @@ public class ModBlocks {
                                         .instrument(NoteBlockInstrument.FLUTE)
                                         .sound(SoundType.MOSS)));
 
+        public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                        ModItems.ITEMS,
+                        ABYSSAL_MOSS_BLOCK,
+                        BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .strength(0.1f)
+                                        .instrument(NoteBlockInstrument.FLUTE)
+                                        .sound(SoundType.MOSS),
+                        false,
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.MURO)));
+
         public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_BLOCK = registrarBlocoItem(
                         "abyssal_floral_moss_block",
                         () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
@@ -278,7 +294,15 @@ public class ModBlocks {
                         () -> new AbyssalStoneBlock(BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.METAL)
                                         .sound(SoundType.DEEPSLATE)
-                                        .strength(2.5f, 6f)
+                                        .strength(2f, 4f)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+
+        public static final DeferredBlock<Block> ABYSSAL_MOSSY_STONE = registrarBlocoItem(
+                        "abyssal_mossy_stone",
+                        () -> new AbyssalMossyStoneBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .sound(SoundType.DEEPSLATE)
+                                        .strength(2.1f, 4f)
                                         .instrument(NoteBlockInstrument.BASEDRUM)));
 
         public static final FamiliaPedra ABYSSAL_STONE_FAMILY = new FamiliaPedra(
@@ -288,7 +312,7 @@ public class ModBlocks {
                         BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.METAL)
                                         .sound(SoundType.DEEPSLATE)
-                                        .strength(2.5f, 6f)
+                                        .strength(2f, 6f)
                                         .instrument(NoteBlockInstrument.BASEDRUM),
                         false,
                         Map.of(

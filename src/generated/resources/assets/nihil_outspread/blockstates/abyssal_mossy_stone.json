@@ -1,0 +1,72 @@
+{
+  "variants": {
+    "snowy=false,vertical_direction=down": [
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone_down"
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone_down",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone_down",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone_down",
+        "y": 270
+      }
+    ],
+    "snowy=false,vertical_direction=up": [
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone"
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/abyssal_mossy_stone",
+        "y": 270
+      }
+    ],
+    "snowy=true,vertical_direction=down": [
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_down_snowy"
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_down_snowy",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_down_snowy",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_down_snowy",
+        "y": 270
+      }
+    ],
+    "snowy=true,vertical_direction=up": [
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_snowy"
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_snowy",
+        "y": 90
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_snowy",
+        "y": 180
+      },
+      {
+        "model": "nihil_outspread:block/mossy_abyssal_stone_snowy",
+        "y": 270
+      }
+    ]
+  }
+}

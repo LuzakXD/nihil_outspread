@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "nihil_outspread:block/abyss/abyssal_stone",
+    "side": "nihil_outspread:block/abyss/mossy_abyssal_stone_side_up_snowy",
+    "top": "nihil_outspread:block/extras/snowy"
+  }
+}

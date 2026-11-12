@@ -7,10 +7,12 @@ import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.blocks.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -61,6 +63,13 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
         blocoComCamadas(ModBlocks.ABYSSAL_STONE, "abyssal_stone", "abyss", false, AbyssalStoneBlock.SNOWY);
         gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
+
+        blocoVerticalComCamadasTopBottom(ModBlocks.ABYSSAL_MOSSY_STONE,
+                "mossy_abyssal_stone",
+                "abyssal_stone",
+                "abyssal_moss",
+                "abyss", true,
+                NihilGrassBlock.SNOWY);
 
     }
 
@@ -474,6 +483,86 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
         getVariantBuilder(bloco.get()).forAllStates(state -> {
             return ConfiguredModel.allYRotations(base, 0, false);
+        });
+    }
+
+    private void blocoVerticalComCamadasTopBottom(
+            DeferredBlock<? extends Block> bloco,
+            String material,
+            String material_bottom,
+            String material_top,
+            String categoria,
+            boolean temVariacao, BooleanProperty... camadas) {
+
+        if (camadas.length == 0) {
+            throw new IllegalArgumentException("Block Need at least one layer: " + bloco.getId());
+        }
+
+        String nomeBloco = bloco.getId().getPath();
+        boolean temDirecao = bloco.get().defaultBlockState().hasProperty(BlockStateProperties.VERTICAL_DIRECTION);
+
+        String sideUp = material + (temDirecao ? "_side_up" : "_side");
+
+        ModelFile baseUP = models().cubeBottomTop(nomeBloco,
+                textura(sideUp, categoria),
+                textura(material_bottom, categoria),
+                textura(material_top, categoria));
+
+        Map<BooleanProperty, ModelFile> modelosUP = new LinkedHashMap<>();
+        for (BooleanProperty camada : camadas) {
+            String sufixo = camada.getName();
+            String side = material + (temDirecao ? "_side_up_" : "_side_") + sufixo;
+
+            modelosUP.put(camada, models().cubeBottomTop(
+                    material + "_" + sufixo,
+                    textura(side, categoria),
+                    textura(material_bottom, categoria),
+                    textura(sufixo, "extras")));
+        }
+
+        ModelFile baseDOWN = null;
+        Map<BooleanProperty, ModelFile> modelosDOWN = new LinkedHashMap<>();
+
+        if (temDirecao) {
+            baseDOWN = models().cubeBottomTop(nomeBloco + "_down",
+                    textura(material + "_side_down", categoria),
+                    textura(material_top, categoria),
+                    textura(material_bottom, categoria));
+
+            for (BooleanProperty camada : camadas) {
+                String sufixo = camada.getName();
+
+                modelosDOWN.put(camada, models().cubeBottomTop(
+                        material + "_down_" + sufixo,
+                        textura(material + "_side_down_" + sufixo, categoria),
+                        textura(material_top, categoria),
+                        textura(sufixo, "extras")));
+            }
+        }
+
+        modeloItemPadrao(bloco);
+
+        final ModelFile finalBaseDOWN = baseDOWN;
+        final Map<BooleanProperty, ModelFile> finalModelosDOWN = modelosDOWN;
+
+        getVariantBuilder(bloco.get()).forAllStates(state -> {
+            boolean isDown = temDirecao
+                    && state.getValue(BlockStateProperties.VERTICAL_DIRECTION) == Direction.DOWN;
+
+            ModelFile escolhido = isDown ? finalBaseDOWN : baseUP;
+            Map<BooleanProperty, ModelFile> mapa = isDown ? finalModelosDOWN : modelosUP;
+
+            for (var entry : mapa.entrySet()) {
+                if (state.getValue(entry.getKey())) {
+                    escolhido = entry.getValue();
+                    break;
+                }
+            }
+
+            if (temVariacao) {
+                return ConfiguredModel.allYRotations(escolhido, 0, false);
+            }
+            return ConfiguredModel.builder().modelFile(escolhido).build();
         });
     }
 

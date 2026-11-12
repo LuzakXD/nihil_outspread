@@ -37,7 +37,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropSelf(ModBlocks.VELVET_SAND.get());
         lootDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
 
-        dropSelf(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
+        lootDaFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true);
         dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
 
         dropSelf(ModBlocks.ABYSSAL_MOSS_CARPET.get());
@@ -48,6 +48,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropWhenSilkTouch(ModBlocks.NIHIL_SHORT_GRASS.get());
 
         lootDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, true);
+        dropOther(ModBlocks.ABYSSAL_MOSSY_STONE.get(), ModBlocks.ABYSSAL_STONE.get());
     }
 
     private void lootDaFamiliaPedra(FamiliaPedra familia, boolean temBase) {
