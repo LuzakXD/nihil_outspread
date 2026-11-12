@@ -12,6 +12,7 @@ import com.lzk.nihiloutspread.init.ModTags;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -43,6 +44,17 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
         tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
         tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY, true);
+
+        tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_GRASS).add(
+                ModBlocks.NIHIL_DIRT.get(),
+                Blocks.GRASS_BLOCK,
+                Blocks.PODZOL,
+                Blocks.MYCELIUM);
+
+        tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_DIRT).add(
+                Blocks.DIRT,
+                Blocks.COARSE_DIRT,
+                Blocks.ROOTED_DIRT);
 
     }
 

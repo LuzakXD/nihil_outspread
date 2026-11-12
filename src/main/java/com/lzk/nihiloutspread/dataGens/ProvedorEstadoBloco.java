@@ -30,12 +30,26 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         gerarModelosDaFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, "hive");
         gerarModelosDaFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, "nihil");
         gerarModelosDaFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, true, "nihil");
+
         blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", false, NilightBlock.SNOWY, NilightBlock.MOSSY,
                 NilightBlock.DIRTY);
+
         gerarModelosDaFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, false, "nihil");
+
         blocoComCamadasTopBottom(ModBlocks.NIHIL_GRASS_BLOCK, "nihil_grass_block", "nihil", true,
                 NihilGrassBlock.SNOWY);
+
+        blocoComCamadasTopBottom(ModBlocks.CHECKER_GRASS_BLOCK, "checker_grass_block", "extras", false,
+                NihilGrassBlock.SNOWY);
+
         blocoSimples(ModBlocks.NIHIL_DIRT, "dirty", "extras");
+
+        plantaSimples(ModBlocks.NIHIL_FERN, "nihil_fern", "nihil");
+
+        plantaSimples(ModBlocks.NIHIL_SHORT_GRASS, "nihil_short_grass", "nihil");
+
+        plantaSimples(ModBlocks.NIHIL_SMALL_HERB, "nihil_small_herb", "nihil");
+
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
         gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
 
@@ -74,6 +88,17 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(bloco);
         }
 
+    }
+
+    private void plantaSimples(DeferredBlock<? extends Block> bloco, String Textura, String categoria) {
+
+        simpleBlock(bloco.get(),
+                models().cross(bloco.getId().getPath(), textura(Textura, categoria)).renderType("cutout"));
+
+        itemModels().singleTexture(bloco.getId().getPath(),
+                mcLoc("item/generated"),
+                "layer0",
+                textura(Textura, categoria));
     }
 
     private ResourceLocation textura(String nome, String categoria) {

@@ -20,6 +20,12 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
         add("block.nihil_outspread.nihil_dirt", "Terra Nihil");
         add("block.nihil_outspread.nihil_grass_block", "Bloco de Grama Nihil");
+        add("block.nihil_outspread.checker_grass_block", "Bloco de Grama Xadrez");
+
+        add("block.nihil_outspread.nihil_fern", "Samambaia Nihil");
+        add("block.nihil_outspread.nihil_short_grass", "Grama Nihil Baixa");
+        add("block.nihil_outspread.nihil_small_herb", "Pequena Erva Nihil");
+
         add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
 
         add("block.nihil_outspread.abyssal_moss_block", "Bloco de Musgo Abissal");

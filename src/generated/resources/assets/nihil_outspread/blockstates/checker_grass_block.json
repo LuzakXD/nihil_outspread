@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=false": {
+      "model": "nihil_outspread:block/checker_grass_block"
+    },
+    "snowy=true": {
+      "model": "nihil_outspread:block/checker_grass_block_snowy"
+    }
+  }
+}

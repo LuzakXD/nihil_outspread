@@ -20,6 +20,12 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         add("block.nihil_outspread.nihil_dirt", "Nihil Dirt");
         add("block.nihil_outspread.nihil_grass_block", "Nihil Grass Block");
+        add("block.nihil_outspread.checker_grass_block", "Checker Grass Block");
+
+        add("block.nihil_outspread.nihil_fern", "Nihil Fern");
+        add("block.nihil_outspread.nihil_short_grass", "Nihil Short Grass");
+        add("block.nihil_outspread.nihil_small_herb", "Nihil Small Herb");
+
         add("block.nihil_outspread.velvet_sand", "Velvet Sand");
 
         add("block.nihil_outsprea.abyssal_moss_block", "Abyssal Moss Block");

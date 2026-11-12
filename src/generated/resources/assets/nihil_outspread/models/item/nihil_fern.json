@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nihil_outspread:block/nihil/nihil_fern"
+  }
+}

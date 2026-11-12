@@ -8,6 +8,7 @@ import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.blocks.*;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.TallGrassBlock;
 
 import java.util.function.Supplier;
 
@@ -41,6 +43,11 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> NIHIL_GRASS_BLOCK = registrarBlocoItem("nihil_grass_block",
                         () -> new NihilGrassBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
+                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+
+        public static final DeferredBlock<Block> CHECKER_GRASS_BLOCK = registrarBlocoItem("checker_grass_block",
+                        () -> new CheckerGrassBlock(BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
                                         .instrument(NoteBlockInstrument.BASEDRUM)));
 
@@ -185,6 +192,38 @@ public class ModBlocks {
                                                         TipoVariante.ESCADA,
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO)));
+
+        // TODO: fazer essas graminhas terem sua propria class
+        // pra poder sobreviver apenas em grama nihil
+
+        public static final DeferredBlock<Block> NIHIL_FERN = registrarBlocoItem("nihil_fern",
+                        () -> new TallGrassBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .noCollission()
+                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> NIHIL_SHORT_GRASS = registrarBlocoItem(
+                        "nihil_short_grass",
+                        () -> new TallGrassBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .noCollission()
+                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> NIHIL_SMALL_HERB = registrarBlocoItem(
+                        "nihil_small_herb",
+                        () -> new TallGrassBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .noCollission()
+                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredBlock<Block> HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);
 
