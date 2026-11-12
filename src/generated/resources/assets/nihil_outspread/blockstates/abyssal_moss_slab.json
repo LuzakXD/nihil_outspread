@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/abyssal_moss_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/abyssal_moss_block"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/abyssal_moss_slab_top"
+    }
+  }
+}

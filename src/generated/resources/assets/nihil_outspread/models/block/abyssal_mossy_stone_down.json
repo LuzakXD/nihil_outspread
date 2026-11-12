@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "bottom": "nihil_outspread:block/abyss/abyssal_moss",
+    "bottom": "nihil_outspread:block/abyss/abyssal_moss_block",
     "side": "nihil_outspread:block/abyss/mossy_abyssal_stone_side_down",
     "top": "nihil_outspread:block/abyss/abyssal_stone"
   }

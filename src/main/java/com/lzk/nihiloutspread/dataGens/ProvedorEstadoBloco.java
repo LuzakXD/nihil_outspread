@@ -55,11 +55,11 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
         gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
 
-        blocoSimples(ModBlocks.ABYSSAL_MOSS_BLOCK, "abyssal_moss", "abyss");
-        blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss", "abyss");
+        gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true, "abyss");
+        blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss_block", "abyss");
 
-        tapeteSimples(ModBlocks.ABYSSAL_MOSS_CARPET, "abyssal_moss", "abyss");
-        tapeteSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "abyssal_floral_moss", "abyss");
+        tapeteSimples(ModBlocks.ABYSSAL_MOSS_CARPET, "abyssal_moss_block", "abyss");
+        tapeteSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "abyssal_floral_moss_block", "abyss");
 
         blocoComCamadas(ModBlocks.ABYSSAL_STONE, "abyssal_stone", "abyss", false, AbyssalStoneBlock.SNOWY);
         gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
@@ -67,7 +67,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         blocoVerticalComCamadasTopBottom(ModBlocks.ABYSSAL_MOSSY_STONE,
                 "mossy_abyssal_stone",
                 "abyssal_stone",
-                "abyssal_moss",
+                "abyssal_moss_block",
                 "abyss", true,
                 NihilGrassBlock.SNOWY);
 

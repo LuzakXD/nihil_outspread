@@ -60,6 +60,8 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.ABYSSAL_MOSS_CARPET.get());
                                                 output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
+                                                output.accept(ModBlocks.ABYSSAL_MOSSY_STONE.get());
+
                                                 for (Item item : ModBlocks.ABYSSAL_STONE_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }

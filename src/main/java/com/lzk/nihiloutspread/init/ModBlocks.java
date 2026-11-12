@@ -43,16 +43,19 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> NIHIL_GRASS_BLOCK = registrarBlocoItem("nihil_grass_block",
                         () -> new NihilGrassBlock(BlockBehaviour.Properties.of()
+                                        .sound(SoundType.GRASS)
                                         .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
                                         .instrument(NoteBlockInstrument.BASEDRUM)));
 
         public static final DeferredBlock<Block> CHECKER_GRASS_BLOCK = registrarBlocoItem("checker_grass_block",
                         () -> new CheckerGrassBlock(BlockBehaviour.Properties.of()
+                                        .sound(SoundType.GRASS)
                                         .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
                                         .instrument(NoteBlockInstrument.BASEDRUM)));
 
         public static final DeferredBlock<Block> NIHIL_DIRT = registrarBlocoItem("nihil_dirt",
                         () -> new Block(BlockBehaviour.Properties.of()
+                                        .sound(SoundType.GRASS)
                                         .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
                                         .instrument(NoteBlockInstrument.GUITAR)));
 
@@ -199,9 +202,12 @@ public class ModBlocks {
         public static final DeferredBlock<Block> NIHIL_FERN = registrarBlocoItem("nihil_fern",
                         () -> new TallGrassBlock(
                                         BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                        .replaceable()
                                                         .noCollission()
-                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XYZ)
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
@@ -209,9 +215,12 @@ public class ModBlocks {
                         "nihil_short_grass",
                         () -> new TallGrassBlock(
                                         BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                        .replaceable()
                                                         .noCollission()
-                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XYZ)
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
@@ -219,9 +228,12 @@ public class ModBlocks {
                         "nihil_small_herb",
                         () -> new TallGrassBlock(
                                         BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).replaceable()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                        .replaceable()
                                                         .noCollission()
-                                                        .instabreak().sound(SoundType.GRASS).offsetType(OffsetType.XYZ)
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XYZ)
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 

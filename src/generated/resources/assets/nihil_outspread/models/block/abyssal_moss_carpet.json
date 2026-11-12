@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/carpet",
   "textures": {
-    "wool": "nihil_outspread:block/abyss/abyssal_moss"
+    "wool": "nihil_outspread:block/abyss/abyssal_moss_block"
   }
 }

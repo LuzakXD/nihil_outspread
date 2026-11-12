@@ -34,16 +34,19 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("block.nihil_outspread.abyssal_moss_carpet", "Tapete de Musgo Abissal");
         add("block.nihil_outspread.abyssal_floral_moss_carpet", "Tapete de Musgo Abissal Florido");
 
-        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
-        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
-        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
-        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
-        traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
+        add("block.nihil_outspread.abyssal_mossy_stone", "Pedra Abissal Musgosa");
 
-        traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
+        traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
+        traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
+        traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
+        traduzirFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
+        traduzirFamiliaPedraAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
+
+        traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
+        traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
     }
 
-    private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
+    private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -100,7 +103,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                     "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
     }
 
-    private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
+    private void traduzirFamiliaPedraAreia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);

@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "nihil_outspread:block/abyss/abyssal_stone",
     "side": "nihil_outspread:block/abyss/mossy_abyssal_stone_side_up",
-    "top": "nihil_outspread:block/abyss/abyssal_moss"
+    "top": "nihil_outspread:block/abyss/abyssal_moss_block"
   }
 }

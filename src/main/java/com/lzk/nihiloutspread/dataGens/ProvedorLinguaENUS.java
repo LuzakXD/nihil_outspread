@@ -28,13 +28,13 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         add("block.nihil_outspread.velvet_sand", "Velvet Sand");
 
-        add("block.nihil_outsprea.abyssal_moss_block", "Abyssal Moss Block");
-        add("block.nihil_outsprea.abyssal_floral_moss_block", "Abyssal Floral Moss Block");
+        add("block.nihil_outspread.abyssal_moss_block", "Abyssal Moss Block");
+        add("block.nihil_outspread.abyssal_floral_moss_block", "Abyssal Floral Moss Block");
 
-        add("block.nihil_outsprea.abyssal_moss_carpet", "Abyssal Moss Carpet");
-        add("block.nihil_outsprea.abyssal_floral_moss_carpet", "Abyssal Floral Moss Carpet");
+        add("block.nihil_outspread.abyssal_moss_carpet", "Abyssal Moss Carpet");
+        add("block.nihil_outspread.abyssal_floral_moss_carpet", "Abyssal Floral Moss Carpet");
 
-        add("block.nihil_outsprea.abyssal_mossy_stone", "Abyssal Mossy Stone");
+        add("block.nihil_outspread.abyssal_mossy_stone", "Abyssal Mossy Stone");
 
         traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
         traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
@@ -43,6 +43,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
 
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
+        traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
