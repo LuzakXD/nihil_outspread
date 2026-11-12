@@ -55,7 +55,7 @@ public class NilightBlock extends Block {
         if (direction == Direction.UP) {
             boolean snowy = neighborState.is(Blocks.SNOW) || neighborState.is(Blocks.SNOW_BLOCK);
 
-            boolean mossy = neighborState.is(Blocks.MOSS_BLOCK) || neighborState.is(Blocks.MOSS_CARPET);
+            boolean mossy = neighborState.is(ModTags.Blocks.MOSSY_BLOCKS);
 
             boolean dirty = neighborState.is(ModTags.Blocks.DIRTY_BLOCKS);
 
@@ -79,7 +79,7 @@ public class NilightBlock extends Block {
         BlockState above = level.getBlockState(pos.above());
 
         boolean snowy = above.is(Blocks.SNOW) || above.is(Blocks.SNOW_BLOCK);
-        boolean mossy = above.is(Blocks.MOSS_BLOCK) || above.is(Blocks.MOSS_CARPET);
+        boolean mossy = above.is(ModTags.Blocks.MOSSY_BLOCKS);
         boolean dirty = above.is(ModTags.Blocks.DIRTY_BLOCKS);
 
         return defaultBlockState()

@@ -12,5 +12,9 @@ public class ModTags {
         public static final TagKey<Block> DIRTY_BLOCKS = TagKey.create(
                 Registries.BLOCK,
                 ResourceLocation.fromNamespaceAndPath(NihilOutspread.MODID, "dirty_blocks"));
+
+        public static final TagKey<Block> MOSSY_BLOCKS = TagKey.create(
+                Registries.BLOCK,
+                ResourceLocation.fromNamespaceAndPath(NihilOutspread.MODID, "mossy_blocks"));
     }
 }

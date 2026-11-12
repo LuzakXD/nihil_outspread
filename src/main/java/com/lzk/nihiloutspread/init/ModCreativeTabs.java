@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeTabs {
 
@@ -17,7 +18,7 @@ public class ModCreativeTabs {
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NIHIL = CREATIVE_MODE_TABS
                         .register("nihil", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.nihil"))
-                                        .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
+                                        .icon(() -> new ItemStack(ModBlocks.NIHIL_GRASS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
                                                 output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
@@ -47,11 +48,14 @@ public class ModCreativeTabs {
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ABYSS = CREATIVE_MODE_TABS
                         .register("abyss", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.abyss"))
-                                        .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
+                                        .icon(() -> new ItemStack(ModBlocks.ABYSSAL_MOSS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
                                                 output.accept(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
                                                 output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
+
+                                                output.accept(ModBlocks.ABYSSAL_MOSS_CARPET.get());
+                                                output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
                                                 for (Item item : ModBlocks.ABYSSAL_STONE_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
@@ -62,7 +66,7 @@ public class ModCreativeTabs {
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> HIVE = CREATIVE_MODE_TABS
                         .register("hive", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.hive"))
-                                        .icon(() -> ModItems.EXAMPLE_ITEM.get().getDefaultInstance())
+                                        .icon(() -> new ItemStack(ModBlocks.HONEYCOMB_BLOCK_FAMILY.base.get()))
                                         .displayItems((parameters, output) -> {
 
                                                 for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY.devolverItens(true)) {

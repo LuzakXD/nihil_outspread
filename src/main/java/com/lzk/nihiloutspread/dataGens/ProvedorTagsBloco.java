@@ -30,9 +30,16 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
         tagMurosAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY);
         tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
                 ModBlocks.NIHIL_DIRT.get(),
                 ModBlocks.NIHIL_GRASS_BLOCK.get());
+
+        tag(ModTags.Blocks.MOSSY_BLOCKS).add(
+                ModBlocks.ABYSSAL_MOSS_BLOCK.get(),
+                ModBlocks.ABYSSAL_MOSS_CARPET.get(),
+                ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get(),
+                ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
         tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
         tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY, true);

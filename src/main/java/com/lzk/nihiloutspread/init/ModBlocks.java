@@ -10,6 +10,7 @@ import com.lzk.nihiloutspread.blocks.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.Registries;
@@ -18,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.SoundType;
 
@@ -215,6 +217,21 @@ public class ModBlocks {
                                         .mapColor(MapColor.PLANT)
                                         .strength(0.1f)
                                         .instrument(NoteBlockInstrument.FLUTE)
+                                        .sound(SoundType.MOSS)));
+
+        public static final DeferredBlock<Block> ABYSSAL_MOSS_CARPET = registrarBlocoItem("abyssal_moss_carpet",
+                        () -> new CarpetBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .strength(0.1f)
+                                        .pushReaction(PushReaction.DESTROY)
+                                        .sound(SoundType.MOSS)));
+
+        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_CARPET = registrarBlocoItem(
+                        "abyssal_floral_moss_carpet",
+                        () -> new CarpetBlock(BlockBehaviour.Properties.of()
+                                        .mapColor(MapColor.PLANT)
+                                        .strength(0.1f)
+                                        .pushReaction(PushReaction.DESTROY)
                                         .sound(SoundType.MOSS)));
 
         public static final DeferredBlock<Block> ABYSSAL_STONE = registrarBlocoItem(

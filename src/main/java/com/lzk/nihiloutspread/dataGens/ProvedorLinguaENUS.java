@@ -25,6 +25,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("block.nihil_outsprea.abyssal_moss_block", "Abyssal Moss Block");
         add("block.nihil_outsprea.abyssal_floral_moss_block", "Abyssal Floral Moss Block");
 
+        add("block.nihil_outsprea.abyssal_moss_carpet", "Abyssal Moss Carpet");
+        add("block.nihil_outsprea.abyssal_floral_moss_carpet", "Abyssal Floral Moss Carpet");
+
         traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
         traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
         traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);

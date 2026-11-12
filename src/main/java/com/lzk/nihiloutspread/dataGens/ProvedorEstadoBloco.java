@@ -42,6 +42,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         blocoSimples(ModBlocks.ABYSSAL_MOSS_BLOCK, "abyssal_moss", "abyss");
         blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss", "abyss");
 
+        tapeteSimples(ModBlocks.ABYSSAL_MOSS_CARPET, "abyssal_moss", "abyss");
+        tapeteSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "abyssal_floral_moss", "abyss");
+
         blocoComCamadas(ModBlocks.ABYSSAL_STONE, "abyssal_stone", "abyss", false, AbyssalStoneBlock.SNOWY);
         gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
 
@@ -55,6 +58,19 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         } else {
             simpleBlock(bloco.get(),
                     models().cubeAll(bloco.getId().getPath(), textura(bloco.getId().getPath(), categoria)));
+            modeloItemPadrao(bloco);
+        }
+
+    }
+
+    private void tapeteSimples(DeferredBlock<? extends Block> bloco, String Textura, String categoria) {
+        if (Textura != null) {
+            simpleBlock(bloco.get(),
+                    models().carpet(bloco.getId().getPath(), textura(Textura, categoria)));
+            modeloItemPadrao(bloco);
+        } else {
+            simpleBlock(bloco.get(),
+                    models().carpet(bloco.getId().getPath(), textura(bloco.getId().getPath(), categoria)));
             modeloItemPadrao(bloco);
         }
 

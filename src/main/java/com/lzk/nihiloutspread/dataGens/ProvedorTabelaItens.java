@@ -39,6 +39,9 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropSelf(ModBlocks.ABYSSAL_MOSS_BLOCK.get());
         dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
 
+        dropSelf(ModBlocks.ABYSSAL_MOSS_CARPET.get());
+        dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
+
         lootDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, true);
     }
 

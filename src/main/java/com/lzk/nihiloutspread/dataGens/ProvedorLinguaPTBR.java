@@ -25,6 +25,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("block.nihil_outspread.abyssal_moss_block", "Bloco de Musgo Abissal");
         add("block.nihil_outspread.abyssal_floral_moss_block", "Bloco de Musgo Abissal Florido");
 
+        add("block.nihil_outspread.abyssal_moss_carpet", "Tapete de Musgo Abissal");
+        add("block.nihil_outspread.abyssal_floral_moss_carpet", "Tapete de Musgo Abissal Florido");
+
         traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
         traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
         traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
