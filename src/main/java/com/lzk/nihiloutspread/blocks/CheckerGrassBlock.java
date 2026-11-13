@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 public class CheckerGrassBlock extends NihilGrassBlock {
@@ -21,6 +22,14 @@ public class CheckerGrassBlock extends NihilGrassBlock {
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 
         if (!level.isAreaLoaded(pos, 2)) {
+            return;
+        }
+
+        BlockPos abovePos = pos.above();
+        BlockState aboveState = level.getBlockState(abovePos);
+
+        if (aboveState.isSolidRender(level, abovePos)) {
+            level.setBlockAndUpdate(pos, ModBlocks.NIHIL_DIRT.get().defaultBlockState());
             return;
         }
 
@@ -40,14 +49,21 @@ public class CheckerGrassBlock extends NihilGrassBlock {
                 continue;
             }
 
-            BlockState aboveState = level.getBlockState(target.above());
+            BlockPos targetAbove = target.above();
+            BlockState targetAboveState = level.getBlockState(targetAbove);
 
-            if (!aboveState.is(BlockTags.REPLACEABLE) || !aboveState.getFluidState().isEmpty()) {
+            if (targetAboveState.isSolidRender(level, targetAbove)) {
                 continue;
             }
 
-            level.setBlockAndUpdate(target, ModBlocks.CHECKER_GRASS_BLOCK.get().defaultBlockState());
+            if (!targetAboveState.is(BlockTags.REPLACEABLE) || !targetAboveState.getFluidState().isEmpty()) {
+                continue;
+            }
 
+            boolean snowy = targetAboveState.is(Blocks.SNOW) || targetAboveState.is(Blocks.SNOW_BLOCK);
+
+            level.setBlockAndUpdate(target, ModBlocks.CHECKER_GRASS_BLOCK.get().defaultBlockState()
+                    .setValue(SNOWY, snowy));
         }
     }
 }

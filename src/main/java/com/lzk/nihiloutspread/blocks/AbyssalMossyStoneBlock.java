@@ -6,8 +6,15 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+
+import com.lzk.nihiloutspread.init.ModBlocks;
+import com.lzk.nihiloutspread.init.ModTags;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -69,5 +76,67 @@ public class AbyssalMossyStoneBlock extends AbyssalStoneBlock {
 				level,
 				pos,
 				neighborPos);
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return true;
+	}
+
+	@Override
+	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+
+		if (!level.isAreaLoaded(pos, 2)) {
+			return;
+		}
+
+		Direction facing = state.getValue(VERTICAL_DIRECTION);
+		BlockPos exposedPos = facing == Direction.UP ? pos.above() : pos.below();
+		BlockState exposedState = level.getBlockState(exposedPos);
+
+		if (exposedState.isSolidRender(level, exposedPos)) {
+			level.setBlockAndUpdate(pos, ModBlocks.ABYSSAL_STONE.get().defaultBlockState());
+			return;
+		}
+
+		for (int i = 0; i < 4; i++) {
+			BlockPos target = pos.offset(
+					random.nextInt(3) - 1,
+					random.nextInt(5) - 4,
+					random.nextInt(3) - 1);
+
+			if (level.isOutsideBuildHeight(target)) {
+				continue;
+			}
+
+			BlockState targetState = level.getBlockState(target);
+
+			if (!targetState.is(ModBlocks.ABYSSAL_STONE)) {
+				continue;
+			}
+
+			BlockState aboveState = level.getBlockState(target.above());
+			boolean snowy = aboveState.is(Blocks.SNOW) || aboveState.is(Blocks.SNOW_BLOCK);
+
+			if (state.getValue(VERTICAL_DIRECTION) == Direction.UP) {
+				if (!aboveState.is(BlockTags.REPLACEABLE) || !aboveState.getFluidState().isEmpty()) {
+					continue;
+				}
+
+				level.setBlockAndUpdate(target, ModBlocks.ABYSSAL_MOSSY_STONE.get().defaultBlockState()
+						.setValue(VERTICAL_DIRECTION, Direction.UP)
+						.setValue(SNOWY, snowy));
+			} else {
+				BlockState belowState = level.getBlockState(target.below());
+
+				if (!belowState.is(BlockTags.REPLACEABLE) || !belowState.getFluidState().isEmpty()) {
+					continue;
+				}
+
+				level.setBlockAndUpdate(target, ModBlocks.ABYSSAL_MOSSY_STONE.get().defaultBlockState()
+						.setValue(VERTICAL_DIRECTION, Direction.DOWN)
+						.setValue(SNOWY, snowy));
+			}
+		}
 	}
 }

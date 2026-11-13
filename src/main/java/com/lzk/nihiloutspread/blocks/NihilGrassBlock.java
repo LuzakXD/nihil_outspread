@@ -45,6 +45,14 @@ public class NihilGrassBlock extends Block {
             return;
         }
 
+        BlockPos abovePos = pos.above();
+        BlockState aboveState = level.getBlockState(abovePos);
+
+        if (aboveState.isSolidRender(level, abovePos)) {
+            level.setBlockAndUpdate(pos, ModBlocks.NIHIL_DIRT.get().defaultBlockState());
+            return;
+        }
+
         BlockPos below = pos.below();
 
         if (level.getBlockState(below).is(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_DIRT)) {
@@ -67,13 +75,21 @@ public class NihilGrassBlock extends Block {
                 continue;
             }
 
-            BlockState aboveState = level.getBlockState(target.above());
+            BlockPos targetAbove = target.above();
+            BlockState targetAboveState = level.getBlockState(targetAbove);
 
-            if (!aboveState.is(BlockTags.REPLACEABLE) || !aboveState.getFluidState().isEmpty()) {
+            if (targetAboveState.isSolidRender(level, targetAbove)) {
                 continue;
             }
 
-            level.setBlockAndUpdate(target, ModBlocks.NIHIL_GRASS_BLOCK.get().defaultBlockState());
+            if (!targetAboveState.is(BlockTags.REPLACEABLE) || !targetAboveState.getFluidState().isEmpty()) {
+                continue;
+            }
+
+            boolean snowy = targetAboveState.is(Blocks.SNOW) || targetAboveState.is(Blocks.SNOW_BLOCK);
+
+            level.setBlockAndUpdate(target, ModBlocks.NIHIL_GRASS_BLOCK.get().defaultBlockState()
+                    .setValue(SNOWY, snowy));
 
             BlockPos belowTarget = target.below();
             if (level.getBlockState(belowTarget).is(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_DIRT)) {
