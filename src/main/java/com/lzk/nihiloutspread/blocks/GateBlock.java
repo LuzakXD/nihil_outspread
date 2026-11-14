@@ -3,12 +3,10 @@ package com.lzk.nihiloutspread.blocks;
 import org.jetbrains.annotations.Nullable;
 
 import com.lzk.nihiloutspread.init.ModSounds;
-import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -16,23 +14,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DiodeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class GateBlock extends DiodeBlock {
-    public static final MapCodec<GateBlock> CODEC = simpleCodec(GateBlock::new);
+public abstract class GateBlock extends DiodeBlock {
     public static final BooleanProperty INPUT_A = BooleanProperty.create("input_a");
     public static final BooleanProperty INPUT_B = BooleanProperty.create("input_b");
     public static final BooleanProperty INVERTED = BooleanProperty.create("inverted");
-
-    @Override
-    public MapCodec<GateBlock> codec() {
-        return CODEC;
-    }
 
     public GateBlock(Properties props) {
         super(props);
@@ -73,7 +67,7 @@ public class GateBlock extends DiodeBlock {
         Direction back = state.getValue(FACING);
         int l = level.getSignal(pos.relative(back.getClockWise()), back.getClockWise());
         int r = level.getSignal(pos.relative(back.getCounterClockWise()), back.getCounterClockWise());
-        return ((l > 0) ^ (r > 0)) ^ state.getValue(INVERTED);
+        return logic(state, (l > 0), (r > 0));
     }
 
     @Override
@@ -94,26 +88,13 @@ public class GateBlock extends DiodeBlock {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = super.getStateForPlacement(context);
-        Level level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        Direction back = state.getValue(FACING);
-
-        boolean a = level.getSignal(pos.relative(back.getClockWise()), back.getClockWise()) > 0;
-        boolean b = level.getSignal(pos.relative(back.getCounterClockWise()), back.getCounterClockWise()) > 0;
-        boolean powered = logic(state, a, b);
-
-        return state
-                .setValue(INPUT_A, a)
-                .setValue(INPUT_B, b)
-                .setValue(POWERED, powered);
-    }
-
-    @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos fromPos,
             boolean isMoving) {
-        if (state.canSurvive(level, pos) && !level.getBlockTicks().willTickThisTick(pos, this)) {
+        if (!state.canSurvive(level, pos)) {
+            super.neighborChanged(state, level, pos, neighborBlock, fromPos, isMoving);
+            return;
+        }
+        if (!level.getBlockTicks().willTickThisTick(pos, this)) {
             level.scheduleTick(pos, this, this.getDelay(state));
         }
     }
@@ -125,36 +106,43 @@ public class GateBlock extends DiodeBlock {
             return InteractionResult.PASS;
         }
 
-        BlockState newState = state.cycle(INVERTED);
+        BlockState finalState = computeState(level, pos, state.cycle(INVERTED));
 
-        float pitch = newState.getValue(INVERTED) ? 0.55F : 0.5F;
+        float pitch = finalState.getValue(INVERTED) ? 0.55F : 0.5F;
         level.playSound(player, pos, ModSounds.HONEY_GATE_CLICK.get(), SoundSource.BLOCKS, 0.3F, pitch);
 
-        level.setBlock(pos, newState, 2);
+        boolean wasPowered = state.getValue(POWERED);
+        level.setBlock(pos, finalState, 2);
 
-        if (level instanceof ServerLevel serverLevel) {
-            refreshState(serverLevel, pos, newState);
+        if (wasPowered != finalState.getValue(POWERED)) {
+            this.updateNeighborsInFront(level, pos, finalState);
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    private void refreshState(ServerLevel level, BlockPos pos, BlockState state) {
+    private BlockState computeState(Level level, BlockPos pos, BlockState state) {
         Direction back = state.getValue(FACING);
         boolean a = level.getSignal(pos.relative(back.getClockWise()), back.getClockWise()) > 0;
         boolean b = level.getSignal(pos.relative(back.getCounterClockWise()), back.getCounterClockWise()) > 0;
         boolean powered = logic(state, a, b);
-        boolean wasPowered = state.getValue(POWERED);
+        return state.setValue(INPUT_A, a).setValue(INPUT_B, b).setValue(POWERED, powered);
+    }
 
-        BlockState newState = state
-                .setValue(INPUT_A, a)
-                .setValue(INPUT_B, b)
-                .setValue(POWERED, powered);
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState state = super.getStateForPlacement(context);
+        return computeState(context.getLevel(), context.getClickedPos(), state);
+    }
+
+    private void refreshState(ServerLevel level, BlockPos pos, BlockState state) {
+        boolean wasPowered = state.getValue(POWERED);
+        BlockState newState = computeState(level, pos, state);
 
         if (newState != state) {
             level.setBlock(pos, newState, 2);
         }
-        if (wasPowered != powered) {
+        if (wasPowered != newState.getValue(POWERED)) {
             this.updateNeighborsInFront(level, pos, newState);
         }
     }
@@ -164,8 +152,19 @@ public class GateBlock extends DiodeBlock {
         refreshState(level, pos, state);
     }
 
-    protected Boolean logic(BlockState state, boolean a, boolean b) {
-        return (a ^ b) ^ state.getValue(INVERTED);
+    @Override
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState,
+            LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.DOWN && !this.canSurviveOn(level, facingPos, facingState)) {
+            return Blocks.AIR.defaultBlockState();
+        }
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+    }
+
+    protected abstract boolean baseLogic(boolean a, boolean b);
+
+    protected final boolean logic(BlockState state, boolean a, boolean b) {
+        return baseLogic(a, b) ^ state.getValue(INVERTED);
     }
 
 }
