@@ -1,0 +1,13 @@
+{
+    "block.honey_gate_click": {
+        "sounds": [
+            "nihil_outspread:block/honey_gate_click1",
+            "nihil_outspread:block/honey_gate_click2",
+            "nihil_outspread:block/honey_gate_click3",
+            "nihil_outspread:block/honey_gate_click4",
+            "nihil_outspread:block/honey_gate_click5",
+            "nihil_outspread:block/honey_gate_click6"
+        ],
+        "subtitle": "subtitles.nihil_outspread.honey_gate_click"
+    }
+}

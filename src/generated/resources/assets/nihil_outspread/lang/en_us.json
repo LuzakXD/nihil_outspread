@@ -98,5 +98,6 @@
   "block.nihil_outspread.xor_gate": "XOR Redstone Gate",
   "itemGroup.abyss": "Abyss",
   "itemGroup.hive": "Hive",
-  "itemGroup.nihil": "Nihil"
+  "itemGroup.nihil": "Nihil",
+  "subtitles.nihil_outspread.honey_gate_click": "Honey redstone gate click"
 }

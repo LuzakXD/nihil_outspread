@@ -98,5 +98,6 @@
   "block.nihil_outspread.xor_gate": "Porta de Redstone XOR",
   "itemGroup.abyss": "Abismo",
   "itemGroup.hive": "Colmeia",
-  "itemGroup.nihil": "Nihil"
+  "itemGroup.nihil": "Nihil",
+  "subtitles.nihil_outspread.honey_gate_click": "Clique na porta de redstone de mel"
 }

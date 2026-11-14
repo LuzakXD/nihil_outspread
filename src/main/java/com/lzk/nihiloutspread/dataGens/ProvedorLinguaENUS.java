@@ -48,6 +48,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add(ModBlocks.XOR_GATE.get(), "XOR Redstone Gate");
         add(ModBlocks.OR_GATE.get(), "OR Redstone Gate");
         add(ModBlocks.AND_GATE.get(), "AND Redstone Gate");
+        add("subtitles.nihil_outspread.honey_gate_click", "Honey redstone gate click");
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {

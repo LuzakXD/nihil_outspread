@@ -2,6 +2,7 @@ package com.lzk.nihiloutspread.blocks;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.lzk.nihiloutspread.init.ModSounds;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
@@ -127,7 +128,7 @@ public class GateBlock extends DiodeBlock {
         BlockState newState = state.cycle(INVERTED);
 
         float pitch = newState.getValue(INVERTED) ? 0.55F : 0.5F;
-        level.playSound(player, pos, SoundEvents.COMPARATOR_CLICK, SoundSource.BLOCKS, 0.3F, pitch);
+        level.playSound(player, pos, ModSounds.HONEY_GATE_CLICK.get(), SoundSource.BLOCKS, 0.3F, pitch);
 
         level.setBlock(pos, newState, 2);
 

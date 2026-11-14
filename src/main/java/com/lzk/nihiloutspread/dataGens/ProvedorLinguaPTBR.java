@@ -48,6 +48,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add(ModBlocks.XOR_GATE.get(), "Porta de Redstone XOR");
         add(ModBlocks.OR_GATE.get(), "Porta de Redstone OR");
         add(ModBlocks.AND_GATE.get(), "Porta de Redstone AND");
+        add("subtitles.nihil_outspread.honey_gate_click", "Clique na porta de redstone de mel");
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
