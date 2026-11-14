@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nihil_outspread:xor_gate"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "nihil_outspread:blocks/xor_gate"
+}

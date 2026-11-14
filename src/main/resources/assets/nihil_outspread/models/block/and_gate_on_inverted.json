@@ -1,0 +1,87 @@
+{
+	"format_version": "1.9.0",
+	"credit": "By Luzak",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "nihil_outspread:block/hive/and_gate_on_inverted",
+		"top": "nihil_outspread:block/hive/and_gate_on_inverted",
+		"bottom": "nihil_outspread:block/hive/gates_bottom",
+		"lit": "block/redstone_torch"
+	},
+	"elements": [
+		{
+			"name": "Plate",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "north"},
+				"east": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "east"},
+				"south": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "south"},
+				"west": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}
+			}
+		},
+		{
+			"name": "TorchA",
+			"from": [1, 2, 11],
+			"to": [5, 5, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-8, -3, 0]},
+			"faces": {
+				"north": {"uv": [6, 5, 10, 8], "texture": "#lit"},
+				"south": {"uv": [6, 5, 10, 8], "texture": "#lit"}
+			}
+		},
+		{
+			"name": "TorchA",
+			"from": [2, 2, 10],
+			"to": [4, 5, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-8, -3, 0]},
+			"faces": {
+				"east": {"uv": [6, 5, 10, 8], "texture": "#lit"},
+				"west": {"uv": [6, 5, 10, 8], "texture": "#lit"}
+			}
+		},
+		{
+			"name": "TorchA",
+			"from": [2, 2, 11],
+			"to": [4, 4, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-8, -3, 0]},
+			"faces": {
+				"up": {"uv": [7, 6, 9, 8], "texture": "#lit"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#lit"}
+			}
+		},
+		{
+			"name": "TorchB",
+			"from": [12, 2, 11],
+			"to": [14, 4, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, -3, 0]},
+			"faces": {
+				"up": {"uv": [7, 6, 9, 8], "texture": "#lit"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#lit"}
+			}
+		},
+		{
+			"name": "TorchB",
+			"from": [12, 2, 10],
+			"to": [14, 5, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, -3, 0]},
+			"faces": {
+				"east": {"uv": [6, 5, 10, 8], "texture": "#lit"},
+				"west": {"uv": [6, 5, 10, 8], "texture": "#lit"}
+			}
+		},
+		{
+			"name": "TorchB",
+			"from": [11, 2, 11],
+			"to": [15, 5, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, -3, 0]},
+			"faces": {
+				"north": {"uv": [6, 5, 10, 8], "texture": "#lit"},
+				"south": {"uv": [6, 5, 10, 8], "texture": "#lit"}
+			}
+		}
+	]
+}

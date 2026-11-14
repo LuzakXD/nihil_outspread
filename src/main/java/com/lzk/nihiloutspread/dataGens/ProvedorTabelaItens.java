@@ -27,17 +27,17 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        lootDaFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false);
-        lootDaFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
-        lootDaFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
-        lootDaFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false);
+        lootDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
         dropSelf(ModBlocks.NIHIL_DIRT.get());
         dropOther(ModBlocks.NIHIL_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
         dropOther(ModBlocks.CHECKER_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
         dropSelf(ModBlocks.VELVET_SAND.get());
-        lootDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
 
-        lootDaFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true);
         dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
 
         dropSelf(ModBlocks.ABYSSAL_MOSS_CARPET.get());
@@ -47,11 +47,15 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropWhenSilkTouch(ModBlocks.NIHIL_SMALL_HERB.get());
         dropWhenSilkTouch(ModBlocks.NIHIL_SHORT_GRASS.get());
 
-        lootDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, true);
+        lootDaFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, true);
         dropOther(ModBlocks.ABYSSAL_MOSSY_STONE.get(), ModBlocks.ABYSSAL_STONE.get());
+
+        dropSelf(ModBlocks.XOR_GATE.get());
+        dropSelf(ModBlocks.OR_GATE.get());
+        dropSelf(ModBlocks.AND_GATE.get());
     }
 
-    private void lootDaFamiliaPedra(FamiliaPedra familia, boolean temBase) {
+    private void lootDaFamilia(FamiliaPedra familia, boolean temBase) {
         if (temBase) {
             dropSelf(familia.base.get());
         }
@@ -165,7 +169,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         }
     }
 
-    private void lootDaFamiliaAreia(FamiliaAreia familia, boolean temBase) {
+    private void lootDaFamilia(FamiliaAreia familia, boolean temBase) {
 
         if (temBase) {
             if (familia.pedregoso != null) {

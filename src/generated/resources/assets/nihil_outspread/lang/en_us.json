@@ -13,6 +13,7 @@
   "block.nihil_outspread.abyssal_stone_slab": "Abyssal Stone Slab",
   "block.nihil_outspread.abyssal_stone_stairs": "Abyssal Stone Stairs",
   "block.nihil_outspread.abyssal_stone_wall": "Abyssal Stone Wall",
+  "block.nihil_outspread.and_gate": "AND Redstone Gate",
   "block.nihil_outspread.checker_grass_block": "Checker Grass Block",
   "block.nihil_outspread.chiseled_polished_nilight": "Chiseled Polished Nilight",
   "block.nihil_outspread.cobbled_velvestone": "Cobbled Velvestone",
@@ -49,6 +50,7 @@
   "block.nihil_outspread.nilight_slab": "Nilight Slab",
   "block.nihil_outspread.nilight_stairs": "Nilight Stairs",
   "block.nihil_outspread.nilight_wall": "Nilight Wall",
+  "block.nihil_outspread.or_gate": "OR Redstone Gate",
   "block.nihil_outspread.polished_cottonite": "Polished Cottonite",
   "block.nihil_outspread.polished_cottonite_brick_slab": "Polished Cottonite Brick Slab",
   "block.nihil_outspread.polished_cottonite_brick_stairs": "Polished Cottonite Brick Stairs",
@@ -93,6 +95,7 @@
   "block.nihil_outspread.velvestone_stairs": "Velvestone Stairs",
   "block.nihil_outspread.velvestone_wall": "Velvestone Wall",
   "block.nihil_outspread.velvet_sand": "Velvet Sand",
+  "block.nihil_outspread.xor_gate": "XOR Redstone Gate",
   "itemGroup.abyss": "Abyss",
   "itemGroup.hive": "Hive",
   "itemGroup.nihil": "Nihil"

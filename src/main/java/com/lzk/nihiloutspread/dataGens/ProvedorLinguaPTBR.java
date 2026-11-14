@@ -44,6 +44,10 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
+
+        add(ModBlocks.XOR_GATE.get(), "Porta de Redstone XOR");
+        add(ModBlocks.OR_GATE.get(), "Porta de Redstone OR");
+        add(ModBlocks.AND_GATE.get(), "Porta de Redstone AND");
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {

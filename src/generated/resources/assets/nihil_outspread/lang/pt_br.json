@@ -13,6 +13,7 @@
   "block.nihil_outspread.abyssal_stone_slab": "Laje de Pedra Abissal",
   "block.nihil_outspread.abyssal_stone_stairs": "Escadas de Pedra Abissal",
   "block.nihil_outspread.abyssal_stone_wall": "Muro de Pedra Abissal",
+  "block.nihil_outspread.and_gate": "Porta de Redstone AND",
   "block.nihil_outspread.checker_grass_block": "Bloco de Grama Xadrez",
   "block.nihil_outspread.chiseled_polished_nilight": "Niluzita Polida Talhada",
   "block.nihil_outspread.cobbled_velvestone": "Pedregulho de Velveta",
@@ -49,6 +50,7 @@
   "block.nihil_outspread.nilight_slab": "Laje de Niluzita",
   "block.nihil_outspread.nilight_stairs": "Escadas de Niluzita",
   "block.nihil_outspread.nilight_wall": "Muro de Niluzita",
+  "block.nihil_outspread.or_gate": "Porta de Redstone OR",
   "block.nihil_outspread.polished_cottonite": "Algonita Polida",
   "block.nihil_outspread.polished_cottonite_brick_slab": "Laje de Tijolos de Algonita Polida",
   "block.nihil_outspread.polished_cottonite_brick_stairs": "Escadas de Tijolos de Algonita Polida",
@@ -93,6 +95,7 @@
   "block.nihil_outspread.velvestone_stairs": "Escadas de Velveta",
   "block.nihil_outspread.velvestone_wall": "Muro de Velveta",
   "block.nihil_outspread.velvet_sand": "Areia de Veludo",
+  "block.nihil_outspread.xor_gate": "Porta de Redstone XOR",
   "itemGroup.abyss": "Abismo",
   "itemGroup.hive": "Colmeia",
   "itemGroup.nihil": "Nihil"

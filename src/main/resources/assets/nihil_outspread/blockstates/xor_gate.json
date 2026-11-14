@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=north,input_a=false,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_000",
+      "y": 180
+    },
+    "facing=north,input_a=false,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_010",
+      "y": 180
+    },
+    "facing=north,input_a=false,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_011",
+      "y": 180
+    },
+    "facing=north,input_a=false,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_001",
+      "y": 180
+    },
+    "facing=north,input_a=true,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_100",
+      "y": 180
+    },
+    "facing=north,input_a=true,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_110",
+      "y": 180
+    },
+    "facing=north,input_a=true,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_111",
+      "y": 180
+    },
+    "facing=north,input_a=true,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_101",
+      "y": 180
+    },
+    "facing=south,input_a=false,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_000"
+    },
+    "facing=south,input_a=false,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_010"
+    },
+    "facing=south,input_a=false,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_011"
+    },
+    "facing=south,input_a=false,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_001"
+    },
+    "facing=south,input_a=true,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_100"
+    },
+    "facing=south,input_a=true,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_110"
+    },
+    "facing=south,input_a=true,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_111"
+    },
+    "facing=south,input_a=true,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_101"
+    },
+    "facing=east,input_a=false,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_000",
+      "y": 270
+    },
+    "facing=east,input_a=false,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_010",
+      "y": 270
+    },
+    "facing=east,input_a=false,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_011",
+      "y": 270
+    },
+    "facing=east,input_a=false,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_001",
+      "y": 270
+    },
+    "facing=east,input_a=true,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_100",
+      "y": 270
+    },
+    "facing=east,input_a=true,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_110",
+      "y": 270
+    },
+    "facing=east,input_a=true,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_111",
+      "y": 270
+    },
+    "facing=east,input_a=true,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_101",
+      "y": 270
+    },
+    "facing=west,input_a=false,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_000",
+      "y": 90
+    },
+    "facing=west,input_a=false,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_010",
+      "y": 90
+    },
+    "facing=west,input_a=false,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_011",
+      "y": 90
+    },
+    "facing=west,input_a=false,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_001",
+      "y": 90
+    },
+    "facing=west,input_a=true,input_b=false,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_100",
+      "y": 90
+    },
+    "facing=west,input_a=true,input_b=false,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_110",
+      "y": 90
+    },
+    "facing=west,input_a=true,input_b=true,inverted=true": {
+      "model": "nihil_outspread:block/xor_gate_111",
+      "y": 90
+    },
+    "facing=west,input_a=true,input_b=true,inverted=false": {
+      "model": "nihil_outspread:block/xor_gate_101",
+      "y": 90
+    }
+  }
+}

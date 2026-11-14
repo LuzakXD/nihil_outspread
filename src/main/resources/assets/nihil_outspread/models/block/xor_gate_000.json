@@ -1,0 +1,69 @@
+{
+	"format_version": "1.9.0",
+	"credit": "By Luzak",
+	"ambientocclusion": false,
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"particle": "nihil_outspread:block/hive/xor_gate_000",
+		"top": "nihil_outspread:block/hive/xor_gate_000",
+		"bottom": "nihil_outspread:block/hive/gates_bottom",
+		"unlit": "block/redstone_torch_off"
+	},
+	"elements": [
+		{
+			"name": "Plate",
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "north"},
+				"east": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "east"},
+				"south": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "south"},
+				"west": {"uv": [0, 14, 16, 16], "texture": "#bottom", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}
+			}
+		},
+		{
+			"name": "TorchC",
+			"from": [7, 2, 3],
+			"to": [9, 4, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"east": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"south": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"west": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#unlit"}
+			}
+		},
+		{
+			"name": "TorchA",
+			"from": [2, 2, 11],
+			"to": [4, 7, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-2, 0, 0]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"east": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"south": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"west": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#unlit"}
+			}
+		},
+		{
+			"name": "TorchB",
+			"from": [12, 2, 11],
+			"to": [14, 7, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 0, 0]},
+			"faces": {
+				"north": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"east": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"south": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"west": {"uv": [7, 6, 9, 11], "texture": "#unlit"},
+				"up": {"uv": [7, 6, 9, 8], "texture": "#unlit"},
+				"down": {"uv": [7, 13, 9, 15], "texture": "#unlit"}
+			}
+		}
+	]
+}

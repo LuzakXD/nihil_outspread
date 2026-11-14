@@ -29,7 +29,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.GRAPHITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.COTTONITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
-        tagMurosAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY);
+        tagMuros(ModBlocks.VELVESTONE_BLOCK_FAMILY);
         tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
 
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
@@ -79,7 +79,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         }
     }
 
-    private void tagMurosAreia(FamiliaAreia familia) {
+    private void tagMuros(FamiliaAreia familia) {
         if (familia.variantesBase != null && familia.variantesBase.muro() != null) {
             tag(BlockTags.WALLS).add(familia.variantesBase.muro().get());
         }

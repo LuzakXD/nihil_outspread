@@ -29,14 +29,14 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        gerarModelosDaFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, "hive");
-        gerarModelosDaFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, "nihil");
-        gerarModelosDaFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, "hive");
+        gerarModelosDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true, "nihil");
 
         blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", false, NilightBlock.SNOWY, NilightBlock.MOSSY,
                 NilightBlock.DIRTY);
 
-        gerarModelosDaFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, false, "nihil");
+        gerarModelosDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, false, "nihil");
 
         blocoComCamadasTopBottom(ModBlocks.NIHIL_GRASS_BLOCK, "nihil_grass_block", "nihil", true,
                 NihilGrassBlock.SNOWY);
@@ -53,16 +53,16 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         plantaSimples(ModBlocks.NIHIL_SMALL_HERB, "nihil_small_herb", "nihil");
 
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
-        gerarModelosDaFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
 
-        gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true, "abyss");
+        gerarModelosDaFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true, "abyss");
         blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss_block", "abyss");
 
         tapeteSimples(ModBlocks.ABYSSAL_MOSS_CARPET, "abyssal_moss_block", "abyss");
         tapeteSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "abyssal_floral_moss_block", "abyss");
 
         blocoComCamadas(ModBlocks.ABYSSAL_STONE, "abyssal_stone", "abyss", false, AbyssalStoneBlock.SNOWY);
-        gerarModelosDaFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
+        gerarModelosDaFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, false, "abyss");
 
         blocoVerticalComCamadasTopBottom(ModBlocks.ABYSSAL_MOSSY_STONE,
                 "mossy_abyssal_stone",
@@ -175,7 +175,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
     }
 
-    private void gerarModelosDaFamiliaPedra(FamiliaPedra familia, boolean temBase,
+    private void gerarModelosDaFamilia(FamiliaPedra familia, boolean temBase,
             String categoria) {
 
         // BASE
@@ -315,7 +315,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
     }
 
-    private void gerarModelosDaFamiliaAreia(FamiliaAreia familia, boolean temBase, String categoria) {
+    private void gerarModelosDaFamilia(FamiliaAreia familia, boolean temBase, String categoria) {
 
         // BASE
         if (temBase) {

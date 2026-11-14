@@ -44,6 +44,10 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
+
+        add(ModBlocks.XOR_GATE.get(), "XOR Redstone Gate");
+        add(ModBlocks.OR_GATE.get(), "OR Redstone Gate");
+        add(ModBlocks.AND_GATE.get(), "AND Redstone Gate");
     }
 
     private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {

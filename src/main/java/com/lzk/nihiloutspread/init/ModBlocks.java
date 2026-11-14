@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -335,5 +336,28 @@ public class ModBlocks {
                                                         TipoVariante.MURO,
                                                         TipoVariante.PLACAPRESSAO,
                                                         TipoVariante.BOTAO)));
+
+        // Redstone da Colmeia
+
+        public static final DeferredBlock<Block> XOR_GATE = registrarBlocoItem(
+                        "xor_gate",
+                        () -> new XORGateBlock(BlockBehaviour.Properties.of()
+                                        .instabreak()
+                                        .sound(SoundType.STONE)
+                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> OR_GATE = registrarBlocoItem(
+                        "or_gate",
+                        () -> new ORGateBlock(BlockBehaviour.Properties.of()
+                                        .instabreak()
+                                        .sound(SoundType.STONE)
+                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> AND_GATE = registrarBlocoItem(
+                        "and_gate",
+                        () -> new ANDGateBlock(BlockBehaviour.Properties.of()
+                                        .instabreak()
+                                        .sound(SoundType.STONE)
+                                        .pushReaction(PushReaction.DESTROY)));
 
 }
