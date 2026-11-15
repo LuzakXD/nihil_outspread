@@ -1,6 +1,7 @@
 {
   "values": [
     "nihil_outspread:nihil_dirt",
-    "nihil_outspread:nihil_grass_block"
+    "nihil_outspread:nihil_grass_block",
+    "nihil_outspread:checker_grass_block"
   ]
 }

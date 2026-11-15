@@ -26,6 +26,8 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("block.nihil_outspread.nihil_short_grass", "Grama Nihil Baixa");
         add("block.nihil_outspread.nihil_small_herb", "Pequena Erva Nihil");
 
+        add("block.nihil_outspread.nihil_sprout", "Broto Nihil");
+
         add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
 
         add("block.nihil_outspread.abyssal_moss_block", "Bloco de Musgo Abissal");

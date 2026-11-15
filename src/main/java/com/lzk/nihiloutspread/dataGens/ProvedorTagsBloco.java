@@ -34,7 +34,8 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
                 ModBlocks.NIHIL_DIRT.get(),
-                ModBlocks.NIHIL_GRASS_BLOCK.get());
+                ModBlocks.NIHIL_GRASS_BLOCK.get(),
+                ModBlocks.CHECKER_GRASS_BLOCK.get());
 
         tag(ModTags.Blocks.MOSSY_BLOCKS).add(
                 ModBlocks.ABYSSAL_MOSS_BLOCK.get(),
@@ -55,6 +56,8 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 Blocks.DIRT,
                 Blocks.COARSE_DIRT,
                 Blocks.ROOTED_DIRT);
+
+        tag(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON).addTag(ModTags.Blocks.DIRTY_BLOCKS);
 
     }
 

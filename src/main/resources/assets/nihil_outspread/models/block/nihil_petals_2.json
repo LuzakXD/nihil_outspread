@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/flowerbed_2",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "flowerbed": "nihil_outspread:block/nihil/nihil_petals",
+    "stem": "nihil_outspread:block/nihil/nihil_petals_stem"
+  }
+}

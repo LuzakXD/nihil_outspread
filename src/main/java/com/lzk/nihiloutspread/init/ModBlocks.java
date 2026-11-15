@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -24,7 +23,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.TallGrassBlock;
 
 import java.util.function.Supplier;
 
@@ -197,24 +195,47 @@ public class ModBlocks {
                                                         TipoVariante.LAJE,
                                                         TipoVariante.MURO)));
 
-        // TODO: fazer essas graminhas terem sua propria class
-        // pra poder sobreviver apenas em grama nihil
-
         public static final DeferredBlock<Block> NIHIL_FERN = registrarBlocoItem("nihil_fern",
-                        () -> new TallGrassBlock(
+                        () -> new NihilBushesBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                                                         .replaceable()
                                                         .noCollission()
                                                         .instabreak()
                                                         .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XYZ)
+                                                        .offsetType(OffsetType.XZ)
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredBlock<Block> NIHIL_SHORT_GRASS = registrarBlocoItem(
                         "nihil_short_grass",
-                        () -> new TallGrassBlock(
+                        () -> new NihilBushesBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                        .replaceable()
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> NIHIL_SMALL_HERB = registrarBlocoItem(
+                        "nihil_small_herb",
+                        () -> new NihilBushesBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                        .replaceable()
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> NIHIL_SPROUT = registrarBlocoItem(
+                        "nihil_sprout",
+                        () -> new NihilBushesBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                                                         .replaceable()
@@ -225,16 +246,28 @@ public class ModBlocks {
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> NIHIL_SMALL_HERB = registrarBlocoItem(
-                        "nihil_small_herb",
-                        () -> new TallGrassBlock(
+        public static final DeferredBlock<Block> DREAD_SPROUT = registrarBlocoItem(
+                        "dread_sprout",
+                        () -> new NihilBushesBlock(
+                                        BlockBehaviour.Properties.of()
+                                                        .mapColor(MapColor.TERRACOTTA_BLACK)
+                                                        .replaceable()
+                                                        .noCollission()
+                                                        .instabreak()
+                                                        .sound(SoundType.GRASS)
+                                                        .offsetType(OffsetType.XYZ)
+                                                        .ignitedByLava()
+                                                        .pushReaction(PushReaction.DESTROY)));
+
+        public static final DeferredBlock<Block> NIHIL_PETALS = registrarBlocoItem(
+                        "nihil_petals",
+                        () -> new PetalsBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                                                         .replaceable()
                                                         .noCollission()
                                                         .instabreak()
                                                         .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XYZ)
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 

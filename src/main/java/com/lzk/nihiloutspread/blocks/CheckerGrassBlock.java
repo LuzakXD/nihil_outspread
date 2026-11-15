@@ -3,7 +3,6 @@ package com.lzk.nihiloutspread.blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import com.lzk.nihiloutspread.init.ModBlocks;
-import com.lzk.nihiloutspread.init.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

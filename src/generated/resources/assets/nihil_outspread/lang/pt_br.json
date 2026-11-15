@@ -38,6 +38,7 @@
   "block.nihil_outspread.nihil_grass_block": "Bloco de Grama Nihil",
   "block.nihil_outspread.nihil_short_grass": "Grama Nihil Baixa",
   "block.nihil_outspread.nihil_small_herb": "Pequena Erva Nihil",
+  "block.nihil_outspread.nihil_sprout": "Broto Nihil",
   "block.nihil_outspread.nilight": "Niluzita",
   "block.nihil_outspread.nilight_brick_slab": "Laje de Tijolos de Niluzita",
   "block.nihil_outspread.nilight_brick_stairs": "Escadas de Tijolos de Niluzita",
@@ -99,5 +100,5 @@
   "itemGroup.abyss": "Abismo",
   "itemGroup.hive": "Colmeia",
   "itemGroup.nihil": "Nihil",
-  "subtitles.nihil_outspread.honey_gate_click": "Clique na porta de redstone de mel"
+  "subtitles.nihil_outspread.honey_gate_click": "Porta de redstone de mel acionada"
 }

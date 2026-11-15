@@ -24,6 +24,15 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
                                                 output.accept(ModBlocks.NIHIL_DIRT.get());
 
+                                                output.accept(ModBlocks.NIHIL_SHORT_GRASS.get());
+                                                output.accept(ModBlocks.NIHIL_FERN.get());
+                                                output.accept(ModBlocks.NIHIL_SMALL_HERB.get());
+                                                output.accept(ModBlocks.NIHIL_PETALS.get());
+
+                                                output.accept(ModBlocks.NIHIL_SPROUT.get());
+
+                                                output.accept(ModBlocks.DREAD_SPROUT.get());
+
                                                 for (Item item : ModBlocks.NILIGHT_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }
@@ -77,6 +86,9 @@ public class ModCreativeTabs {
                                                 for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }
+                                                output.accept(ModBlocks.OR_GATE.get());
+                                                output.accept(ModBlocks.AND_GATE.get());
+                                                output.accept(ModBlocks.XOR_GATE.get());
 
                                         }).build());
 
