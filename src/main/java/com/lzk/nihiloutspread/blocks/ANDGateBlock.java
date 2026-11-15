@@ -2,8 +2,6 @@ package com.lzk.nihiloutspread.blocks;
 
 import com.mojang.serialization.MapCodec;
 
-import net.minecraft.world.level.block.state.BlockState;
-
 public class ANDGateBlock extends GateBlock {
 
     public static final MapCodec<ANDGateBlock> CODEC = simpleCodec(ANDGateBlock::new);
