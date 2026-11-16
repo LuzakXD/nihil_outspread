@@ -2,8 +2,7 @@ package com.lzk.nihiloutspread.dataGens;
 
 import java.util.Collections;
 
-import com.lzk.nihiloutspread.blockGens.FamiliaAreia;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.core.Holder;

@@ -3,9 +3,7 @@ package com.lzk.nihiloutspread.dataGens;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-import com.lzk.nihiloutspread.blockGens.FamiliaAbstrata;
-import com.lzk.nihiloutspread.blockGens.FamiliaPedra;
-import com.lzk.nihiloutspread.blockGens.TipoMaterial;
+import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
 
 import net.minecraft.core.HolderLookup.Provider;
