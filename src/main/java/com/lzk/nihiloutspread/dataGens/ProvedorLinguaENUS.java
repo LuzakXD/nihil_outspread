@@ -186,6 +186,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case TIJOLOS -> "Polished " + nomeMaterial + " Bricks";
                 case LADRILHOS -> "Polished " + nomeMaterial + " Tiles";
                 case PLACAS -> "Polished " + nomeMaterial + " Plates";
+                case MOSAICO -> "Polished " + nomeMaterial + " Mosaic";
+                case TRONCO -> null; // no, we NOT gonna have "Polished X Log" or "Polished X Wood" >:(
+                case MADEIRA -> null;
             };
         } else {
             return switch (tipo) {
@@ -197,6 +200,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case TIJOLOS -> nomeMaterial + " Bricks";
                 case LADRILHOS -> nomeMaterial + " Tiles";
                 case PLACAS -> nomeMaterial + " Plates";
+                case MOSAICO -> nomeMaterial + " Mosaic";
+                case TRONCO -> nomeMaterial + " Log";
+                case MADEIRA -> nomeMaterial + " Wood";
             };
         }
 
@@ -213,6 +219,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case TIJOLOS -> "Polished " + nomeMaterial + " Brick";
                 case LADRILHOS -> "Polished " + nomeMaterial + " Tile";
                 case PLACAS -> "Polished " + nomeMaterial + " Plate";
+                case MOSAICO -> "Polished " + nomeMaterial + " Mosaic";
+                case TRONCO -> null;
+                case MADEIRA -> null;
             };
         } else {
             return switch (tipo) {
@@ -224,6 +233,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case TIJOLOS -> nomeMaterial + " Brick";
                 case LADRILHOS -> nomeMaterial + " Tile";
                 case PLACAS -> nomeMaterial + " Plate";
+                case MOSAICO -> nomeMaterial + " Mosaic";
+                case TRONCO -> nomeMaterial + " Log";
+                case MADEIRA -> nomeMaterial + " Wood";
             };
         }
 

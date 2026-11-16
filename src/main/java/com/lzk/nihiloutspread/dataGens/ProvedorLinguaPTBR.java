@@ -185,6 +185,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s;
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s;
                 case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s;
+                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s;
+                case TRONCO -> null;
+                case MADEIRA -> null;
             };
         } else {
             return switch (tipo) {
@@ -196,6 +199,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial;
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial;
                 case PLACAS -> "Placas de " + nomeMaterial;
+                case MOSAICO -> "Mosaico de " + nomeMaterial;
+                case TRONCO -> "Tronco de " + nomeMaterial;
+                case MADEIRA -> "Madeira de " + nomeMaterial;
             };
         }
 
@@ -213,6 +219,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s + " Talhados";
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Talhados";
                 case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s + " Talhadas";
+                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Talhados";
+                case TRONCO -> null;
+                case MADEIRA -> null;
             };
         } else {
             return switch (tipo) {
@@ -224,6 +233,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial + " Talhados";
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Talhados";
                 case PLACAS -> "Placas de " + nomeMaterial + " Talhadas";
+                case MOSAICO -> "Mosaico de " + nomeMaterial + " Talhados";
+                case TRONCO -> null;
+                case MADEIRA -> null;
             };
         }
 
@@ -241,6 +253,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s + " Rachados";
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Rachados";
                 case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s + " Rachadas";
+                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Rachados";
+                case TRONCO -> null;
+                case MADEIRA -> null;
             };
         } else {
             return switch (tipo) {
@@ -252,6 +267,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case TIJOLOS -> "Tijolos de " + nomeMaterial + " Rachados";
                 case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Rachados";
                 case PLACAS -> "Placas de " + nomeMaterial + " Rachadas";
+                case MOSAICO -> "Mosaico de " + nomeMaterial + " Rachados";
+                case TRONCO -> "Tronco de " + nomeMaterial + " Rachados";
+                case MADEIRA -> "Madeira de " + nomeMaterial + " Rachados";
             };
         }
 

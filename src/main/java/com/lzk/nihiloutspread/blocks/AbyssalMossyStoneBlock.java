@@ -52,29 +52,6 @@ public class AbyssalMossyStoneBlock extends AbyssalStoneBlock {
 	}
 
 	@Override
-	protected BlockState updateShape(
-			BlockState state,
-			Direction direction,
-			BlockState neighborState,
-			LevelAccessor level,
-			BlockPos pos,
-			BlockPos neighborPos) {
-		if (direction == Direction.UP) {
-			boolean snowy = neighborState.is(Blocks.SNOW) || neighborState.is(Blocks.SNOW_BLOCK);
-
-			return state.setValue(SNOWY, snowy);
-		}
-
-		return super.updateShape(
-				state,
-				direction,
-				neighborState,
-				level,
-				pos,
-				neighborPos);
-	}
-
-	@Override
 	public boolean isRandomlyTicking(BlockState state) {
 		return true;
 	}
