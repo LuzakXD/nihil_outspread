@@ -15,6 +15,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.nihil", "Nihil");
+        add("itemGroup.nihil_naturals", "Nihil naturals");
         add("itemGroup.abyss", "Abyss");
         add("itemGroup.hive", "Hive");
 
@@ -23,8 +24,8 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("block.nihil_outspread.checker_grass_block", "Checker Grass Block");
 
         add("block.nihil_outspread.nihil_fern", "Nihil Fern");
-        add("block.nihil_outspread.nihil_short_grass", "Nihil Short Grass");
-        add("block.nihil_outspread.nihil_small_herb", "Nihil Small Herb");
+        add("block.nihil_outspread.nihil_bush", "Nihil Bush");
+        add("block.nihil_outspread.nihil_herb", "Nihil Herb");
 
         add("block.nihil_outspread.nihil_petals", "Nihil Petals");
         add("block.nihil_outspread.nihil_sprout", "Nihil Sprout");

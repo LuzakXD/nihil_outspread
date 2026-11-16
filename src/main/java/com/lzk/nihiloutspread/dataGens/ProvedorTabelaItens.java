@@ -44,8 +44,8 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
         dropWhenSilkTouch(ModBlocks.NIHIL_FERN.get());
-        dropWhenSilkTouch(ModBlocks.NIHIL_SMALL_HERB.get());
-        dropWhenSilkTouch(ModBlocks.NIHIL_SHORT_GRASS.get());
+        dropWhenSilkTouch(ModBlocks.NIHIL_HERB.get());
+        dropWhenSilkTouch(ModBlocks.NIHIL_BUSH.get());
         dropWhenSilkTouch(ModBlocks.NIHIL_SPROUT.get());
         dropWhenSilkTouch(ModBlocks.DREAD_SPROUT.get());
 

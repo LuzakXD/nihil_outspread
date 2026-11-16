@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "nihil_outspread:block/nihil/nihil_small_herb"
+    "cross": "nihil_outspread:block/nihil/nihil_herb"
   }
 }

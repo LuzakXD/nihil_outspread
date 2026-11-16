@@ -59,6 +59,18 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
         tag(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON).addTag(ModTags.Blocks.DIRTY_BLOCKS);
 
+        tag(ModTags.Blocks.NIHIL_BUSHES).add(
+                ModBlocks.NIHIL_BUSH.get(),
+                ModBlocks.NIHIL_FERN.get(),
+                ModBlocks.NIHIL_HERB.get(),
+                ModBlocks.NIHIL_SPROUT.get(),
+                ModBlocks.DREAD_SPROUT.get(),
+                ModBlocks.NIHIL_PETALS.get());
+
+        tag(BlockTags.REPLACEABLE).addTag(ModTags.Blocks.NIHIL_BUSHES);
+        tag(BlockTags.ENCHANTMENT_POWER_TRANSMITTER).addTag(ModTags.Blocks.NIHIL_BUSHES);
+        tag(BlockTags.SWORD_EFFICIENT).addTag(ModTags.Blocks.NIHIL_BUSHES);
+
     }
 
     private void tagMuros(FamiliaPedra familia) {

@@ -24,9 +24,9 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
                                                 output.accept(ModBlocks.NIHIL_DIRT.get());
 
-                                                output.accept(ModBlocks.NIHIL_SHORT_GRASS.get());
+                                                output.accept(ModBlocks.NIHIL_BUSH.get());
                                                 output.accept(ModBlocks.NIHIL_FERN.get());
-                                                output.accept(ModBlocks.NIHIL_SMALL_HERB.get());
+                                                output.accept(ModBlocks.NIHIL_HERB.get());
                                                 output.accept(ModBlocks.NIHIL_PETALS.get());
 
                                                 output.accept(ModBlocks.NIHIL_SPROUT.get());
@@ -51,6 +51,37 @@ public class ModCreativeTabs {
                                                 for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY.devolverItens(true)) {
                                                         output.accept(item);
                                                 }
+
+                                        }).build());
+
+        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NIHIL_NATURALS = CREATIVE_MODE_TABS
+                        .register("nihil_naturals", () -> CreativeModeTab.builder()
+                                        .title(Component.translatable("itemGroup.nihil_naturals"))
+                                        .icon(() -> new ItemStack(ModBlocks.NIHIL_GRASS_BLOCK.get()))
+                                        .displayItems((parameters, output) -> {
+
+                                                output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
+                                                output.accept(ModBlocks.CHECKER_GRASS_BLOCK.get());
+
+                                                output.accept(ModBlocks.NIHIL_DIRT.get());
+
+                                                output.accept(ModBlocks.NIHIL_BUSH.get());
+                                                output.accept(ModBlocks.NIHIL_FERN.get());
+                                                output.accept(ModBlocks.NIHIL_HERB.get());
+                                                output.accept(ModBlocks.NIHIL_PETALS.get());
+
+                                                output.accept(ModBlocks.NIHIL_SPROUT.get());
+                                                output.accept(ModBlocks.DREAD_SPROUT.get());
+
+                                                output.accept(ModBlocks.NILIGHT.get());
+
+                                                output.accept(ModBlocks.GRAPHITE.get());
+
+                                                output.accept(ModBlocks.VELVET_SAND.get());
+
+                                                output.accept(ModBlocks.VELVESTONE.get());
+
+                                                output.accept(ModBlocks.COTTONITE.get());
 
                                         }).build());
 

@@ -23,11 +23,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nihil_outspread:nihil_small_herb"
+          "name": "nihil_outspread:nihil_bush"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "nihil_outspread:blocks/nihil_small_herb"
+  "random_sequence": "nihil_outspread:blocks/nihil_bush"
 }

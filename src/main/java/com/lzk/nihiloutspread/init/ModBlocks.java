@@ -207,8 +207,8 @@ public class ModBlocks {
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> NIHIL_SHORT_GRASS = registrarBlocoItem(
-                        "nihil_short_grass",
+        public static final DeferredBlock<Block> NIHIL_BUSH = registrarBlocoItem(
+                        "nihil_bush",
                         () -> new NihilBushesBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
@@ -220,8 +220,8 @@ public class ModBlocks {
                                                         .ignitedByLava()
                                                         .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> NIHIL_SMALL_HERB = registrarBlocoItem(
-                        "nihil_small_herb",
+        public static final DeferredBlock<Block> NIHIL_HERB = registrarBlocoItem(
+                        "nihil_herb",
                         () -> new NihilBushesBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)

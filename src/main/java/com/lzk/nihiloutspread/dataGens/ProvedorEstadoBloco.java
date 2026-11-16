@@ -48,9 +48,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
         plantaSimples(ModBlocks.NIHIL_FERN, "nihil_fern", "nihil");
 
-        plantaSimples(ModBlocks.NIHIL_SHORT_GRASS, "nihil_short_grass", "nihil");
+        plantaSimples(ModBlocks.NIHIL_BUSH, "nihil_bush", "nihil");
 
-        plantaSimples(ModBlocks.NIHIL_SMALL_HERB, "nihil_small_herb", "nihil");
+        plantaSimples(ModBlocks.NIHIL_HERB, "nihil_herb", "nihil");
 
         plantaSimples(ModBlocks.NIHIL_SPROUT, "nihil_sprout", "nihil");
 

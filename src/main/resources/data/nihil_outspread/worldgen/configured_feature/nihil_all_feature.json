@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:simple_random_selector",
+  "config": {
+    "features": [
+      {
+        "feature": "nihil_outspread:nihil_bush_feature",
+        "placement": []
+      },
+      {
+        "feature": "nihil_outspread:nihil_fern_feature",
+        "placement": []
+      },
+      {
+        "feature": "nihil_outspread:nihil_herb_feature",
+        "placement": []
+      },
+      {
+        "feature": "nihil_outspread:nihil_sprout_feature",
+        "placement": []
+      },
+      {
+        "feature": "nihil_outspread:nihil_petals_feature",
+        "placement": []
+      }
+    ]
+  }
+}

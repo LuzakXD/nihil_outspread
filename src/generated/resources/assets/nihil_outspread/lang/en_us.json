@@ -34,12 +34,12 @@
   "block.nihil_outspread.graphite_slab": "Graphite Slab",
   "block.nihil_outspread.graphite_stairs": "Graphite Stairs",
   "block.nihil_outspread.graphite_wall": "Graphite Wall",
+  "block.nihil_outspread.nihil_bush": "Nihil Bush",
   "block.nihil_outspread.nihil_dirt": "Nihil Dirt",
   "block.nihil_outspread.nihil_fern": "Nihil Fern",
   "block.nihil_outspread.nihil_grass_block": "Nihil Grass Block",
+  "block.nihil_outspread.nihil_herb": "Nihil Herb",
   "block.nihil_outspread.nihil_petals": "Nihil Petals",
-  "block.nihil_outspread.nihil_short_grass": "Nihil Short Grass",
-  "block.nihil_outspread.nihil_small_herb": "Nihil Small Herb",
   "block.nihil_outspread.nihil_sprout": "Nihil Sprout",
   "block.nihil_outspread.nilight": "Nilight",
   "block.nihil_outspread.nilight_brick_slab": "Nilight Brick Slab",
@@ -102,5 +102,6 @@
   "itemGroup.abyss": "Abyss",
   "itemGroup.hive": "Hive",
   "itemGroup.nihil": "Nihil",
+  "itemGroup.nihil_naturals": "Nihil naturals",
   "subtitles.nihil_outspread.honey_gate_click": "Honey redstone gate click"
 }

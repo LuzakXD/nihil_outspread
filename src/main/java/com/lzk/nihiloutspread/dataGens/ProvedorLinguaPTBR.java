@@ -15,6 +15,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.nihil", "Nihil");
+        add("itemGroup.nihil_naturals", "Nihil naturais");
         add("itemGroup.abyss", "Abismo");
         add("itemGroup.hive", "Colmeia");
 
@@ -23,10 +24,11 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("block.nihil_outspread.checker_grass_block", "Bloco de Grama Xadrez");
 
         add("block.nihil_outspread.nihil_fern", "Samambaia Nihil");
-        add("block.nihil_outspread.nihil_short_grass", "Grama Nihil Baixa");
-        add("block.nihil_outspread.nihil_small_herb", "Pequena Erva Nihil");
+        add("block.nihil_outspread.nihil_bush", "Arbusto Nihil");
+        add("block.nihil_outspread.nihil_herb", "Erva Nihil");
 
         add("block.nihil_outspread.nihil_sprout", "Broto Nihil");
+        add("block.nihil_outspread.dread_sprout", "Broto Terrível");
 
         add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
 
