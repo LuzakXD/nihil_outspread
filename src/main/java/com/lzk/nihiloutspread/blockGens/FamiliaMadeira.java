@@ -21,10 +21,11 @@ public class FamiliaMadeira extends FamiliaAbstrata {
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase,
+            String sufixo,
             BlockBehaviour.Properties props,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase);
+        super(reg, regItem, blocoBase, sufixo);
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
         this.variantesBase = vBase.isEmpty() ? null : registrarVariantes(nomeBase, base, props, vBase);

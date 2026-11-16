@@ -24,6 +24,7 @@ public abstract class FamiliaAbstrata {
     public final DeferredBlock<Block> base;
     public final String nomeCompleto;
     public final String nomeBase;
+    public final String sufixo;
 
     protected final DeferredRegister.Blocks registro;
     protected final DeferredRegister.Items registroItem;
@@ -38,18 +39,22 @@ public abstract class FamiliaAbstrata {
     public final Map<TipoMaterial, DeferredBlock<ButtonBlock>> botoes = new EnumMap<>(TipoMaterial.class);
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
-            DeferredBlock<Block> blocoBase) {
+            DeferredBlock<Block> blocoBase, String sufixo) {
 
         this.registro = reg;
         this.registroItem = regItem;
         this.base = blocoBase;
         materiais.put(TipoMaterial.BASE, base);
         this.nomeCompleto = blocoBase.getId().getPath();
+        this.sufixo = sufixo;
 
-        String limpo = nomeCompleto;
-        if (limpo.endsWith("_block"))
-            limpo = limpo.substring(0, limpo.length() - "_block".length());
-        this.nomeBase = limpo;
+        this.nomeBase = limparNome(nomeCompleto, sufixo);
+    }
+
+    public String limparNome(String nome, String sufixo) {
+        if (nome.endsWith(sufixo))
+            nome = nome.substring(0, nome.length() - sufixo.length());
+        return nome;
     }
 
     protected DeferredBlock<Block> registrarMaterial(TipoMaterial tipo, String nome,

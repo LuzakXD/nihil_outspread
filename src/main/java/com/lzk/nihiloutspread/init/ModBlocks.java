@@ -67,6 +67,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         NILIGHT,
+                        "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
                         false,
                         Map.of(
@@ -103,6 +104,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         GRAPHITE,
+                        "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
                         true,
                         Map.of(
@@ -142,6 +144,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         VELVESTONE,
+                        "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1.5F),
                         Map.of(
                                         TipoMaterial.BASE,
@@ -170,6 +173,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         COTTONITE,
+                        "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
                         true,
                         Map.of(
@@ -276,6 +280,7 @@ public class ModBlocks {
         public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
                         ModItems.ITEMS,
                         HONEYCOMB_BASE,
+                        "_block",
                         BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
                         true,
                         Map.of(
@@ -299,6 +304,7 @@ public class ModBlocks {
         public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
                         ModItems.ITEMS,
                         ABYSSAL_MOSS_BLOCK,
+                        "_block",
                         BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.PLANT)
                                         .strength(0.1f)
@@ -355,6 +361,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         ABYSSAL_STONE,
+                        "",
                         BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.METAL)
                                         .sound(SoundType.DEEPSLATE)
@@ -392,5 +399,29 @@ public class ModBlocks {
                                         .instabreak()
                                         .sound(SoundType.STONE)
                                         .pushReaction(PushReaction.DESTROY)));
+
+        // Geleria (Glaceir be like)
+
+        public static final DeferredBlock<Block> NYVERIN_PLANKS = registrarBlocoItem("nyverin_planks",
+                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(2,
+                                        3)));
+
+        public static final FamiliaMadeira NYVERIN_BLOCK_FAMILY = new FamiliaMadeira(
+                        BLOCKS,
+                        ModItems.ITEMS,
+                        NYVERIN_PLANKS,
+                        "_planks",
+                        BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
+                        Map.of(
+                                        TipoMaterial.BASE,
+                                        Set.of(
+                                                        TipoVariante.ESCADA,
+                                                        TipoVariante.LAJE,
+                                                        TipoVariante.CERCA,
+                                                        TipoVariante.PORTAO,
+                                                        TipoVariante.BOTAO,
+                                                        TipoVariante.PORTA,
+                                                        TipoVariante.PLACAPRESSAO,
+                                                        TipoVariante.FOLHA)));
 
 }

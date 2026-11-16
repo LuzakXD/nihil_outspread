@@ -56,6 +56,8 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropSelf(ModBlocks.XOR_GATE.get());
         dropSelf(ModBlocks.OR_GATE.get());
         dropSelf(ModBlocks.AND_GATE.get());
+
+        lootDaFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, true);
     }
 
     private void lootDaFamilia(FamiliaPedra familia, boolean temBase) {
@@ -153,6 +155,44 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
                 if (familia.variantesLiso.muro() != null)
                     dropSelf(familia.variantesLiso.muro().get());
             }
+        }
+
+        for (var bloco : familia.botoes.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var bloco : familia.pressoes.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var bloco : familia.talhados.values()) {
+            dropSelf(bloco.get());
+        }
+
+        for (var pilar : familia.pilares.values()) {
+            dropSelf(pilar.get());
+        }
+    }
+
+    private void lootDaFamilia(FamiliaMadeira familia, boolean temBase) {
+        if (temBase) {
+            dropSelf(familia.base.get());
+        }
+
+        if (familia.variantesBase != null) {
+            if (familia.variantesBase.escada() != null) {
+                dropSelf(familia.variantesBase.escada().get());
+            }
+            if (familia.variantesBase.laje() != null) {
+                add(familia.variantesBase.laje().get(), createSlabItemTable(familia.variantesBase.laje().get()));
+            }
+            if (familia.variantesBase.muro() != null) {
+                dropSelf(familia.variantesBase.muro().get());
+            }
+        }
+
+        for (var bloco : familia.rachados.values()) {
+            dropSelf(bloco.get());
         }
 
         for (var bloco : familia.botoes.values()) {

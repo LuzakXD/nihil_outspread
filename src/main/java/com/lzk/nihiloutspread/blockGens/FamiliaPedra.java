@@ -35,11 +35,12 @@ public class FamiliaPedra extends FamiliaAbstrata {
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase,
+            String sufixo,
             BlockBehaviour.Properties props,
             Boolean sufixoPolido,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase);
+        super(reg, regItem, blocoBase, sufixo);
 
         if (composicao.containsKey(TipoMaterial.LADRILHOS)
                 && !composicao.containsKey(TipoMaterial.TIJOLOS)) {
