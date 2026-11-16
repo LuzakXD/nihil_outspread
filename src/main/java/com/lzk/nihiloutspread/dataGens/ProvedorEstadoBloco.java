@@ -290,7 +290,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
 
         // BOTAO
-        for (var entry : familia.bototes.entrySet()) {
+        for (var entry : familia.botoes.entrySet()) {
             DeferredBlock<Block> material = familia.materialDe(entry.getKey());
             if (material != null) {
                 String nomeMaterial = material.getId().getPath();
@@ -401,7 +401,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
 
         // BOTAO
-        for (var entry : familia.bototes.entrySet()) {
+        for (var entry : familia.botoes.entrySet()) {
             DeferredBlock<Block> material = familia.materialDe(entry.getKey());
             if (material != null) {
                 String nomeMaterial = material.getId().getPath();

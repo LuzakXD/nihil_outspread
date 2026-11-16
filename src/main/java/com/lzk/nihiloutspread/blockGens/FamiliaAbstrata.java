@@ -35,7 +35,7 @@ public abstract class FamiliaAbstrata {
     public final Map<TipoMaterial, DeferredBlock<Block>> rachados = new EnumMap<>(TipoMaterial.class);
     public final Map<TipoMaterial, DeferredBlock<RotatedPillarBlock>> pilares = new EnumMap<>(TipoMaterial.class);
     public final Map<TipoMaterial, DeferredBlock<PressurePlateBlock>> pressoes = new EnumMap<>(TipoMaterial.class);
-    public final Map<TipoMaterial, DeferredBlock<ButtonBlock>> bototes = new EnumMap<>(TipoMaterial.class);
+    public final Map<TipoMaterial, DeferredBlock<ButtonBlock>> botoes = new EnumMap<>(TipoMaterial.class);
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase) {

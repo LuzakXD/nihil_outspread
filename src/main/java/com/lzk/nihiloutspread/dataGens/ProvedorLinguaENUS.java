@@ -119,7 +119,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
                     familia.sufixoPolido) + " Pressure Plate");
 
-        for (var entry : familia.bototes.entrySet())
+        for (var entry : familia.botoes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
                     familia.sufixoPolido) + " Button");
     }
@@ -159,7 +159,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         for (var entry : familia.pressoes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial, false) + " Pressure Plate");
 
-        for (var entry : familia.bototes.entrySet())
+        for (var entry : familia.botoes.entrySet())
             addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
                     false) + " Button");
     }

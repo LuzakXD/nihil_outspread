@@ -117,7 +117,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 tag(BlockTags.STONE_PRESSURE_PLATES).add(bloco.get());
             }
 
-            for (var bloco : familia.bototes.values()) {
+            for (var bloco : familia.botoes.values()) {
                 tag(BlockTags.BUTTONS).add(bloco.get());
                 tag(BlockTags.STONE_BUTTONS).add(bloco.get());
             }
@@ -127,7 +127,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 tag(BlockTags.WOODEN_PRESSURE_PLATES).add(bloco.get());
             }
 
-            for (var bloco : familia.bototes.values()) {
+            for (var bloco : familia.botoes.values()) {
                 tag(BlockTags.BUTTONS).add(bloco.get());
                 tag(BlockTags.WOODEN_BUTTONS).add(bloco.get());
             }

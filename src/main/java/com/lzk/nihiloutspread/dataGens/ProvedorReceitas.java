@@ -317,7 +317,7 @@ public class ProvedorReceitas extends RecipeProvider {
                 }
 
                 // Botões
-                for (var entry : familia.bototes.entrySet()) {
+                for (var entry : familia.botoes.entrySet()) {
                         DeferredBlock<Block> material = familia.materialDe(entry.getKey());
                         if (material != null) {
                                 buttonBuilder(entry.getValue().get(), Ingredient.of(material.get()))

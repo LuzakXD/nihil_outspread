@@ -74,7 +74,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
         }
 
         if (vBase.contains(TipoVariante.BOTAO)) {
-            bototes.put(TipoMaterial.BASE, registrarBotao(nomeBase + "_button", props, BlockSetType.STONE));
+            botoes.put(TipoMaterial.BASE, registrarBotao(nomeBase + "_button", props, BlockSetType.STONE));
         }
 
         if (vBase.contains(TipoVariante.TALHADO)) {
@@ -111,7 +111,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             }
 
             if (vPolido.contains(TipoVariante.BOTAO)) {
-                bototes.put(TipoMaterial.POLIDO, registrarBotao(
+                botoes.put(TipoMaterial.POLIDO, registrarBotao(
                         "polished_" + nomeBase + "_button", props, BlockSetType.STONE));
             }
             if (vPolido.contains(TipoVariante.TALHADO)) {

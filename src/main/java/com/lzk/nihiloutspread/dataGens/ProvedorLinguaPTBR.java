@@ -107,7 +107,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             addBlock(entry.getValue(), "Placa de Pressão de "
                     + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
 
-        for (var entry : familia.bototes.entrySet())
+        for (var entry : familia.botoes.entrySet())
             addBlock(entry.getValue(),
                     "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
     }
@@ -149,7 +149,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                     "Placa de Pressão de "
                             + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
 
-        for (var entry : familia.bototes.entrySet())
+        for (var entry : familia.botoes.entrySet())
             addBlock(entry.getValue(),
                     "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
     }

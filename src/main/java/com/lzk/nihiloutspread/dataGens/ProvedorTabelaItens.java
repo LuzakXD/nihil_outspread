@@ -156,7 +156,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             }
         }
 
-        for (var bloco : familia.bototes.values()) {
+        for (var bloco : familia.botoes.values()) {
             dropSelf(bloco.get());
         }
 
@@ -242,7 +242,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             }
         }
 
-        for (var bloco : familia.bototes.values()) {
+        for (var bloco : familia.botoes.values()) {
             dropSelf(bloco.get());
         }
 
