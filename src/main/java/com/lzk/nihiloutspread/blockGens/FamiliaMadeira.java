@@ -6,6 +6,7 @@ import java.util.Set;
 import net.minecraft.world.level.block.Block;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -30,11 +31,11 @@ public class FamiliaMadeira extends FamiliaAbstrata {
 
         if (vBase.contains(TipoVariante.PLACAPRESSAO)) {
             pressoes.put(TipoMaterial.BASE,
-                    registrarPlacaPressao(nomeBase + "_pressure_plate", props, BlockSetType.WOOD));
+                    registrarPlacaPressao(nomeBase + "_pressure_plate", props, BlockSetType.OAK));
         }
 
         if (vBase.contains(TipoVariante.BOTAO)) {
-            botoes.put(TipoMaterial.BASE, registrarBotao(nomeBase + "_button", props, BlockSetType.WOOD));
+            botoes.put(TipoMaterial.BASE, registrarBotao(nomeBase + "_button", props, BlockSetType.OAK));
         }
 
         if (composicao.containsKey(TipoMaterial.MOSAICO)) {
