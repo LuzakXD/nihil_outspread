@@ -19,6 +19,8 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("itemGroup.abyss", "Abismo");
         add("itemGroup.hive", "Colmeia");
 
+        // TODO: fazer tudo virar "addBlock()" _pq eu sou assim???_
+
         add("block.nihil_outspread.nihil_dirt", "Terra Nihil");
         add("block.nihil_outspread.nihil_grass_block", "Bloco de Grama Nihil");
         add("block.nihil_outspread.checker_grass_block", "Bloco de Grama Xadrez");

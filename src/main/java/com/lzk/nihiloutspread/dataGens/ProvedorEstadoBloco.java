@@ -564,12 +564,17 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             }
         }
         // DESCASCADOS
-        // TODO: fix the "stripped_name_wood" case
         for (var entry : familia.descascados.entrySet()) {
             String nomeDescascado = entry.getValue().getId().getPath();
+            if (nomeDescascado.endsWith("_log")) {
+                nomeDescascado = nomeDescascado.substring(0, nomeDescascado.length() - "_log".length());
+            } else if (nomeDescascado.endsWith("_wood")) {
+                nomeDescascado = nomeDescascado.substring(0, nomeDescascado.length() - "_wood".length());
+            }
+            // put log again so we can get the right texture
             axisBlock(entry.getValue().get(),
-                    textura(nomeDescascado, categoria),
-                    textura(nomeDescascado + "_top", categoria));
+                    textura(nomeDescascado + "_log", categoria),
+                    textura(nomeDescascado + "_log_top", categoria));
             modeloItemPadrao(entry.getValue());
         }
     }

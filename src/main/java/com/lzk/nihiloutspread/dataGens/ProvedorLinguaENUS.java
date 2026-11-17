@@ -19,28 +19,27 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("itemGroup.abyss", "Abyss");
         add("itemGroup.hive", "Hive");
 
-        // TODO: make all of this bullshit use "addBlock" instead of key per key
-        add("block.nihil_outspread.nihil_dirt", "Nihil Dirt");
-        add("block.nihil_outspread.nihil_grass_block", "Nihil Grass Block");
-        add("block.nihil_outspread.checker_grass_block", "Checker Grass Block");
+        addBlock(ModBlocks.NIHIL_DIRT, "Nihil Dirt");
+        addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Nihil Grass Block");
+        addBlock(ModBlocks.CHECKER_GRASS_BLOCK, "Checker Grass Block");
 
-        add("block.nihil_outspread.nihil_fern", "Nihil Fern");
-        add("block.nihil_outspread.nihil_bush", "Nihil Bush");
-        add("block.nihil_outspread.nihil_herb", "Nihil Herb");
+        addBlock(ModBlocks.NIHIL_FERN, "Nihil Fern");
+        addBlock(ModBlocks.NIHIL_BUSH, "Nihil Bush");
+        addBlock(ModBlocks.NIHIL_HERB, "Nihil Herb");
 
-        add("block.nihil_outspread.nihil_petals", "Nihil Petals");
-        add("block.nihil_outspread.nihil_sprout", "Nihil Sprout");
-        add("block.nihil_outspread.dread_sprout", "Dread Sprout");
+        addBlock(ModBlocks.NIHIL_PETALS, "Nihil Petals");
+        addBlock(ModBlocks.NIHIL_SPROUT, "Nihil Sprout");
+        addBlock(ModBlocks.DREAD_SPROUT, "Dread Sprout");
 
-        add("block.nihil_outspread.velvet_sand", "Velvet Sand");
+        addBlock(ModBlocks.VELVET_SAND, "Velvet Sand");
 
-        add("block.nihil_outspread.abyssal_moss_block", "Abyssal Moss Block");
-        add("block.nihil_outspread.abyssal_floral_moss_block", "Abyssal Floral Moss Block");
+        addBlock(ModBlocks.ABYSSAL_MOSS_BLOCK, "Abyssal Moss Block");
+        addBlock(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "Abyssal Floral Moss Block");
 
-        add("block.nihil_outspread.abyssal_moss_carpet", "Abyssal Moss Carpet");
-        add("block.nihil_outspread.abyssal_floral_moss_carpet", "Abyssal Floral Moss Carpet");
+        addBlock(ModBlocks.ABYSSAL_MOSS_CARPET, "Abyssal Moss Carpet");
+        addBlock(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "Abyssal Floral Moss Carpet");
 
-        add("block.nihil_outspread.abyssal_mossy_stone", "Abyssal Mossy Stone");
+        addBlock(ModBlocks.ABYSSAL_MOSSY_STONE, "Abyssal Mossy Stone");
 
         traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
         traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);

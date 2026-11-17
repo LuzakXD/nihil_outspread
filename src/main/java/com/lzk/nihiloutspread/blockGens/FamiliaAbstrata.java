@@ -123,13 +123,15 @@ public abstract class FamiliaAbstrata {
         }
 
         if (variantes.contains(TipoVariante.PORTA)) {
-            porta = registro.register(prefixo + "_door", () -> new DoorBlock(BlockSetType.OAK, props));
+            porta = registro.register(prefixo + "_door", () -> new DoorBlock(BlockSetType.OAK, props
+                    .noOcclusion()));
             registroItem.registerSimpleBlockItem(prefixo + "_door", porta);
             todosOsBlocos.add(porta);
         }
 
         if (variantes.contains(TipoVariante.ALCAPAO)) {
-            alcapao = registro.register(prefixo + "_trapdoor", () -> new TrapDoorBlock(BlockSetType.OAK, props));
+            alcapao = registro.register(prefixo + "_trapdoor", () -> new TrapDoorBlock(BlockSetType.OAK, props
+                    .noOcclusion()));
             registroItem.registerSimpleBlockItem(prefixo + "_trapdoor", alcapao);
             todosOsBlocos.add(alcapao);
         }
