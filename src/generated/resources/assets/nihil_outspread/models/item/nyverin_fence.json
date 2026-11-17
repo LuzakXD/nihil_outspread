@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "nihil_outspread:block/glacier/nyverin_planks"
+  }
+}

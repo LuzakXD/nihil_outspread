@@ -35,6 +35,8 @@ public class ProvedorReceitas extends RecipeProvider {
 
                 carpet(output, ModBlocks.ABYSSAL_MOSS_CARPET, ModBlocks.ABYSSAL_MOSS_BLOCK);
                 carpet(output, ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK);
+
+                // TODO: recipes for velvestone (sand family) & nyverin (wood family)
         }
 
         private void receitaVariantes(DeferredBlock<? extends Block> escada,

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "nihil_outspread:block/glacier/nyverin_planks",
+    "side": "nihil_outspread:block/glacier/nyverin_planks",
+    "top": "nihil_outspread:block/glacier/nyverin_planks"
+  }
+}

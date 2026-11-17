@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/nyverin_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/nyverin_planks"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/nyverin_slab_top"
+    }
+  }
+}

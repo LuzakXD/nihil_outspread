@@ -421,7 +421,15 @@ public class ModBlocks {
                                                         TipoVariante.PORTAO,
                                                         TipoVariante.BOTAO,
                                                         TipoVariante.PORTA,
-                                                        TipoVariante.PLACAPRESSAO,
-                                                        TipoVariante.FOLHA)));
+                                                        TipoVariante.ALCAPAO,
+                                                        TipoVariante.PLACAPRESSAO),
+                                        TipoMaterial.TRONCO,
+                                        Set.of(
+                                                        TipoVariante.DESCASCADO),
+                                        TipoMaterial.MADEIRA,
+                                        Set.of(
+                                                        TipoVariante.DESCASCADO),
+                                        TipoMaterial.FOLHA,
+                                        Set.of()));
 
 }

@@ -75,6 +75,8 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 "abyss", true,
                 NihilGrassBlock.SNOWY);
 
+        gerarModelosDaFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, true, "glacier");
+
     }
 
     private void blocoSimples(DeferredBlock<? extends Block> bloco, String Textura, String categoria) {
@@ -122,6 +124,10 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         }
     }
 
+    private ResourceLocation texturaItem(String nome) {
+        return modLoc("item/" + nome);
+    }
+
     private void modeloItemPadrao(DeferredBlock<? extends Block> bloco) {
         itemModels().withExistingParent(bloco.getId().getPath(),
                 modLoc("block/" + bloco.getId().getPath()));
@@ -137,6 +143,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             String nomeTexturaMeio,
             String nomeTexturaBaixo,
             String nomeTexturaCima,
+            String nomeTextura,
             Variantes variantes,
             boolean lajeTexturaUnica,
             String categoria) {
@@ -177,6 +184,44 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             wallBlock(variantes.muro().get(), textura(nomeTexturaMeio, categoria));
             modeloItemMuro(variantes.muro(), nomeTexturaMeio, categoria);
         }
+
+        if (variantes.cerca() != null) {
+            String nomeCerca = variantes.cerca().getId().getPath();
+            fenceBlock(variantes.cerca().get(), textura(nomeTexturaMeio, categoria));
+            itemModels().withExistingParent(nomeCerca, mcLoc("block/fence_inventory"))
+                    .texture("texture", textura(nomeTexturaMeio, categoria));
+        }
+
+        if (variantes.portao() != null) {
+            fenceGateBlock(variantes.portao().get(), textura(nomeTexturaMeio, categoria));
+            modeloItemPadrao(variantes.portao());
+        }
+
+        if (variantes.porta() != null) {
+            doorBlockWithRenderType(
+                    variantes.porta().get(),
+                    textura(nomeTextura + "_door_bottom", categoria),
+                    textura(nomeTextura + "_door_top", categoria),
+                    "cutout");
+
+            itemModels().singleTexture(
+                    variantes.porta().getId().getPath(),
+                    mcLoc("item/generated"),
+                    "layer0",
+                    texturaItem(nomeTextura + "_door"));
+        }
+
+        if (variantes.alcapao() != null) {
+            trapdoorBlockWithRenderType(
+                    variantes.alcapao().get(),
+                    textura(nomeTextura + "_trapdoor", categoria),
+                    true,
+                    "cutout");
+
+            itemModels().withExistingParent(
+                    variantes.alcapao().getId().getPath(),
+                    modLoc("block/" + variantes.alcapao().getId().getPath() + "_bottom"));
+        }
     }
 
     private void gerarModelosDaFamilia(FamiliaPedra familia, boolean temBase,
@@ -193,6 +238,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 familia.nomeCompleto,
                 familia.nomeCompleto,
                 familia.nomeCompleto,
+                familia.nomeBase,
                 familia.variantesBase, false, categoria);
 
         // POLIDO
@@ -203,6 +249,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.polido);
 
             gerarModelosVariantes(familia.polido,
+                    familia.polido.getId().getPath(),
                     familia.polido.getId().getPath(),
                     familia.polido.getId().getPath(),
                     familia.polido.getId().getPath(),
@@ -221,6 +268,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.tijolos.getId().getPath(),
                     familia.tijolos.getId().getPath(),
                     familia.tijolos.getId().getPath(),
+                    familia.tijolos.getId().getPath(),
                     familia.variantesTijolos,
                     false, categoria);
         }
@@ -233,6 +281,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.ladrilhos);
 
             gerarModelosVariantes(familia.ladrilhos,
+                    familia.ladrilhos.getId().getPath(),
                     familia.ladrilhos.getId().getPath(),
                     familia.ladrilhos.getId().getPath(),
                     familia.ladrilhos.getId().getPath(),
@@ -251,6 +300,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.placas.getId().getPath(),
                     familia.placas.getId().getPath(),
                     familia.placas.getId().getPath(),
+                    familia.placas.getId().getPath(),
                     familia.variantesPlacas,
                     false, categoria);
         }
@@ -263,6 +313,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.liso);
 
             gerarModelosVariantes(familia.liso,
+                    familia.liso.getId().getPath(),
                     familia.liso.getId().getPath(),
                     familia.liso.getId().getPath(),
                     familia.liso.getId().getPath(),
@@ -335,6 +386,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 familia.nomeCompleto,
                 familia.nomeCompleto + "_bottom",
                 familia.nomeCompleto + "_top",
+                familia.nomeBase,
                 familia.variantesBase, false, categoria);
 
         // PEDREGOSO
@@ -349,6 +401,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.pedregoso);
 
             gerarModelosVariantes(familia.pedregoso,
+                    familia.nomeCompleto + "_bottom",
                     familia.nomeCompleto + "_bottom",
                     familia.nomeCompleto + "_bottom",
                     familia.nomeCompleto + "_bottom",
@@ -370,6 +423,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.cortado.getId().getPath(),
                     familia.nomeCompleto + "_top",
                     familia.nomeCompleto + "_top",
+                    familia.nomeCompleto + "_top",
                     familia.variantesCortado,
                     false, categoria);
         }
@@ -383,6 +437,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             modeloItemPadrao(familia.liso);
 
             gerarModelosVariantes(familia.liso,
+                    nomeTextura,
                     nomeTextura,
                     nomeTextura,
                     nomeTextura,
@@ -434,6 +489,87 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
             axisBlock(entry.getValue().get(),
                     textura(nomePilar + "_side", categoria),
                     textura(nomePilar + "_top", categoria));
+            modeloItemPadrao(entry.getValue());
+        }
+    }
+
+    private void gerarModelosDaFamilia(FamiliaMadeira familia, boolean temBase,
+            String categoria) {
+
+        // BASE
+        if (temBase) {
+            simpleBlock(familia.base.get(),
+                    models().cubeAll(familia.base.getId().getPath(), textura(familia.nomeCompleto, categoria)));
+            modeloItemPadrao(familia.base);
+        }
+
+        gerarModelosVariantes(familia.base,
+                familia.nomeCompleto,
+                familia.nomeCompleto,
+                familia.nomeCompleto,
+                familia.nomeBase,
+                familia.variantesBase, false, categoria);
+
+        // TRONCO
+        if (familia.tronco != null) {
+            axisBlock(familia.tronco.get(),
+                    textura(familia.nomeBase + "_log", categoria),
+                    textura(familia.nomeBase + "_log_top", categoria));
+            modeloItemPadrao(familia.tronco);
+        }
+
+        // MADEIRA
+        if (familia.madeira != null) {
+            axisBlock(familia.madeira.get(),
+                    textura(familia.nomeBase + "_log", categoria),
+                    textura(familia.nomeBase + "_log", categoria));
+            modeloItemPadrao(familia.madeira);
+        }
+
+        // MOSAICO
+        if (familia.mosaico != null) {
+            String nomeMosaico = familia.mosaico.getId().getPath();
+            simpleBlock(familia.mosaico.get(),
+                    models().cubeAll(nomeMosaico, textura(nomeMosaico, categoria)));
+            modeloItemPadrao(familia.mosaico);
+
+            gerarModelosVariantes(familia.mosaico,
+                    familia.mosaico.getId().getPath(),
+                    familia.mosaico.getId().getPath(),
+                    familia.mosaico.getId().getPath(),
+                    familia.mosaico.getId().getPath(),
+                    familia.variantesMosaico,
+                    false, categoria);
+        }
+
+        // PLACA DE PRESSAO
+        for (var entry : familia.pressoes.entrySet()) {
+            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
+            if (material != null) {
+                String nomeMaterial = material.getId().getPath();
+                pressurePlateBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
+                modeloItemPadrao(entry.getValue());
+            }
+        }
+
+        // BOTAO
+        for (var entry : familia.botoes.entrySet()) {
+            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
+            if (material != null) {
+                String nomeMaterial = material.getId().getPath();
+                buttonBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
+                itemModels()
+                        .withExistingParent(entry.getValue().getId().getPath(), mcLoc("block/button_inventory"))
+                        .texture("texture", textura(nomeMaterial, categoria));
+            }
+        }
+        // DESCASCADOS
+        // TODO: fix the "stripped_name_wood" case
+        for (var entry : familia.descascados.entrySet()) {
+            String nomeDescascado = entry.getValue().getId().getPath();
+            axisBlock(entry.getValue().get(),
+                    textura(nomeDescascado, categoria),
+                    textura(nomeDescascado + "_top", categoria));
             modeloItemPadrao(entry.getValue());
         }
     }

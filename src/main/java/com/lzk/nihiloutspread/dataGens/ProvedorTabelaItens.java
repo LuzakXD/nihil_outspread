@@ -189,10 +189,31 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             if (familia.variantesBase.muro() != null) {
                 dropSelf(familia.variantesBase.muro().get());
             }
+
+            if (familia.variantesBase.cerca() != null) {
+                dropSelf(familia.variantesBase.cerca().get());
+            }
+            if (familia.variantesBase.portao() != null) {
+                dropSelf(familia.variantesBase.portao().get());
+            }
+            if (familia.variantesBase.porta() != null) {
+                dropSelf(familia.variantesBase.porta().get());
+            }
+            if (familia.variantesBase.alcapao() != null) {
+                dropSelf(familia.variantesBase.alcapao().get());
+            }
         }
 
-        for (var bloco : familia.rachados.values()) {
-            dropSelf(bloco.get());
+        if (familia.tronco != null) {
+            dropSelf(familia.tronco.get());
+        }
+
+        if (familia.madeira != null) {
+            dropSelf(familia.madeira.get());
+        }
+
+        if (familia.folha != null) {
+            dropWhenSilkTouch(familia.folha.get());
         }
 
         for (var bloco : familia.botoes.values()) {
@@ -203,11 +224,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
             dropSelf(bloco.get());
         }
 
-        for (var bloco : familia.talhados.values()) {
-            dropSelf(bloco.get());
-        }
-
-        for (var pilar : familia.pilares.values()) {
+        for (var pilar : familia.descascados.values()) {
             dropSelf(pilar.get());
         }
     }

@@ -9,13 +9,18 @@ import java.util.Set;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -31,6 +36,8 @@ public abstract class FamiliaAbstrata {
 
     protected final List<DeferredBlock<? extends Block>> todosOsBlocos = new ArrayList<>();
     protected final Map<TipoMaterial, DeferredBlock<Block>> materiais = new EnumMap<>(TipoMaterial.class);
+
+    public final Map<TipoMaterial, DeferredBlock<RotatedPillarBlock>> descascados = new EnumMap<>(TipoMaterial.class);
 
     public final Map<TipoMaterial, DeferredBlock<Block>> talhados = new EnumMap<>(TipoMaterial.class);
     public final Map<TipoMaterial, DeferredBlock<Block>> rachados = new EnumMap<>(TipoMaterial.class);
@@ -76,9 +83,15 @@ public abstract class FamiliaAbstrata {
             DeferredBlock<Block> blocoBaseDaVariante,
             BlockBehaviour.Properties props,
             Set<TipoVariante> variantes) {
+
         DeferredBlock<StairBlock> escada = null;
         DeferredBlock<SlabBlock> laje = null;
         DeferredBlock<WallBlock> muro = null;
+
+        DeferredBlock<FenceBlock> cerca = null;
+        DeferredBlock<FenceGateBlock> portao = null;
+        DeferredBlock<DoorBlock> porta = null;
+        DeferredBlock<TrapDoorBlock> alcapao = null;
 
         if (variantes.contains(TipoVariante.ESCADA)) {
             escada = registro.register(prefixo + "_stairs",
@@ -97,7 +110,31 @@ public abstract class FamiliaAbstrata {
             todosOsBlocos.add(muro);
         }
 
-        return new Variantes(escada, laje, muro, null, null, null, null, null);
+        if (variantes.contains(TipoVariante.CERCA)) {
+            cerca = registro.register(prefixo + "_fence", () -> new FenceBlock(props));
+            registroItem.registerSimpleBlockItem(prefixo + "_fence", cerca);
+            todosOsBlocos.add(cerca);
+        }
+
+        if (variantes.contains(TipoVariante.PORTAO)) {
+            portao = registro.register(prefixo + "_fence_gate", () -> new FenceGateBlock(WoodType.OAK, props));
+            registroItem.registerSimpleBlockItem(prefixo + "_fence_gate", portao);
+            todosOsBlocos.add(portao);
+        }
+
+        if (variantes.contains(TipoVariante.PORTA)) {
+            porta = registro.register(prefixo + "_door", () -> new DoorBlock(BlockSetType.OAK, props));
+            registroItem.registerSimpleBlockItem(prefixo + "_door", porta);
+            todosOsBlocos.add(porta);
+        }
+
+        if (variantes.contains(TipoVariante.ALCAPAO)) {
+            alcapao = registro.register(prefixo + "_trapdoor", () -> new TrapDoorBlock(BlockSetType.OAK, props));
+            registroItem.registerSimpleBlockItem(prefixo + "_trapdoor", alcapao);
+            todosOsBlocos.add(alcapao);
+        }
+
+        return new Variantes(escada, laje, muro, porta, alcapao, cerca, portao);
     }
 
     protected DeferredBlock<RotatedPillarBlock> registrarPilar(String nome, BlockBehaviour.Properties props) {

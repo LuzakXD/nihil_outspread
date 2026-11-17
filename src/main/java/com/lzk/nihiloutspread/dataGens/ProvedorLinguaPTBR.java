@@ -188,6 +188,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s;
                 case TRONCO -> null;
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         } else {
             return switch (tipo) {
@@ -202,9 +203,26 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial;
                 case TRONCO -> "Tronco de " + nomeMaterial;
                 case MADEIRA -> "Madeira de " + nomeMaterial;
+                case FOLHA -> "Folhas de " + nomeMaterial;
             };
         }
+    }
 
+    private String nomeDoMaterialDescascados(TipoMaterial tipo, String nomeMaterial, Genero genero) {
+        return switch (tipo) {
+            case BASE -> null;
+            case PEDREGOSO -> null;
+            case LISO -> null;
+            case CORTADO -> null;
+            case POLIDO -> null;
+            case TIJOLOS -> null;
+            case LADRILHOS -> null;
+            case PLACAS -> null;
+            case MOSAICO -> null;
+            case TRONCO -> "Tronco de " + nomeMaterial + " Descascado";
+            case MADEIRA -> "Madeira de " + nomeMaterial + " Descascada";
+            case FOLHA -> null;
+        };
     }
 
     private String nomeDoMaterialTalhado(TipoMaterial tipo, String nomeMaterial, Genero genero, Boolean sufixoPolido) {
@@ -222,6 +240,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Talhados";
                 case TRONCO -> null;
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         } else {
             return switch (tipo) {
@@ -236,6 +255,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial + " Talhados";
                 case TRONCO -> null;
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         }
 
@@ -256,6 +276,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Rachados";
                 case TRONCO -> null;
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         } else {
             return switch (tipo) {
@@ -270,6 +291,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                 case MOSAICO -> "Mosaico de " + nomeMaterial + " Rachados";
                 case TRONCO -> "Tronco de " + nomeMaterial + " Rachados";
                 case MADEIRA -> "Madeira de " + nomeMaterial + " Rachados";
+                case FOLHA -> null;
             };
         }
 

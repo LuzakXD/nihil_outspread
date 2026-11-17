@@ -7,6 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -120,6 +121,18 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.OR_GATE.get());
                                                 output.accept(ModBlocks.AND_GATE.get());
                                                 output.accept(ModBlocks.XOR_GATE.get());
+
+                                        }).build());
+
+        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GLACIER = CREATIVE_MODE_TABS
+                        .register("glacier", () -> CreativeModeTab.builder()
+                                        .title(Component.translatable("itemGroup.glacier"))
+                                        .icon(() -> new ItemStack(Blocks.SNOW))
+                                        .displayItems((parameters, output) -> {
+
+                                                for (Item item : ModBlocks.NYVERIN_BLOCK_FAMILY.devolverItens(true)) {
+                                                        output.accept(item);
+                                                }
 
                                         }).build());
 

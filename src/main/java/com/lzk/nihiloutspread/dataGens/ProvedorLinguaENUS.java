@@ -19,6 +19,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("itemGroup.abyss", "Abyss");
         add("itemGroup.hive", "Hive");
 
+        // TODO: make all of this bullshit use "addBlock" instead of key per key
         add("block.nihil_outspread.nihil_dirt", "Nihil Dirt");
         add("block.nihil_outspread.nihil_grass_block", "Nihil Grass Block");
         add("block.nihil_outspread.checker_grass_block", "Checker Grass Block");
@@ -50,9 +51,11 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
         traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
 
-        add(ModBlocks.XOR_GATE.get(), "XOR Redstone Gate");
-        add(ModBlocks.OR_GATE.get(), "OR Redstone Gate");
-        add(ModBlocks.AND_GATE.get(), "AND Redstone Gate");
+        // TODO: add translation for wood family
+
+        addBlock(ModBlocks.XOR_GATE, "XOR Redstone Gate");
+        addBlock(ModBlocks.OR_GATE, "OR Redstone Gate");
+        addBlock(ModBlocks.AND_GATE, "AND Redstone Gate");
         add("subtitles.nihil_outspread.honey_gate_click", "Honey redstone gate click");
     }
 
@@ -189,6 +192,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case MOSAICO -> "Polished " + nomeMaterial + " Mosaic";
                 case TRONCO -> null; // no, we NOT gonna have "Polished X Log" or "Polished X Wood" >:(
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         } else {
             return switch (tipo) {
@@ -203,6 +207,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case MOSAICO -> nomeMaterial + " Mosaic";
                 case TRONCO -> nomeMaterial + " Log";
                 case MADEIRA -> nomeMaterial + " Wood";
+                case FOLHA -> nomeMaterial + " Leaves";
             };
         }
 
@@ -222,6 +227,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case MOSAICO -> "Polished " + nomeMaterial + " Mosaic";
                 case TRONCO -> null;
                 case MADEIRA -> null;
+                case FOLHA -> null;
             };
         } else {
             return switch (tipo) {
@@ -236,6 +242,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                 case MOSAICO -> nomeMaterial + " Mosaic";
                 case TRONCO -> nomeMaterial + " Log";
                 case MADEIRA -> nomeMaterial + " Wood";
+                case FOLHA -> nomeMaterial + " Leaves";
             };
         }
 
