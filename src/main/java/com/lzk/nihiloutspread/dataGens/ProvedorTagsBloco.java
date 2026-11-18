@@ -46,6 +46,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
         tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY);
         tagBotaoPressao(ModBlocks.NYVERIN_BLOCK_FAMILY);
+        tagCercas(ModBlocks.NYVERIN_BLOCK_FAMILY);
 
         tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_GRASS).add(
                 ModBlocks.NIHIL_DIRT.get(),
