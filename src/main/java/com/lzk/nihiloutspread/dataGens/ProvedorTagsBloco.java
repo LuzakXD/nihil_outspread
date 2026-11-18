@@ -30,7 +30,7 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tagMuros(ModBlocks.COTTONITE_BLOCK_FAMILY);
         tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
         tagMuros(ModBlocks.VELVESTONE_BLOCK_FAMILY);
-        tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY);
 
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -44,7 +44,8 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
         tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
-        tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY, true);
+        tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY);
+        tagBotaoPressao(ModBlocks.NYVERIN_BLOCK_FAMILY);
 
         tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_GRASS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -109,29 +110,42 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         }
     }
 
-    private void tagBotaoPressao(FamiliaPedra familia, boolean tipoPedra) {
+    private void tagBotaoPressao(FamiliaPedra familia) {
 
-        if (tipoPedra) {
-            for (var bloco : familia.pressoes.values()) {
-                tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
-                tag(BlockTags.STONE_PRESSURE_PLATES).add(bloco.get());
-            }
-
-            for (var bloco : familia.botoes.values()) {
-                tag(BlockTags.BUTTONS).add(bloco.get());
-                tag(BlockTags.STONE_BUTTONS).add(bloco.get());
-            }
-        } else {
-            for (var bloco : familia.pressoes.values()) {
-                tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
-                tag(BlockTags.WOODEN_PRESSURE_PLATES).add(bloco.get());
-            }
-
-            for (var bloco : familia.botoes.values()) {
-                tag(BlockTags.BUTTONS).add(bloco.get());
-                tag(BlockTags.WOODEN_BUTTONS).add(bloco.get());
-            }
+        for (var bloco : familia.pressoes.values()) {
+            tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
+            tag(BlockTags.STONE_PRESSURE_PLATES).add(bloco.get());
         }
 
+        for (var bloco : familia.botoes.values()) {
+            tag(BlockTags.BUTTONS).add(bloco.get());
+            tag(BlockTags.STONE_BUTTONS).add(bloco.get());
+        }
+
+    }
+
+    private void tagBotaoPressao(FamiliaMadeira familia) {
+
+        for (var bloco : familia.pressoes.values()) {
+            tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
+            tag(BlockTags.WOODEN_PRESSURE_PLATES).add(bloco.get());
+        }
+
+        for (var bloco : familia.botoes.values()) {
+            tag(BlockTags.BUTTONS).add(bloco.get());
+            tag(BlockTags.WOODEN_BUTTONS).add(bloco.get());
+        }
+
+    }
+
+    private void tagCercas(FamiliaMadeira familia) {
+        if (familia.variantesBase != null && familia.variantesBase.cerca() != null) {
+            tag(BlockTags.FENCES).add(familia.variantesBase.cerca().get());
+            tag(BlockTags.WOODEN_FENCES).add(familia.variantesBase.cerca().get());
+        }
+
+        if (familia.variantesBase != null && familia.variantesBase.portao() != null) {
+            tag(BlockTags.FENCE_GATES).add(familia.variantesBase.portao().get());
+        }
     }
 }

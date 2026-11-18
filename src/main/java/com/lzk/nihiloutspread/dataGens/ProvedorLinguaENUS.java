@@ -41,16 +41,16 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         addBlock(ModBlocks.ABYSSAL_MOSSY_STONE, "Abyssal Mossy Stone");
 
-        traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
-        traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
-        traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
-        traduzirFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
-        traduzirFamiliaAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
+        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
+        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
+        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
+        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
+        traduzirFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
 
-        traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
-        traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
+        traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
+        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
 
-        // TODO: add translation for wood family
+        traduzirFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, "Nyverin", true);
 
         addBlock(ModBlocks.XOR_GATE, "XOR Redstone Gate");
         addBlock(ModBlocks.OR_GATE, "OR Redstone Gate");
@@ -58,7 +58,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("subtitles.nihil_outspread.honey_gate_click", "Honey redstone gate click");
     }
 
-    private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
+    private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -126,7 +126,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                     familia.sufixoPolido) + " Button");
     }
 
-    private void traduzirFamiliaAreia(FamiliaAreia familia, String nomeMaterial, boolean temBase) {
+    private void traduzirFamilia(FamiliaAreia familia, String nomeMaterial, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -166,6 +166,35 @@ public class ProvedorLinguaENUS extends LanguageProvider {
                     false) + " Button");
     }
 
+    private void traduzirFamilia(FamiliaMadeira familia, String nomeMaterial, boolean temBase) {
+
+        if (temBase)
+            addBlock(familia.base, nomeMaterial + " Planks");
+        traduzVariantes(familia.variantesBase, nomeMaterial);
+
+        if (familia.tronco != null) {
+            addBlock(familia.tronco, nomeMaterial + " Log");
+        }
+        if (familia.madeira != null) {
+            addBlock(familia.madeira, nomeMaterial + " Wood");
+        }
+        if (familia.folha != null) {
+            addBlock(familia.folha, nomeMaterial + " Leaves");
+        }
+
+        for (var entry : familia.descascados.entrySet())
+            addBlock(entry.getValue(),
+                    "Stripped " + nomeDoMaterial(entry.getKey(), nomeMaterial, false));
+
+        for (var entry : familia.pressoes.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    false) + " Pressure Plate");
+
+        for (var entry : familia.botoes.entrySet())
+            addBlock(entry.getValue(), nomeDoMaterialSingular(entry.getKey(), nomeMaterial,
+                    false) + " Button");
+    }
+
     private void traduzVariantes(Variantes variantes, String nomeBase) {
         if (variantes == null)
             return;
@@ -175,6 +204,16 @@ public class ProvedorLinguaENUS extends LanguageProvider {
             addBlock(variantes.laje(), nomeBase + " Slab");
         if (variantes.muro() != null)
             addBlock(variantes.muro(), nomeBase + " Wall");
+
+        if (variantes.cerca() != null)
+            addBlock(variantes.cerca(), nomeBase + " Fence");
+        if (variantes.portao() != null)
+            addBlock(variantes.portao(), nomeBase + " Fence Gate");
+
+        if (variantes.porta() != null)
+            addBlock(variantes.porta(), nomeBase + " Door");
+        if (variantes.alcapao() != null)
+            addBlock(variantes.alcapao(), nomeBase + " Trapdoor");
     }
 
     private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Boolean sufixoPolido) {

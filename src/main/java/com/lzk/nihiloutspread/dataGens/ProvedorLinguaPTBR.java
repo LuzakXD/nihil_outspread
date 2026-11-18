@@ -19,37 +19,37 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("itemGroup.abyss", "Abismo");
         add("itemGroup.hive", "Colmeia");
 
-        // TODO: fazer tudo virar "addBlock()" _pq eu sou assim???_
+        addBlock(ModBlocks.NIHIL_DIRT, "Terra Nihil");
+        addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Bloco de Grama Nihil");
+        addBlock(ModBlocks.CHECKER_GRASS_BLOCK, "Bloco de Grama Xadrez");
 
-        add("block.nihil_outspread.nihil_dirt", "Terra Nihil");
-        add("block.nihil_outspread.nihil_grass_block", "Bloco de Grama Nihil");
-        add("block.nihil_outspread.checker_grass_block", "Bloco de Grama Xadrez");
+        addBlock(ModBlocks.NIHIL_FERN, "Samambaia Nihil");
+        addBlock(ModBlocks.NIHIL_BUSH, "Arbusto Nihil");
+        addBlock(ModBlocks.NIHIL_HERB, "Erva Nihil");
 
-        add("block.nihil_outspread.nihil_fern", "Samambaia Nihil");
-        add("block.nihil_outspread.nihil_bush", "Arbusto Nihil");
-        add("block.nihil_outspread.nihil_herb", "Erva Nihil");
+        addBlock(ModBlocks.NIHIL_SPROUT, "Broto Nihil");
+        addBlock(ModBlocks.DREAD_SPROUT, "Broto Terrível");
 
-        add("block.nihil_outspread.nihil_sprout", "Broto Nihil");
-        add("block.nihil_outspread.dread_sprout", "Broto Terrível");
+        addBlock(ModBlocks.VELVET_SAND, "Areia de Veludo");
 
-        add("block.nihil_outspread.velvet_sand", "Areia de Veludo");
+        addBlock(ModBlocks.ABYSSAL_MOSS_BLOCK, "Bloco de Musgo Abissal");
+        addBlock(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "Bloco de Musgo Abissal Florido");
 
-        add("block.nihil_outspread.abyssal_moss_block", "Bloco de Musgo Abissal");
-        add("block.nihil_outspread.abyssal_floral_moss_block", "Bloco de Musgo Abissal Florido");
+        addBlock(ModBlocks.ABYSSAL_MOSS_CARPET, "Tapete de Musgo Abissal");
+        addBlock(ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, "Tapete de Musgo Abissal Florido");
 
-        add("block.nihil_outspread.abyssal_moss_carpet", "Tapete de Musgo Abissal");
-        add("block.nihil_outspread.abyssal_floral_moss_carpet", "Tapete de Musgo Abissal Florido");
+        addBlock(ModBlocks.ABYSSAL_MOSSY_STONE, "Pedra Abissal Musgosa");
 
-        add("block.nihil_outspread.abyssal_mossy_stone", "Pedra Abissal Musgosa");
+        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
+        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
+        traduzirFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
 
-        traduzirFamiliaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
-        traduzirFamiliaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
-        traduzirFamiliaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
-        traduzirFamiliaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
-        traduzirFamiliaPedraAreia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
 
-        traduzirFamiliaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
-        traduzirFamiliaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
+        traduzirFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, "Niverina", Genero.FEMININO, true);
 
         add(ModBlocks.XOR_GATE.get(), "Porta de Redstone XOR");
         add(ModBlocks.OR_GATE.get(), "Porta de Redstone OR");
@@ -57,7 +57,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("subtitles.nihil_outspread.honey_gate_click", "Porta de redstone de mel acionada");
     }
 
-    private void traduzirFamiliaPedra(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
+    private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -114,7 +114,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                     "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
     }
 
-    private void traduzirFamiliaPedraAreia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
+    private void traduzirFamilia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
@@ -156,6 +156,35 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
                     "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
     }
 
+    private void traduzirFamilia(FamiliaMadeira familia, String nomeMaterial, Genero genero, boolean temBase) {
+
+        if (temBase)
+            addBlock(familia.base, "Tábuas de " + nomeMaterial);
+        traduzVariantes(familia.variantesBase, nomeMaterial);
+
+        if (familia.tronco != null) {
+            addBlock(familia.tronco, "Tronco de " + nomeMaterial);
+        }
+        if (familia.madeira != null) {
+            addBlock(familia.madeira, "Madeira de " + nomeMaterial);
+        }
+        if (familia.folha != null) {
+            addBlock(familia.folha, "Folhas de " + nomeMaterial);
+        }
+
+        for (var entry : familia.descascados.entrySet())
+            addBlock(entry.getValue(),
+                    nomeDoMaterialDescascados(entry.getKey(), nomeMaterial + " Descascado", genero));
+
+        for (var entry : familia.pressoes.entrySet())
+            addBlock(entry.getValue(), "Placa de Pressão de "
+                    + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
+
+        for (var entry : familia.botoes.entrySet())
+            addBlock(entry.getValue(),
+                    "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
+    }
+
     private void traduzVariantes(Variantes variantes, String nomeBase) {
         if (variantes == null)
             return;
@@ -165,6 +194,16 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             addBlock(variantes.laje(), "Laje de " + nomeBase);
         if (variantes.muro() != null)
             addBlock(variantes.muro(), "Muro de " + nomeBase);
+
+        if (variantes.cerca() != null)
+            addBlock(variantes.cerca(), "Cerca de " + nomeBase);
+        if (variantes.portao() != null)
+            addBlock(variantes.portao(), "Portão de " + nomeBase);
+
+        if (variantes.porta() != null)
+            addBlock(variantes.porta(), "Porta de " + nomeBase);
+        if (variantes.alcapao() != null)
+            addBlock(variantes.alcapao(), "Alçapão de " + nomeBase);
     }
 
     private String sufixo(Genero genero) {
@@ -221,8 +260,8 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case LADRILHOS -> null;
             case PLACAS -> null;
             case MOSAICO -> null;
-            case TRONCO -> "Tronco de " + nomeMaterial + " Descascado";
-            case MADEIRA -> "Madeira de " + nomeMaterial + " Descascada";
+            case TRONCO -> "Tronco de " + nomeMaterial;
+            case MADEIRA -> "Madeira de " + nomeMaterial;
             case FOLHA -> null;
         };
     }

@@ -39,18 +39,35 @@ public class ProvedorReceitas extends RecipeProvider {
                 // TODO: recipes for velvestone (sand family) & nyverin (wood family)
         }
 
-        private void receitaVariantes(DeferredBlock<? extends Block> escada,
-                        DeferredBlock<? extends Block> laje,
-                        DeferredBlock<? extends Block> muro,
+        private void receitaVariantes(Variantes variantes,
                         Block ingrediente, RecipeOutput output) {
-                if (escada != null)
-                        stairBuilder(escada.get(), Ingredient.of(ingrediente))
+
+                if (variantes.escada() != null)
+                        stairBuilder(variantes.escada().get(), Ingredient.of(ingrediente))
                                         .unlockedBy("has_material", has(ingrediente)).save(output);
-                if (laje != null)
-                        slabBuilder(RecipeCategory.BUILDING_BLOCKS, laje.get(), Ingredient.of(ingrediente))
+                if (variantes.laje() != null)
+                        slabBuilder(RecipeCategory.BUILDING_BLOCKS,
+                                        variantes.laje().get(), Ingredient.of(ingrediente))
                                         .unlockedBy("has_material", has(ingrediente)).save(output);
-                if (muro != null)
-                        wallBuilder(RecipeCategory.BUILDING_BLOCKS, muro.get(), Ingredient.of(ingrediente))
+                if (variantes.muro() != null)
+                        wallBuilder(RecipeCategory.BUILDING_BLOCKS,
+                                        variantes.muro().get(), Ingredient.of(ingrediente))
+                                        .unlockedBy("has_material", has(ingrediente)).save(output);
+
+                if (variantes.cerca() != null)
+                        fenceBuilder(variantes.cerca().get(), Ingredient.of(ingrediente))
+                                        .unlockedBy("has_material", has(ingrediente)).save(output);
+
+                if (variantes.porta() != null)
+                        doorBuilder(variantes.porta().get(), Ingredient.of(ingrediente))
+                                        .unlockedBy("has_material", has(ingrediente)).save(output);
+
+                if (variantes.portao() != null)
+                        fenceGateBuilder(variantes.portao().get(), Ingredient.of(ingrediente))
+                                        .unlockedBy("has_material", has(ingrediente)).save(output);
+
+                if (variantes.alcapao() != null)
+                        trapdoorBuilder(variantes.alcapao().get(), Ingredient.of(ingrediente))
                                         .unlockedBy("has_material", has(ingrediente)).save(output);
         }
 
@@ -259,28 +276,22 @@ public class ProvedorReceitas extends RecipeProvider {
 
                 // Variantes
                 if (familia.variantesBase != null) {
-                        receitaVariantes(familia.variantesBase.escada(), familia.variantesBase.laje(),
-                                        familia.variantesBase.muro(), familia.base.get(), output);
+                        receitaVariantes(familia.variantesBase, familia.base.get(), output);
                 }
                 if (familia.variantesTijolos != null) {
-                        receitaVariantes(familia.variantesTijolos.escada(), familia.variantesTijolos.laje(),
-                                        familia.variantesTijolos.muro(), familia.tijolos.get(), output);
+                        receitaVariantes(familia.variantesTijolos, familia.tijolos.get(), output);
                 }
                 if (familia.variantesLadrilhos != null) {
-                        receitaVariantes(familia.variantesLadrilhos.escada(), familia.variantesLadrilhos.laje(),
-                                        familia.variantesLadrilhos.muro(), familia.ladrilhos.get(), output);
+                        receitaVariantes(familia.variantesLadrilhos, familia.ladrilhos.get(), output);
                 }
                 if (familia.variantesPlacas != null) {
-                        receitaVariantes(familia.variantesPlacas.escada(), familia.variantesPlacas.laje(),
-                                        familia.variantesPlacas.muro(), familia.placas.get(), output);
+                        receitaVariantes(familia.variantesPlacas, familia.placas.get(), output);
                 }
                 if (familia.variantesPolido != null) {
-                        receitaVariantes(familia.variantesPolido.escada(), familia.variantesPolido.laje(),
-                                        familia.variantesPolido.muro(), familia.polido.get(), output);
+                        receitaVariantes(familia.variantesPolido, familia.polido.get(), output);
                 }
                 if (familia.variantesLiso != null) {
-                        receitaVariantes(familia.variantesLiso.escada(), familia.variantesLiso.laje(),
-                                        familia.variantesLiso.muro(), familia.liso.get(), output);
+                        receitaVariantes(familia.variantesLiso, familia.liso.get(), output);
                 }
 
                 if (cortadorDePedra) {
