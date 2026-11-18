@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "nihil_outspread:block/glacier/stripped_nyverin_log_top",
+    "end": "nihil_outspread:block/glacier/stripped_nyverin_log",
     "side": "nihil_outspread:block/glacier/stripped_nyverin_log"
   }
 }

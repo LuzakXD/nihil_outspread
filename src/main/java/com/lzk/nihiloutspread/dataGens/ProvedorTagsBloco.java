@@ -25,12 +25,11 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
     @Override
     protected void addTags(Provider provider) {
-        tagMuros(ModBlocks.HONEYCOMB_BLOCK_FAMILY);
-        tagMuros(ModBlocks.GRAPHITE_BLOCK_FAMILY);
-        tagMuros(ModBlocks.COTTONITE_BLOCK_FAMILY);
-        tagMuros(ModBlocks.NILIGHT_BLOCK_FAMILY);
-        tagMuros(ModBlocks.VELVESTONE_BLOCK_FAMILY);
-        tagBotaoPressao(ModBlocks.NILIGHT_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.HONEYCOMB_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.GRAPHITE_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.COTTONITE_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.NILIGHT_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.VELVESTONE_BLOCK_FAMILY);
 
         tag(ModTags.Blocks.DIRTY_BLOCKS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -43,10 +42,8 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get(),
                 ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
-        tagMuros(ModBlocks.ABYSSAL_STONE_FAMILY);
-        tagBotaoPressao(ModBlocks.ABYSSAL_STONE_FAMILY);
-        tagBotaoPressao(ModBlocks.NYVERIN_BLOCK_FAMILY);
-        tagCercas(ModBlocks.NYVERIN_BLOCK_FAMILY);
+        tagVariantes(ModBlocks.ABYSSAL_STONE_FAMILY);
+        tagVariantes(ModBlocks.NYVERIN_BLOCK_FAMILY);
 
         tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_GRASS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -75,78 +72,51 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
     }
 
-    private void tagMuros(FamiliaPedra familia) {
-        if (familia.variantesBase != null && familia.variantesBase.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesBase.muro().get());
-        }
-        if (familia.variantesPolido != null && familia.variantesPolido.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesPolido.muro().get());
-        }
-        if (familia.variantesTijolos != null && familia.variantesTijolos.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesTijolos.muro().get());
-        }
-        if (familia.variantesLadrilhos != null && familia.variantesLadrilhos.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesLadrilhos.muro().get());
-        }
-        if (familia.variantesPlacas != null && familia.variantesPlacas.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesPlacas.muro().get());
-        }
-        if (familia.variantesLiso != null && familia.variantesLiso.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesLiso.muro().get());
+    private void tagVariantes(FamiliaAbstrata familia) {
+
+        for (Variantes v : familia.variantes()) {
+            if (v.muro() != null) {
+                tag(BlockTags.WALLS).add(v.muro().get());
+            }
+
+            if (v.botao() != null) {
+                tag(BlockTags.BUTTONS).add(v.botao().get());
+                tag(BlockTags.STONE_BUTTONS).add(v.botao().get());
+            }
+
+            if (v.pressao() != null) {
+                tag(BlockTags.PRESSURE_PLATES).add(v.pressao().get());
+                tag(BlockTags.STONE_PRESSURE_PLATES).add(v.pressao().get());
+            }
         }
     }
 
-    private void tagMuros(FamiliaAreia familia) {
-        if (familia.variantesBase != null && familia.variantesBase.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesBase.muro().get());
-        }
-        if (familia.variantesPedregoso != null && familia.variantesPedregoso.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesPedregoso.muro().get());
-        }
-        if (familia.variantesCortado != null && familia.variantesCortado.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesCortado.muro().get());
-        }
-        if (familia.variantesLiso != null && familia.variantesLiso.muro() != null) {
-            tag(BlockTags.WALLS).add(familia.variantesLiso.muro().get());
-        }
-    }
+    private void tagVariantes(FamiliaMadeira familia) {
 
-    private void tagBotaoPressao(FamiliaPedra familia) {
+        for (Variantes v : familia.variantes()) {
+            if (v.muro() != null) {
+                tag(BlockTags.WALLS).add(v.muro().get());
+            }
 
-        for (var bloco : familia.pressoes.values()) {
-            tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
-            tag(BlockTags.STONE_PRESSURE_PLATES).add(bloco.get());
-        }
+            if (v.cerca() != null) {
+                tag(BlockTags.FENCES).add(v.cerca().get());
+                tag(BlockTags.WOODEN_FENCES).add(v.cerca().get());
+            }
 
-        for (var bloco : familia.botoes.values()) {
-            tag(BlockTags.BUTTONS).add(bloco.get());
-            tag(BlockTags.STONE_BUTTONS).add(bloco.get());
-        }
+            if (v.portao() != null) {
+                tag(BlockTags.FENCE_GATES).add(v.portao().get());
+            }
 
-    }
+            if (v.botao() != null) {
+                tag(BlockTags.BUTTONS).add(v.botao().get());
+                tag(BlockTags.WOODEN_BUTTONS).add(v.botao().get());
+            }
 
-    private void tagBotaoPressao(FamiliaMadeira familia) {
-
-        for (var bloco : familia.pressoes.values()) {
-            tag(BlockTags.PRESSURE_PLATES).add(bloco.get());
-            tag(BlockTags.WOODEN_PRESSURE_PLATES).add(bloco.get());
+            if (v.pressao() != null) {
+                tag(BlockTags.PRESSURE_PLATES).add(v.pressao().get());
+                tag(BlockTags.WOODEN_PRESSURE_PLATES).add(v.pressao().get());
+            }
         }
 
-        for (var bloco : familia.botoes.values()) {
-            tag(BlockTags.BUTTONS).add(bloco.get());
-            tag(BlockTags.WOODEN_BUTTONS).add(bloco.get());
-        }
-
-    }
-
-    private void tagCercas(FamiliaMadeira familia) {
-        if (familia.variantesBase != null && familia.variantesBase.cerca() != null) {
-            tag(BlockTags.FENCES).add(familia.variantesBase.cerca().get());
-            tag(BlockTags.WOODEN_FENCES).add(familia.variantesBase.cerca().get());
-        }
-
-        if (familia.variantesBase != null && familia.variantesBase.portao() != null) {
-            tag(BlockTags.FENCE_GATES).add(familia.variantesBase.portao().get());
-        }
     }
 }

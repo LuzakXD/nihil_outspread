@@ -35,15 +35,9 @@ public abstract class FamiliaAbstrata {
     protected final DeferredRegister.Items registroItem;
 
     protected final List<DeferredBlock<? extends Block>> todosOsBlocos = new ArrayList<>();
+    protected final List<Variantes> todosAsVariantes = new ArrayList<>();
+
     protected final Map<TipoMaterial, DeferredBlock<Block>> materiais = new EnumMap<>(TipoMaterial.class);
-
-    public final Map<TipoMaterial, DeferredBlock<RotatedPillarBlock>> descascados = new EnumMap<>(TipoMaterial.class);
-
-    public final Map<TipoMaterial, DeferredBlock<Block>> talhados = new EnumMap<>(TipoMaterial.class);
-    public final Map<TipoMaterial, DeferredBlock<Block>> rachados = new EnumMap<>(TipoMaterial.class);
-    public final Map<TipoMaterial, DeferredBlock<RotatedPillarBlock>> pilares = new EnumMap<>(TipoMaterial.class);
-    public final Map<TipoMaterial, DeferredBlock<PressurePlateBlock>> pressoes = new EnumMap<>(TipoMaterial.class);
-    public final Map<TipoMaterial, DeferredBlock<ButtonBlock>> botoes = new EnumMap<>(TipoMaterial.class);
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase, String sufixo) {
@@ -79,9 +73,12 @@ public abstract class FamiliaAbstrata {
     }
 
     protected Variantes registrarVariantes(
+            TipoMaterial tipoMaterial,
             String prefixo,
-            DeferredBlock<Block> blocoBaseDaVariante,
+            boolean plural,
+            DeferredBlock<? extends Block> blocoBaseDaVariante,
             BlockBehaviour.Properties props,
+            BlockSetType tipo,
             Set<TipoVariante> variantes) {
 
         DeferredBlock<StairBlock> escada = null;
@@ -92,6 +89,28 @@ public abstract class FamiliaAbstrata {
         DeferredBlock<FenceGateBlock> portao = null;
         DeferredBlock<DoorBlock> porta = null;
         DeferredBlock<TrapDoorBlock> alcapao = null;
+
+        DeferredBlock<RotatedPillarBlock> pilar = null;
+        DeferredBlock<RotatedPillarBlock> descascado = null;
+        DeferredBlock<Block> talhado = null;
+        DeferredBlock<Block> rachado = null;
+
+        DeferredBlock<PressurePlateBlock> pressao = null;
+        DeferredBlock<ButtonBlock> botao = null;
+        String sufixo = plural ? "s" : "";
+
+        if (variantes.contains(TipoVariante.DESCASCADO)) {
+            descascado = registro.register("stripped_" + prefixo, () -> new RotatedPillarBlock(props));
+            registroItem.registerSimpleBlockItem("stripped_" + prefixo, descascado);
+            todosOsBlocos.add(descascado);
+
+        }
+
+        if (variantes.contains(TipoVariante.PILAR)) {
+            pilar = registro.register(prefixo + "_pillar", () -> new RotatedPillarBlock(props));
+            registroItem.registerSimpleBlockItem(prefixo + "_pillar", pilar);
+            todosOsBlocos.add(pilar);
+        }
 
         if (variantes.contains(TipoVariante.ESCADA)) {
             escada = registro.register(prefixo + "_stairs",
@@ -110,6 +129,18 @@ public abstract class FamiliaAbstrata {
             todosOsBlocos.add(muro);
         }
 
+        if (variantes.contains(TipoVariante.TALHADO)) {
+            talhado = registro.register("chiseled_" + prefixo + sufixo, () -> new Block(props));
+            registroItem.registerSimpleBlockItem("chiseled_" + prefixo + sufixo, talhado);
+            todosOsBlocos.add(talhado);
+        }
+
+        if (variantes.contains(TipoVariante.RACHADO)) {
+            rachado = registro.register("cracked_" + prefixo + sufixo, () -> new Block(props));
+            registroItem.registerSimpleBlockItem("cracked_" + prefixo + sufixo, rachado);
+            todosOsBlocos.add(rachado);
+        }
+
         if (variantes.contains(TipoVariante.CERCA)) {
             cerca = registro.register(prefixo + "_fence", () -> new FenceBlock(props));
             registroItem.registerSimpleBlockItem(prefixo + "_fence", cerca);
@@ -123,45 +154,44 @@ public abstract class FamiliaAbstrata {
         }
 
         if (variantes.contains(TipoVariante.PORTA)) {
-            porta = registro.register(prefixo + "_door", () -> new DoorBlock(BlockSetType.OAK, props
-                    .noOcclusion()));
+            porta = registro.register(prefixo + "_door", () -> new DoorBlock(
+                    tipo, props
+                            .noOcclusion()));
             registroItem.registerSimpleBlockItem(prefixo + "_door", porta);
             todosOsBlocos.add(porta);
         }
 
         if (variantes.contains(TipoVariante.ALCAPAO)) {
-            alcapao = registro.register(prefixo + "_trapdoor", () -> new TrapDoorBlock(BlockSetType.OAK, props
+            alcapao = registro.register(prefixo + "_trapdoor", () -> new TrapDoorBlock(tipo, props
                     .noOcclusion()));
             registroItem.registerSimpleBlockItem(prefixo + "_trapdoor", alcapao);
             todosOsBlocos.add(alcapao);
         }
 
-        return new Variantes(escada, laje, muro, porta, alcapao, cerca, portao);
+        if (variantes.contains(TipoVariante.PLACAPRESSAO)) {
+            pressao = registro.register(prefixo + "_pressure_plate",
+                    () -> new PressurePlateBlock(tipo, props));
+            registroItem.registerSimpleBlockItem(prefixo + "_pressure_plate", pressao);
+            todosOsBlocos.add(pressao);
+        }
+
+        if (variantes.contains(TipoVariante.BOTAO)) {
+            botao = registro.register(prefixo + "_button",
+                    () -> new ButtonBlock(tipo, 20, props));
+            registroItem.registerSimpleBlockItem(prefixo + "_button", botao);
+            todosOsBlocos.add(botao);
+        }
+        Variantes v = new Variantes(escada, laje, muro, porta, alcapao, cerca, portao, pilar, descascado, talhado,
+                rachado, pressao, botao, tipoMaterial);
+        todosAsVariantes.add(v);
+        return v;
     }
 
-    protected DeferredBlock<RotatedPillarBlock> registrarPilar(String nome, BlockBehaviour.Properties props) {
-        DeferredBlock<RotatedPillarBlock> pilar = registro.register(nome, () -> new RotatedPillarBlock(props));
-        registroItem.registerSimpleBlockItem(nome, pilar);
-        todosOsBlocos.add(pilar);
-        return pilar;
-    }
-
-    protected DeferredBlock<PressurePlateBlock> registrarPlacaPressao(String nome, BlockBehaviour.Properties props,
-            BlockSetType tipo) {
-        DeferredBlock<PressurePlateBlock> pressao = registro.register(nome, () -> new PressurePlateBlock(
-                tipo, props));
-        registroItem.registerSimpleBlockItem(nome, pressao);
-        todosOsBlocos.add(pressao);
-        return pressao;
-    }
-
-    protected DeferredBlock<ButtonBlock> registrarBotao(String nome, BlockBehaviour.Properties props,
-            BlockSetType tipo) {
-        DeferredBlock<ButtonBlock> botao = registro.register(nome, () -> new ButtonBlock(
-                tipo, 20, props));
-        registroItem.registerSimpleBlockItem(nome, botao);
-        todosOsBlocos.add(botao);
-        return botao;
+    protected DeferredBlock<RotatedPillarBlock> registrarTronco(String nome, BlockBehaviour.Properties props) {
+        DeferredBlock<RotatedPillarBlock> tronco = registro.register(nome, () -> new RotatedPillarBlock(props));
+        registroItem.registerSimpleBlockItem(nome, tronco);
+        todosOsBlocos.add(tronco);
+        return tronco;
     }
 
     public List<Item> devolverItens(boolean temBase) {
@@ -172,6 +202,10 @@ public abstract class FamiliaAbstrata {
             itens.add(bloco.get().asItem());
         }
         return itens;
+    }
+
+    public List<Variantes> variantes() {
+        return todosAsVariantes;
     }
 
     public DeferredBlock<Block> materialDe(TipoMaterial tipo) {

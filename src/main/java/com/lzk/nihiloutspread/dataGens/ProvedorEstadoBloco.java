@@ -222,6 +222,47 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     variantes.alcapao().getId().getPath(),
                     modLoc("block/" + variantes.alcapao().getId().getPath() + "_bottom"));
         }
+
+        if (variantes.talhado() != null) {
+            simpleBlock(variantes.talhado().get(),
+                    models().cubeAll(variantes.talhado().getId().getPath(),
+                            textura("chiseled_" + nomeTexturaMeio, categoria)));
+            modeloItemPadrao(variantes.talhado());
+        }
+
+        if (variantes.rachado() != null) {
+            simpleBlock(variantes.rachado().get(),
+                    models().cubeAll(variantes.rachado().getId().getPath(),
+                            textura("cracked_" + nomeTexturaMeio, categoria)));
+            modeloItemPadrao(variantes.rachado());
+        }
+
+        if (variantes.pilar() != null) {
+            axisBlock(variantes.pilar().get(),
+                    textura(nomeTexturaMeio + "_pillar_side", categoria),
+                    textura(nomeTexturaMeio + "_pillar_top", categoria));
+            modeloItemPadrao(variantes.pilar());
+        }
+
+        if (variantes.descascado() != null) {
+            axisBlock(variantes.descascado().get(),
+                    textura("stripped_" + nomeTexturaMeio, categoria),
+                    textura("stripped_" + nomeTexturaCima, categoria));
+            modeloItemPadrao(variantes.descascado());
+        }
+
+        if (variantes.pressao() != null) {
+            pressurePlateBlock(variantes.pressao().get(), textura(nomeTexturaMeio, categoria));
+            modeloItemPadrao(variantes.pressao());
+        }
+
+        if (variantes.botao() != null) {
+
+            buttonBlock(variantes.botao().get(), textura(nomeTexturaMeio, categoria));
+            itemModels()
+                    .withExistingParent(variantes.botao().getId().getPath(), mcLoc("block/button_inventory"))
+                    .texture("texture", textura(nomeTexturaMeio, categoria));
+        }
     }
 
     private void gerarModelosDaFamilia(FamiliaPedra familia, boolean temBase,
@@ -322,52 +363,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
         }
 
-        // RACHADOS
-        for (var entry : familia.rachados.entrySet()) {
-            String nomeRachado = entry.getValue().getId().getPath();
-            simpleBlock(entry.getValue().get(),
-                    models().cubeAll(nomeRachado, textura(nomeRachado, categoria)));
-            modeloItemPadrao(entry.getValue());
-        }
-
-        // PLACA DE PRESSAO
-        for (var entry : familia.pressoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                pressurePlateBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                modeloItemPadrao(entry.getValue());
-            }
-        }
-
-        // BOTAO
-        for (var entry : familia.botoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                buttonBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                itemModels()
-                        .withExistingParent(entry.getValue().getId().getPath(), mcLoc("block/button_inventory"))
-                        .texture("texture", textura(nomeMaterial, categoria));
-            }
-        }
-
-        // TALHADOS
-        for (var entry : familia.talhados.entrySet()) {
-            String nomeTalhado = entry.getValue().getId().getPath();
-            simpleBlock(entry.getValue().get(),
-                    models().cubeAll(nomeTalhado, textura(nomeTalhado, categoria)));
-            modeloItemPadrao(entry.getValue());
-        }
-
-        // PILARES
-        for (var entry : familia.pilares.entrySet()) {
-            String nomePilar = entry.getValue().getId().getPath();
-            axisBlock(entry.getValue().get(),
-                    textura(nomePilar + "_side", categoria),
-                    textura(nomePilar + "_top", categoria));
-            modeloItemPadrao(entry.getValue());
-        }
     }
 
     private void gerarModelosDaFamilia(FamiliaAreia familia, boolean temBase, String categoria) {
@@ -444,53 +439,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.variantesLiso,
                     false, categoria);
         }
-
-        // PLACA DE PRESSAO
-        for (var entry : familia.pressoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                pressurePlateBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                modeloItemPadrao(entry.getValue());
-            }
-        }
-
-        // BOTAO
-        for (var entry : familia.botoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                buttonBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                itemModels()
-                        .withExistingParent(entry.getValue().getId().getPath(), mcLoc("block/button_inventory"))
-                        .texture("texture", textura(nomeMaterial, categoria));
-            }
-        }
-
-        // RACHADOS
-        for (var entry : familia.rachados.entrySet()) {
-            String nomeRachado = entry.getValue().getId().getPath();
-            simpleBlock(entry.getValue().get(),
-                    models().cubeAll(nomeRachado, textura(nomeRachado, categoria)));
-            modeloItemPadrao(entry.getValue());
-        }
-
-        // TALHADOS
-        for (var entry : familia.talhados.entrySet()) {
-            String nomeTalhado = entry.getValue().getId().getPath();
-            simpleBlock(entry.getValue().get(),
-                    models().cubeAll(nomeTalhado, textura(nomeTalhado, categoria)));
-            modeloItemPadrao(entry.getValue());
-        }
-
-        // PILARES
-        for (var entry : familia.pilares.entrySet()) {
-            String nomePilar = entry.getValue().getId().getPath();
-            axisBlock(entry.getValue().get(),
-                    textura(nomePilar + "_side", categoria),
-                    textura(nomePilar + "_top", categoria));
-            modeloItemPadrao(entry.getValue());
-        }
     }
 
     private void gerarModelosDaFamilia(FamiliaMadeira familia, boolean temBase,
@@ -516,6 +464,13 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     textura(familia.nomeBase + "_log", categoria),
                     textura(familia.nomeBase + "_log_top", categoria));
             modeloItemPadrao(familia.tronco);
+
+            gerarModelosVariantes(familia.tronco,
+                    familia.nomeBase + "_log",
+                    familia.nomeBase + "_log_top",
+                    familia.nomeBase + "_log_top",
+                    familia.nomeBase + "_log",
+                    familia.variantesTronco, false, categoria);
         }
 
         // MADEIRA
@@ -524,6 +479,13 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     textura(familia.nomeBase + "_log", categoria),
                     textura(familia.nomeBase + "_log", categoria));
             modeloItemPadrao(familia.madeira);
+
+            gerarModelosVariantes(familia.madeira,
+                    familia.nomeBase + "_log",
+                    familia.nomeBase + "_log",
+                    familia.nomeBase + "_log",
+                    familia.nomeBase + "_log",
+                    familia.variantesMadeira, false, categoria);
         }
 
         // MOSAICO
@@ -542,41 +504,6 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     false, categoria);
         }
 
-        // PLACA DE PRESSAO
-        for (var entry : familia.pressoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                pressurePlateBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                modeloItemPadrao(entry.getValue());
-            }
-        }
-
-        // BOTAO
-        for (var entry : familia.botoes.entrySet()) {
-            DeferredBlock<Block> material = familia.materialDe(entry.getKey());
-            if (material != null) {
-                String nomeMaterial = material.getId().getPath();
-                buttonBlock(entry.getValue().get(), textura(nomeMaterial, categoria));
-                itemModels()
-                        .withExistingParent(entry.getValue().getId().getPath(), mcLoc("block/button_inventory"))
-                        .texture("texture", textura(nomeMaterial, categoria));
-            }
-        }
-        // DESCASCADOS
-        for (var entry : familia.descascados.entrySet()) {
-            String nomeDescascado = entry.getValue().getId().getPath();
-            if (nomeDescascado.endsWith("_log")) {
-                nomeDescascado = nomeDescascado.substring(0, nomeDescascado.length() - "_log".length());
-            } else if (nomeDescascado.endsWith("_wood")) {
-                nomeDescascado = nomeDescascado.substring(0, nomeDescascado.length() - "_wood".length());
-            }
-            // put log again so we can get the right texture
-            axisBlock(entry.getValue().get(),
-                    textura(nomeDescascado + "_log", categoria),
-                    textura(nomeDescascado + "_log_top", categoria));
-            modeloItemPadrao(entry.getValue());
-        }
     }
 
     private void blocoComCamadas(

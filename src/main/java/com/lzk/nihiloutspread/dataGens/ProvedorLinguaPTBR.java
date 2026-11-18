@@ -12,6 +12,8 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         super(output, NihilOutspread.MODID, locale);
     }
 
+    // FIXME: port all the changes from ENUS to PTBR
+
     @Override
     protected void addTranslations() {
         add("itemGroup.nihil", "Nihil");
@@ -92,26 +94,6 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             addBlock(familia.polido, nome);
             traduzVariantes(familia.variantesPolido, nome);
         }
-
-        for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialTalhado(entry.getKey(), nomeMaterial, genero,
-                    familia.sufixoPolido));
-
-        for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(), "Pilar de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero,
-                    familia.sufixoPolido));
-
-        for (var entry : familia.rachados.entrySet())
-            addBlock(entry.getValue(), nomeDoMaterialRachado(entry.getKey(), nomeMaterial, genero,
-                    familia.sufixoPolido));
-
-        for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(), "Placa de Pressão de "
-                    + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
-
-        for (var entry : familia.botoes.entrySet())
-            addBlock(entry.getValue(),
-                    "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, familia.sufixoPolido));
     }
 
     private void traduzirFamilia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
@@ -137,23 +119,6 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             addBlock(familia.cortado, nome);
             traduzVariantes(familia.variantesCortado, nome);
         }
-
-        for (var entry : familia.talhados.entrySet())
-            addBlock(entry.getValue(),
-                    nomeDoMaterialTalhado(entry.getKey(), nomeMaterial, genero, false));
-
-        for (var entry : familia.pilares.entrySet())
-            addBlock(entry.getValue(),
-                    "Pilar de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
-
-        for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(),
-                    "Placa de Pressão de "
-                            + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
-
-        for (var entry : familia.botoes.entrySet())
-            addBlock(entry.getValue(),
-                    "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
     }
 
     private void traduzirFamilia(FamiliaMadeira familia, String nomeMaterial, Genero genero, boolean temBase) {
@@ -171,18 +136,6 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         if (familia.folha != null) {
             addBlock(familia.folha, "Folhas de " + nomeMaterial);
         }
-
-        for (var entry : familia.descascados.entrySet())
-            addBlock(entry.getValue(),
-                    nomeDoMaterialDescascados(entry.getKey(), nomeMaterial + " Descascado", genero));
-
-        for (var entry : familia.pressoes.entrySet())
-            addBlock(entry.getValue(), "Placa de Pressão de "
-                    + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
-
-        for (var entry : familia.botoes.entrySet())
-            addBlock(entry.getValue(),
-                    "Botão de " + nomeDoMaterial(entry.getKey(), nomeMaterial, genero, false));
     }
 
     private void traduzVariantes(Variantes variantes, String nomeBase) {
