@@ -19,6 +19,10 @@
         "placement": []
       },
       {
+        "feature": "nihil_outspread:dread_sprout_feature",
+        "placement": []
+      },
+      {
         "feature": "nihil_outspread:nihil_petals_feature",
         "placement": []
       }

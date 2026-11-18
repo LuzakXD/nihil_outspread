@@ -66,6 +66,13 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 ModBlocks.DREAD_SPROUT.get(),
                 ModBlocks.NIHIL_PETALS.get());
 
+        tag(ModTags.Blocks.BASE_STONE_NIHIL).add(
+                ModBlocks.NILIGHT.get(),
+                ModBlocks.GRAPHITE.get(),
+                ModBlocks.COTTONITE.get(),
+                ModBlocks.ABYSSAL_STONE.get(),
+                ModBlocks.ABYSSAL_MOSSY_STONE.get());
+
         tag(BlockTags.REPLACEABLE).addTag(ModTags.Blocks.NIHIL_BUSHES);
         tag(BlockTags.ENCHANTMENT_POWER_TRANSMITTER).addTag(ModTags.Blocks.NIHIL_BUSHES);
         tag(BlockTags.SWORD_EFFICIENT).addTag(ModTags.Blocks.NIHIL_BUSHES);

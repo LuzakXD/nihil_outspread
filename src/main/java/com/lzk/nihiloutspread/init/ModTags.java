@@ -37,5 +37,10 @@ public class ModTags {
                                 ResourceLocation.fromNamespaceAndPath(NihilOutspread.MODID,
                                                 "nihil_bushes"));
 
+                public static final TagKey<Block> BASE_STONE_NIHIL = TagKey.create(
+                                Registries.BLOCK,
+                                ResourceLocation.fromNamespaceAndPath(NihilOutspread.MODID,
+                                                "base_stone_nihil"));
+
         }
 }
