@@ -168,7 +168,7 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
                 dropSelf(v.portao().get());
 
             if (v.porta() != null)
-                dropSelf(v.porta().get());
+                add(v.porta().get(), createDoorTable(v.porta().get()));
 
             if (v.alcapao() != null)
                 dropSelf(v.alcapao().get());

@@ -12,14 +12,12 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         super(output, NihilOutspread.MODID, locale);
     }
 
-    // FIXME: port all the changes from ENUS to PTBR
-
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil", "Nihil");
+        add("itemGroup.nihil", "Blocos do Nihil");
         add("itemGroup.nihil_naturals", "Nihil naturais");
-        add("itemGroup.abyss", "Abismo");
-        add("itemGroup.hive", "Colmeia");
+        add("itemGroup.abyss", "Blocos do Abismo");
+        add("itemGroup.hive", "Bloco da Colmeia");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Terra Nihil");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Bloco de Grama Nihil");
@@ -63,103 +61,116 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
-        traduzVariantes(familia.variantesBase, nomeMaterial);
 
-        if (familia.liso != null) {
-            String nome = nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero, familia.sufixoPolido);
-            addBlock(familia.liso, nome);
-            traduzVariantes(familia.variantesLiso, nome);
-        }
+        if (familia.liso != null)
+            addBlock(familia.liso, nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero, familia.sufixoPolido));
 
-        if (familia.tijolos != null) {
-            String nome = nomeDoMaterial(TipoMaterial.TIJOLOS, nomeMaterial, genero, familia.sufixoPolido);
-            addBlock(familia.tijolos, nome);
-            traduzVariantes(familia.variantesTijolos, nome);
-        }
+        if (familia.tijolos != null)
+            addBlock(familia.tijolos, nomeDoMaterial(TipoMaterial.TIJOLOS, nomeMaterial, genero, familia.sufixoPolido));
 
-        if (familia.ladrilhos != null) {
-            String nome = nomeDoMaterial(TipoMaterial.LADRILHOS, nomeMaterial, genero, familia.sufixoPolido);
-            addBlock(familia.ladrilhos, nome);
-            traduzVariantes(familia.variantesLadrilhos, nome);
-        }
+        if (familia.ladrilhos != null)
+            addBlock(familia.ladrilhos,
+                    nomeDoMaterial(TipoMaterial.LADRILHOS, nomeMaterial, genero, familia.sufixoPolido));
 
-        if (familia.placas != null) {
-            String nome = nomeDoMaterial(TipoMaterial.PLACAS, nomeMaterial, genero, familia.sufixoPolido);
-            addBlock(familia.placas, nome);
-            traduzVariantes(familia.variantesPlacas, nome);
-        }
+        if (familia.placas != null)
+            addBlock(familia.placas, nomeDoMaterial(TipoMaterial.PLACAS, nomeMaterial, genero, familia.sufixoPolido));
 
-        if (familia.polido != null) {
-            String nome = nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero, familia.sufixoPolido);
-            addBlock(familia.polido, nome);
-            traduzVariantes(familia.variantesPolido, nome);
-        }
+        if (familia.polido != null)
+            addBlock(familia.polido, nomeDoMaterial(TipoMaterial.POLIDO, nomeMaterial, genero, familia.sufixoPolido));
+
+        traduzirVariantes(familia, nomeMaterial, genero, familia.sufixoPolido);
     }
 
     private void traduzirFamilia(FamiliaAreia familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, nomeMaterial);
-        traduzVariantes(familia.variantesBase, nomeMaterial);
 
-        if (familia.liso != null) {
-            String nome = nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero, false);
-            addBlock(familia.liso, nome);
-            traduzVariantes(familia.variantesLiso, nome);
-        }
+        if (familia.liso != null)
+            addBlock(familia.liso, nomeDoMaterial(TipoMaterial.LISO, nomeMaterial, genero, false));
 
-        if (familia.pedregoso != null) {
-            String nome = nomeDoMaterial(TipoMaterial.PEDREGOSO, nomeMaterial, genero, false);
-            addBlock(familia.pedregoso, nome);
-            traduzVariantes(familia.variantesPedregoso, nome);
-        }
+        if (familia.pedregoso != null)
+            addBlock(familia.pedregoso, nomeDoMaterial(TipoMaterial.PEDREGOSO, nomeMaterial, genero, false));
 
-        if (familia.cortado != null) {
-            String nome = nomeDoMaterial(TipoMaterial.CORTADO, nomeMaterial, genero, false);
-            addBlock(familia.cortado, nome);
-            traduzVariantes(familia.variantesCortado, nome);
-        }
+        if (familia.cortado != null)
+            addBlock(familia.cortado, nomeDoMaterial(TipoMaterial.CORTADO, nomeMaterial, genero, false));
+
+        traduzirVariantes(familia, nomeMaterial, genero, false);
     }
 
     private void traduzirFamilia(FamiliaMadeira familia, String nomeMaterial, Genero genero, boolean temBase) {
 
         if (temBase)
             addBlock(familia.base, "Tábuas de " + nomeMaterial);
-        traduzVariantes(familia.variantesBase, nomeMaterial);
 
-        if (familia.tronco != null) {
+        if (familia.tronco != null)
             addBlock(familia.tronco, "Tronco de " + nomeMaterial);
-        }
-        if (familia.madeira != null) {
+
+        if (familia.madeira != null)
             addBlock(familia.madeira, "Madeira de " + nomeMaterial);
-        }
-        if (familia.folha != null) {
+
+        if (familia.folha != null)
             addBlock(familia.folha, "Folhas de " + nomeMaterial);
+
+        traduzirVariantes(familia, nomeMaterial, genero, false);
+    }
+
+    private void traduzirVariantes(FamiliaAbstrata familia, String nomeBase, Genero genero, boolean sufixoPolido) {
+        for (Variantes v : familia.variantes()) {
+            if (v.descascado() != null)
+                addBlock(v.descascado(), nomeDoMaterialDescascado(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.escada() != null)
+                addBlock(v.escada(),
+                        "Escadas de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.laje() != null)
+                addBlock(v.laje(),
+                        "Laje de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.muro() != null)
+                addBlock(v.muro(),
+                        "Muro de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.cerca() != null)
+                addBlock(v.cerca(),
+                        "Cerca de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.portao() != null)
+                addBlock(v.portao(),
+                        "Portão de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.porta() != null)
+                addBlock(v.porta(),
+                        "Porta de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+            if (v.alcapao() != null)
+                addBlock(v.alcapao(),
+                        "Alçapão de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.talhado() != null)
+                addBlock(v.talhado(),
+                        nomeDoMaterialaTalhado(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.pilar() != null)
+                addBlock(v.pilar(),
+                        "Pilar de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.rachado() != null)
+                addBlock(v.rachado(),
+                        nomeDoMaterialaRachado(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.pressao() != null)
+                addBlock(v.pressao(),
+                        "Placa de Pressão de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
+            if (v.botao() != null)
+                addBlock(v.botao(),
+                        "Botão de " + nomeDoMaterial(v.tipo(), nomeBase, genero, sufixoPolido));
+
         }
     }
 
-    private void traduzVariantes(Variantes variantes, String nomeBase) {
-        if (variantes == null)
-            return;
-        if (variantes.escada() != null)
-            addBlock(variantes.escada(), "Escadas de " + nomeBase);
-        if (variantes.laje() != null)
-            addBlock(variantes.laje(), "Laje de " + nomeBase);
-        if (variantes.muro() != null)
-            addBlock(variantes.muro(), "Muro de " + nomeBase);
-
-        if (variantes.cerca() != null)
-            addBlock(variantes.cerca(), "Cerca de " + nomeBase);
-        if (variantes.portao() != null)
-            addBlock(variantes.portao(), "Portão de " + nomeBase);
-
-        if (variantes.porta() != null)
-            addBlock(variantes.porta(), "Porta de " + nomeBase);
-        if (variantes.alcapao() != null)
-            addBlock(variantes.alcapao(), "Alçapão de " + nomeBase);
-    }
-
-    private String sufixo(Genero genero) {
+    private String pronome(Genero genero) {
         return switch (genero) {
             case FEMININO -> "a";
             case MASCULINO -> "o";
@@ -168,41 +179,69 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
     }
 
     private String nomeDoMaterial(TipoMaterial tipo, String nomeMaterial, Genero genero, Boolean sufixoPolido) {
-        String s = sufixo(genero);
-        if (sufixoPolido) {
-            return switch (tipo) {
-                case BASE -> nomeMaterial;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial;
-                case LISO -> nomeMaterial + " Lis" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s;
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s;
-                case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s;
-                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s;
-                case TRONCO -> null;
-                case MADEIRA -> null;
-                case FOLHA -> null;
-            };
-        } else {
-            return switch (tipo) {
-                case BASE -> nomeMaterial;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial;
-                case LISO -> nomeMaterial + " Lis" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial;
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial;
-                case PLACAS -> "Placas de " + nomeMaterial;
-                case MOSAICO -> "Mosaico de " + nomeMaterial;
-                case TRONCO -> "Tronco de " + nomeMaterial;
-                case MADEIRA -> "Madeira de " + nomeMaterial;
-                case FOLHA -> "Folhas de " + nomeMaterial;
-            };
-        }
+        String p = pronome(genero); // how woke huh???
+        String s = sufixoPolido ? " Polid" + p : "";
+
+        return switch (tipo) {
+            case BASE -> nomeMaterial;
+            case PEDREGOSO -> "Pedregulho de " + nomeMaterial;
+            case LISO -> nomeMaterial + " Lis" + p;
+            case CORTADO -> nomeMaterial + " Lapidad" + p;
+            case POLIDO -> nomeMaterial + " Polid" + p;
+            case TIJOLOS -> "Tijolos de " + nomeMaterial + s;
+            case LADRILHOS -> "Ladrilhos de " + nomeMaterial + s;
+            case PLACAS -> "Placas de " + nomeMaterial + s;
+            case MOSAICO -> "Mosaico de " + nomeMaterial + s;
+            case TRONCO -> "Tronco de " + nomeMaterial;
+            case MADEIRA -> "Madeira de " + nomeMaterial;
+            case FOLHA -> "Folhas de " + nomeMaterial;
+        };
     }
 
-    private String nomeDoMaterialDescascados(TipoMaterial tipo, String nomeMaterial, Genero genero) {
+    private String nomeDoMaterialaTalhado(TipoMaterial tipo, String nomeMaterial, Genero genero,
+            Boolean sufixoPolido) {
+        String p = pronome(genero);
+        String s = sufixoPolido ? " Polid" + p : "";
+
+        return switch (tipo) {
+            case BASE -> nomeMaterial + " Talhad" + p;
+            case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Talhado";
+            case LISO -> nomeMaterial + " Lis" + p;
+            case CORTADO -> nomeMaterial + " Lapidad" + p;
+            case POLIDO -> nomeMaterial + " Polid" + p + " Talhad" + p;
+            case TIJOLOS -> "Tijolos de " + nomeMaterial + s + " Talhados";
+            case LADRILHOS -> "Ladrilhos de " + nomeMaterial + s + " Talhados";
+            case PLACAS -> "Placas de " + nomeMaterial + s + " Talhadas";
+            case MOSAICO -> "Mosaico de " + nomeMaterial + s + " Talhado";
+            case TRONCO -> "Tronco de " + nomeMaterial;
+            case MADEIRA -> "Madeira de " + nomeMaterial;
+            case FOLHA -> "Folhas de " + nomeMaterial;
+        };
+    }
+
+    private String nomeDoMaterialaRachado(TipoMaterial tipo, String nomeMaterial, Genero genero,
+            Boolean sufixoPolido) {
+        String p = pronome(genero);
+        String s = sufixoPolido ? " Polid" + p : "";
+
+        return switch (tipo) {
+            case BASE -> nomeMaterial + " Rachad" + p;
+            case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Rachado";
+            case LISO -> nomeMaterial + " Lis" + p;
+            case CORTADO -> nomeMaterial + " Lapidad" + p;
+            case POLIDO -> nomeMaterial + " Polid" + p + " Rachad" + p;
+            case TIJOLOS -> "Tijolos de " + nomeMaterial + s + " Rachados";
+            case LADRILHOS -> "Ladrilhos de " + nomeMaterial + s + " Rachados";
+            case PLACAS -> "Placas de " + nomeMaterial + s + " Rachadas";
+            case MOSAICO -> "Mosaico de " + nomeMaterial;
+            case TRONCO -> "Tronco de " + nomeMaterial;
+            case MADEIRA -> "Madeira de " + nomeMaterial;
+            case FOLHA -> "Folhas de " + nomeMaterial;
+        };
+    }
+
+    private String nomeDoMaterialDescascado(TipoMaterial tipo, String nomeMaterial, Genero genero,
+            Boolean sufixoPolido) {
         return switch (tipo) {
             case BASE -> null;
             case PEDREGOSO -> null;
@@ -213,81 +252,9 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
             case LADRILHOS -> null;
             case PLACAS -> null;
             case MOSAICO -> null;
-            case TRONCO -> "Tronco de " + nomeMaterial;
-            case MADEIRA -> "Madeira de " + nomeMaterial;
+            case TRONCO -> "Tronco de " + nomeMaterial + " Descascado";
+            case MADEIRA -> "Madeira de " + nomeMaterial + " Descascada";
             case FOLHA -> null;
         };
-    }
-
-    private String nomeDoMaterialTalhado(TipoMaterial tipo, String nomeMaterial, Genero genero, Boolean sufixoPolido) {
-        String s = sufixo(genero);
-        if (sufixoPolido) {
-            return switch (tipo) {
-                case BASE -> nomeMaterial + " Talhad" + s;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Talhad" + s;
-                case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s + " Talhad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s + " Talhad" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s + " Talhados";
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Talhados";
-                case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s + " Talhadas";
-                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Talhados";
-                case TRONCO -> null;
-                case MADEIRA -> null;
-                case FOLHA -> null;
-            };
-        } else {
-            return switch (tipo) {
-                case BASE -> nomeMaterial + " Talhad" + s;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Talhad" + s;
-                case LISO -> nomeMaterial + " Lis" + s + " Talhad" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s + " Talhad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s + " Talhad" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial + " Talhados";
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Talhados";
-                case PLACAS -> "Placas de " + nomeMaterial + " Talhadas";
-                case MOSAICO -> "Mosaico de " + nomeMaterial + " Talhados";
-                case TRONCO -> null;
-                case MADEIRA -> null;
-                case FOLHA -> null;
-            };
-        }
-
-    }
-
-    private String nomeDoMaterialRachado(TipoMaterial tipo, String nomeMaterial, Genero genero, Boolean sufixoPolido) {
-        String s = sufixo(genero);
-        if (sufixoPolido) {
-            return switch (tipo) {
-                case BASE -> nomeMaterial + " Rachad" + s;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Rachad" + s;
-                case LISO -> nomeMaterial + " Lis" + s + " Rachad" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s + " Rachad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s + " Rachad" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial + " Polid" + s + " Rachados";
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Polid" + s + " Rachados";
-                case PLACAS -> "Placas de " + nomeMaterial + " Polid" + s + " Rachadas";
-                case MOSAICO -> "Mosaico de " + nomeMaterial + " Polid" + s + " Rachados";
-                case TRONCO -> null;
-                case MADEIRA -> null;
-                case FOLHA -> null;
-            };
-        } else {
-            return switch (tipo) {
-                case BASE -> nomeMaterial + " Rachad" + s;
-                case PEDREGOSO -> "Pedregulho de " + nomeMaterial + " Rachad" + s;
-                case LISO -> nomeMaterial + " Lis" + s + " Rachad" + s;
-                case CORTADO -> nomeMaterial + " Lapidad" + s + " Rachad" + s;
-                case POLIDO -> nomeMaterial + " Polid" + s + " Rachad" + s;
-                case TIJOLOS -> "Tijolos de " + nomeMaterial + " Rachados";
-                case LADRILHOS -> "Ladrilhos de " + nomeMaterial + " Rachados";
-                case PLACAS -> "Placas de " + nomeMaterial + " Rachadas";
-                case MOSAICO -> "Mosaico de " + nomeMaterial + " Rachados";
-                case TRONCO -> "Tronco de " + nomeMaterial + " Rachados";
-                case MADEIRA -> "Madeira de " + nomeMaterial + " Rachados";
-                case FOLHA -> null;
-            };
-        }
-
     }
 }

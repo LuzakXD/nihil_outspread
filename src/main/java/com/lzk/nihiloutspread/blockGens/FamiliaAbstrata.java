@@ -6,21 +6,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -38,6 +45,8 @@ public abstract class FamiliaAbstrata {
     protected final List<Variantes> todosAsVariantes = new ArrayList<>();
 
     protected final Map<TipoMaterial, DeferredBlock<Block>> materiais = new EnumMap<>(TipoMaterial.class);
+
+    // TODO: Add Sound, Block and Wood Types.
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase, String sufixo) {
@@ -194,6 +203,22 @@ public abstract class FamiliaAbstrata {
         return tronco;
     }
 
+    protected DeferredBlock<LeavesBlock> registrarFolha(TipoMaterial tipo, String nome,
+            BlockBehaviour.Properties props) {
+        DeferredBlock<LeavesBlock> folha = registro.register(nome, () -> new LeavesBlock(props
+                .mapColor(MapColor.PLANT)
+                .strength(0.2F)
+                .randomTicks()
+                .sound(SoundType.GRASS)
+                .noOcclusion()
+                .ignitedByLava()
+                .pushReaction(PushReaction.DESTROY)));
+
+        registroItem.registerSimpleBlockItem(nome, folha);
+        todosOsBlocos.add(folha);
+        return folha;
+    }
+
     public List<Item> devolverItens(boolean temBase) {
         List<Item> itens = new ArrayList<>();
         if (temBase)
@@ -210,5 +235,13 @@ public abstract class FamiliaAbstrata {
 
     public DeferredBlock<Block> materialDe(TipoMaterial tipo) {
         return materiais.get(tipo);
+    }
+
+    private static boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
+        return true;
+    }
+
+    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
+        return false;
     }
 }

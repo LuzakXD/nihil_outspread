@@ -14,10 +14,10 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil", "Nihil");
+        add("itemGroup.nihil", "Nihil blocks");
         add("itemGroup.nihil_naturals", "Nihil naturals");
-        add("itemGroup.abyss", "Abyss");
-        add("itemGroup.hive", "Hive");
+        add("itemGroup.abyss", "Abyss blocks");
+        add("itemGroup.hive", "Hive blocks");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Nihil Dirt");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Nihil Grass Block");
@@ -126,7 +126,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         for (Variantes v : familia.variantes()) {
             if (v.descascado() != null)
-                addBlock(v.descascado(), nomeDoMaterialSingular(v.tipo(), "Stripped " + nomeBase, sufixoPolido));
+                addBlock(v.descascado(), "Stripped " + nomeDoMaterialSingular(v.tipo(), nomeBase, sufixoPolido));
 
             if (v.escada() != null)
                 addBlock(v.escada(), nomeDoMaterialSingular(v.tipo(), nomeBase, sufixoPolido) + " Stairs");

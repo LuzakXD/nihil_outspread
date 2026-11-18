@@ -72,7 +72,7 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 "mossy_abyssal_stone",
                 "abyssal_stone",
                 "abyssal_moss_block",
-                "abyss", true,
+                "abyss", false,
                 NihilGrassBlock.SNOWY);
 
         gerarModelosDaFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, true, "glacier");
@@ -502,6 +502,14 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                     familia.mosaico.getId().getPath(),
                     familia.variantesMosaico,
                     false, categoria);
+        }
+
+        // FOLHA
+        if (familia.folha != null) {
+            String nomeFolha = familia.folha.getId().getPath();
+            simpleBlock(familia.folha.get(),
+                    models().leaves(nomeFolha, textura(nomeFolha, categoria)));
+            modeloItemPadrao(familia.folha);
         }
 
     }

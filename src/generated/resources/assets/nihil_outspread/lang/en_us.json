@@ -113,9 +113,9 @@
   "block.nihil_outspread.velvestone_wall": "Velvestone Wall",
   "block.nihil_outspread.velvet_sand": "Velvet Sand",
   "block.nihil_outspread.xor_gate": "XOR Redstone Gate",
-  "itemGroup.abyss": "Abyss",
-  "itemGroup.hive": "Hive",
-  "itemGroup.nihil": "Nihil",
+  "itemGroup.abyss": "Abyss blocks",
+  "itemGroup.hive": "Hive blocks",
+  "itemGroup.nihil": "Nihil blocks",
   "itemGroup.nihil_naturals": "Nihil naturals",
   "subtitles.nihil_outspread.honey_gate_click": "Honey redstone gate click"
 }

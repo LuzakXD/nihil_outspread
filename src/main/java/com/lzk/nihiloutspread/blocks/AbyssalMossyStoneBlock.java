@@ -2,6 +2,7 @@ package com.lzk.nihiloutspread.blocks;
 
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.neoforged.neoforge.common.util.TriState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -13,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
@@ -33,6 +35,12 @@ public class AbyssalMossyStoneBlock extends AbyssalStoneBlock {
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(VERTICAL_DIRECTION, SNOWY);
+	}
+
+	@Override
+	public TriState canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing,
+			BlockState plantState) {
+		return TriState.TRUE;
 	}
 
 	@Override

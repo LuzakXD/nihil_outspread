@@ -116,6 +116,31 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 tag(BlockTags.PRESSURE_PLATES).add(v.pressao().get());
                 tag(BlockTags.WOODEN_PRESSURE_PLATES).add(v.pressao().get());
             }
+
+            if (v.descascado() != null) {
+                tag(BlockTags.LOGS).add(v.descascado().get());
+                tag(BlockTags.LOGS_THAT_BURN).add(v.descascado().get());
+                tag(BlockTags.MINEABLE_WITH_AXE).add(v.descascado().get());
+            }
+
+        }
+
+        if (familia.tronco != null) {
+            tag(BlockTags.LOGS).add(familia.tronco.get());
+            tag(BlockTags.LOGS_THAT_BURN).add(familia.tronco.get());
+            tag(BlockTags.MINEABLE_WITH_AXE).add(familia.tronco.get());
+        }
+
+        if (familia.madeira != null) {
+            tag(BlockTags.LOGS).add(familia.madeira.get());
+            tag(BlockTags.LOGS_THAT_BURN).add(familia.madeira.get());
+            tag(BlockTags.MINEABLE_WITH_AXE).add(familia.madeira.get());
+        }
+
+        if (familia.folha != null) {
+            tag(BlockTags.LEAVES).add(familia.folha.get());
+            tag(BlockTags.SWORD_EFFICIENT).add(familia.folha.get());
+            tag(BlockTags.MINEABLE_WITH_HOE).add(familia.folha.get());
         }
 
     }

@@ -239,7 +239,7 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> NIHIL_SPROUT = registrarBlocoItem(
                         "nihil_sprout",
-                        () -> new NihilBushesBlock(
+                        () -> new NihilSroutsBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
                                                         .replaceable()
@@ -252,7 +252,7 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> DREAD_SPROUT = registrarBlocoItem(
                         "dread_sprout",
-                        () -> new NihilBushesBlock(
+                        () -> new NihilSroutsBlock(
                                         BlockBehaviour.Properties.of()
                                                         .mapColor(MapColor.TERRACOTTA_BLACK)
                                                         .replaceable()

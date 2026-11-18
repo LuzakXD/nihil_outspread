@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -18,7 +19,7 @@ public class FamiliaMadeira extends FamiliaAbstrata {
     public final DeferredBlock<RotatedPillarBlock> madeira;
     public final Variantes variantesMadeira;
 
-    public final DeferredBlock<Block> folha;
+    public final DeferredBlock<LeavesBlock> folha;
 
     public final Variantes variantesBase;
 
@@ -61,7 +62,7 @@ public class FamiliaMadeira extends FamiliaAbstrata {
         }
 
         if (composicao.containsKey(TipoMaterial.FOLHA)) {
-            this.folha = registrarMaterial(TipoMaterial.FOLHA, nomeBase + "_leaves", props);
+            this.folha = registrarFolha(TipoMaterial.FOLHA, nomeBase + "_leaves", props);
         } else {
             this.folha = null;
         }
