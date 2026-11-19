@@ -55,8 +55,6 @@ public abstract class FamiliaAbstrata {
 
     protected final Map<TipoMaterial, DeferredBlock<Block>> materiais = new EnumMap<>(TipoMaterial.class);
 
-    // TODO: Add Sound, Block and Wood Types.
-
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase, BlockSetType tipoBloco, String sufixo, TipoFamilia tipoFamilia) {
 
