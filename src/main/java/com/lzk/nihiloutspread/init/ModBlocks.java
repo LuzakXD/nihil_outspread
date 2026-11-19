@@ -41,426 +41,485 @@ public class ModBlocks {
                 return bloco;
         }
 
-        private static final ResourceKey<Block> honeycombKey = ResourceKey.create(
-                        Registries.BLOCK,
-                        ResourceLocation.withDefaultNamespace("honeycomb_block"));
+        // Nihil
+        public static final DeferredBlock<Block> NIHIL_GRASS_BLOCK;
+        public static final DeferredBlock<Block> CHECKER_GRASS_BLOCK;
+        public static final DeferredBlock<Block> NIHIL_DIRT;
+        public static final DeferredBlock<NihilBushesBlock> NIHIL_FERN;
+        public static final DeferredBlock<NihilBushesBlock> NIHIL_BUSH;
+        public static final DeferredBlock<NihilBushesBlock> NIHIL_HERB;
+        public static final DeferredBlock<NihilSroutsBlock> NIHIL_SPROUT;
+        public static final DeferredBlock<NihilSroutsBlock> DREAD_SPROUT;
+        public static final DeferredBlock<PetalsBlock> NIHIL_PETALS;
+        public static final DeferredBlock<Block> NILIGHT;
+        public static final FamiliaPedra NILIGHT_BLOCK_FAMILY;
+        public static final DeferredBlock<Block> GRAPHITE;
+        public static final FamiliaPedra GRAPHITE_BLOCK_FAMILY;
+        public static final DeferredBlock<ColoredFallingBlock> VELVET_SAND;
+        public static final DeferredBlock<Block> VELVESTONE;
+        public static final FamiliaAreia VELVESTONE_BLOCK_FAMILY;
+        public static final DeferredBlock<Block> COTTONITE;
+        public static final FamiliaPedra COTTONITE_BLOCK_FAMILY;
 
-        public static final DeferredBlock<Block> NIHIL_GRASS_BLOCK = registrarBlocoItem("nihil_grass_block",
-                        () -> new NihilGrassBlock(BlockBehaviour.Properties.of()
-                                        .sound(SoundType.GRASS)
-                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+        static {
 
-        public static final DeferredBlock<Block> CHECKER_GRASS_BLOCK = registrarBlocoItem("checker_grass_block",
-                        () -> new CheckerGrassBlock(BlockBehaviour.Properties.of()
-                                        .sound(SoundType.GRASS)
-                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+                NIHIL_GRASS_BLOCK = registrarBlocoItem("nihil_grass_block",
+                                () -> new NihilGrassBlock(BlockBehaviour.Properties.of()
+                                                .sound(SoundType.GRASS)
+                                                .mapColor(MapColor.COLOR_BLACK)
+                                                .strength(0.5f, 0.5f)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)));
 
-        public static final DeferredBlock<Block> NIHIL_DIRT = registrarBlocoItem("nihil_dirt",
-                        () -> new Block(BlockBehaviour.Properties.of()
-                                        .sound(SoundType.GRASS)
-                                        .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
-                                        .instrument(NoteBlockInstrument.GUITAR)));
+                CHECKER_GRASS_BLOCK = registrarBlocoItem("checker_grass_block",
+                                () -> new CheckerGrassBlock(BlockBehaviour.Properties.of()
+                                                .sound(SoundType.GRASS)
+                                                .mapColor(MapColor.COLOR_BLACK)
+                                                .strength(0.5f, 0.5f)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)));
 
-        public static final DeferredBlock<Block> NILIGHT = registrarBlocoItem("nilight",
-                        () -> new NilightBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.COLOR_BLACK).strength(3, 10)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+                NIHIL_DIRT = registrarBlocoItem("nihil_dirt",
+                                () -> new Block(BlockBehaviour.Properties.of()
+                                                .sound(SoundType.GRASS)
+                                                .mapColor(MapColor.COLOR_BLACK).strength(0.5f, 0.5f)
+                                                .instrument(NoteBlockInstrument.GUITAR)));
 
-        public static final FamiliaPedra NILIGHT_BLOCK_FAMILY = new FamiliaPedra(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        NILIGHT,
-                        BlockSetType.STONE,
-                        "",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
-                        false,
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.POLIDO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.TALHADO,
-                                                        TipoVariante.PLACAPRESSAO,
-                                                        TipoVariante.BOTAO),
-                                        TipoMaterial.TIJOLOS,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.RACHADO),
-                                        TipoMaterial.PLACAS,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.RACHADO)));
+                NIHIL_FERN = registrarBlocoItem("nihil_fern",
+                                () -> new NihilBushesBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .offsetType(OffsetType.XZ)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> GRAPHITE = registrarBlocoItem("graphite",
-                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6)));
+                NIHIL_BUSH = registrarBlocoItem(
+                                "nihil_bush",
+                                () -> new NihilBushesBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .offsetType(OffsetType.XZ)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final FamiliaPedra GRAPHITE_BLOCK_FAMILY = new FamiliaPedra(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        GRAPHITE,
-                        BlockSetType.STONE,
-                        "",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
-                        true,
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.POLIDO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.TIJOLOS,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.RACHADO)));
+                NIHIL_HERB = registrarBlocoItem(
+                                "nihil_herb",
+                                () -> new NihilBushesBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .offsetType(OffsetType.XZ)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<ColoredFallingBlock> VELVET_SAND = registrarBlocoItem("velvet_sand",
-                        () -> new ColoredFallingBlock(new ColorRGBA(148046076),
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.COLOR_ORANGE)
-                                                        .instrument(NoteBlockInstrument.SNARE)
-                                                        .strength(0.5F)
-                                                        .sound(SoundType.SAND)));
+                NIHIL_SPROUT = registrarBlocoItem(
+                                "nihil_sprout",
+                                () -> new NihilSroutsBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .offsetType(OffsetType.XYZ)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> VELVESTONE = registrarBlocoItem("velvestone",
-                        () -> new Block(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.COLOR_ORANGE)
-                                        .instrument(NoteBlockInstrument.SNARE)
-                                        .strength(1.5F)
-                                        .sound(SoundType.STONE)));
+                DREAD_SPROUT = registrarBlocoItem(
+                                "dread_sprout",
+                                () -> new NihilSroutsBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_BLACK)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .offsetType(OffsetType.XYZ)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final FamiliaAreia VELVESTONE_BLOCK_FAMILY = new FamiliaAreia(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        VELVESTONE,
-                        BlockSetType.STONE,
-                        "",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1.5F),
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.PEDREGOSO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.CORTADO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA),
-                                        TipoMaterial.LISO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE)));
+                NIHIL_PETALS = registrarBlocoItem(
+                                "nihil_petals",
+                                () -> new PetalsBlock(
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
+                                                                .replaceable()
+                                                                .noCollission()
+                                                                .instabreak()
+                                                                .sound(SoundType.GRASS)
+                                                                .ignitedByLava()
+                                                                .pushReaction(PushReaction.DESTROY)));
 
-        public static final DeferredBlock<Block> COTTONITE = registrarBlocoItem("cottonite",
-                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1,
-                                        6)));
+                NILIGHT = registrarBlocoItem("nilight",
+                                () -> new NilightBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.COLOR_BLACK).strength(3, 10)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)));
 
-        public static final FamiliaPedra COTTONITE_BLOCK_FAMILY = new FamiliaPedra(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        COTTONITE,
-                        BlockSetType.STONE,
-                        "",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
-                        true,
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.POLIDO,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.PILAR),
-                                        TipoMaterial.TIJOLOS,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO),
-                                        TipoMaterial.LADRILHOS,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO)));
+                NILIGHT_BLOCK_FAMILY = new FamiliaPedra(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                NILIGHT,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
+                                false,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.POLIDO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.TALHADO,
+                                                                TipoVariante.PLACAPRESSAO,
+                                                                TipoVariante.BOTAO),
+                                                TipoMaterial.TIJOLOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.RACHADO),
+                                                TipoMaterial.PLACAS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.RACHADO)));
 
-        public static final DeferredBlock<Block> NIHIL_FERN = registrarBlocoItem("nihil_fern",
-                        () -> new NihilBushesBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XZ)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                GRAPHITE = registrarBlocoItem("graphite",
+                                () -> new Block(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.DEEPSLATE)
+                                                .strength(1.5f, 6)));
 
-        public static final DeferredBlock<Block> NIHIL_BUSH = registrarBlocoItem(
-                        "nihil_bush",
-                        () -> new NihilBushesBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XZ)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                GRAPHITE_BLOCK_FAMILY = new FamiliaPedra(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                GRAPHITE,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
+                                true,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.POLIDO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.TIJOLOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.RACHADO)));
 
-        public static final DeferredBlock<Block> NIHIL_HERB = registrarBlocoItem(
-                        "nihil_herb",
-                        () -> new NihilBushesBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XZ)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                VELVET_SAND = registrarBlocoItem("velvet_sand",
+                                () -> new ColoredFallingBlock(new ColorRGBA(148046076),
+                                                BlockBehaviour.Properties.of()
+                                                                .mapColor(MapColor.COLOR_ORANGE)
+                                                                .instrument(NoteBlockInstrument.SNARE)
+                                                                .strength(0.5F)
+                                                                .sound(SoundType.SAND)));
 
-        public static final DeferredBlock<Block> NIHIL_SPROUT = registrarBlocoItem(
-                        "nihil_sprout",
-                        () -> new NihilSroutsBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XYZ)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                VELVESTONE = registrarBlocoItem("velvestone",
+                                () -> new Block(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.COLOR_ORANGE)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)
+                                                .strength(1.5F)
+                                                .sound(SoundType.STONE)));
 
-        public static final DeferredBlock<Block> DREAD_SPROUT = registrarBlocoItem(
-                        "dread_sprout",
-                        () -> new NihilSroutsBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_BLACK)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .offsetType(OffsetType.XYZ)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                VELVESTONE_BLOCK_FAMILY = new FamiliaAreia(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                VELVESTONE,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE)
+                                                .instrument(NoteBlockInstrument.BASEDRUM).strength(1.5F),
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.PEDREGOSO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.CORTADO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA),
+                                                TipoMaterial.LISO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE)));
 
-        public static final DeferredBlock<Block> NIHIL_PETALS = registrarBlocoItem(
-                        "nihil_petals",
-                        () -> new PetalsBlock(
-                                        BlockBehaviour.Properties.of()
-                                                        .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                        .replaceable()
-                                                        .noCollission()
-                                                        .instabreak()
-                                                        .sound(SoundType.GRASS)
-                                                        .ignitedByLava()
-                                                        .pushReaction(PushReaction.DESTROY)));
+                COTTONITE = registrarBlocoItem("cottonite",
+                                () -> new Block(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.TERRACOTTA_WHITE)
+                                                .strength(1, 6)));
 
-        public static final DeferredBlock<Block> HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);
+                COTTONITE_BLOCK_FAMILY = new FamiliaPedra(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                COTTONITE,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
+                                true,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.POLIDO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.PILAR),
+                                                TipoMaterial.TIJOLOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.LADRILHOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO)));
 
-        public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
-                        ModItems.ITEMS,
-                        HONEYCOMB_BASE,
-                        BlockSetType.STONE,
-                        "_block",
-                        BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
-                        true,
-                        Map.of(
-                                        TipoMaterial.POLIDO, Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.PILAR),
-                                        TipoMaterial.TIJOLOS, Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO)));
+        }
 
-        public static final DeferredBlock<Block> ABYSSAL_MOSS_BLOCK = registrarBlocoItem("abyssal_moss_block",
-                        () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .strength(0.1f)
-                                        .instrument(NoteBlockInstrument.FLUTE)
-                                        .sound(SoundType.MOSS)));
+        // Abyss
+        public static final DeferredBlock<Block> ABYSSAL_MOSS_BLOCK;
+        public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY;
+        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_BLOCK;
+        public static final DeferredBlock<Block> ABYSSAL_MOSS_CARPET;
+        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_CARPET;
+        public static final DeferredBlock<Block> ABYSSAL_STONE;
+        public static final DeferredBlock<Block> ABYSSAL_MOSSY_STONE;
+        public static final FamiliaPedra ABYSSAL_STONE_FAMILY;
 
-        public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
-                        ModItems.ITEMS,
-                        ABYSSAL_MOSS_BLOCK,
-                        BlockSetType.STONE,
-                        "_block",
-                        BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .strength(0.1f)
-                                        .instrument(NoteBlockInstrument.FLUTE)
-                                        .sound(SoundType.MOSS),
-                        false,
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO)));
+        static {
+                ABYSSAL_MOSS_BLOCK = registrarBlocoItem("abyssal_moss_block",
+                                () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .strength(0.1f)
+                                                .instrument(NoteBlockInstrument.FLUTE)
+                                                .sound(SoundType.MOSS)));
 
-        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_BLOCK = registrarBlocoItem(
-                        "abyssal_floral_moss_block",
-                        () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .strength(0.1f)
-                                        .instrument(NoteBlockInstrument.FLUTE)
-                                        .sound(SoundType.MOSS)));
+                ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                                ModItems.ITEMS,
+                                ABYSSAL_MOSS_BLOCK,
+                                BlockSetType.STONE,
+                                "_block",
+                                BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .strength(0.1f)
+                                                .instrument(NoteBlockInstrument.FLUTE)
+                                                .sound(SoundType.MOSS),
+                                false,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO)));
 
-        public static final DeferredBlock<Block> ABYSSAL_MOSS_CARPET = registrarBlocoItem("abyssal_moss_carpet",
-                        () -> new CarpetBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .strength(0.1f)
-                                        .pushReaction(PushReaction.DESTROY)
-                                        .sound(SoundType.MOSS)));
+                ABYSSAL_FLORAL_MOSS_BLOCK = registrarBlocoItem(
+                                "abyssal_floral_moss_block",
+                                () -> new AbyssalMossBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .strength(0.1f)
+                                                .instrument(NoteBlockInstrument.FLUTE)
+                                                .sound(SoundType.MOSS)));
 
-        public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_CARPET = registrarBlocoItem(
-                        "abyssal_floral_moss_carpet",
-                        () -> new CarpetBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .strength(0.1f)
-                                        .pushReaction(PushReaction.DESTROY)
-                                        .sound(SoundType.MOSS)));
+                ABYSSAL_MOSS_CARPET = registrarBlocoItem("abyssal_moss_carpet",
+                                () -> new CarpetBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .strength(0.1f)
+                                                .pushReaction(PushReaction.DESTROY)
+                                                .sound(SoundType.MOSS)));
 
-        public static final DeferredBlock<Block> ABYSSAL_STONE = registrarBlocoItem(
-                        "abyssal_stone",
-                        () -> new AbyssalStoneBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.METAL)
-                                        .sound(SoundType.DEEPSLATE)
-                                        .strength(2f, 4f)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+                ABYSSAL_FLORAL_MOSS_CARPET = registrarBlocoItem(
+                                "abyssal_floral_moss_carpet",
+                                () -> new CarpetBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .strength(0.1f)
+                                                .pushReaction(PushReaction.DESTROY)
+                                                .sound(SoundType.MOSS)));
 
-        public static final DeferredBlock<Block> ABYSSAL_MOSSY_STONE = registrarBlocoItem(
-                        "abyssal_mossy_stone",
-                        () -> new AbyssalMossyStoneBlock(BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.PLANT)
-                                        .sound(SoundType.DEEPSLATE)
-                                        .strength(2.1f, 4f)
-                                        .instrument(NoteBlockInstrument.BASEDRUM)));
+                ABYSSAL_STONE = registrarBlocoItem(
+                                "abyssal_stone",
+                                () -> new AbyssalStoneBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.METAL)
+                                                .sound(SoundType.DEEPSLATE)
+                                                .strength(2f, 4f)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)));
 
-        public static final FamiliaPedra ABYSSAL_STONE_FAMILY = new FamiliaPedra(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        ABYSSAL_STONE,
-                        BlockSetType.STONE,
-                        "",
-                        BlockBehaviour.Properties.of()
-                                        .mapColor(MapColor.METAL)
-                                        .sound(SoundType.DEEPSLATE)
-                                        .strength(2f, 6f)
-                                        .instrument(NoteBlockInstrument.BASEDRUM),
-                        false,
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.MURO,
-                                                        TipoVariante.PLACAPRESSAO,
-                                                        TipoVariante.BOTAO)));
+                ABYSSAL_MOSSY_STONE = registrarBlocoItem(
+                                "abyssal_mossy_stone",
+                                () -> new AbyssalMossyStoneBlock(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.PLANT)
+                                                .sound(SoundType.DEEPSLATE)
+                                                .strength(2.1f, 4f)
+                                                .instrument(NoteBlockInstrument.BASEDRUM)));
 
-        // Redstone da Colmeia
+                ABYSSAL_STONE_FAMILY = new FamiliaPedra(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                ABYSSAL_STONE,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.METAL)
+                                                .sound(SoundType.DEEPSLATE)
+                                                .strength(2f, 6f)
+                                                .instrument(NoteBlockInstrument.BASEDRUM),
+                                false,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.PLACAPRESSAO,
+                                                                TipoVariante.BOTAO)));
+        }
 
-        public static final DeferredBlock<Block> XOR_GATE = registrarBlocoItem(
-                        "xor_gate",
-                        () -> new XORGateBlock(BlockBehaviour.Properties.of()
-                                        .instabreak()
-                                        .sound(SoundType.CORAL_BLOCK)
-                                        .pushReaction(PushReaction.DESTROY)));
+        // Glacier
+        public static final DeferredBlock<Block> NYVERIN_PLANKS;
+        public static final FamiliaMadeira NYVERIN_BLOCK_FAMILY;
 
-        public static final DeferredBlock<Block> OR_GATE = registrarBlocoItem(
-                        "or_gate",
-                        () -> new ORGateBlock(BlockBehaviour.Properties.of()
-                                        .instabreak()
-                                        .sound(SoundType.CORAL_BLOCK)
-                                        .pushReaction(PushReaction.DESTROY)));
+        static {
 
-        public static final DeferredBlock<Block> AND_GATE = registrarBlocoItem(
-                        "and_gate",
-                        () -> new ANDGateBlock(BlockBehaviour.Properties.of()
-                                        .instabreak()
-                                        .sound(SoundType.CORAL_BLOCK)
-                                        .pushReaction(PushReaction.DESTROY)));
+                NYVERIN_PLANKS = registrarBlocoItem("nyverin_planks",
+                                () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
+                                                .strength(2, 3).sound(ModBlockSetTypes.NYVERIN.soundType())) {
+                                        @Override
+                                        public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return true;
+                                        }
 
-        // Geleria (Glaceir be like)
+                                        @Override
+                                        public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return 5;
+                                        }
 
-        public static final DeferredBlock<Block> NYVERIN_PLANKS = registrarBlocoItem("nyverin_planks",
-                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
-                                        .strength(2, 3).sound(ModBlockSetTypes.NYVERIN.soundType())) {
-                                @Override
-                                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
-                                                Direction direction) {
-                                        return true;
-                                }
+                                        @Override
+                                        public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return 20;
+                                        }
+                                });
 
-                                @Override
-                                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
-                                                Direction direction) {
-                                        return 5;
-                                }
+                NYVERIN_BLOCK_FAMILY = new FamiliaMadeira(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                NYVERIN_PLANKS,
+                                ModBlockSetTypes.NYVERIN,
+                                "_planks",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4)
+                                                .sound(
+                                                                ModBlockSetTypes.NYVERIN
+                                                                                .soundType()),
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.CERCA,
+                                                                TipoVariante.PORTAO,
+                                                                TipoVariante.BOTAO,
+                                                                TipoVariante.PORTA,
+                                                                TipoVariante.ALCAPAO,
+                                                                TipoVariante.PLACAPRESSAO),
+                                                TipoMaterial.TRONCO,
+                                                Set.of(
+                                                                TipoVariante.DESCASCADO),
+                                                TipoMaterial.MADEIRA,
+                                                Set.of(
+                                                                TipoVariante.DESCASCADO),
+                                                TipoMaterial.FOLHA,
+                                                Set.of()));
+        }
 
-                                @Override
-                                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
-                                                Direction direction) {
-                                        return 20;
-                                }
-                        });
+        // Hive
+        private static final ResourceKey<Block> honeycombKey;
+        public static final DeferredBlock<Block> HONEYCOMB_BASE;
+        public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY;
+        public static final DeferredBlock<Block> XOR_GATE;
+        public static final DeferredBlock<Block> OR_GATE;
+        public static final DeferredBlock<Block> AND_GATE;
 
-        public static final FamiliaMadeira NYVERIN_BLOCK_FAMILY = new FamiliaMadeira(
-                        BLOCKS,
-                        ModItems.ITEMS,
-                        NYVERIN_PLANKS,
-                        ModBlockSetTypes.NYVERIN,
-                        "_planks",
-                        BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
-                        Map.of(
-                                        TipoMaterial.BASE,
-                                        Set.of(
-                                                        TipoVariante.ESCADA,
-                                                        TipoVariante.LAJE,
-                                                        TipoVariante.CERCA,
-                                                        TipoVariante.PORTAO,
-                                                        TipoVariante.BOTAO,
-                                                        TipoVariante.PORTA,
-                                                        TipoVariante.ALCAPAO,
-                                                        TipoVariante.PLACAPRESSAO),
-                                        TipoMaterial.TRONCO,
-                                        Set.of(
-                                                        TipoVariante.DESCASCADO),
-                                        TipoMaterial.MADEIRA,
-                                        Set.of(
-                                                        TipoVariante.DESCASCADO),
-                                        TipoMaterial.FOLHA,
-                                        Set.of()));
+        static {
+                honeycombKey = ResourceKey.create(
+                                Registries.BLOCK,
+                                ResourceLocation.withDefaultNamespace("honeycomb_block"));
+
+                HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);
+
+                HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                                ModItems.ITEMS,
+                                HONEYCOMB_BASE,
+                                BlockSetType.STONE,
+                                "_block",
+                                BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
+                                true,
+                                Map.of(
+                                                TipoMaterial.POLIDO, Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO,
+                                                                TipoVariante.PILAR),
+                                                TipoMaterial.TIJOLOS, Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO)));
+
+                XOR_GATE = registrarBlocoItem(
+                                "xor_gate",
+                                () -> new XORGateBlock(BlockBehaviour.Properties.of()
+                                                .instabreak()
+                                                .sound(SoundType.CORAL_BLOCK)
+                                                .pushReaction(PushReaction.DESTROY)));
+
+                OR_GATE = registrarBlocoItem(
+                                "or_gate",
+                                () -> new ORGateBlock(BlockBehaviour.Properties.of()
+                                                .instabreak()
+                                                .sound(SoundType.CORAL_BLOCK)
+                                                .pushReaction(PushReaction.DESTROY)));
+
+                AND_GATE = registrarBlocoItem(
+                                "and_gate",
+                                () -> new ANDGateBlock(BlockBehaviour.Properties.of()
+                                                .instabreak()
+                                                .sound(SoundType.CORAL_BLOCK)
+                                                .pushReaction(PushReaction.DESTROY)));
+
+        }
 
 }
