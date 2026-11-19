@@ -10,6 +10,7 @@ import com.lzk.nihiloutspread.blocks.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -71,6 +72,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         NILIGHT,
+                        BlockSetType.STONE,
                         "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(3, 10),
                         false,
@@ -108,6 +110,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         GRAPHITE,
+                        BlockSetType.STONE,
                         "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).strength(1.5f, 6),
                         true,
@@ -148,6 +151,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         VELVESTONE,
+                        BlockSetType.STONE,
                         "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_ORANGE).strength(1.5F),
                         Map.of(
@@ -177,6 +181,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         COTTONITE,
+                        BlockSetType.STONE,
                         "",
                         BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
                         true,
@@ -284,6 +289,7 @@ public class ModBlocks {
         public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
                         ModItems.ITEMS,
                         HONEYCOMB_BASE,
+                        BlockSetType.STONE,
                         "_block",
                         BlockBehaviour.Properties.ofFullCopy(Blocks.HONEYCOMB_BLOCK),
                         true,
@@ -308,6 +314,7 @@ public class ModBlocks {
         public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
                         ModItems.ITEMS,
                         ABYSSAL_MOSS_BLOCK,
+                        BlockSetType.STONE,
                         "_block",
                         BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.PLANT)
@@ -365,6 +372,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         ABYSSAL_STONE,
+                        BlockSetType.STONE,
                         "",
                         BlockBehaviour.Properties.of()
                                         .mapColor(MapColor.METAL)
@@ -387,28 +395,28 @@ public class ModBlocks {
                         "xor_gate",
                         () -> new XORGateBlock(BlockBehaviour.Properties.of()
                                         .instabreak()
-                                        .sound(SoundType.STONE)
+                                        .sound(SoundType.CORAL_BLOCK)
                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredBlock<Block> OR_GATE = registrarBlocoItem(
                         "or_gate",
                         () -> new ORGateBlock(BlockBehaviour.Properties.of()
                                         .instabreak()
-                                        .sound(SoundType.STONE)
+                                        .sound(SoundType.CORAL_BLOCK)
                                         .pushReaction(PushReaction.DESTROY)));
 
         public static final DeferredBlock<Block> AND_GATE = registrarBlocoItem(
                         "and_gate",
                         () -> new ANDGateBlock(BlockBehaviour.Properties.of()
                                         .instabreak()
-                                        .sound(SoundType.STONE)
+                                        .sound(SoundType.CORAL_BLOCK)
                                         .pushReaction(PushReaction.DESTROY)));
 
         // Geleria (Glaceir be like)
 
         public static final DeferredBlock<Block> NYVERIN_PLANKS = registrarBlocoItem("nyverin_planks",
-                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(2,
-                                        3)) {
+                        () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE)
+                                        .strength(2, 3).sound(ModBlockSetTypes.NYVERIN.soundType())) {
                                 @Override
                                 public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
                                                 Direction direction) {
@@ -432,6 +440,7 @@ public class ModBlocks {
                         BLOCKS,
                         ModItems.ITEMS,
                         NYVERIN_PLANKS,
+                        ModBlockSetTypes.NYVERIN,
                         "_planks",
                         BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
                         Map.of(

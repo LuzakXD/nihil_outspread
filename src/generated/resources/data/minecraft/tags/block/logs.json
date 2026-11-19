@@ -1,8 +1,8 @@
 {
   "values": [
-    "nihil_outspread:stripped_nyverin_wood",
-    "nihil_outspread:stripped_nyverin_log",
     "nihil_outspread:nyverin_log",
-    "nihil_outspread:nyverin_wood"
+    "nihil_outspread:nyverin_wood",
+    "nihil_outspread:stripped_nyverin_wood",
+    "nihil_outspread:stripped_nyverin_log"
   ]
 }

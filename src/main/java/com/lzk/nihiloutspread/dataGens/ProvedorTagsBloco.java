@@ -12,6 +12,8 @@ import com.lzk.nihiloutspread.init.ModTags;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -79,26 +81,18 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
     }
 
+    private static TagKey<Block> botaoTag = BlockTags.STONE_BUTTONS;
+    private static TagKey<Block> pressaoTag = BlockTags.STONE_PRESSURE_PLATES;
+
     private void tagVariantes(FamiliaAbstrata familia) {
 
-        for (Variantes v : familia.variantes()) {
-            if (v.muro() != null) {
-                tag(BlockTags.WALLS).add(v.muro().get());
-            }
+        boolean madeira = familia.tipoFamilia == TipoFamilia.MADEIRA;
 
-            if (v.botao() != null) {
-                tag(BlockTags.BUTTONS).add(v.botao().get());
-                tag(BlockTags.STONE_BUTTONS).add(v.botao().get());
-            }
+        TagKey<Block> botaoTag = madeira ? BlockTags.WOODEN_BUTTONS : BlockTags.STONE_BUTTONS;
+        TagKey<Block> pressaoTag = madeira ? BlockTags.WOODEN_PRESSURE_PLATES : BlockTags.STONE_PRESSURE_PLATES;
 
-            if (v.pressao() != null) {
-                tag(BlockTags.PRESSURE_PLATES).add(v.pressao().get());
-                tag(BlockTags.STONE_PRESSURE_PLATES).add(v.pressao().get());
-            }
-        }
-    }
-
-    private void tagVariantes(FamiliaMadeira familia) {
+        if (madeira)
+            tagMadeira((FamiliaMadeira) familia);
 
         for (Variantes v : familia.variantes()) {
             if (v.muro() != null) {
@@ -116,12 +110,12 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
             if (v.botao() != null) {
                 tag(BlockTags.BUTTONS).add(v.botao().get());
-                tag(BlockTags.WOODEN_BUTTONS).add(v.botao().get());
+                tag(botaoTag).add(v.botao().get());
             }
 
             if (v.pressao() != null) {
                 tag(BlockTags.PRESSURE_PLATES).add(v.pressao().get());
-                tag(BlockTags.WOODEN_PRESSURE_PLATES).add(v.pressao().get());
+                tag(pressaoTag).add(v.pressao().get());
             }
 
             if (v.descascado() != null) {
@@ -129,9 +123,10 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
                 tag(BlockTags.LOGS_THAT_BURN).add(v.descascado().get());
                 tag(BlockTags.MINEABLE_WITH_AXE).add(v.descascado().get());
             }
-
         }
+    }
 
+    private void tagMadeira(FamiliaMadeira familia) {
         if (familia.tronco != null) {
             tag(BlockTags.LOGS).add(familia.tronco.get());
             tag(BlockTags.LOGS_THAT_BURN).add(familia.tronco.get());
@@ -149,6 +144,5 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
             tag(BlockTags.SWORD_EFFICIENT).add(familia.folha.get());
             tag(BlockTags.MINEABLE_WITH_HOE).add(familia.folha.get());
         }
-
     }
 }

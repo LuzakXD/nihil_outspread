@@ -35,12 +35,13 @@ public class FamiliaPedra extends FamiliaAbstrata {
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase,
+            BlockSetType tipoBloco,
             String sufixo,
             BlockBehaviour.Properties props,
             Boolean sufixoPolido,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase, sufixo, TipoFamilia.PEDRA);
+        super(reg, regItem, blocoBase, tipoBloco, sufixo, TipoFamilia.PEDRA);
 
         if (composicao.containsKey(TipoMaterial.LADRILHOS)
                 && !composicao.containsKey(TipoMaterial.TIJOLOS)) {
@@ -65,14 +66,13 @@ public class FamiliaPedra extends FamiliaAbstrata {
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
         this.variantesBase = vBase.isEmpty() ? null
-                : registrarVariantes(TipoMaterial.BASE, nomeBase, false, base, props,
-                        BlockSetType.STONE, vBase);
+                : registrarVariantes(TipoMaterial.BASE, nomeBase, false, base, props, vBase);
 
         if (composicao.containsKey(TipoMaterial.LISO)) {
             Set<TipoVariante> vLiso = composicao.get(TipoMaterial.LISO);
             this.liso = registrarMaterial(TipoMaterial.LISO, "smooth_" + nomeBase, props);
             this.variantesLiso = registrarVariantes(TipoMaterial.LISO, "smooth_" + nomeBase,
-                    false, liso, props, BlockSetType.STONE, vLiso);
+                    false, liso, props, vLiso);
         } else {
             this.liso = null;
             this.variantesLiso = null;
@@ -82,7 +82,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             Set<TipoVariante> vPolido = composicao.get(TipoMaterial.POLIDO);
             this.polido = registrarMaterial(TipoMaterial.POLIDO, "polished_" + nomeBase, props);
             this.variantesPolido = registrarVariantes(TipoMaterial.POLIDO, "polished_" + nomeBase,
-                    false, polido, props, BlockSetType.STONE,
+                    false, polido, props,
                     vPolido);
         } else {
             this.polido = null;
@@ -94,8 +94,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 Set<TipoVariante> vTijolos = composicao.get(TipoMaterial.TIJOLOS);
                 this.tijolos = registrarMaterial(TipoMaterial.TIJOLOS, "polished_" + nomeBase + "_bricks", props);
                 this.variantesTijolos = registrarVariantes(TipoMaterial.TIJOLOS, "polished_" + nomeBase + "_brick",
-                        true, tijolos, props,
-                        BlockSetType.STONE, vTijolos);
+                        true, tijolos, props, vTijolos);
             } else {
                 this.tijolos = null;
                 this.variantesTijolos = null;
@@ -106,8 +105,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 Set<TipoVariante> vTijolos = composicao.get(TipoMaterial.TIJOLOS);
                 this.tijolos = registrarMaterial(TipoMaterial.TIJOLOS, nomeBase + "_bricks", props);
                 this.variantesTijolos = registrarVariantes(TipoMaterial.TIJOLOS, nomeBase + "_brick",
-                        true, tijolos, props,
-                        BlockSetType.STONE, vTijolos);
+                        true, tijolos, props, vTijolos);
             } else {
                 this.tijolos = null;
                 this.variantesTijolos = null;
@@ -121,10 +119,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                         "polished_" + nomeBase + "_tiles",
                         props);
                 this.variantesLadrilhos = registrarVariantes(TipoMaterial.LADRILHOS, "polished_" + nomeBase + "_tile",
-                        true, ladrilhos,
-                        props,
-                        BlockSetType.STONE,
-                        vladrilhos);
+                        true, ladrilhos, props, vladrilhos);
             } else {
                 this.ladrilhos = null;
                 this.variantesLadrilhos = null;
@@ -134,8 +129,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 Set<TipoVariante> vLadrilhos = composicao.get(TipoMaterial.LADRILHOS);
                 this.ladrilhos = registrarMaterial(TipoMaterial.LADRILHOS, nomeBase + "_tiles", props);
                 this.variantesLadrilhos = registrarVariantes(TipoMaterial.LADRILHOS, nomeBase + "_tile",
-                        true, ladrilhos, props,
-                        BlockSetType.STONE, vLadrilhos);
+                        true, ladrilhos, props, vLadrilhos);
             } else {
                 this.ladrilhos = null;
                 this.variantesLadrilhos = null;
@@ -148,10 +142,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 this.placas = registrarMaterial(TipoMaterial.PLACAS, "polished_" + nomeBase + "_plates",
                         props);
                 this.variantesPlacas = registrarVariantes(TipoMaterial.PLACAS, "polished_" + nomeBase + "_plate",
-                        true, placas,
-                        props,
-                        BlockSetType.STONE,
-                        vplacas);
+                        true, placas, props, vplacas);
             } else {
                 this.placas = null;
                 this.variantesPlacas = null;
@@ -161,8 +152,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
                 Set<TipoVariante> vPlacas = composicao.get(TipoMaterial.PLACAS);
                 this.placas = registrarMaterial(TipoMaterial.PLACAS, nomeBase + "_plates", props);
                 this.variantesPlacas = registrarVariantes(TipoMaterial.PLACAS, nomeBase + "_plate",
-                        true, placas, props,
-                        BlockSetType.STONE, vPlacas);
+                        true, placas, props, vPlacas);
             } else {
                 this.placas = null;
                 this.variantesPlacas = null;

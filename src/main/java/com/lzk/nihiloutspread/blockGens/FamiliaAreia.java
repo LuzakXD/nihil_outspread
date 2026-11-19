@@ -27,25 +27,24 @@ public class FamiliaAreia extends FamiliaAbstrata {
             DeferredRegister.Blocks reg,
             DeferredRegister.Items regItem,
             DeferredBlock<Block> blocoBase,
+            BlockSetType tipoBloco,
             String sufixo,
             BlockBehaviour.Properties props,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase, sufixo, TipoFamilia.AREIA);
+        super(reg, regItem, blocoBase, tipoBloco, sufixo, TipoFamilia.AREIA);
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
         this.variantesBase = vBase.isEmpty() ? null
                 : registrarVariantes(
                         TipoMaterial.BASE, nomeBase,
-                        false, base, props,
-                        BlockSetType.STONE, vBase);
+                        false, base, props, vBase);
 
         if (composicao.containsKey(TipoMaterial.PEDREGOSO)) {
             Set<TipoVariante> vPedregoso = composicao.get(TipoMaterial.PEDREGOSO);
             this.pedregoso = registrarMaterial(TipoMaterial.PEDREGOSO, "cobbled_" + nomeBase, props);
             this.variantesPedregoso = registrarVariantes(TipoMaterial.PEDREGOSO, "cobbled_" + nomeBase,
-                    false, pedregoso, props, BlockSetType.STONE,
-                    vPedregoso);
+                    false, pedregoso, props, vPedregoso);
         } else {
             this.pedregoso = null;
             this.variantesPedregoso = null;
@@ -55,7 +54,7 @@ public class FamiliaAreia extends FamiliaAbstrata {
             Set<TipoVariante> vLiso = composicao.get(TipoMaterial.LISO);
             this.liso = registrarMaterial(TipoMaterial.LISO, "smooth_" + nomeBase, props);
             this.variantesLiso = registrarVariantes(TipoMaterial.LISO, "smooth_" + nomeBase,
-                    false, liso, props, BlockSetType.STONE, vLiso);
+                    false, liso, props, vLiso);
         } else {
             this.liso = null;
             this.variantesLiso = null;
@@ -65,7 +64,7 @@ public class FamiliaAreia extends FamiliaAbstrata {
             Set<TipoVariante> vCortado = composicao.get(TipoMaterial.CORTADO);
             this.cortado = registrarMaterial(TipoMaterial.CORTADO, "cut_" + nomeBase, props);
             this.variantesCortado = registrarVariantes(TipoMaterial.CORTADO, "cut_" + nomeBase,
-                    false, cortado, props, BlockSetType.STONE, vCortado);
+                    false, cortado, props, vCortado);
         } else {
             this.cortado = null;
             this.variantesCortado = null;
