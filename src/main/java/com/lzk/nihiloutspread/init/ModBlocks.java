@@ -9,15 +9,19 @@ import com.lzk.nihiloutspread.blocks.*;
 
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.OffsetType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ColorRGBA;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CarpetBlock;
@@ -404,7 +408,25 @@ public class ModBlocks {
 
         public static final DeferredBlock<Block> NYVERIN_PLANKS = registrarBlocoItem("nyverin_planks",
                         () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(2,
-                                        3)));
+                                        3)) {
+                                @Override
+                                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+                                                Direction direction) {
+                                        return true;
+                                }
+
+                                @Override
+                                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+                                                Direction direction) {
+                                        return 5;
+                                }
+
+                                @Override
+                                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+                                                Direction direction) {
+                                        return 20;
+                                }
+                        });
 
         public static final FamiliaMadeira NYVERIN_BLOCK_FAMILY = new FamiliaMadeira(
                         BLOCKS,

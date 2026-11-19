@@ -3,6 +3,8 @@ package com.lzk.nihiloutspread.blockGens;
 import java.util.Map;
 import java.util.Set;
 
+import com.lzk.nihiloutspread.blocks.*;
+
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -34,32 +36,40 @@ public class FamiliaMadeira extends FamiliaAbstrata {
             BlockBehaviour.Properties props,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase, sufixo);
+        super(reg, regItem, blocoBase, sufixo, TipoFamilia.MADEIRA);
 
-        Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
-        this.variantesBase = vBase.isEmpty() ? null
-                : registrarVariantes(TipoMaterial.BASE, nomeBase, false, base, props, BlockSetType.OAK, vBase);
+        if (composicao.containsKey(TipoMaterial.MADEIRA)) {
+            this.madeira = registrarTronco(nomeBase + "_wood", props);
+        } else {
+            this.madeira = null;
+        }
 
         if (composicao.containsKey(TipoMaterial.TRONCO)) {
-            Set<TipoVariante> vTronco = composicao.get(TipoMaterial.TRONCO);
             this.tronco = registrarTronco(nomeBase + "_log", props);
-            this.variantesTronco = registrarVariantes(TipoMaterial.TRONCO, nomeBase + "_log",
-                    false, tronco, props, BlockSetType.OAK, vTronco);
         } else {
             this.tronco = null;
-            this.variantesTronco = null;
         }
 
         if (composicao.containsKey(TipoMaterial.MADEIRA)) {
             Set<TipoVariante> vMadeira = composicao.get(TipoMaterial.MADEIRA);
-            this.madeira = registrarTronco(nomeBase + "_wood", props);
             this.variantesMadeira = registrarVariantes(
                     TipoMaterial.MADEIRA, nomeBase + "_wood",
                     false, madeira, props, BlockSetType.OAK, vMadeira);
         } else {
-            this.madeira = null;
             this.variantesMadeira = null;
         }
+
+        if (composicao.containsKey(TipoMaterial.TRONCO)) {
+            Set<TipoVariante> vTronco = composicao.get(TipoMaterial.TRONCO);
+            this.variantesTronco = registrarVariantes(TipoMaterial.TRONCO, nomeBase + "_log",
+                    false, tronco, props, BlockSetType.OAK, vTronco);
+        } else {
+            this.variantesTronco = null;
+        }
+
+        Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
+        this.variantesBase = vBase.isEmpty() ? null
+                : registrarVariantes(TipoMaterial.BASE, nomeBase, false, base, props, BlockSetType.OAK, vBase);
 
         if (composicao.containsKey(TipoMaterial.FOLHA)) {
             this.folha = registrarFolha(TipoMaterial.FOLHA, nomeBase + "_leaves", props);

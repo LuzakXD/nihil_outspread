@@ -18,6 +18,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add("itemGroup.nihil_naturals", "Nihil naturais");
         add("itemGroup.abyss", "Blocos do Abismo");
         add("itemGroup.hive", "Bloco da Colmeia");
+        add("itemGroup.glacier", "Blocos da Geleira");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Terra Nihil");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Bloco de Grama Nihil");
@@ -27,6 +28,7 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         addBlock(ModBlocks.NIHIL_BUSH, "Arbusto Nihil");
         addBlock(ModBlocks.NIHIL_HERB, "Erva Nihil");
 
+        addBlock(ModBlocks.NIHIL_PETALS, "Pétalas Nihil");
         addBlock(ModBlocks.NIHIL_SPROUT, "Broto Nihil");
         addBlock(ModBlocks.DREAD_SPROUT, "Broto Terrível");
 

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -38,6 +39,10 @@ public abstract class FamiliaAbstrata {
     public final String nomeBase;
     public final String sufixo;
 
+    public final TipoFamilia tipoFamilia;
+
+    public final boolean isFlammable;
+
     protected final DeferredRegister.Blocks registro;
     protected final DeferredRegister.Items registroItem;
 
@@ -49,7 +54,7 @@ public abstract class FamiliaAbstrata {
     // TODO: Add Sound, Block and Wood Types.
 
     protected FamiliaAbstrata(DeferredRegister.Blocks reg, DeferredRegister.Items regItem,
-            DeferredBlock<Block> blocoBase, String sufixo) {
+            DeferredBlock<Block> blocoBase, String sufixo, TipoFamilia tipoFamilia) {
 
         this.registro = reg;
         this.registroItem = regItem;
@@ -57,6 +62,13 @@ public abstract class FamiliaAbstrata {
         materiais.put(TipoMaterial.BASE, base);
         this.nomeCompleto = blocoBase.getId().getPath();
         this.sufixo = sufixo;
+        this.tipoFamilia = tipoFamilia;
+
+        if (tipoFamilia == TipoFamilia.MADEIRA) {
+            this.isFlammable = true;
+        } else {
+            this.isFlammable = false;
+        }
 
         this.nomeBase = limparNome(nomeCompleto, sufixo);
     }
@@ -75,7 +87,25 @@ public abstract class FamiliaAbstrata {
     }
 
     protected DeferredBlock<Block> registrar(String nome, BlockBehaviour.Properties props) {
-        DeferredBlock<Block> bloco = registro.register(nome, () -> new Block(props));
+        DeferredBlock<Block> bloco = registro.register(nome, () -> new Block(props) {
+            @Override
+            public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+                    Direction direction) {
+                return isFlammable;
+            }
+
+            @Override
+            public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+                    Direction direction) {
+                return 5;
+            }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+                    Direction direction) {
+                return 20;
+            }
+        });
         registroItem.registerSimpleBlockItem(nome, bloco);
         todosOsBlocos.add(bloco);
         return bloco;
@@ -109,7 +139,22 @@ public abstract class FamiliaAbstrata {
         String sufixo = plural ? "s" : "";
 
         if (variantes.contains(TipoVariante.DESCASCADO)) {
-            descascado = registro.register("stripped_" + prefixo, () -> new RotatedPillarBlock(props));
+            descascado = registro.register("stripped_" + prefixo, () -> new RotatedPillarBlock(props) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return isFlammable;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
             registroItem.registerSimpleBlockItem("stripped_" + prefixo, descascado);
             todosOsBlocos.add(descascado);
 
@@ -123,12 +168,45 @@ public abstract class FamiliaAbstrata {
 
         if (variantes.contains(TipoVariante.ESCADA)) {
             escada = registro.register(prefixo + "_stairs",
-                    () -> new StairBlock(blocoBaseDaVariante.get().defaultBlockState(), props));
+                    () -> new StairBlock(blocoBaseDaVariante.get().defaultBlockState(), props) {
+                        @Override
+                        public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+                                Direction direction) {
+                            return isFlammable;
+                        }
+
+                        @Override
+                        public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+                                Direction direction) {
+                            return 5;
+                        }
+
+                        @Override
+                        public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+                                Direction direction) {
+                            return 5;
+                        }
+                    });
             registroItem.registerSimpleBlockItem(prefixo + "_stairs", escada);
             todosOsBlocos.add(escada);
         }
         if (variantes.contains(TipoVariante.LAJE)) {
-            laje = registro.register(prefixo + "_slab", () -> new SlabBlock(props));
+            laje = registro.register(prefixo + "_slab", () -> new SlabBlock(props) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return isFlammable;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
             registroItem.registerSimpleBlockItem(prefixo + "_slab", laje);
             todosOsBlocos.add(laje);
         }
@@ -151,13 +229,43 @@ public abstract class FamiliaAbstrata {
         }
 
         if (variantes.contains(TipoVariante.CERCA)) {
-            cerca = registro.register(prefixo + "_fence", () -> new FenceBlock(props));
+            cerca = registro.register(prefixo + "_fence", () -> new FenceBlock(props) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return isFlammable;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
             registroItem.registerSimpleBlockItem(prefixo + "_fence", cerca);
             todosOsBlocos.add(cerca);
         }
 
         if (variantes.contains(TipoVariante.PORTAO)) {
-            portao = registro.register(prefixo + "_fence_gate", () -> new FenceGateBlock(WoodType.OAK, props));
+            portao = registro.register(prefixo + "_fence_gate", () -> new FenceGateBlock(WoodType.OAK, props) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return isFlammable;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            });
             registroItem.registerSimpleBlockItem(prefixo + "_fence_gate", portao);
             todosOsBlocos.add(portao);
         }
@@ -197,9 +305,24 @@ public abstract class FamiliaAbstrata {
     }
 
     protected DeferredBlock<RotatedPillarBlock> registrarTronco(String nome, BlockBehaviour.Properties props) {
-        DeferredBlock<RotatedPillarBlock> tronco = registro.register(nome, () -> new RotatedPillarBlock(props));
+        DeferredBlock<RotatedPillarBlock> tronco = registro.register(nome, () -> new RotatedPillarBlock(props) {
+            @Override
+            public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return isFlammable;
+            }
+
+            @Override
+            public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
+        });
         registroItem.registerSimpleBlockItem(nome, tronco);
-        todosOsBlocos.add(tronco);
+        todosOsBlocos.addFirst(tronco);
         return tronco;
     }
 
@@ -212,21 +335,47 @@ public abstract class FamiliaAbstrata {
                 .sound(SoundType.GRASS)
                 .noOcclusion()
                 .ignitedByLava()
-                .pushReaction(PushReaction.DESTROY)));
+                .pushReaction(PushReaction.DESTROY)) {
+            @Override
+            public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return isFlammable;
+            }
+
+            @Override
+            public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 30;
+            }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 60;
+            }
+        });
 
         registroItem.registerSimpleBlockItem(nome, folha);
         todosOsBlocos.add(folha);
         return folha;
     }
 
-    public List<Item> devolverItens(boolean temBase) {
+    public List<Item> devolverItens(TipoFamilia tipo, boolean temBase) {
         List<Item> itens = new ArrayList<>();
-        if (temBase)
-            itens.add(base.get().asItem());
-        for (DeferredBlock<? extends Block> bloco : todosOsBlocos) {
-            itens.add(bloco.get().asItem());
+
+        if (tipo == TipoFamilia.MADEIRA) {
+            for (DeferredBlock<? extends Block> bloco : todosOsBlocos) {
+                itens.add(bloco.get().asItem());
+            }
+            if (temBase)
+                itens.add(4, base.get().asItem());
+            return itens;
+        } else {
+            if (temBase)
+                itens.add(base.get().asItem());
+            for (DeferredBlock<? extends Block> bloco : todosOsBlocos) {
+                itens.add(bloco.get().asItem());
+            }
+            return itens;
         }
-        return itens;
+
     }
 
     public List<Variantes> variantes() {
@@ -235,13 +384,5 @@ public abstract class FamiliaAbstrata {
 
     public DeferredBlock<Block> materialDe(TipoMaterial tipo) {
         return materiais.get(tipo);
-    }
-
-    private static boolean always(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return true;
-    }
-
-    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return false;
     }
 }

@@ -40,7 +40,7 @@ public class FamiliaPedra extends FamiliaAbstrata {
             Boolean sufixoPolido,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase, sufixo);
+        super(reg, regItem, blocoBase, sufixo, TipoFamilia.PEDRA);
 
         if (composicao.containsKey(TipoMaterial.LADRILHOS)
                 && !composicao.containsKey(TipoMaterial.TIJOLOS)) {

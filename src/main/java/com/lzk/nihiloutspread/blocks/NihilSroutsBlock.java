@@ -4,6 +4,7 @@ import com.lzk.nihiloutspread.init.ModTags;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
@@ -35,4 +36,21 @@ public class NihilSroutsBlock extends BushBlock {
         return state.is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON);
     }
 
+    @Override
+    public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+            Direction direction) {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+            Direction direction) {
+        return 60;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+            Direction direction) {
+        return 100;
+    }
 }

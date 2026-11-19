@@ -1,6 +1,7 @@
 package com.lzk.nihiloutspread.init;
 
 import com.lzk.nihiloutspread.NihilOutspread;
+import com.lzk.nihiloutspread.blockGens.TipoFamilia;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -34,22 +35,25 @@ public class ModCreativeTabs {
 
                                                 output.accept(ModBlocks.DREAD_SPROUT.get());
 
-                                                for (Item item : ModBlocks.NILIGHT_BLOCK_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.NILIGHT_BLOCK_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
-                                                for (Item item : ModBlocks.GRAPHITE_BLOCK_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.GRAPHITE_BLOCK_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
                                                 output.accept(ModBlocks.VELVET_SAND.get());
 
                                                 for (Item item : ModBlocks.VELVESTONE_BLOCK_FAMILY
-                                                                .devolverItens(true)) {
+                                                                .devolverItens(TipoFamilia.AREIA, true)) {
                                                         output.accept(item);
                                                 }
 
-                                                for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
@@ -93,7 +97,7 @@ public class ModCreativeTabs {
                                         .displayItems((parameters, output) -> {
 
                                                 for (Item item : ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY
-                                                                .devolverItens(true)) {
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
                                                 output.accept(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
@@ -103,7 +107,8 @@ public class ModCreativeTabs {
 
                                                 output.accept(ModBlocks.ABYSSAL_MOSSY_STONE.get());
 
-                                                for (Item item : ModBlocks.ABYSSAL_STONE_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.ABYSSAL_STONE_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
@@ -115,7 +120,8 @@ public class ModCreativeTabs {
                                         .icon(() -> new ItemStack(ModBlocks.HONEYCOMB_BLOCK_FAMILY.base.get()))
                                         .displayItems((parameters, output) -> {
 
-                                                for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
                                                 output.accept(ModBlocks.OR_GATE.get());
@@ -127,10 +133,11 @@ public class ModCreativeTabs {
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GLACIER = CREATIVE_MODE_TABS
                         .register("glacier", () -> CreativeModeTab.builder()
                                         .title(Component.translatable("itemGroup.glacier"))
-                                        .icon(() -> new ItemStack(Blocks.SNOW))
+                                        .icon(() -> new ItemStack(Blocks.SNOW_BLOCK))
                                         .displayItems((parameters, output) -> {
 
-                                                for (Item item : ModBlocks.NYVERIN_BLOCK_FAMILY.devolverItens(true)) {
+                                                for (Item item : ModBlocks.NYVERIN_BLOCK_FAMILY
+                                                                .devolverItens(TipoFamilia.MADEIRA, true)) {
                                                         output.accept(item);
                                                 }
 

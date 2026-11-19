@@ -31,7 +31,7 @@ public class FamiliaAreia extends FamiliaAbstrata {
             BlockBehaviour.Properties props,
             Map<TipoMaterial, Set<TipoVariante>> composicao) {
 
-        super(reg, regItem, blocoBase, sufixo);
+        super(reg, regItem, blocoBase, sufixo, TipoFamilia.AREIA);
 
         Set<TipoVariante> vBase = composicao.getOrDefault(TipoMaterial.BASE, Set.of());
         this.variantesBase = vBase.isEmpty() ? null

@@ -18,6 +18,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         add("itemGroup.nihil_naturals", "Nihil naturals");
         add("itemGroup.abyss", "Abyss blocks");
         add("itemGroup.hive", "Hive blocks");
+        add("itemGroup.glacier", "Glacier blocks");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Nihil Dirt");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Nihil Grass Block");
