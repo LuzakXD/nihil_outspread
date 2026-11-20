@@ -29,14 +29,15 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        gerarModelosDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false, "hive");
-        gerarModelosDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true, "nihil");
-        gerarModelosDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.HONEYCOMB_FAMILY, false, "hive");
+        gerarModelosDaFamilia(ModBlocks.GRAPHITE_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.SODALITE_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.COTTONITE_FAMILY, true, "nihil");
 
         blocoComCamadas(ModBlocks.NILIGHT, "nilight", "nihil", false, NilightBlock.SNOWY, NilightBlock.MOSSY,
                 NilightBlock.DIRTY);
 
-        gerarModelosDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, false, "nihil");
+        gerarModelosDaFamilia(ModBlocks.NILIGHT_FAMILY, false, "nihil");
 
         blocoComCamadasTopBottom(ModBlocks.NIHIL_GRASS_BLOCK, "nihil_grass_block", "nihil", true,
                 NihilGrassBlock.SNOWY);
@@ -57,9 +58,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         plantaSimples(ModBlocks.DREAD_SPROUT, "dread_sprout", "nihil");
 
         blocoSimples(ModBlocks.VELVET_SAND, "velvet_sand", "nihil");
-        gerarModelosDaFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true, "nihil");
+        gerarModelosDaFamilia(ModBlocks.VELVESTONE_FAMILY, true, "nihil");
 
-        gerarModelosDaFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true, "abyss");
+        gerarModelosDaFamilia(ModBlocks.ABYSSAL_MOSS_FAMILY, true, "abyss");
         blocoSimples(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK, "abyssal_floral_moss_block", "abyss");
 
         tapeteSimples(ModBlocks.ABYSSAL_MOSS_CARPET, "abyssal_moss_block", "abyss");
@@ -75,7 +76,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
                 "abyss", false,
                 NihilGrassBlock.SNOWY);
 
-        gerarModelosDaFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, true, "glacier");
+        gerarModelosDaFamilia(ModBlocks.NYVERIN_FAMILY, true, "glacier");
+
+        gerarModelosDaFamilia(ModBlocks.SPIRAL_FAMILY, true, "nihil");
 
     }
 

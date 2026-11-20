@@ -24,14 +24,15 @@ public class ProvedorReceitas extends RecipeProvider {
 
         @Override
         protected void buildRecipes(RecipeOutput output) {
-                receitaPedra(ModBlocks.HONEYCOMB_BLOCK_FAMILY, output, true);
-                receitaPedra(ModBlocks.GRAPHITE_BLOCK_FAMILY, output, true);
-                receitaPedra(ModBlocks.COTTONITE_BLOCK_FAMILY, output, true);
-                receitaPedra(ModBlocks.NILIGHT_BLOCK_FAMILY, output, true);
+                receitaPedra(ModBlocks.HONEYCOMB_FAMILY, output, true);
+                receitaPedra(ModBlocks.GRAPHITE_FAMILY, output, true);
+                receitaPedra(ModBlocks.COTTONITE_FAMILY, output, true);
+                receitaPedra(ModBlocks.SODALITE_FAMILY, output, true);
+                receitaPedra(ModBlocks.NILIGHT_FAMILY, output, true);
 
                 receitaPedra(ModBlocks.ABYSSAL_STONE_FAMILY, output, true);
 
-                receitaPedra(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, output, false);
+                receitaPedra(ModBlocks.ABYSSAL_MOSS_FAMILY, output, false);
 
                 carpet(output, ModBlocks.ABYSSAL_MOSS_CARPET, ModBlocks.ABYSSAL_MOSS_BLOCK);
                 carpet(output, ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET, ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK);

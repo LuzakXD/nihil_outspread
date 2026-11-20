@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/polished_sodalite_tile_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/polished_sodalite_tiles"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/polished_sodalite_tile_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "nihil_outspread:block/nihil/polished_sodalite",
+    "side": "nihil_outspread:block/nihil/polished_sodalite",
+    "top": "nihil_outspread:block/nihil/polished_sodalite"
+  }
+}

@@ -26,17 +26,18 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        lootDaFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, false);
-        lootDaFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, true);
-        lootDaFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, true);
-        lootDaFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.HONEYCOMB_FAMILY, false);
+        lootDaFamilia(ModBlocks.GRAPHITE_FAMILY, true);
+        lootDaFamilia(ModBlocks.COTTONITE_FAMILY, true);
+        lootDaFamilia(ModBlocks.SODALITE_FAMILY, true);
+        lootDaFamilia(ModBlocks.NILIGHT_FAMILY, true);
         dropSelf(ModBlocks.NIHIL_DIRT.get());
         dropOther(ModBlocks.NIHIL_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
         dropOther(ModBlocks.CHECKER_GRASS_BLOCK.get(), ModBlocks.NIHIL_DIRT.get());
         dropSelf(ModBlocks.VELVET_SAND.get());
-        lootDaFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.VELVESTONE_FAMILY, true);
 
-        lootDaFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.ABYSSAL_MOSS_FAMILY, true);
         dropSelf(ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get());
 
         dropSelf(ModBlocks.ABYSSAL_MOSS_CARPET.get());
@@ -57,7 +58,8 @@ public class ProvedorTabelaItens extends BlockLootSubProvider {
         dropSelf(ModBlocks.OR_GATE.get());
         dropSelf(ModBlocks.AND_GATE.get());
 
-        lootDaFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, true);
+        lootDaFamilia(ModBlocks.NYVERIN_FAMILY, true);
+        lootDaFamilia(ModBlocks.SPIRAL_FAMILY, true);
     }
 
     private void lootDaFamilia(FamiliaPedra familia, boolean temBase) {

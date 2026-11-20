@@ -37,31 +37,41 @@ public class FamiliaMadeira extends FamiliaAbstrata {
 
         super(reg, regItem, blocoBase, tipoBloco, sufixo, TipoFamilia.MADEIRA);
 
+        Set<TipoVariante> vTronco = composicao.getOrDefault(TipoMaterial.TRONCO, Set.of());
+        Set<TipoVariante> vMadeira = composicao.getOrDefault(TipoMaterial.MADEIRA, Set.of());
+
+        DeferredBlock<RotatedPillarBlock> troncoDescascado = vTronco.contains(TipoVariante.DESCASCADO)
+                ? registrarDescascado("stripped_" + nomeBase + "_log", props)
+                : null;
+
+        DeferredBlock<RotatedPillarBlock> madeiraDescascada = vMadeira.contains(TipoVariante.DESCASCADO)
+                ? registrarDescascado("stripped_" + nomeBase + "_wood", props)
+                : null;
+
         if (composicao.containsKey(TipoMaterial.MADEIRA)) {
-            this.madeira = registrarTronco(nomeBase + "_wood", props);
+            this.madeira = registrarTronco(nomeBase + "_wood", props, madeiraDescascada);
         } else {
             this.madeira = null;
         }
 
         if (composicao.containsKey(TipoMaterial.TRONCO)) {
-            this.tronco = registrarTronco(nomeBase + "_log", props);
+            this.tronco = registrarTronco(nomeBase + "_log", props, troncoDescascado);
         } else {
             this.tronco = null;
         }
 
         if (composicao.containsKey(TipoMaterial.MADEIRA)) {
-            Set<TipoVariante> vMadeira = composicao.get(TipoMaterial.MADEIRA);
             this.variantesMadeira = registrarVariantes(
-                    TipoMaterial.MADEIRA, nomeBase + "_wood",
-                    false, madeira, props, vMadeira);
+                    TipoMaterial.MADEIRA, nomeBase + "_wood", false,
+                    madeira, props, vMadeira, madeiraDescascada);
         } else {
             this.variantesMadeira = null;
         }
 
         if (composicao.containsKey(TipoMaterial.TRONCO)) {
-            Set<TipoVariante> vTronco = composicao.get(TipoMaterial.TRONCO);
-            this.variantesTronco = registrarVariantes(TipoMaterial.TRONCO, nomeBase + "_log",
-                    false, tronco, props, vTronco);
+            this.variantesTronco = registrarVariantes(
+                    TipoMaterial.TRONCO, nomeBase + "_log", false,
+                    tronco, props, vTronco, troncoDescascado);
         } else {
             this.variantesTronco = null;
         }
@@ -80,9 +90,7 @@ public class FamiliaMadeira extends FamiliaAbstrata {
             Set<TipoVariante> vMosaico = composicao.get(TipoMaterial.MOSAICO);
             this.mosaico = registrarMaterial(TipoMaterial.MOSAICO, nomeBase + "_mosaic", props);
             this.variantesMosaico = registrarVariantes(
-                    TipoMaterial.MOSAICO, nomeBase + "_mosaic",
-                    false, mosaico, props,
-                    vMosaico);
+                    TipoMaterial.MOSAICO, nomeBase + "_mosaic", false, mosaico, props, vMosaico);
         } else {
             this.mosaico = null;
             this.variantesMosaico = null;

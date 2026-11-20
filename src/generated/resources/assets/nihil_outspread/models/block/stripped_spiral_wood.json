@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nihil_outspread:block/nihil/stripped_spiral_log",
+    "side": "nihil_outspread:block/nihil/stripped_spiral_log"
+  }
+}

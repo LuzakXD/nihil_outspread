@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.lzk.nihiloutspread.init.ModBlockSetTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -31,6 +34,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -116,12 +121,18 @@ public abstract class FamiliaAbstrata {
     }
 
     protected Variantes registrarVariantes(
-            TipoMaterial tipoMaterial,
-            String prefixo,
-            boolean plural,
+            TipoMaterial tipoMaterial, String prefixo, boolean plural,
             DeferredBlock<? extends Block> blocoBaseDaVariante,
-            BlockBehaviour.Properties props,
-            Set<TipoVariante> variantes) {
+            BlockBehaviour.Properties props, Set<TipoVariante> variantes) {
+        return registrarVariantes(tipoMaterial, prefixo, plural,
+                blocoBaseDaVariante, props, variantes, null);
+    }
+
+    protected Variantes registrarVariantes(
+            TipoMaterial tipoMaterial, String prefixo, boolean plural,
+            DeferredBlock<? extends Block> blocoBaseDaVariante,
+            BlockBehaviour.Properties props, Set<TipoVariante> variantes,
+            @Nullable DeferredBlock<RotatedPillarBlock> preDescascado) {
 
         DeferredBlock<StairBlock> escada = null;
         DeferredBlock<SlabBlock> laje = null;
@@ -141,26 +152,9 @@ public abstract class FamiliaAbstrata {
         DeferredBlock<ButtonBlock> botao = null;
         String sufixo = plural ? "s" : "";
 
-        if (variantes.contains(TipoVariante.DESCASCADO)) {
-            descascado = registro.register("stripped_" + prefixo, () -> new RotatedPillarBlock(props) {
-                @Override
-                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-                    return isFlammable;
-                }
-
-                @Override
-                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-                    return 5;
-                }
-
-                @Override
-                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-                    return 5;
-                }
-            });
-            registroItem.registerSimpleBlockItem("stripped_" + prefixo, descascado);
-            todosOsBlocos.add(descascado);
-
+        descascado = preDescascado;
+        if (descascado == null && variantes.contains(TipoVariante.DESCASCADO)) {
+            descascado = registrarDescascado("stripped_" + prefixo, props);
         }
 
         if (variantes.contains(TipoVariante.PILAR)) {
@@ -318,7 +312,33 @@ public abstract class FamiliaAbstrata {
         return v;
     }
 
-    protected DeferredBlock<RotatedPillarBlock> registrarTronco(String nome, BlockBehaviour.Properties props) {
+    protected DeferredBlock<RotatedPillarBlock> registrarDescascado(String nome, BlockBehaviour.Properties props) {
+        DeferredBlock<RotatedPillarBlock> descascado = registro.register(nome, () -> new RotatedPillarBlock(props) {
+            @Override
+            public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return isFlammable;
+            }
+
+            @Override
+            public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
+        });
+        registroItem.registerSimpleBlockItem(nome, descascado);
+        todosOsBlocos.add(descascado);
+        return descascado;
+    }
+
+    protected DeferredBlock<RotatedPillarBlock> registrarTronco(
+            String nome,
+            BlockBehaviour.Properties props,
+            @Nullable DeferredBlock<RotatedPillarBlock> descascado) {
+
         DeferredBlock<RotatedPillarBlock> tronco = registro.register(nome, () -> new RotatedPillarBlock(props) {
             @Override
             public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
@@ -333,6 +353,15 @@ public abstract class FamiliaAbstrata {
             @Override
             public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
                 return 5;
+            }
+
+            @Override
+            public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context,
+                    ItemAbility itemAbility, boolean simulate) {
+                if (itemAbility == ItemAbilities.AXE_STRIP && descascado != null) {
+                    return descascado.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                }
+                return super.getToolModifiedState(state, context, itemAbility, simulate);
             }
         });
         registroItem.registerSimpleBlockItem(nome, tronco);

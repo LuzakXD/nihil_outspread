@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "nihil_outspread:block/nihil/spiral_door_bottom",
+    "top": "nihil_outspread:block/nihil/spiral_door_top"
+  }
+}

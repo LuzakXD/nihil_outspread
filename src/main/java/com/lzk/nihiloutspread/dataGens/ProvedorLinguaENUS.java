@@ -14,11 +14,11 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil", "Nihil blocks");
-        add("itemGroup.nihil_naturals", "Nihil naturals");
-        add("itemGroup.abyss", "Abyss blocks");
-        add("itemGroup.hive", "Hive blocks");
-        add("itemGroup.glacier", "Glacier blocks");
+        add("itemGroup.nihil_outspread.nihil", "Nihil blocks");
+        add("itemGroup.nihil_outspread.nihil_naturals", "Nihil naturals");
+        add("itemGroup.nihil_outspread.abyss", "Abyss blocks");
+        add("itemGroup.nihil_outspread.hive", "Hive blocks");
+        add("itemGroup.nihil_outspread.glacier", "Glacier blocks");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Nihil Dirt");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Nihil Grass Block");
@@ -42,16 +42,19 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         addBlock(ModBlocks.ABYSSAL_MOSSY_STONE, "Abyssal Mossy Stone");
 
-        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Nilight", true);
-        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Graphite", true);
-        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Cottonite", true);
-        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Honeycomb", false);
-        traduzirFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velvestone", true);
+        traduzirFamilia(ModBlocks.NILIGHT_FAMILY, "Nilight", true);
+        traduzirFamilia(ModBlocks.GRAPHITE_FAMILY, "Graphite", true);
+        traduzirFamilia(ModBlocks.SODALITE_FAMILY, "Sodalite", true);
+        traduzirFamilia(ModBlocks.COTTONITE_FAMILY, "Cottonite", true);
+        traduzirFamilia(ModBlocks.HONEYCOMB_FAMILY, "Honeycomb", false);
+        traduzirFamilia(ModBlocks.VELVESTONE_FAMILY, "Velvestone", true);
 
         traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Abyssal Stone", true);
-        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Abyssal Moss", false);
+        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_FAMILY, "Abyssal Moss", false);
 
-        traduzirFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, "Nyverin", true);
+        traduzirFamilia(ModBlocks.NYVERIN_FAMILY, "Nyverin", true);
+
+        traduzirFamilia(ModBlocks.SPIRAL_FAMILY, "Spiral", true);
 
         addBlock(ModBlocks.XOR_GATE, "XOR Redstone Gate");
         addBlock(ModBlocks.OR_GATE, "OR Redstone Gate");

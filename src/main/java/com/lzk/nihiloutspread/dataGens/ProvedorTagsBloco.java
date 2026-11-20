@@ -27,25 +27,17 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
 
     @Override
     protected void addTags(Provider provider) {
-        tagVariantes(ModBlocks.HONEYCOMB_BLOCK_FAMILY);
-        tagVariantes(ModBlocks.GRAPHITE_BLOCK_FAMILY);
-        tagVariantes(ModBlocks.COTTONITE_BLOCK_FAMILY);
-        tagVariantes(ModBlocks.NILIGHT_BLOCK_FAMILY);
-        tagVariantes(ModBlocks.VELVESTONE_BLOCK_FAMILY);
-
-        tag(ModTags.Blocks.DIRTY_BLOCKS).add(
-                ModBlocks.NIHIL_DIRT.get(),
-                ModBlocks.NIHIL_GRASS_BLOCK.get(),
-                ModBlocks.CHECKER_GRASS_BLOCK.get());
-
-        tag(ModTags.Blocks.MOSSY_BLOCKS).add(
-                ModBlocks.ABYSSAL_MOSS_BLOCK.get(),
-                ModBlocks.ABYSSAL_MOSS_CARPET.get(),
-                ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get(),
-                ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
+        tagVariantes(ModBlocks.HONEYCOMB_FAMILY);
+        tagVariantes(ModBlocks.GRAPHITE_FAMILY);
+        tagVariantes(ModBlocks.SODALITE_FAMILY);
+        tagVariantes(ModBlocks.COTTONITE_FAMILY);
+        tagVariantes(ModBlocks.NILIGHT_FAMILY);
+        tagVariantes(ModBlocks.VELVESTONE_FAMILY);
 
         tagVariantes(ModBlocks.ABYSSAL_STONE_FAMILY);
-        tagVariantes(ModBlocks.NYVERIN_BLOCK_FAMILY);
+
+        tagVariantes(ModBlocks.NYVERIN_FAMILY);
+        tagVariantes(ModBlocks.SPIRAL_FAMILY);
 
         tag(ModTags.Blocks.CORRUPTIBLE_TO_NIHIL_GRASS).add(
                 ModBlocks.NIHIL_DIRT.get(),
@@ -71,9 +63,21 @@ public class ProvedorTagsBloco extends BlockTagsProvider {
         tag(ModTags.Blocks.BASE_STONE_NIHIL).add(
                 ModBlocks.NILIGHT.get(),
                 ModBlocks.GRAPHITE.get(),
+                ModBlocks.SODALITE.get(),
                 ModBlocks.COTTONITE.get(),
                 ModBlocks.ABYSSAL_STONE.get(),
                 ModBlocks.ABYSSAL_MOSSY_STONE.get());
+
+        tag(ModTags.Blocks.DIRTY_BLOCKS).add(
+                ModBlocks.NIHIL_DIRT.get(),
+                ModBlocks.NIHIL_GRASS_BLOCK.get(),
+                ModBlocks.CHECKER_GRASS_BLOCK.get());
+
+        tag(ModTags.Blocks.MOSSY_BLOCKS).add(
+                ModBlocks.ABYSSAL_MOSS_BLOCK.get(),
+                ModBlocks.ABYSSAL_MOSS_CARPET.get(),
+                ModBlocks.ABYSSAL_FLORAL_MOSS_BLOCK.get(),
+                ModBlocks.ABYSSAL_FLORAL_MOSS_CARPET.get());
 
         tag(BlockTags.REPLACEABLE).addTag(ModTags.Blocks.NIHIL_BUSHES);
         tag(BlockTags.ENCHANTMENT_POWER_TRANSMITTER).addTag(ModTags.Blocks.NIHIL_BUSHES);

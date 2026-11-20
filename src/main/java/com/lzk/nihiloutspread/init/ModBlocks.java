@@ -51,15 +51,19 @@ public class ModBlocks {
         public static final DeferredBlock<NihilSroutsBlock> NIHIL_SPROUT;
         public static final DeferredBlock<NihilSroutsBlock> DREAD_SPROUT;
         public static final DeferredBlock<PetalsBlock> NIHIL_PETALS;
+        public static final DeferredBlock<Block> SPIRAL_PLANKS;
+        public static final FamiliaMadeira SPIRAL_FAMILY;
         public static final DeferredBlock<Block> NILIGHT;
-        public static final FamiliaPedra NILIGHT_BLOCK_FAMILY;
+        public static final FamiliaPedra NILIGHT_FAMILY;
         public static final DeferredBlock<Block> GRAPHITE;
-        public static final FamiliaPedra GRAPHITE_BLOCK_FAMILY;
+        public static final FamiliaPedra GRAPHITE_FAMILY;
+        public static final DeferredBlock<Block> SODALITE;
+        public static final FamiliaPedra SODALITE_FAMILY;
         public static final DeferredBlock<ColoredFallingBlock> VELVET_SAND;
         public static final DeferredBlock<Block> VELVESTONE;
-        public static final FamiliaAreia VELVESTONE_BLOCK_FAMILY;
+        public static final FamiliaAreia VELVESTONE_FAMILY;
         public static final DeferredBlock<Block> COTTONITE;
-        public static final FamiliaPedra COTTONITE_BLOCK_FAMILY;
+        public static final FamiliaPedra COTTONITE_FAMILY;
 
         static {
 
@@ -159,12 +163,62 @@ public class ModBlocks {
                                                                 .ignitedByLava()
                                                                 .pushReaction(PushReaction.DESTROY)));
 
+                SPIRAL_PLANKS = registrarBlocoItem("spiral_planks",
+                                () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                                                .strength(2, 3).sound(ModBlockSetTypes.NYVERIN.soundType())) {
+                                        @Override
+                                        public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return true;
+                                        }
+
+                                        @Override
+                                        public int getFlammability(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return 5;
+                                        }
+
+                                        @Override
+                                        public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos,
+                                                        Direction direction) {
+                                                return 20;
+                                        }
+                                });
+
+                SPIRAL_FAMILY = new FamiliaMadeira(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                SPIRAL_PLANKS,
+                                ModBlockSetTypes.NYVERIN,
+                                "_planks",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).strength(1, 4)
+                                                .sound(ModBlockSetTypes.NYVERIN.soundType()),
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.CERCA,
+                                                                TipoVariante.PORTAO,
+                                                                TipoVariante.BOTAO,
+                                                                TipoVariante.PORTA,
+                                                                TipoVariante.ALCAPAO,
+                                                                TipoVariante.PLACAPRESSAO),
+                                                TipoMaterial.TRONCO,
+                                                Set.of(
+                                                                TipoVariante.DESCASCADO),
+                                                TipoMaterial.MADEIRA,
+                                                Set.of(
+                                                                TipoVariante.DESCASCADO),
+                                                TipoMaterial.FOLHA,
+                                                Set.of()));
+
                 NILIGHT = registrarBlocoItem("nilight",
                                 () -> new NilightBlock(BlockBehaviour.Properties.of()
                                                 .mapColor(MapColor.COLOR_BLACK).strength(3, 10)
                                                 .instrument(NoteBlockInstrument.BASEDRUM)));
 
-                NILIGHT_BLOCK_FAMILY = new FamiliaPedra(
+                NILIGHT_FAMILY = new FamiliaPedra(
                                 BLOCKS,
                                 ModItems.ITEMS,
                                 NILIGHT,
@@ -204,7 +258,7 @@ public class ModBlocks {
                                                 .mapColor(MapColor.DEEPSLATE)
                                                 .strength(1.5f, 6)));
 
-                GRAPHITE_BLOCK_FAMILY = new FamiliaPedra(
+                GRAPHITE_FAMILY = new FamiliaPedra(
                                 BLOCKS,
                                 ModItems.ITEMS,
                                 GRAPHITE,
@@ -230,6 +284,41 @@ public class ModBlocks {
                                                                 TipoVariante.MURO,
                                                                 TipoVariante.RACHADO)));
 
+                SODALITE = registrarBlocoItem("sodalite",
+                                () -> new Block(BlockBehaviour.Properties.of()
+                                                .mapColor(MapColor.TERRACOTTA_BLUE)
+                                                .strength(1, 6)));
+
+                SODALITE_FAMILY = new FamiliaPedra(
+                                BLOCKS,
+                                ModItems.ITEMS,
+                                SODALITE,
+                                BlockSetType.STONE,
+                                "",
+                                BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(1, 4),
+                                true,
+                                Map.of(
+                                                TipoMaterial.BASE,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.POLIDO,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.TIJOLOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO),
+                                                TipoMaterial.LADRILHOS,
+                                                Set.of(
+                                                                TipoVariante.ESCADA,
+                                                                TipoVariante.LAJE,
+                                                                TipoVariante.MURO)));
+
                 VELVET_SAND = registrarBlocoItem("velvet_sand",
                                 () -> new ColoredFallingBlock(new ColorRGBA(148046076),
                                                 BlockBehaviour.Properties.of()
@@ -245,7 +334,7 @@ public class ModBlocks {
                                                 .strength(1.5F)
                                                 .sound(SoundType.STONE)));
 
-                VELVESTONE_BLOCK_FAMILY = new FamiliaAreia(
+                VELVESTONE_FAMILY = new FamiliaAreia(
                                 BLOCKS,
                                 ModItems.ITEMS,
                                 VELVESTONE,
@@ -277,7 +366,7 @@ public class ModBlocks {
                                                 .mapColor(MapColor.TERRACOTTA_WHITE)
                                                 .strength(1, 6)));
 
-                COTTONITE_BLOCK_FAMILY = new FamiliaPedra(
+                COTTONITE_FAMILY = new FamiliaPedra(
                                 BLOCKS,
                                 ModItems.ITEMS,
                                 COTTONITE,
@@ -312,7 +401,7 @@ public class ModBlocks {
 
         // Abyss
         public static final DeferredBlock<Block> ABYSSAL_MOSS_BLOCK;
-        public static final FamiliaPedra ABYSSAL_MOSS_BLOCK_FAMILY;
+        public static final FamiliaPedra ABYSSAL_MOSS_FAMILY;
         public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_BLOCK;
         public static final DeferredBlock<Block> ABYSSAL_MOSS_CARPET;
         public static final DeferredBlock<Block> ABYSSAL_FLORAL_MOSS_CARPET;
@@ -328,7 +417,7 @@ public class ModBlocks {
                                                 .instrument(NoteBlockInstrument.FLUTE)
                                                 .sound(SoundType.MOSS)));
 
-                ABYSSAL_MOSS_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                ABYSSAL_MOSS_FAMILY = new FamiliaPedra(BLOCKS,
                                 ModItems.ITEMS,
                                 ABYSSAL_MOSS_BLOCK,
                                 BlockSetType.STONE,
@@ -409,7 +498,7 @@ public class ModBlocks {
 
         // Glacier
         public static final DeferredBlock<Block> NYVERIN_PLANKS;
-        public static final FamiliaMadeira NYVERIN_BLOCK_FAMILY;
+        public static final FamiliaMadeira NYVERIN_FAMILY;
 
         static {
 
@@ -435,7 +524,7 @@ public class ModBlocks {
                                         }
                                 });
 
-                NYVERIN_BLOCK_FAMILY = new FamiliaMadeira(
+                NYVERIN_FAMILY = new FamiliaMadeira(
                                 BLOCKS,
                                 ModItems.ITEMS,
                                 NYVERIN_PLANKS,
@@ -469,7 +558,7 @@ public class ModBlocks {
         // Hive
         private static final ResourceKey<Block> honeycombKey;
         public static final DeferredBlock<Block> HONEYCOMB_BASE;
-        public static final FamiliaPedra HONEYCOMB_BLOCK_FAMILY;
+        public static final FamiliaPedra HONEYCOMB_FAMILY;
         public static final DeferredBlock<Block> XOR_GATE;
         public static final DeferredBlock<Block> OR_GATE;
         public static final DeferredBlock<Block> AND_GATE;
@@ -481,7 +570,7 @@ public class ModBlocks {
 
                 HONEYCOMB_BASE = DeferredBlock.createBlock(honeycombKey);
 
-                HONEYCOMB_BLOCK_FAMILY = new FamiliaPedra(BLOCKS,
+                HONEYCOMB_FAMILY = new FamiliaPedra(BLOCKS,
                                 ModItems.ITEMS,
                                 HONEYCOMB_BASE,
                                 BlockSetType.STONE,

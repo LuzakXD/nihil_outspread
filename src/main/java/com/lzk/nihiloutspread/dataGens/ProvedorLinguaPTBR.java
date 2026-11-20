@@ -14,11 +14,11 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.nihil", "Blocos do Nihil");
-        add("itemGroup.nihil_naturals", "Nihil naturais");
-        add("itemGroup.abyss", "Blocos do Abismo");
-        add("itemGroup.hive", "Bloco da Colmeia");
-        add("itemGroup.glacier", "Blocos da Geleira");
+        add("itemGroup.nihil_outspread.nihil", "Blocos do Nihil");
+        add("itemGroup.nihil_outspread.nihil_naturals", "Nihil naturais");
+        add("itemGroup.nihil_outspread.abyss", "Blocos do Abismo");
+        add("itemGroup.nihil_outspread.hive", "Bloco da Colmeia");
+        add("itemGroup.nihil_outspread.glacier", "Blocos da Geleira");
 
         addBlock(ModBlocks.NIHIL_DIRT, "Terra Nihil");
         addBlock(ModBlocks.NIHIL_GRASS_BLOCK, "Bloco de Grama Nihil");
@@ -42,16 +42,19 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
 
         addBlock(ModBlocks.ABYSSAL_MOSSY_STONE, "Pedra Abissal Musgosa");
 
-        traduzirFamilia(ModBlocks.NILIGHT_BLOCK_FAMILY, "Niluzita", Genero.FEMININO, true);
-        traduzirFamilia(ModBlocks.GRAPHITE_BLOCK_FAMILY, "Grafite", Genero.MASCULINO, true);
-        traduzirFamilia(ModBlocks.COTTONITE_BLOCK_FAMILY, "Algonita", Genero.FEMININO, true);
-        traduzirFamilia(ModBlocks.HONEYCOMB_BLOCK_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
-        traduzirFamilia(ModBlocks.VELVESTONE_BLOCK_FAMILY, "Velveta", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.NILIGHT_FAMILY, "Niluzita", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.GRAPHITE_FAMILY, "Grafite", Genero.MASCULINO, true);
+        traduzirFamilia(ModBlocks.COTTONITE_FAMILY, "Algonita", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.SODALITE_FAMILY, "Sodalita", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.HONEYCOMB_FAMILY, "Favo de Mel", Genero.MASCULINO, false);
+        traduzirFamilia(ModBlocks.VELVESTONE_FAMILY, "Velveta", Genero.FEMININO, true);
 
         traduzirFamilia(ModBlocks.ABYSSAL_STONE_FAMILY, "Pedra Abissal", Genero.FEMININO, true);
-        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
+        traduzirFamilia(ModBlocks.ABYSSAL_MOSS_FAMILY, "Musgo Abissal", Genero.NEUTRO, false);
 
-        traduzirFamilia(ModBlocks.NYVERIN_BLOCK_FAMILY, "Niverina", Genero.FEMININO, true);
+        traduzirFamilia(ModBlocks.NYVERIN_FAMILY, "Niverina", Genero.FEMININO, true);
+
+        traduzirFamilia(ModBlocks.SPIRAL_FAMILY, "Espiral", Genero.NEUTRO, true);
 
         add(ModBlocks.XOR_GATE.get(), "Porta de Redstone XOR");
         add(ModBlocks.OR_GATE.get(), "Porta de Redstone OR");

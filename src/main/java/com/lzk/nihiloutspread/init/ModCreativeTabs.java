@@ -19,11 +19,12 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NIHIL = CREATIVE_MODE_TABS
                         .register("nihil", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.nihil"))
+                                        .title(Component.translatable("itemGroup.nihil_outspread.nihil"))
                                         .icon(() -> new ItemStack(ModBlocks.NIHIL_GRASS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
                                                 output.accept(ModBlocks.NIHIL_GRASS_BLOCK.get());
+                                                output.accept(ModBlocks.CHECKER_GRASS_BLOCK.get());
                                                 output.accept(ModBlocks.NIHIL_DIRT.get());
 
                                                 output.accept(ModBlocks.NIHIL_BUSH.get());
@@ -35,24 +36,34 @@ public class ModCreativeTabs {
 
                                                 output.accept(ModBlocks.DREAD_SPROUT.get());
 
-                                                for (Item item : ModBlocks.NILIGHT_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.SPIRAL_FAMILY
+                                                                .devolverItens(TipoFamilia.MADEIRA, true)) {
+                                                        output.accept(item);
+                                                }
+
+                                                for (Item item : ModBlocks.NILIGHT_FAMILY
                                                                 .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
-                                                for (Item item : ModBlocks.GRAPHITE_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.GRAPHITE_FAMILY
+                                                                .devolverItens(TipoFamilia.PEDRA, true)) {
+                                                        output.accept(item);
+                                                }
+
+                                                for (Item item : ModBlocks.SODALITE_FAMILY
                                                                 .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
 
                                                 output.accept(ModBlocks.VELVET_SAND.get());
 
-                                                for (Item item : ModBlocks.VELVESTONE_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.VELVESTONE_FAMILY
                                                                 .devolverItens(TipoFamilia.AREIA, true)) {
                                                         output.accept(item);
                                                 }
 
-                                                for (Item item : ModBlocks.COTTONITE_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.COTTONITE_FAMILY
                                                                 .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
@@ -61,7 +72,7 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> NIHIL_NATURALS = CREATIVE_MODE_TABS
                         .register("nihil_naturals", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.nihil_naturals"))
+                                        .title(Component.translatable("itemGroup.nihil_outspread.nihil_naturals"))
                                         .icon(() -> new ItemStack(ModBlocks.NIHIL_GRASS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
@@ -81,6 +92,7 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.NILIGHT.get());
 
                                                 output.accept(ModBlocks.GRAPHITE.get());
+                                                output.accept(ModBlocks.SODALITE.get());
 
                                                 output.accept(ModBlocks.VELVET_SAND.get());
 
@@ -92,11 +104,11 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ABYSS = CREATIVE_MODE_TABS
                         .register("abyss", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.abyss"))
+                                        .title(Component.translatable("itemGroup.nihil_outspread.abyss"))
                                         .icon(() -> new ItemStack(ModBlocks.ABYSSAL_MOSS_BLOCK.get()))
                                         .displayItems((parameters, output) -> {
 
-                                                for (Item item : ModBlocks.ABYSSAL_MOSS_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.ABYSSAL_MOSS_FAMILY
                                                                 .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
@@ -116,11 +128,11 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> HIVE = CREATIVE_MODE_TABS
                         .register("hive", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.hive"))
-                                        .icon(() -> new ItemStack(ModBlocks.HONEYCOMB_BLOCK_FAMILY.base.get()))
+                                        .title(Component.translatable("itemGroup.nihil_outspread.hive"))
+                                        .icon(() -> new ItemStack(ModBlocks.HONEYCOMB_FAMILY.base.get()))
                                         .displayItems((parameters, output) -> {
 
-                                                for (Item item : ModBlocks.HONEYCOMB_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.HONEYCOMB_FAMILY
                                                                 .devolverItens(TipoFamilia.PEDRA, true)) {
                                                         output.accept(item);
                                                 }
@@ -132,11 +144,11 @@ public class ModCreativeTabs {
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> GLACIER = CREATIVE_MODE_TABS
                         .register("glacier", () -> CreativeModeTab.builder()
-                                        .title(Component.translatable("itemGroup.glacier"))
+                                        .title(Component.translatable("itemGroup.nihil_outspread.glacier"))
                                         .icon(() -> new ItemStack(Blocks.SNOW_BLOCK))
                                         .displayItems((parameters, output) -> {
 
-                                                for (Item item : ModBlocks.NYVERIN_BLOCK_FAMILY
+                                                for (Item item : ModBlocks.NYVERIN_FAMILY
                                                                 .devolverItens(TipoFamilia.MADEIRA, true)) {
                                                         output.accept(item);
                                                 }

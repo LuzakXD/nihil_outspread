@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nihil_outspread:block/spiral_slab"
+    },
+    "type=double": {
+      "model": "nihil_outspread:block/spiral_planks"
+    },
+    "type=top": {
+      "model": "nihil_outspread:block/spiral_slab_top"
+    }
+  }
+}

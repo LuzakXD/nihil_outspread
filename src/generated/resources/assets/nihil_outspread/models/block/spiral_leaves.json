@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "nihil_outspread:block/nihil/spiral_leaves"
+  }
+}
