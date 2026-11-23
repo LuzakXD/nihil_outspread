@@ -23,6 +23,11 @@ public class NihilOutspreadClient {
     }
 
     @SubscribeEvent
+    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(MurkletModel.LAYER_LOCATION, MurkletModel::createBodyLayer);
+    }
+
+    @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
 
         EntityRenderers.register(ModEntities.MURKLET.get(), MurkletRender::new);

@@ -14,11 +14,6 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 public class NihilOutspreadBusEvents {
 
     @SubscribeEvent
-    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(MurkletModel.LAYER_LOCATION, MurkletModel::createBodyLayer);
-    }
-
-    @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.MURKLET.get(), MurkletEntity.createAttributes().build());
     }
