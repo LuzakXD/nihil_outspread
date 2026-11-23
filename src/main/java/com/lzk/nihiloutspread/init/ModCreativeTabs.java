@@ -100,6 +100,8 @@ public class ModCreativeTabs {
 
                                                 output.accept(ModBlocks.COTTONITE.get());
 
+                                                output.accept(ModItems.MURKLET_SPAWN_EGG.get());
+
                                         }).build());
 
         public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ABYSS = CREATIVE_MODE_TABS

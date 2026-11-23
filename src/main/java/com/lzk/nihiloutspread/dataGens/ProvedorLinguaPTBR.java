@@ -3,6 +3,7 @@ package com.lzk.nihiloutspread.dataGens;
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
+import com.lzk.nihiloutspread.init.ModEntities;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -60,6 +61,8 @@ public class ProvedorLinguaPTBR extends LanguageProvider {
         add(ModBlocks.OR_GATE.get(), "Porta de Redstone OR");
         add(ModBlocks.AND_GATE.get(), "Porta de Redstone AND");
         add("subtitles.nihil_outspread.honey_gate_click", "Porta de redstone de mel acionada");
+
+        addEntityType(ModEntities.MURKLET, "Murklet");
     }
 
     private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, Genero genero, boolean temBase) {

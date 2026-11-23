@@ -6,6 +6,7 @@ import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.blocks.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
+import com.lzk.nihiloutspread.init.ModItems;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -79,6 +80,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         gerarModelosDaFamilia(ModBlocks.NYVERIN_FAMILY, true, "glacier");
 
         gerarModelosDaFamilia(ModBlocks.SPIRAL_FAMILY, true, "nihil");
+
+        itemModels().withExistingParent(ModItems.MURKLET_SPAWN_EGG.getId().getPath(),
+                mcLoc("item/template_spawn_egg"));
 
     }
 

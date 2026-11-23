@@ -4,6 +4,7 @@ import com.lzk.nihiloutspread.NihilOutspread;
 
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -13,10 +14,16 @@ public class ModItems {
     // Items
     public static final DeferredItem<Item> EXAMPLE_ITEM;
 
+    public static final DeferredItem<Item> MURKLET_SPAWN_EGG;
+
     static {
 
         EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties()
                 .food(new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+
+        MURKLET_SPAWN_EGG = ITEMS.register("murklet_spawn_egg",
+                () -> new DeferredSpawnEggItem(ModEntities.MURKLET, 0x101010, 0x3f3f4c,
+                        new Item.Properties()));
     }
 
 }

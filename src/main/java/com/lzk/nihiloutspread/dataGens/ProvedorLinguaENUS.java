@@ -3,6 +3,8 @@ package com.lzk.nihiloutspread.dataGens;
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.blockGens.*;
 import com.lzk.nihiloutspread.init.ModBlocks;
+import com.lzk.nihiloutspread.init.ModEntities;
+import com.lzk.nihiloutspread.init.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -60,6 +62,9 @@ public class ProvedorLinguaENUS extends LanguageProvider {
         addBlock(ModBlocks.OR_GATE, "OR Redstone Gate");
         addBlock(ModBlocks.AND_GATE, "AND Redstone Gate");
         add("subtitles.nihil_outspread.honey_gate_click", "Honey redstone gate click");
+
+        addEntityType(ModEntities.MURKLET, "Murklet");
+        addItem(ModItems.MURKLET_SPAWN_EGG, "Murklet Spawn Egg");
     }
 
     private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, boolean temBase) {
