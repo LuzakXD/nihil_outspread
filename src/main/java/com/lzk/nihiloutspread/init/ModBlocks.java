@@ -156,7 +156,6 @@ public class ModBlocks {
                                 () -> new PetalsBlock(
                                                 BlockBehaviour.Properties.of()
                                                                 .mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)
-                                                                .replaceable()
                                                                 .noCollission()
                                                                 .instabreak()
                                                                 .sound(SoundType.GRASS)

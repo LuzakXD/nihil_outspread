@@ -5,6 +5,7 @@ import com.lzk.nihiloutspread.init.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.EnumSet;
 
@@ -22,6 +23,7 @@ public class HideInBlockGoal extends Goal {
     private final MurkletEntity mob;
     private BlockPos targetPos;
     private int randomTimer;
+    private int searchTimer;
     private Phase phase = Phase.SEARCHING;
 
     public HideInBlockGoal(MurkletEntity mob) {
@@ -79,6 +81,13 @@ public class HideInBlockGoal extends Goal {
                 double cy = targetPos.getY() + 1.0;
                 double cz = targetPos.getZ() + 0.5;
                 double distSqr = this.mob.distanceToSqr(cx, cy, cz);
+
+                searchTimer++;
+
+                if (searchTimer >= 100) {
+                    this.mob.addExploredPosition(GlobalPos.of(this.mob.level().dimension(), targetPos));
+                    this.stop();
+                }
 
                 if (distSqr > 4.0) {
                     if (this.mob.getNavigation().isDone()) {
@@ -140,6 +149,7 @@ public class HideInBlockGoal extends Goal {
         }
         this.phase = Phase.SEARCHING;
         this.randomTimer = 0;
+        this.searchTimer = 0;
         this.mob.setDigTimer(0);
         this.targetPos = null;
         this.mob.setHideTarget(null);
@@ -154,9 +164,15 @@ public class HideInBlockGoal extends Goal {
         for (BlockPos pos : BlockPos.betweenClosed(
                 origin.offset(-SEARCH_RADIUS, -2, -SEARCH_RADIUS),
                 origin.offset(SEARCH_RADIUS, 2, SEARCH_RADIUS))) {
-            if (!this.mob.level().getBlockState(pos).is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON))
+
+            BlockState state = this.mob.level().getBlockState(pos);
+            if (!state.is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON))
                 continue;
-            if (!this.mob.level().isEmptyBlock(pos.above()))
+
+            BlockPos abovePos = pos.above();
+            BlockState stateAbove = this.mob.level().getBlockState(abovePos);
+            if (!stateAbove.getCollisionShape(this.mob.level(), abovePos).isEmpty()
+                    || !stateAbove.getFluidState().isEmpty())
                 continue;
 
             boolean alreadyVisited = this.mob.getExploredPositions().stream()
