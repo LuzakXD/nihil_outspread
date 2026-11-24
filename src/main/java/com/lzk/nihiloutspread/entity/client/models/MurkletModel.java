@@ -5,7 +5,6 @@ import com.lzk.nihiloutspread.entity.MurkletEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -16,6 +15,7 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.LivingEntity;
 
 public class MurkletModel<T extends LivingEntity> extends HierarchicalModel<T> {
@@ -114,16 +114,44 @@ public class MurkletModel<T extends LivingEntity> extends HierarchicalModel<T> {
                 return LayerDefinition.create(meshdefinition, 64, 64);
         }
 
+        private final AnimationState digState = new AnimationState();
+        private final AnimationState digIdleState = new AnimationState();
+        private final AnimationState undigState = new AnimationState();
+
         @Override
         public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
                         float headPitch) {
                 this.root.getAllParts().forEach(ModelPart::resetPose);
 
-                this.torso_pivot.yRot = netHeadYaw * ((float) Math.PI / 180F);
-                this.torso_pivot.xRot = headPitch * ((float) Math.PI / 180F);
+                if (entity instanceof MurkletEntity rv) {
+                        int state = rv.getHideState();
 
-                this.animateWalk(MurkletAnimantions.walk, limbSwing, limbSwingAmount, 2.5f,
-                                2.5f);
+                        if (state != MurkletEntity.HIDE_STATE_DIGGING)
+                                digState.stop();
+                        if (state != MurkletEntity.HIDE_STATE_HIDDEN)
+                                digIdleState.stop();
+                        if (state != MurkletEntity.HIDE_STATE_UNDIGGING)
+                                undigState.stop();
+
+                        switch (state) {
+                                case MurkletEntity.HIDE_STATE_DIGGING -> {
+                                        digState.startIfStopped(entity.tickCount);
+                                        this.animate(digState, MurkletAnimations.dig, ageInTicks, 1.0f);
+                                }
+                                case MurkletEntity.HIDE_STATE_HIDDEN -> {
+                                        digIdleState.startIfStopped(entity.tickCount);
+                                        this.animate(digIdleState, MurkletAnimations.dig_idle, ageInTicks, 1.0f);
+                                }
+                                case MurkletEntity.HIDE_STATE_UNDIGGING -> {
+                                        undigState.startIfStopped(entity.tickCount);
+                                        this.animate(undigState, MurkletAnimations.undig, ageInTicks, 1.0f);
+                                }
+                                default -> {
+                                        this.animateWalk(MurkletAnimations.walk, limbSwing, limbSwingAmount, 2.5f,
+                                                        2.5f);
+                                }
+                        }
+                }
         }
 
         @Override

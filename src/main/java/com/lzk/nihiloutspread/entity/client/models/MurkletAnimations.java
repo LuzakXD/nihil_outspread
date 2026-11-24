@@ -5,7 +5,7 @@ import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 
-public class MurkletAnimantions {
+public class MurkletAnimations {
         public static final AnimationDefinition walk = AnimationDefinition.Builder.withLength(1.0F).looping()
                         .addAnimation("root", new AnimationChannel(AnimationChannel.Targets.POSITION,
                                         new Keyframe(0.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F),
@@ -296,7 +296,7 @@ public class MurkletAnimantions {
                                                         AnimationChannel.Interpolations.LINEAR)))
                         .build();
 
-        public static final AnimationDefinition dig_peek = AnimationDefinition.Builder.withLength(2.0F).looping()
+        public static final AnimationDefinition dig_peek = AnimationDefinition.Builder.withLength(2.0F)
                         .addAnimation("head", new AnimationChannel(AnimationChannel.Targets.ROTATION,
                                         new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F),
                                                         AnimationChannel.Interpolations.LINEAR),

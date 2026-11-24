@@ -1,12 +1,10 @@
 package com.lzk.nihiloutspread;
 
 import com.lzk.nihiloutspread.entity.MurkletEntity;
-import com.lzk.nihiloutspread.entity.client.models.MurkletModel;
 import com.lzk.nihiloutspread.init.ModEntities;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 
 @SuppressWarnings("removal")
