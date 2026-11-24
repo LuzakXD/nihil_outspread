@@ -12,7 +12,7 @@ public class HideInBlockGoal extends Goal {
 
     private static final int DIG_TICKS = 20;
     private static final int HIDE_TICKS = 200;
-    private static final int UNDIG_TICKS = 20;
+    private static final int UNDIG_TICKS = 25;
     private static final int SEARCH_RADIUS = 16;
 
     private enum Phase {
@@ -21,7 +21,7 @@ public class HideInBlockGoal extends Goal {
 
     private final MurkletEntity mob;
     private BlockPos targetPos;
-    private int timer;
+    private int randomTimer;
     private Phase phase = Phase.SEARCHING;
 
     public HideInBlockGoal(MurkletEntity mob) {
@@ -47,6 +47,9 @@ public class HideInBlockGoal extends Goal {
         if (this.mob.getRandom().nextInt(250) != 0)
             return false;
         this.targetPos = findHidingSpot();
+        if (this.targetPos != null) {
+            this.mob.setHideTarget(GlobalPos.of(this.mob.level().dimension(), this.targetPos));
+        }
         return this.targetPos != null;
     }
 
@@ -54,16 +57,18 @@ public class HideInBlockGoal extends Goal {
     public void start() {
         int state = this.mob.getHideState();
         if (state != MurkletEntity.HIDE_STATE_NONE) {
-            this.mob.digTimer = 0;
+            this.mob.setDigTimer(0);
             return;
         }
+        this.randomTimer = mob.getRandom().nextInt(200);
         this.phase = Phase.MOVING;
-        this.mob.digTimer = 0;
+        this.mob.setDigTimer(0);
         this.mob.getNavigation().moveTo(
                 targetPos.getX() + 0.5,
                 targetPos.getY() + 1,
                 targetPos.getZ() + 0.5,
                 1.0D);
+
     }
 
     @Override
@@ -92,28 +97,28 @@ public class HideInBlockGoal extends Goal {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_DIGGING);
                     this.mob.addExploredPosition(GlobalPos.of(this.mob.level().dimension(), targetPos));
                     this.phase = Phase.DIGGING;
-                    this.mob.digTimer = 0;
+                    this.mob.setDigTimer(0);
                 }
             }
             case DIGGING -> {
-                this.mob.digTimer++;
-                if (this.mob.digTimer >= DIG_TICKS) {
+                this.mob.setDigTimer(this.mob.getDigTimer() + 1);
+                if (this.mob.getDigTimer() >= DIG_TICKS) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_HIDDEN);
                     this.phase = Phase.HIDING;
-                    this.mob.digTimer = 0;
+                    this.mob.setDigTimer(0);
                 }
             }
             case HIDING -> {
-                this.mob.digTimer++;
-                if (this.mob.digTimer >= (HIDE_TICKS + mob.getRandom().nextInt(200))) {
+                this.mob.setDigTimer(this.mob.getDigTimer() + 1);
+                if (this.mob.getDigTimer() >= (HIDE_TICKS + randomTimer)) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_UNDIGGING);
                     this.phase = Phase.UNDIGGING;
-                    this.mob.digTimer = 0;
+                    this.mob.setDigTimer(0);
                 }
             }
             case UNDIGGING -> {
-                this.mob.digTimer++;
-                if (this.mob.digTimer >= UNDIG_TICKS) {
+                this.mob.setDigTimer(this.mob.getDigTimer() + 1);
+                if (this.mob.getDigTimer() >= UNDIG_TICKS) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
                     this.stop();
                 }
@@ -134,8 +139,10 @@ public class HideInBlockGoal extends Goal {
             this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
         }
         this.phase = Phase.SEARCHING;
-        this.mob.digTimer = 0;
+        this.randomTimer = 0;
+        this.mob.setDigTimer(0);
         this.targetPos = null;
+        this.mob.setHideTarget(null);
         this.mob.getNavigation().stop();
     }
 

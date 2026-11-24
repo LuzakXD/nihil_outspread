@@ -45,7 +45,7 @@ public class MurkletEntity extends PathfinderMob {
         this.hideTarget = target;
     }
 
-    public int digTimer;
+    private int digTimer;
 
     public int getDigTimer() {
         return this.digTimer;
