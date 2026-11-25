@@ -3,6 +3,7 @@ package com.lzk.nihiloutspread.entity;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -55,6 +56,16 @@ public class MurkletEntity extends PathfinderMob {
         this.digTimer = timer;
     }
 
+    private int hideCooldown;
+
+    public int getHideCooldown() {
+        return this.hideCooldown;
+    }
+
+    public void setHideCooldown(int cooldown) {
+        this.hideCooldown = cooldown;
+    }
+
     private static final EntityDataAccessor<Integer> DATA_HIDE_STATE = SynchedEntityData.defineId(
             MurkletEntity.class,
             EntityDataSerializers.INT);
@@ -88,8 +99,8 @@ public class MurkletEntity extends PathfinderMob {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
-        this.goalSelector.addGoal(2, new HideInBlockGoal(this));
+        this.goalSelector.addGoal(1, new HideInBlockGoal(this));
+        this.goalSelector.addGoal(2, new PanicGoal(this, 1.5D));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
@@ -103,8 +114,9 @@ public class MurkletEntity extends PathfinderMob {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (this.getHideState() == HIDE_STATE_HIDDEN)
-            return false;
+        if (this.getHideState() == HIDE_STATE_HIDDEN && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            amount *= 0.25F;
+        }
         return super.hurt(source, amount);
     }
 
@@ -138,6 +150,7 @@ public class MurkletEntity extends PathfinderMob {
         super.addAdditionalSaveData(tag);
         tag.putInt("HideState", this.getHideState());
         tag.putInt("DigTimer", this.getDigTimer());
+        tag.putInt("HideCooldown", this.getHideCooldown());
         if (this.hideTarget != null) {
             GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, this.hideTarget)
                     .result().ifPresent(t -> tag.put("HideTarget", t));
@@ -157,6 +170,7 @@ public class MurkletEntity extends PathfinderMob {
         super.readAdditionalSaveData(tag);
         this.setHideState(tag.getInt("HideState"));
         this.setDigTimer(tag.getInt("DigTimer"));
+        this.setHideCooldown(tag.getInt("HideCooldown"));
         if (tag.contains("HideTarget")) {
             GlobalPos.CODEC.parse(NbtOps.INSTANCE, tag.get(
                     "HideTarget"))
