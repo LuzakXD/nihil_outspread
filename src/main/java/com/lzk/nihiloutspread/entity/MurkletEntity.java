@@ -72,6 +72,9 @@ public class MurkletEntity extends PathfinderMob {
 
     private int digTimer;
     private int hideCooldown;
+    private int randomTimer;
+    private int searchTimer;
+    private boolean hidFromPanic;
 
     private static final EntityDataAccessor<Integer> DATA_HIDE_STATE = SynchedEntityData.defineId(
             MurkletEntity.class, EntityDataSerializers.INT);
@@ -116,6 +119,30 @@ public class MurkletEntity extends PathfinderMob {
 
     public void setHideTarget(GlobalPos target) {
         this.entityData.set(DATA_HIDE_TARGET, Optional.ofNullable(target));
+    }
+
+    public int getRandomTimer() {
+        return this.randomTimer;
+    }
+
+    public void setRandomTimer(int timer) {
+        this.randomTimer = timer;
+    }
+
+    public int getSearchTimer() {
+        return this.searchTimer;
+    }
+
+    public void setSearchTimer(int timer) {
+        this.searchTimer = timer;
+    }
+
+    public boolean isHidFromPanic() {
+        return this.hidFromPanic;
+    }
+
+    public void setHidFromPanic(boolean value) {
+        this.hidFromPanic = value;
     }
 
     public MurkletEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
@@ -194,6 +221,9 @@ public class MurkletEntity extends PathfinderMob {
         tag.putInt("HideState", this.getHideState());
         tag.putInt("DigTimer", this.getDigTimer());
         tag.putInt("HideCooldown", this.getHideCooldown());
+        tag.putInt("RandomTimer", this.getRandomTimer());
+        tag.putInt("SearchTimer", this.getSearchTimer());
+        tag.putBoolean("HidFromPanic", this.isHidFromPanic());
         GlobalPos target = this.getHideTarget();
         if (target != null) {
             GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, target)
@@ -215,6 +245,9 @@ public class MurkletEntity extends PathfinderMob {
         this.setHideState(tag.getInt("HideState"));
         this.setDigTimer(tag.getInt("DigTimer"));
         this.setHideCooldown(tag.getInt("HideCooldown"));
+        this.setRandomTimer(tag.getInt("RandomTimer"));
+        this.setSearchTimer(tag.getInt("SearchTimer"));
+        this.setHidFromPanic(tag.getBoolean("HidFromPanic"));
         if (tag.contains("HideTarget")) {
             GlobalPos.CODEC.parse(NbtOps.INSTANCE, tag.get(
                     "HideTarget"))

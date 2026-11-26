@@ -23,6 +23,10 @@ public class MurkletRender extends MobRenderer<MurkletEntity, MurkletModel<Murkl
 
     @Override
     protected float getShadowRadius(MurkletEntity entity) {
+        if (entity.getHideState() == MurkletEntity.HIDE_STATE_HIDDEN
+                || entity.getHideState() == MurkletEntity.HIDE_STATE_HIDDEN_PEEK) {
+            return 0.0F;
+        }
         return super.getShadowRadius(entity);
     }
 }

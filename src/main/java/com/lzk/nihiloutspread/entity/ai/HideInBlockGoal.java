@@ -23,8 +23,6 @@ public class HideInBlockGoal extends Goal {
 
     private double moveSpeed = 1.0D;
 
-    private boolean hidFromPanic = false;
-
     private boolean isPanicking() {
         return this.mob.getLastHurtByMob() != null || this.mob.isOnFire() || this.mob.isFreezing();
     }
@@ -35,8 +33,6 @@ public class HideInBlockGoal extends Goal {
 
     private final MurkletEntity mob;
     private BlockPos targetPos;
-    private int randomTimer;
-    private int searchTimer;
     private Phase phase = Phase.SEARCHING;
 
     public HideInBlockGoal(MurkletEntity mob) {
@@ -47,7 +43,6 @@ public class HideInBlockGoal extends Goal {
     @Override
     public boolean canUse() {
         if (this.mob.getHideCooldown() > 0) {
-            this.mob.setHideCooldown(this.mob.getHideCooldown() - 1);
             return false;
         }
         if (this.mob.getTarget() != null)
@@ -69,26 +64,27 @@ public class HideInBlockGoal extends Goal {
         }
 
         boolean panicking = isPanicking();
-        this.hidFromPanic = panicking;
         if (!panicking && this.mob.getRandom().nextInt(250) != 0)
             return false;
 
         this.targetPos = findHidingSpot(panicking);
-        if (this.targetPos != null) {
-            this.moveSpeed = panicking ? 1.5D : 1.0D;
-            this.mob.setHideTarget(GlobalPos.of(this.mob.level().dimension(), this.targetPos));
-        }
-        return this.targetPos != null;
+        if (this.targetPos == null)
+            return false;
+
+        this.mob.setHidFromPanic(panicking);
+        this.moveSpeed = panicking ? 1.5D : 1.0D;
+        this.mob.setHideTarget(GlobalPos.of(this.mob.level().dimension(), this.targetPos));
+        return true;
     }
 
     @Override
     public void start() {
         int state = this.mob.getHideState();
         if (state != MurkletEntity.HIDE_STATE_NONE) {
-            this.mob.setDigTimer(0);
+
             return;
         }
-        this.randomTimer = mob.getRandom().nextInt(200);
+        this.mob.setRandomTimer(this.mob.getRandom().nextInt(200));
         this.phase = Phase.MOVING;
         this.mob.setDigTimer(0);
         this.mob.getNavigation().moveTo(
@@ -96,7 +92,6 @@ public class HideInBlockGoal extends Goal {
                 targetPos.getY() + 1,
                 targetPos.getZ() + 0.5,
                 this.moveSpeed);
-
     }
 
     private void spawnDiggingParticles() {
@@ -137,6 +132,10 @@ public class HideInBlockGoal extends Goal {
     @Override
     public void tick() {
 
+        if (this.mob.getHideCooldown() > 0) {
+            this.mob.setHideCooldown(this.mob.getHideCooldown() - 1);
+        }
+
         if (!isValidHidingBlock(this.targetPos)) {
             if (this.phase != Phase.MOVING) {
                 this.mob.setHideCooldown(60);
@@ -153,9 +152,9 @@ public class HideInBlockGoal extends Goal {
                 double cz = targetPos.getZ() + 0.5;
                 double distSqr = this.mob.distanceToSqr(cx, cy, cz);
 
-                searchTimer++;
+                this.mob.setSearchTimer(this.mob.getSearchTimer() + 1);
 
-                if (searchTimer >= 100) {
+                if (this.mob.getSearchTimer() >= 100) {
                     this.mob.addExploredPosition(GlobalPos.of(this.mob.level().dimension(), targetPos));
                     this.stop();
                     return;
@@ -205,9 +204,9 @@ public class HideInBlockGoal extends Goal {
 
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                boolean safeToExit = this.hidFromPanic
+                boolean safeToExit = this.mob.isHidFromPanic()
                         ? !isPanicking()
-                        : this.mob.getDigTimer() >= (HIDE_TICKS + randomTimer);
+                        : this.mob.getDigTimer() >= (HIDE_TICKS + this.mob.getRandomTimer());
 
                 if (safeToExit) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_UNDIGGING);
@@ -243,11 +242,11 @@ public class HideInBlockGoal extends Goal {
             this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
         }
         this.phase = Phase.SEARCHING;
-        this.randomTimer = 0;
-        this.searchTimer = 0;
+        this.mob.setSearchTimer(0);
         this.mob.setDigTimer(0);
+        this.mob.setRandomTimer(0);
+        this.mob.setHidFromPanic(false);
         this.targetPos = null;
-        this.hidFromPanic = false;
         this.mob.setHideTarget(null);
         this.mob.getNavigation().stop();
     }
