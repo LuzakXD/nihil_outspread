@@ -9,21 +9,27 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NihilOutspread.MODID);
+        public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(NihilOutspread.MODID);
 
-    // Items
-    public static final DeferredItem<Item> EXAMPLE_ITEM;
+        // Items
+        public static final DeferredItem<Item> EXAMPLE_ITEM;
 
-    public static final DeferredItem<Item> MURKLET_SPAWN_EGG;
+        public static final DeferredItem<Item> MURKLET_SPAWN_EGG;
+        public static final DeferredItem<Item> PIXIE_SPAWN_EGG;
 
-    static {
+        static {
 
-        EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties()
-                .food(new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+                EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties()
+                                .food(new FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(2f)
+                                                .build()));
 
-        MURKLET_SPAWN_EGG = ITEMS.register("murklet_spawn_egg",
-                () -> new DeferredSpawnEggItem(ModEntities.MURKLET, 0x101010, 0x3f3f4c,
-                        new Item.Properties()));
-    }
+                MURKLET_SPAWN_EGG = ITEMS.register("murklet_spawn_egg",
+                                () -> new DeferredSpawnEggItem(ModEntities.MURKLET, 0x101010, 0x3f3f4c,
+                                                new Item.Properties()));
+
+                PIXIE_SPAWN_EGG = ITEMS.register("pixie_spawn_egg",
+                                () -> new DeferredSpawnEggItem(ModEntities.PIXIE, 0x121212, 0xfafafa,
+                                                new Item.Properties()));
+        }
 
 }

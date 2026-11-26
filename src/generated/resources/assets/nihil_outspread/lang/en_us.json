@@ -145,6 +145,7 @@
   "block.nihil_outspread.xor_gate": "XOR Redstone Gate",
   "entity.nihil_outspread.murklet": "Murklet",
   "item.nihil_outspread.murklet_spawn_egg": "Murklet Spawn Egg",
+  "item.nihil_outspread.pixie_spawn_egg": "Pixie Spawn Egg",
   "itemGroup.nihil_outspread.abyss": "Abyss blocks",
   "itemGroup.nihil_outspread.glacier": "Glacier blocks",
   "itemGroup.nihil_outspread.hive": "Hive blocks",

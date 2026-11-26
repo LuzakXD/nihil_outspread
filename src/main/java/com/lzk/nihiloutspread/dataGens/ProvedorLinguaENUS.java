@@ -65,6 +65,7 @@ public class ProvedorLinguaENUS extends LanguageProvider {
 
         addEntityType(ModEntities.MURKLET, "Murklet");
         addItem(ModItems.MURKLET_SPAWN_EGG, "Murklet Spawn Egg");
+        addItem(ModItems.PIXIE_SPAWN_EGG, "Pixie Spawn Egg");
     }
 
     private void traduzirFamilia(FamiliaPedra familia, String nomeMaterial, boolean temBase) {

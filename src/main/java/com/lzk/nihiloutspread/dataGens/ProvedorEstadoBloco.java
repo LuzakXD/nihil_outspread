@@ -84,6 +84,9 @@ public class ProvedorEstadoBloco extends BlockStateProvider {
         itemModels().withExistingParent(ModItems.MURKLET_SPAWN_EGG.getId().getPath(),
                 mcLoc("item/template_spawn_egg"));
 
+        itemModels().withExistingParent(ModItems.PIXIE_SPAWN_EGG.getId().getPath(),
+                mcLoc("item/template_spawn_egg"));
+
     }
 
     private void blocoSimples(DeferredBlock<? extends Block> bloco, String Textura, String categoria) {

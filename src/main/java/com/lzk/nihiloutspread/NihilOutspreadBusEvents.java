@@ -1,6 +1,7 @@
 package com.lzk.nihiloutspread;
 
 import com.lzk.nihiloutspread.entity.MurkletEntity;
+import com.lzk.nihiloutspread.entity.PixieEntity;
 import com.lzk.nihiloutspread.init.ModEntities;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,5 +15,6 @@ public class NihilOutspreadBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.MURKLET.get(), MurkletEntity.createAttributes().build());
+        event.put(ModEntities.PIXIE.get(), PixieEntity.createAttributes().build());
     }
 }

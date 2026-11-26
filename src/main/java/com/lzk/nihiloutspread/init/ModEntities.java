@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 
 import com.lzk.nihiloutspread.NihilOutspread;
 import com.lzk.nihiloutspread.entity.MurkletEntity;
+import com.lzk.nihiloutspread.entity.PixieEntity;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -20,5 +21,11 @@ public class ModEntities {
                                         .of(MurkletEntity::new, MobCategory.CREATURE)
                                         .sized(0.4f, 0.6f)
                                         .build("nihil_outspread:murklet"));
+
+        public static final Supplier<EntityType<PixieEntity>> PIXIE = ENTITY_TYPE.register("pixie",
+                        () -> EntityType.Builder
+                                        .of(PixieEntity::new, MobCategory.CREATURE)
+                                        .sized(0.4f, 0.4f)
+                                        .build("nihil_outspread:pixie"));
 
 }

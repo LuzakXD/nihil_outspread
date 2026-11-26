@@ -2,6 +2,8 @@ package com.lzk.nihiloutspread;
 
 import com.lzk.nihiloutspread.entity.client.models.MurkletModel;
 import com.lzk.nihiloutspread.entity.client.models.MurkletRender;
+import com.lzk.nihiloutspread.entity.client.models.PixieModel;
+import com.lzk.nihiloutspread.entity.client.models.PixieRender;
 import com.lzk.nihiloutspread.init.ModEntities;
 
 import net.minecraft.client.Minecraft;
@@ -26,12 +28,14 @@ public class NihilOutspreadClient {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(MurkletModel.LAYER_LOCATION, MurkletModel::createBodyLayer);
+        event.registerLayerDefinition(PixieModel.LAYER_LOCATION, PixieModel::createBodyLayer);
     }
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
 
         EntityRenderers.register(ModEntities.MURKLET.get(), MurkletRender::new);
+        EntityRenderers.register(ModEntities.PIXIE.get(), PixieRender::new);
 
         NihilOutspread.LOGGER.info("HELLO FROM CLIENT SETUP");
         NihilOutspread.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());

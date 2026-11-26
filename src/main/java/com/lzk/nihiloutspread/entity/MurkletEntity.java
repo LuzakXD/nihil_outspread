@@ -5,20 +5,24 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.PanicGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.lzk.nihiloutspread.entity.ai.HideInBlockGoal;
 
@@ -36,17 +40,59 @@ public class MurkletEntity extends PathfinderMob {
     public static final int HIDE_STATE_HIDDEN_PEEK = 3;
     public static final int HIDE_STATE_UNDIGGING = 4;
 
-    private GlobalPos hideTarget;
+    public final AnimationState digState = new AnimationState();
+    public final AnimationState digIdleState = new AnimationState();
+    public final AnimationState undigState = new AnimationState();
 
-    public GlobalPos getHideTarget() {
-        return this.hideTarget;
-    }
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.level().isClientSide()) {
+            int state = this.getHideState();
 
-    public void setHideTarget(GlobalPos target) {
-        this.hideTarget = target;
+            if (state == HIDE_STATE_DIGGING) {
+                this.digState.startIfStopped(this.tickCount);
+            } else {
+                this.digState.stop();
+            }
+
+            if (state == HIDE_STATE_HIDDEN || state == HIDE_STATE_HIDDEN_PEEK) {
+                this.digIdleState.startIfStopped(this.tickCount);
+            } else {
+                this.digIdleState.stop();
+            }
+
+            if (state == HIDE_STATE_UNDIGGING) {
+                this.undigState.startIfStopped(this.tickCount);
+            } else {
+                this.undigState.stop();
+            }
+        }
     }
 
     private int digTimer;
+    private int hideCooldown;
+
+    private static final EntityDataAccessor<Integer> DATA_HIDE_STATE = SynchedEntityData.defineId(
+            MurkletEntity.class, EntityDataSerializers.INT);
+
+    private static final EntityDataAccessor<Optional<GlobalPos>> DATA_HIDE_TARGET = SynchedEntityData.defineId(
+            MurkletEntity.class, EntityDataSerializers.OPTIONAL_GLOBAL_POS);
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_HIDE_STATE, HIDE_STATE_NONE);
+        builder.define(DATA_HIDE_TARGET, Optional.empty());
+    }
+
+    public int getHideState() {
+        return this.entityData.get(DATA_HIDE_STATE);
+    }
+
+    public void setHideState(int state) {
+        this.entityData.set(DATA_HIDE_STATE, state);
+    }
 
     public int getDigTimer() {
         return this.digTimer;
@@ -56,8 +102,6 @@ public class MurkletEntity extends PathfinderMob {
         this.digTimer = timer;
     }
 
-    private int hideCooldown;
-
     public int getHideCooldown() {
         return this.hideCooldown;
     }
@@ -66,22 +110,12 @@ public class MurkletEntity extends PathfinderMob {
         this.hideCooldown = cooldown;
     }
 
-    private static final EntityDataAccessor<Integer> DATA_HIDE_STATE = SynchedEntityData.defineId(
-            MurkletEntity.class,
-            EntityDataSerializers.INT);
-
-    @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(DATA_HIDE_STATE, HIDE_STATE_NONE);
+    public GlobalPos getHideTarget() {
+        return this.entityData.get(DATA_HIDE_TARGET).orElse(null);
     }
 
-    public int getHideState() {
-        return this.entityData.get(DATA_HIDE_STATE);
-    }
-
-    public void setHideState(int state) {
-        this.entityData.set(DATA_HIDE_STATE, state);
+    public void setHideTarget(GlobalPos target) {
+        this.entityData.set(DATA_HIDE_TARGET, Optional.ofNullable(target));
     }
 
     public MurkletEntity(EntityType<? extends PathfinderMob> entityType, Level level) {
@@ -100,10 +134,13 @@ public class MurkletEntity extends PathfinderMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new HideInBlockGoal(this));
-        this.goalSelector.addGoal(2, new PanicGoal(this, 1.5D));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.3D, true));
+        this.goalSelector.addGoal(3, new PanicGoal(this, 1.5D));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PixieEntity.class, true));
 
     }
 
@@ -118,6 +155,12 @@ public class MurkletEntity extends PathfinderMob {
             amount *= 0.25F;
         }
         return super.hurt(source, amount);
+    }
+
+    @Override
+    public void die(DamageSource damageSource) {
+        this.setHideState(HIDE_STATE_NONE);
+        super.die(damageSource);
     }
 
     @Override
@@ -151,8 +194,9 @@ public class MurkletEntity extends PathfinderMob {
         tag.putInt("HideState", this.getHideState());
         tag.putInt("DigTimer", this.getDigTimer());
         tag.putInt("HideCooldown", this.getHideCooldown());
-        if (this.hideTarget != null) {
-            GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, this.hideTarget)
+        GlobalPos target = this.getHideTarget();
+        if (target != null) {
+            GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, target)
                     .result().ifPresent(t -> tag.put("HideTarget", t));
         }
         if (!this.exploredPositions.isEmpty()) {

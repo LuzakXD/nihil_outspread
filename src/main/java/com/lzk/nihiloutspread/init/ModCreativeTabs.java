@@ -101,6 +101,7 @@ public class ModCreativeTabs {
                                                 output.accept(ModBlocks.COTTONITE.get());
 
                                                 output.accept(ModItems.MURKLET_SPAWN_EGG.get());
+                                                output.accept(ModItems.PIXIE_SPAWN_EGG.get());
 
                                         }).build());
 

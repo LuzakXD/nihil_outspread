@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.EnumSet;
+import java.util.List;
 
 public class HideInBlockGoal extends Goal {
 
@@ -49,6 +50,9 @@ public class HideInBlockGoal extends Goal {
             this.mob.setHideCooldown(this.mob.getHideCooldown() - 1);
             return false;
         }
+        if (this.mob.getTarget() != null)
+            return false;
+
         int state = this.mob.getHideState();
         if (state != MurkletEntity.HIDE_STATE_NONE) {
             this.targetPos = this.mob.getHideTarget() != null
@@ -115,8 +119,33 @@ public class HideInBlockGoal extends Goal {
         }
     }
 
+    private boolean isValidHidingBlock(BlockPos pos) {
+        if (pos == null)
+            return false;
+
+        BlockState state = this.mob.level().getBlockState(pos);
+        if (!state.is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON)) {
+            return false;
+        }
+
+        BlockPos abovePos = pos.above();
+        BlockState stateAbove = this.mob.level().getBlockState(abovePos);
+        return stateAbove.getCollisionShape(this.mob.level(), abovePos).isEmpty()
+                && stateAbove.getFluidState().isEmpty();
+    }
+
     @Override
     public void tick() {
+
+        if (!isValidHidingBlock(this.targetPos)) {
+            if (this.phase != Phase.MOVING) {
+                this.mob.setHideCooldown(60);
+            }
+            this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
+            this.stop();
+            return;
+        }
+
         switch (phase) {
             case MOVING -> {
                 double cx = targetPos.getX() + 0.5;
@@ -136,7 +165,7 @@ public class HideInBlockGoal extends Goal {
                     if (this.mob.getNavigation().isDone()) {
                         this.mob.getNavigation().moveTo(cx, cy, cz, this.moveSpeed);
                     }
-                } else if (distSqr > 0.01) {
+                } else if (distSqr > 0.16) {
                     this.mob.getNavigation().stop();
                     this.mob.getMoveControl().setWantedPosition(cx, cy, cz, this.moveSpeed);
                 } else {
@@ -155,7 +184,7 @@ public class HideInBlockGoal extends Goal {
             case DIGGING -> {
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                if (this.mob.getDigTimer() % 2 == 0) {
+                if (this.mob.getDigTimer() % 4 == 0) {
                     spawnDiggingParticles();
                 }
 
@@ -189,7 +218,7 @@ public class HideInBlockGoal extends Goal {
             case UNDIGGING -> {
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                if (this.mob.getDigTimer() % 2 == 0) {
+                if (this.mob.getDigTimer() % 4 == 0) {
                     spawnDiggingParticles();
                 }
 
@@ -228,6 +257,11 @@ public class HideInBlockGoal extends Goal {
         BlockPos best = null;
         double bestDist = Double.MAX_VALUE;
 
+        List<MurkletEntity> nearbyMurklets = this.mob.level().getEntitiesOfClass(
+                MurkletEntity.class,
+                this.mob.getBoundingBox().inflate(SEARCH_RADIUS + 2.0D),
+                other -> other != this.mob && other.getHideTarget() != null);
+
         for (BlockPos pos : BlockPos.betweenClosed(
                 origin.offset(-SEARCH_RADIUS, -2, -SEARCH_RADIUS),
                 origin.offset(SEARCH_RADIUS, 2, SEARCH_RADIUS))) {
@@ -235,6 +269,13 @@ public class HideInBlockGoal extends Goal {
             BlockState state = this.mob.level().getBlockState(pos);
             if (!state.is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON))
                 continue;
+
+            boolean occupiedByOther = nearbyMurklets.stream()
+                    .anyMatch(other -> other.getHideTarget().dimension() == this.mob.level().dimension()
+                            && other.getHideTarget().pos().equals(pos));
+            if (occupiedByOther) {
+                continue;
+            }
 
             BlockPos abovePos = pos.above();
             BlockState stateAbove = this.mob.level().getBlockState(abovePos);
