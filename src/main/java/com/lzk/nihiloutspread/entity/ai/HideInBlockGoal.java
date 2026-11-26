@@ -1,6 +1,7 @@
 package com.lzk.nihiloutspread.entity.ai;
 
 import com.lzk.nihiloutspread.entity.MurkletEntity;
+import com.lzk.nihiloutspread.entity.PixieEntity;
 import com.lzk.nihiloutspread.init.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
@@ -27,6 +28,12 @@ public class HideInBlockGoal extends Goal {
         return this.mob.getLastHurtByMob() != null || this.mob.isOnFire() || this.mob.isFreezing();
     }
 
+    private enum HideMode {
+        RANDOM, PANIC, HUNT
+    }
+
+    private HideMode currentMode = HideMode.RANDOM;
+
     private enum Phase {
         SEARCHING, MOVING, DIGGING, HIDING, UNDIGGING
     }
@@ -42,39 +49,91 @@ public class HideInBlockGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        if (this.mob.getHideCooldown() > 0) {
-            return false;
-        }
-        if (this.mob.getTarget() != null)
-            return false;
-
         int state = this.mob.getHideState();
         if (state != MurkletEntity.HIDE_STATE_NONE) {
             this.targetPos = this.mob.getHideTarget() != null
                     ? this.mob.getHideTarget().pos()
-                    : this.mob.blockPosition();
+                    : this.mob.blockPosition().below();
             this.phase = switch (state) {
                 case MurkletEntity.HIDE_STATE_DIGGING -> Phase.DIGGING;
                 case MurkletEntity.HIDE_STATE_HIDDEN -> Phase.HIDING;
                 case MurkletEntity.HIDE_STATE_UNDIGGING -> Phase.UNDIGGING;
+                case MurkletEntity.HIDE_STATE_PEEKING -> Phase.HIDING;
+                case MurkletEntity.HIDE_STATE_BITING -> Phase.HIDING;
                 default -> Phase.SEARCHING;
             };
-
             return true;
         }
 
-        boolean panicking = isPanicking();
-        if (!panicking && this.mob.getRandom().nextInt(250) != 0)
+        if (this.mob.getHideCooldown() > 0)
+            return false;
+        if (this.mob.getTarget() != null)
             return false;
 
-        this.targetPos = findHidingSpot(panicking);
+        boolean panicking = isPanicking();
+        long hungerThreshold = 20L * 60L * 7L;
+        boolean hungry = !panicking
+                && this.mob.level().getGameTime() - this.mob.getLastTimeEaten() > hungerThreshold;
+
+        if (panicking) {
+            this.currentMode = HideMode.PANIC;
+            this.targetPos = findHidingSpot(true);
+        } else if (hungry) {
+            this.targetPos = findBushNearPixie();
+            if (this.targetPos != null) {
+                this.currentMode = HideMode.HUNT;
+            } else {
+                if (this.mob.getRandom().nextInt(250) != 0)
+                    return false;
+                this.currentMode = HideMode.RANDOM;
+                this.targetPos = findHidingSpot(false);
+            }
+        } else {
+            if (this.mob.getRandom().nextInt(250) != 0)
+                return false;
+            this.currentMode = HideMode.RANDOM;
+            this.targetPos = findHidingSpot(false);
+        }
         if (this.targetPos == null)
             return false;
-
-        this.mob.setHidFromPanic(panicking);
         this.moveSpeed = panicking ? 1.5D : 1.0D;
         this.mob.setHideTarget(GlobalPos.of(this.mob.level().dimension(), this.targetPos));
         return true;
+    }
+
+    private BlockPos findBushNearPixie() {
+        BlockPos origin = this.mob.blockPosition();
+        List<PixieEntity> pixies = this.mob.level().getEntitiesOfClass(
+                PixieEntity.class,
+                this.mob.getBoundingBox().inflate(24.0),
+                PixieEntity::isAlive);
+
+        BlockPos best = null;
+        double bestScore = Double.MAX_VALUE;
+
+        for (BlockPos pos : BlockPos.betweenClosed(
+                origin.offset(-SEARCH_RADIUS, -2, -SEARCH_RADIUS),
+                origin.offset(SEARCH_RADIUS, 2, SEARCH_RADIUS))) {
+            if (!isValidHidingBlock(pos))
+                continue;
+            if (occupiedByOther(pos))
+                continue;
+            if (alreadyVisited(pos))
+                continue;
+
+            // Distância até a pixie mais próxima deste bush
+            double minPixieDist = pixies.stream()
+                    .mapToDouble(p -> p.blockPosition().distSqr(pos))
+                    .min().orElse(Double.MAX_VALUE);
+
+            // Score combina "perto do Murklet" + "perto da Pixie"
+            double score = origin.distSqr(pos) + minPixieDist;
+            if (score < bestScore) {
+                bestScore = score;
+                best = pos.immutable();
+            }
+        }
+        return best;
     }
 
     @Override
@@ -131,10 +190,6 @@ public class HideInBlockGoal extends Goal {
 
     @Override
     public void tick() {
-
-        if (this.mob.getHideCooldown() > 0) {
-            this.mob.setHideCooldown(this.mob.getHideCooldown() - 1);
-        }
 
         if (!isValidHidingBlock(this.targetPos)) {
             if (this.phase != Phase.MOVING) {
@@ -204,9 +259,14 @@ public class HideInBlockGoal extends Goal {
 
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                boolean safeToExit = this.mob.isHidFromPanic()
-                        ? !isPanicking()
-                        : this.mob.getDigTimer() >= (HIDE_TICKS + this.mob.getRandomTimer());
+                boolean safeToExit;
+                if (this.currentMode == HideMode.PANIC) {
+                    safeToExit = !isPanicking();
+                } else if (this.currentMode == HideMode.HUNT) {
+                    safeToExit = this.mob.getDigTimer() >= 1200;
+                } else {
+                    safeToExit = this.mob.getDigTimer() >= (HIDE_TICKS + this.mob.getRandomTimer());
+                }
 
                 if (safeToExit) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_UNDIGGING);
@@ -238,14 +298,17 @@ public class HideInBlockGoal extends Goal {
 
     @Override
     public void stop() {
-        if (this.mob.getHideState() != MurkletEntity.HIDE_STATE_NONE && this.phase != Phase.HIDING) {
+        boolean naturalEnd = this.mob.getHideState() == MurkletEntity.HIDE_STATE_NONE
+                || this.phase != Phase.HIDING;
+        if (naturalEnd) {
             this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
+            this.mob.setHideTarget(null);
+            this.currentMode = HideMode.RANDOM;
         }
         this.phase = Phase.SEARCHING;
         this.mob.setSearchTimer(0);
         this.mob.setDigTimer(0);
         this.mob.setRandomTimer(0);
-        this.mob.setHidFromPanic(false);
         this.targetPos = null;
         this.mob.setHideTarget(null);
         this.mob.getNavigation().stop();
@@ -256,11 +319,6 @@ public class HideInBlockGoal extends Goal {
         BlockPos best = null;
         double bestDist = Double.MAX_VALUE;
 
-        List<MurkletEntity> nearbyMurklets = this.mob.level().getEntitiesOfClass(
-                MurkletEntity.class,
-                this.mob.getBoundingBox().inflate(SEARCH_RADIUS + 2.0D),
-                other -> other != this.mob && other.getHideTarget() != null);
-
         for (BlockPos pos : BlockPos.betweenClosed(
                 origin.offset(-SEARCH_RADIUS, -2, -SEARCH_RADIUS),
                 origin.offset(SEARCH_RADIUS, 2, SEARCH_RADIUS))) {
@@ -269,12 +327,8 @@ public class HideInBlockGoal extends Goal {
             if (!state.is(ModTags.Blocks.NIHIL_BUSHES_MAY_PLACE_ON))
                 continue;
 
-            boolean occupiedByOther = nearbyMurklets.stream()
-                    .anyMatch(other -> other.getHideTarget().dimension() == this.mob.level().dimension()
-                            && other.getHideTarget().pos().equals(pos));
-            if (occupiedByOther) {
+            if (occupiedByOther(pos))
                 continue;
-            }
 
             BlockPos abovePos = pos.above();
             BlockState stateAbove = this.mob.level().getBlockState(abovePos);
@@ -282,13 +336,8 @@ public class HideInBlockGoal extends Goal {
                     || !stateAbove.getFluidState().isEmpty())
                 continue;
 
-            if (!ignoreExplored) {
-                boolean alreadyVisited = this.mob.getExploredPositions().stream()
-                        .anyMatch(p -> p.dimension() == this.mob.level().dimension()
-                                && p.pos().equals(pos));
-                if (alreadyVisited)
-                    continue;
-            }
+            if (!ignoreExplored && alreadyVisited(pos))
+                continue;
 
             double dist = origin.distSqr(pos);
             if (dist < bestDist) {
@@ -297,5 +346,21 @@ public class HideInBlockGoal extends Goal {
             }
         }
         return best;
+    }
+
+    private boolean occupiedByOther(BlockPos pos) {
+        List<MurkletEntity> nearbyMurklets = this.mob.level().getEntitiesOfClass(
+                MurkletEntity.class,
+                this.mob.getBoundingBox().inflate(SEARCH_RADIUS + 2.0D),
+                other -> other != this.mob && other.getHideTarget() != null);
+        return nearbyMurklets.stream()
+                .anyMatch(other -> other.getHideTarget().dimension() == this.mob.level().dimension()
+                        && other.getHideTarget().pos().equals(pos));
+    }
+
+    private boolean alreadyVisited(BlockPos pos) {
+        return this.mob.getExploredPositions().stream()
+                .anyMatch(p -> p.dimension() == this.mob.level().dimension()
+                        && p.pos().equals(pos));
     }
 }

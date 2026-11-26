@@ -1,5 +1,7 @@
 package com.lzk.nihiloutspread.entity;
 
+import com.lzk.nihiloutspread.entity.ai.SeekBushLikeGoal;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -45,10 +47,14 @@ public class PixieEntity extends PathfinderMob {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, MurkletEntity.class, 12.0F, 1.0, 1.2));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
-        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(2, new SeekBushLikeGoal(this));
+        this.goalSelector.addGoal(3, new AvoidEntityGoal<>(
+                this, MurkletEntity.class, 12.0F, 1.0, 1.2,
+                entity -> entity instanceof MurkletEntity m
+                        && m.getHideState() == MurkletEntity.HIDE_STATE_NONE));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
     }
 
     @Override
