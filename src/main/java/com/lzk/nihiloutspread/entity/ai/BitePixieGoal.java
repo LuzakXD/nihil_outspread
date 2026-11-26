@@ -10,7 +10,7 @@ import net.minecraft.world.entity.ai.goal.Goal;
 
 public class BitePixieGoal extends Goal {
 
-    private static final double BITE_RADIUS = 1.0;
+    private static final double BITE_RADIUS = 0.1;
     private static final int BITE_TICKS = 15;
     private static final int BITE_HIT_TICK = 8;
     private static final int COOLDOWN_TICKS = 300;

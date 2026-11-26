@@ -42,7 +42,7 @@ public class PixieModel<T extends LivingEntity> extends HierarchicalModel<T> {
 				CubeListBuilder.create().texOffs(0, 0)
 						.addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F))
 						.texOffs(0, 8)
-						.addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(-4.1F)),
+						.addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(-4.25F)),
 				PartPose.offset(0.0F, -2.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 16, 16);
@@ -52,6 +52,9 @@ public class PixieModel<T extends LivingEntity> extends HierarchicalModel<T> {
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
 		this.root.getAllParts().forEach(ModelPart::resetPose);
+
+		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
+		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -198,8 +199,27 @@ public class MurkletEntity extends PathfinderMob {
     }
 
     @Override
+    protected void doPush(Entity entity) {
+        if (this.getHideState() == HIDE_STATE_NONE) {
+            super.doPush(entity);
+        }
+    }
+
+    @Override
+    public void push(Entity entity) {
+        if (this.getHideState() == HIDE_STATE_NONE) {
+            super.push(entity);
+        }
+    }
+
+    @Override
     public boolean canBeCollidedWith() {
         return this.getHideState() == HIDE_STATE_NONE && super.canBeCollidedWith();
+    }
+
+    @Override
+    public boolean canCollideWith(Entity entity) {
+        return this.getHideState() == HIDE_STATE_NONE && super.canCollideWith(entity);
     }
 
     @Override

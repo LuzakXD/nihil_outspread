@@ -26,6 +26,7 @@ public class ModEntities {
                         () -> EntityType.Builder
                                         .of(PixieEntity::new, MobCategory.CREATURE)
                                         .sized(0.4f, 0.4f)
+                                        .eyeHeight(0.2F)
                                         .build("nihil_outspread:pixie"));
 
 }
