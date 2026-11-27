@@ -52,9 +52,6 @@ public class PixieModel<T extends LivingEntity> extends HierarchicalModel<T> {
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
 			float headPitch) {
 		this.root.getAllParts().forEach(ModelPart::resetPose);
-
-		this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
-		this.body.xRot = headPitch * ((float) Math.PI / 180F);
 	}
 
 	@Override

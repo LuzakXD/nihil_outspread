@@ -9,15 +9,17 @@ import com.lzk.nihiloutspread.init.ModTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.phys.Vec3;
 
 public class SeekBushLikeGoal extends Goal {
 
-    private static final int SEARCH_RADIUS = 32;
-    private static final int CHEW_TICKS = 60;
+    private static final int SEARCH_RADIUS = 16;
+    private static final int CHEW_TICKS = 100;
 
     private final PixieEntity mob;
     private BlockPos targetPos;
     private MurkletEntity targetMurklet;
+    private Vec3 hoverOffset = Vec3.ZERO;
     private int chewTimer;
     private int travelTimer;
     private int cooldown;
@@ -46,13 +48,14 @@ public class SeekBushLikeGoal extends Goal {
     public void start() {
         this.chewTimer = 0;
         this.travelTimer = 0;
+        this.hoverOffset = Vec3.ZERO;
         moveToTarget();
     }
 
     private void moveToTarget() {
         this.mob.getNavigation().moveTo(
                 this.targetPos.getX() + 0.5,
-                this.targetPos.getY() + 0.8,
+                this.targetPos.getY() + 0.15,
                 this.targetPos.getZ() + 0.5,
                 1.0);
     }
@@ -81,20 +84,36 @@ public class SeekBushLikeGoal extends Goal {
             return;
         }
 
-        double tx = this.targetPos.getX() + 0.5;
-        double ty = this.targetPos.getY() + 0.8;
-        double tz = this.targetPos.getZ() + 0.5;
+        double baseX = this.targetPos.getX() + 0.5;
+        double baseY = this.targetPos.getY() + 0.15;
+        double baseZ = this.targetPos.getZ() + 0.5;
 
-        this.mob.getLookControl().setLookAt(tx, ty, tz);
+        this.mob.getLookControl().setLookAt(baseX, baseY, baseZ);
 
-        double distSqr = this.mob.distanceToSqr(tx, ty, tz);
+        double distSqr = this.mob.distanceToSqr(baseX, baseY, baseZ);
 
-        if (distSqr < 1.0) {
+        if (distSqr < 2.25) {
             this.mob.getNavigation().stop();
-            this.chewTimer++;
-            if (this.chewTimer >= CHEW_TICKS) {
-                this.cooldown = 200;
-                this.stop();
+
+            if (this.mob.getRandom().nextInt(10) == 0) {
+                double ox = (this.mob.getRandom().nextDouble() - 0.5) * 0.24;
+                double oy = this.mob.getRandom().nextDouble() * 0.15;
+                double oz = (this.mob.getRandom().nextDouble() - 0.5) * 0.24;
+                this.hoverOffset = new Vec3(ox, oy, oz);
+            }
+
+            this.mob.getMoveControl().setWantedPosition(
+                    baseX + this.hoverOffset.x,
+                    baseY + this.hoverOffset.y,
+                    baseZ + this.hoverOffset.z,
+                    0.85D);
+
+            if (distSqr < 0.64) {
+                this.chewTimer++;
+                if (this.chewTimer >= CHEW_TICKS) {
+                    this.cooldown = 200;
+                    this.stop();
+                }
             }
         } else {
             this.travelTimer++;
@@ -115,6 +134,7 @@ public class SeekBushLikeGoal extends Goal {
         this.travelTimer = 0;
         this.targetPos = null;
         this.targetMurklet = null;
+        this.hoverOffset = Vec3.ZERO;
         this.mob.getNavigation().stop();
     }
 

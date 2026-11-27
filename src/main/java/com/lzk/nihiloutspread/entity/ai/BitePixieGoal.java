@@ -6,11 +6,13 @@ import java.util.List;
 import com.lzk.nihiloutspread.entity.MurkletEntity;
 import com.lzk.nihiloutspread.entity.PixieEntity;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 public class BitePixieGoal extends Goal {
 
-    private static final double BITE_RADIUS = 0.1;
+    private static final double CLOSE_RADIUS = 0.45D;
+    private static final double CANCEL_RADIUS = 1.2D;
     private static final int BITE_TICKS = 15;
     private static final int BITE_HIT_TICK = 8;
     private static final int COOLDOWN_TICKS = 300;
@@ -18,6 +20,7 @@ public class BitePixieGoal extends Goal {
     private final MurkletEntity mob;
     private PixieEntity target;
     private int timer;
+    private int biteCooldown;
     private boolean hasBitten;
 
     public BitePixieGoal(MurkletEntity mob) {
@@ -27,42 +30,68 @@ public class BitePixieGoal extends Goal {
 
     @Override
     public boolean canUse() {
+        if (this.biteCooldown > 0) {
+            this.biteCooldown--;
+            return false;
+        }
+
         int state = this.mob.getHideState();
         if (state != MurkletEntity.HIDE_STATE_HIDDEN
-                && state != MurkletEntity.HIDE_STATE_PEEKING)
+                && state != MurkletEntity.HIDE_STATE_PEEKING) {
             return false;
-        if (this.mob.getHideCooldown() > 0)
-            return false;
+        }
 
-        this.target = findPixieInRange();
+        this.target = findPixieWithin(CLOSE_RADIUS);
         return this.target != null;
     }
 
     @Override
     public void start() {
         this.timer = 0;
+        this.mob.setWaitTimer(this.mob.getRandom().nextIntBetweenInclusive(20, 40));
         this.hasBitten = false;
-        this.mob.setHideState(MurkletEntity.HIDE_STATE_BITING);
         this.mob.setBiteTimer(0);
         this.mob.getNavigation().stop();
     }
 
     @Override
     public void tick() {
-        this.timer++;
-        this.mob.setBiteTimer(this.timer);
+        boolean isBiting = this.mob.getHideState() == MurkletEntity.HIDE_STATE_BITING;
 
-        if (!this.hasBitten && this.timer >= BITE_HIT_TICK) {
+        if (!isBiting) {
+            PixieEntity closePixie = findPixieWithin(CLOSE_RADIUS);
+            if (closePixie != null) {
+                this.target = closePixie;
+                this.timer++;
+            }
+
+            if (this.timer >= this.mob.getWaitTimer()) {
+                this.mob.setHideState(MurkletEntity.HIDE_STATE_BITING);
+            }
+            return;
+        }
+
+        this.timer++;
+        int biteProgress = this.timer - this.mob.getWaitTimer();
+        this.mob.setBiteTimer(biteProgress);
+
+        if (this.target != null && this.target.isAlive()) {
+            this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
+        }
+
+        if (!this.hasBitten && biteProgress >= BITE_HIT_TICK) {
             this.hasBitten = true;
-            if (this.target != null && this.target.isAlive()) {
+            if (this.target != null && this.target.isAlive()
+                    && this.mob.distanceToSqr(this.target) <= 2.25D) {
+                this.mob.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
                 this.target.discard();
                 this.mob.setLastTimeEaten(this.mob.level().getGameTime());
             }
         }
 
-        if (this.timer >= BITE_TICKS) {
+        if (biteProgress >= BITE_TICKS) {
+            this.biteCooldown = COOLDOWN_TICKS;
             this.mob.setHideState(MurkletEntity.HIDE_STATE_HIDDEN);
-            this.mob.setHideCooldown(COOLDOWN_TICKS);
             this.mob.setBiteTimer(0);
             this.stop();
         }
@@ -70,8 +99,15 @@ public class BitePixieGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return this.mob.getHideState() == MurkletEntity.HIDE_STATE_BITING
-                && this.timer < BITE_TICKS;
+        if (this.mob.hurtTime > 0) {
+            return false;
+        }
+
+        if (this.mob.getHideState() == MurkletEntity.HIDE_STATE_BITING) {
+            return (this.timer - this.mob.getWaitTimer()) < BITE_TICKS;
+        }
+
+        return findPixieWithin(CANCEL_RADIUS) != null;
     }
 
     @Override
@@ -84,10 +120,10 @@ public class BitePixieGoal extends Goal {
         this.hasBitten = false;
     }
 
-    private PixieEntity findPixieInRange() {
+    private PixieEntity findPixieWithin(double radius) {
         List<PixieEntity> pixies = this.mob.level().getEntitiesOfClass(
                 PixieEntity.class,
-                this.mob.getBoundingBox().inflate(BITE_RADIUS),
+                this.mob.getBoundingBox().inflate(radius),
                 PixieEntity::isAlive);
         return pixies.isEmpty() ? null : pixies.get(0);
     }

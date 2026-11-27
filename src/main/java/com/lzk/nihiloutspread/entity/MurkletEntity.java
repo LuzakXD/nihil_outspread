@@ -90,6 +90,7 @@ public class MurkletEntity extends PathfinderMob {
     private int randomTimer;
     private int searchTimer;
     private int biteTimer;
+    private int waitTimer;
     private long lastTimeEaten;
 
     private static final EntityDataAccessor<Integer> DATA_HIDE_STATE = SynchedEntityData.defineId(
@@ -159,6 +160,14 @@ public class MurkletEntity extends PathfinderMob {
 
     public void setBiteTimer(int time) {
         this.biteTimer = time;
+    }
+
+    public int getWaitTimer() {
+        return this.waitTimer;
+    }
+
+    public void setWaitTimer(int time) {
+        this.waitTimer = time;
     }
 
     public long getLastTimeEaten() {
@@ -264,16 +273,18 @@ public class MurkletEntity extends PathfinderMob {
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("HideState", this.getHideState());
-        tag.putInt("DigTimer", this.getDigTimer());
-        tag.putInt("HideCooldown", this.getHideCooldown());
-        tag.putInt("RandomTimer", this.getRandomTimer());
-        tag.putInt("SearchTimer", this.getSearchTimer());
-        tag.putLong("LastTimeEaten", this.getLastTimeEaten());
+        tag.putInt("m_HideState", this.getHideState());
+        tag.putInt("m_DigTimer", this.getDigTimer());
+        tag.putInt("m_HideCooldown", this.getHideCooldown());
+        tag.putInt("m_RandomTimer", this.getRandomTimer());
+        tag.putInt("m_SearchTimer", this.getSearchTimer());
+        tag.putInt("m_BiteTimer", this.getBiteTimer());
+        tag.putInt("m_WaitTimer", this.getWaitTimer());
+        tag.putLong("m_LastTimeEaten", this.getLastTimeEaten());
         GlobalPos target = this.getHideTarget();
         if (target != null) {
             GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, target)
-                    .result().ifPresent(t -> tag.put("HideTarget", t));
+                    .result().ifPresent(t -> tag.put("m_HideTarget", t));
         }
         if (!this.exploredPositions.isEmpty()) {
             ListTag list = new ListTag();
@@ -281,29 +292,31 @@ public class MurkletEntity extends PathfinderMob {
                 GlobalPos.CODEC.encodeStart(NbtOps.INSTANCE, pos)
                         .result().ifPresent(list::add);
             }
-            tag.put("ExploredPositions", list);
+            tag.put("m_ExploredPositions", list);
         }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.setHideState(tag.getInt("HideState"));
-        this.setDigTimer(tag.getInt("DigTimer"));
-        this.setHideCooldown(tag.getInt("HideCooldown"));
-        this.setRandomTimer(tag.getInt("RandomTimer"));
-        this.setSearchTimer(tag.getInt("SearchTimer"));
-        this.setLastTimeEaten(tag.contains("LastTimeEaten", Tag.TAG_LONG)
-                ? tag.getLong("LastTimeEaten")
+        this.setHideState(tag.getInt("m_HideState"));
+        this.setDigTimer(tag.getInt("m_DigTimer"));
+        this.setHideCooldown(tag.getInt("m_HideCooldown"));
+        this.setRandomTimer(tag.getInt("m_RandomTimer"));
+        this.setSearchTimer(tag.getInt("m_SearchTimer"));
+        this.setBiteTimer(tag.getInt("m_BiteTimer"));
+        this.setWaitTimer(tag.getInt("m_WaitTimer"));
+        this.setLastTimeEaten(tag.contains("m_LastTimeEaten", Tag.TAG_LONG)
+                ? tag.getLong("m_LastTimeEaten")
                 : this.level().getGameTime());
-        if (tag.contains("HideTarget")) {
+        if (tag.contains("m_HideTarget")) {
             GlobalPos.CODEC.parse(NbtOps.INSTANCE, tag.get(
-                    "HideTarget"))
+                    "m_HideTarget"))
                     .result().ifPresent(this::setHideTarget);
         }
         this.exploredPositions.clear();
-        if (tag.contains("ExploredPositions", Tag.TAG_LIST)) {
-            ListTag list = tag.getList("ExploredPositions", Tag.TAG_COMPOUND);
+        if (tag.contains("m_ExploredPositions", Tag.TAG_LIST)) {
+            ListTag list = tag.getList("m_ExploredPositions", Tag.TAG_COMPOUND);
             for (int i = 0; i < list.size(); i++) {
                 GlobalPos.CODEC.parse(NbtOps.INSTANCE, list.get(i))
                         .result().ifPresent(this.exploredPositions::add);

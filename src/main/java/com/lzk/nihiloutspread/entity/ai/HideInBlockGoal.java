@@ -17,9 +17,9 @@ import java.util.List;
 
 public class HideInBlockGoal extends Goal {
 
-    private static final int DIG_TICKS = 20;
+    private static final int DIG_TICKS = 24;
     private static final int HIDE_TICKS = 200;
-    private static final int UNDIG_TICKS = 25;
+    private static final int UNDIG_TICKS = 30;
     private static final int SEARCH_RADIUS = 16;
 
     private double moveSpeed = 1.0D;
@@ -162,13 +162,13 @@ public class HideInBlockGoal extends Goal {
         if (blockState.getRenderShape() != RenderShape.INVISIBLE) {
             serverLevel.sendParticles(
                     new BlockParticleOption(ParticleTypes.BLOCK, blockState),
-                    this.targetPos.getX() + 0.5D,
-                    this.targetPos.getY() + 1.05D,
-                    this.targetPos.getZ() + 0.5D,
+                    this.mob.getX() + 0.25D,
+                    this.mob.getY(),
+                    this.mob.getZ() + 0.25D,
                     4,
-                    0.25D,
+                    0.1D,
                     0.05D,
-                    0.25D,
+                    0.1D,
                     0.15D);
         }
     }
@@ -238,9 +238,10 @@ public class HideInBlockGoal extends Goal {
             case DIGGING -> {
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                if (this.mob.getDigTimer() % 4 == 0) {
-                    spawnDiggingParticles();
-                }
+                if (this.mob.getDigTimer() >= 8 && this.mob.getDigTimer() <= 12)
+                    if (this.mob.getDigTimer() % 2 == 0) {
+                        spawnDiggingParticles();
+                    }
 
                 if (this.mob.getDigTimer() >= DIG_TICKS) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_HIDDEN);
@@ -277,9 +278,10 @@ public class HideInBlockGoal extends Goal {
             case UNDIGGING -> {
                 this.mob.setDigTimer(this.mob.getDigTimer() + 1);
 
-                if (this.mob.getDigTimer() % 4 == 0) {
-                    spawnDiggingParticles();
-                }
+                if (this.mob.getDigTimer() <= 12)
+                    if (this.mob.getDigTimer() % 2 == 0) {
+                        spawnDiggingParticles();
+                    }
 
                 if (this.mob.getDigTimer() >= UNDIG_TICKS) {
                     this.mob.setHideState(MurkletEntity.HIDE_STATE_NONE);
@@ -310,7 +312,6 @@ public class HideInBlockGoal extends Goal {
         this.mob.setDigTimer(0);
         this.mob.setRandomTimer(0);
         this.targetPos = null;
-        this.mob.setHideTarget(null);
         this.mob.getNavigation().stop();
     }
 

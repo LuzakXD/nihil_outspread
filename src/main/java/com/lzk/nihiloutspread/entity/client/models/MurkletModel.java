@@ -130,6 +130,7 @@ public class MurkletModel<T extends LivingEntity> extends HierarchicalModel<T> {
                                 this.animate(rv.digState, MurkletAnimations.dig, ageInTicks, 1.0f);
                                 this.animate(rv.digIdleState, MurkletAnimations.dig_idle, ageInTicks, 1.0f);
                                 this.animate(rv.undigState, MurkletAnimations.undig, ageInTicks, 1.0f);
+                                this.animate(rv.biteState, MurkletAnimations.dig_bite, ageInTicks, 1.0f);
                         }
                 }
         }

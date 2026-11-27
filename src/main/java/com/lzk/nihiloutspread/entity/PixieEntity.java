@@ -39,7 +39,8 @@ public class PixieEntity extends PathfinderMob {
                 .add(Attributes.MAX_HEALTH, 2.0D)
                 .add(Attributes.FLYING_SPEED, 0.1F)
                 .add(Attributes.MOVEMENT_SPEED, 0.1F)
-                .add(Attributes.FOLLOW_RANGE, 48.0);
+                .add(Attributes.FOLLOW_RANGE, 48.0)
+                .add(Attributes.SCALE, 0.75D);
     }
 
     @Override

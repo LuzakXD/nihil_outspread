@@ -40,6 +40,12 @@ neoForge {
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+
+            systemProperty 'minecraft.api.auth.host', 'http://0.0.0.0'
+            systemProperty 'minecraft.api.account.host', 'http://0.0.0.0'
+            systemProperty 'minecraft.api.session.host', 'http://0.0.0.0'
+            systemProperty 'minecraft.api.services.host', 'http://0.0.0.0'
+
         }
 
         server {
